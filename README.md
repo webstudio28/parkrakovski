@@ -41,7 +41,7 @@ Optional secrets:
 
 - `CPANEL_PROTOCOL` (`ftp` or `ftps`, default: `ftp`)
 - `CPANEL_PORT` (default: `21`)
-- `CPANEL_SERVER_DIR` (default: `parkrakovski/`)
+- `CPANEL_SERVER_DIR` (default: `public_html/parkrakovski/`)
 
 On every push to `main`, the workflow builds `_site` with `PATH_PREFIX=/parkrakovski` and uploads it to the configured cPanel directory.
 
