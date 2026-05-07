@@ -9,8 +9,12 @@ ensure_session();
 $cfg = panel_config();
 $cfgUser = (string)($cfg["username"] ?? "");
 $cfgHash = (string)($cfg["password_hash"] ?? "");
+$cfgPath = __DIR__ . "/config.php";
+$cfgExists = file_exists($cfgPath);
 
 $error = "";
+$hashInfo = $cfgHash ? password_get_info($cfgHash) : ["algo" => 0, "algoName" => "unknown"];
+$hashLooksValid = (($hashInfo["algo"] ?? 0) !== 0);
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
   verify_csrf($_POST["csrf"] ?? null);
@@ -18,13 +22,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   $user = (string)($_POST["username"] ?? "");
   $pass = (string)($_POST["password"] ?? "");
 
-  if (!$cfgUser || !$cfgHash) {
-    $error = "Panel is not configured. Create config.php on the server.";
+  if (!$cfgUser || !$cfgHash || !$hashLooksValid) {
+    $error = "Panel is not configured. Create config.php on the server next to login.php.";
   } elseif (hash_equals($cfgUser, $user) && password_verify($pass, $cfgHash)) {
     $_SESSION["panel_logged_in"] = true;
     redirect("/index.php");
   } else {
-    $error = "Invalid credentials.";
+    if (!hash_equals($cfgUser, $user)) {
+      $error = "Invalid username.";
+    } else {
+      $error = "Invalid password.";
+    }
   }
 }
 
@@ -67,7 +75,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <?php endif; ?>
 
         <div class="hint">
-          If you see “not configured”, create <code>config.php</code> on the server next to this file.
+          <div>If you see “not configured”, create <code>config.php</code> on the server next to this file.</div>
+          <div style="margin-top:6px; opacity:0.75;">
+            Config detected: <strong><?php echo $cfgExists ? "yes" : "no"; ?></strong>,
+            hash format: <strong><?php echo html((string)($hashInfo["algoName"] ?? "unknown")); ?></strong>
+          </div>
         </div>
       </form>
     </div>
