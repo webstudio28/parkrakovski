@@ -1,6 +1,8 @@
 module.exports = function (eleventyConfig) {
   // Passthrough copy: src/assets → _site/assets
   eleventyConfig.addPassthroughCopy({ "src/assets": "assets" });
+  // Favicon at site root
+  eleventyConfig.addPassthroughCopy({ "src/favicon.svg": "favicon.svg" });
 
   // Handy for sitemap/footers if needed
   eleventyConfig.addGlobalData("buildDate", () =>

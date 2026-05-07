@@ -49,7 +49,5 @@ jobs:
           username: ${{ secrets.CPANEL_USER }}
           password: ${{ secrets.CPANEL_PASS }}
           local-dir: _site/
-          # cpanel.site preview URLs are served from public_html
-          # so /parkrakovski/... must exist under public_html/parkrakovski/
-          server-dir: ${{ secrets.CPANEL_SERVER_DIR || 'public_html/parkrakovski/' }}
+          server-dir: ${{ secrets.CPANEL_SERVER_DIR || 'parkrakovski/' }}
           dangerous-clean-slate: false

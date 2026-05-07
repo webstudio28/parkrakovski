@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <style>
+      .bg { fill: #0b1220; }
+      .fg { fill: #ffffff; font: 700 34px/1 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
+    </style>
+  </defs>
+  <rect class="bg" x="4" y="4" width="56" height="56" rx="14" />
+  <text class="fg" x="32" y="41" text-anchor="middle">P</text>
+</svg>
