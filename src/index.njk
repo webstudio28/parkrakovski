@@ -1,0 +1,24 @@
+---
+layout: base.njk
+title: Home
+description: Welcome to the base Eleventy website.
+---
+
+<section class="space-y-4">
+  <h1 class="text-3xl font-semibold tracking-tight">Base 11ty starter</h1>
+  <p class="text-slate-700">
+    This is a minimal homepage with data-driven navigation. Replace this text with your real content.
+  </p>
+
+  <div class="grid gap-4 sm:grid-cols-2">
+    <a class="block rounded-xl border border-slate-200 p-4 hover:bg-slate-50" href="{{ '/services/' | url }}">
+      <div class="font-medium">Services</div>
+      <div class="text-sm text-slate-600 mt-1">See Service 1 and Service 2.</div>
+    </a>
+    <a class="block rounded-xl border border-slate-200 p-4 hover:bg-slate-50" href="{{ '/about/' | url }}">
+      <div class="font-medium">About Us</div>
+      <div class="text-sm text-slate-600 mt-1">Learn more about the company.</div>
+    </a>
+  </div>
+</section>
+

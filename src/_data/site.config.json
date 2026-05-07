@@ -1,0 +1,19 @@
+{
+  "brand": {
+    "name": "Base 11ty Site",
+    "language": "en"
+  },
+  "seo": {
+    "siteUrl": "https://example.com",
+    "defaultTitle": "Base 11ty Site",
+    "defaultDescription": "A minimal Eleventy starter with data-driven navigation."
+  },
+  "nav": {
+    "header": [
+      { "label": "Home", "url": "/" },
+      { "label": "Services", "url": "/services/", "childrenFrom": "services" },
+      { "label": "About Us", "url": "/about/" }
+    ]
+  }
+}
+

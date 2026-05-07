@@ -1,0 +1,28 @@
+---
+pagination:
+  data: services
+  size: 1
+  alias: service
+permalink: "/services/{{ service.slug }}/"
+layout: base.njk
+eleventyComputed:
+  title: "{{ service.title }}"
+  description: "{{ service.summary }}"
+---
+
+<article class="space-y-4">
+  <header class="space-y-2">
+    <p class="text-sm text-slate-500">
+      <a class="hover:underline underline-offset-2" href="{{ '/services/' | url }}">Services</a>
+      <span aria-hidden="true">/</span>
+      <span>{{ service.title }}</span>
+    </p>
+    <h1 class="text-3xl font-semibold tracking-tight">{{ service.title }}</h1>
+    <p class="text-slate-700">{{ service.summary }}</p>
+  </header>
+
+  <div class="prose prose-slate max-w-none">
+    <p>{{ service.body }}</p>
+  </div>
+</article>
+

@@ -1,0 +1,19 @@
+{
+  "name": "base-11ty-site",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "serve": "eleventy --serve",
+    "start": "npm-run-all --parallel css:watch serve",
+    "dev": "npm start",
+    "build": "npm run css:build && eleventy",
+    "css:build": "tailwindcss -i ./src/assets/css/tailwind.css -o ./src/assets/css/styles.css --minify",
+    "css:watch": "tailwindcss -i ./src/assets/css/tailwind.css -o ./src/assets/css/styles.css --watch"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.0.0",
+    "npm-run-all": "^4.1.5",
+    "tailwindcss": "^3.4.0"
+  }
+}
+

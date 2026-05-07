@@ -1,0 +1,38 @@
+<header class="sticky top-0 z-40 border-b border-slate-200 bg-white/90 backdrop-blur">
+  <div class="mx-auto max-w-5xl px-4 py-3 flex items-center justify-between gap-6">
+    <a href="{{ '/' | url }}" class="font-semibold tracking-tight">
+      {{ site.brand.name }}
+    </a>
+
+    <nav aria-label="Main">
+      <ul class="flex items-center gap-4 text-sm">
+        {% for item in site.nav.header %}
+          <li class="relative">
+            <a
+              href="{{ item.url | url }}"
+              class="px-2 py-1 rounded-md hover:bg-slate-100"
+            >
+              {{ item.label }}
+            </a>
+
+            {% if item.children and item.children.length %}
+              <ul class="absolute left-0 mt-2 min-w-44 rounded-lg border border-slate-200 bg-white shadow-lg p-1">
+                {% for child in item.children %}
+                  <li>
+                    <a
+                      href="{{ child.url | url }}"
+                      class="block px-3 py-2 rounded-md hover:bg-slate-100"
+                    >
+                      {{ child.label }}
+                    </a>
+                  </li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    </nav>
+  </div>
+</header>
+

@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="{{ site.brand.language | default('en') }}">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    {% set pageTitle = title or site.seo.defaultTitle %}
+    <title>{{ pageTitle }}</title>
+    <meta name="description" content="{{ description or site.seo.defaultDescription }}" />
+    <link rel="canonical" href="{{ site.seo.siteUrl }}{{ page.url | url }}" />
+
+    <link rel="stylesheet" href="{{ '/assets/css/styles.css' | url }}" />
+  </head>
+
+  <body class="min-h-dvh flex flex-col">
+    {% include "header.njk" %}
+
+    <main class="flex-1">
+      <div class="mx-auto max-w-5xl px-4 py-10">
+        {{ content | safe }}
+      </div>
+    </main>
+
+    {% include "footer.njk" %}
+  </body>
+</html>
+
