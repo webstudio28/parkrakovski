@@ -11,7 +11,10 @@ function loadJson(name) {
   }
 }
 
-const services = loadJson("services.json") || [];
+const servicesRaw = loadJson("services.json");
+const services = Array.isArray(servicesRaw)
+  ? servicesRaw
+  : (servicesRaw?.items ?? []);
 
 function resolveChildrenFrom(type) {
   if (type === "services") {

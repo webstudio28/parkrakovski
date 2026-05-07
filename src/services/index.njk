@@ -11,7 +11,7 @@ description: Overview of services.
   </header>
 
   <div class="grid gap-4 sm:grid-cols-2">
-    {% for s in services %}
+    {% for s in services.items %}
       <a class="block rounded-xl border border-slate-200 p-4 hover:bg-slate-50" href="{{ ('/services/' ~ s.slug ~ '/') | url }}">
         <div class="font-medium">{{ s.title }}</div>
         <div class="text-sm text-slate-600 mt-1">{{ s.summary }}</div>

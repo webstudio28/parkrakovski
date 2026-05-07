@@ -1,15 +1,17 @@
-[
-  {
-    "slug": "service1",
-    "title": "Service 1",
-    "summary": "A short summary for Service 1.",
-    "body": "This is dummy text for Service 1. Replace it with your real service description, benefits, and process."
-  },
-  {
-    "slug": "service2",
-    "title": "Service 2 s",
-    "summary": "A short summary for Service 2.",
-    "body": "This is dummy text for Service 2. Replace it with your real service description, benefits, and process."
-  }
-]
+{
+  "items": [
+    {
+      "slug": "service1",
+      "title": "Service 1",
+      "summary": "A short summary for Service 1.",
+      "body": "This is dummy text for Service 1. Replace it with your real service description, benefits, and process."
+    },
+    {
+      "slug": "service2",
+      "title": "Service 2",
+      "summary": "A short summary for Service 2.",
+      "body": "This is dummy text for Service 2. Replace it with your real service description, benefits, and process."
+    }
+  ]
+}
 
