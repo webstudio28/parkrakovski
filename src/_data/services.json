@@ -1,10 +1,10 @@
 {
     "items": [
         {
-            "slug": "service2",
+            "slug": "service1",
             "title": "Service 1",
             "summary": "A short summary for Service 1.",
-            "body": "This is dummy text for Service 1. Replace it with your real service description, benefits, and process."
+            "body": "This is the first text that i have changed with my custom admin"
         },
         {
             "slug": "service2",
