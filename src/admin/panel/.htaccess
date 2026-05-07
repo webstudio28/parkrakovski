@@ -4,7 +4,3 @@ Options -Indexes
   Require all denied
 </Files>
 
-<FilesMatch "^\.env">
-  Require all denied
-</FilesMatch>
-

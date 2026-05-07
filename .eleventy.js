@@ -3,10 +3,8 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "src/assets": "assets" });
   // Favicon at site root
   eleventyConfig.addPassthroughCopy({ "src/favicon.svg": "favicon.svg" });
-  // Decap CMS admin app
+  // Admin area (panel, optional other tools)
   eleventyConfig.addPassthroughCopy({ "src/admin": "admin" });
-  // OAuth bridge (PHP) for Decap CMS on cPanel
-  eleventyConfig.addPassthroughCopy({ "src/auth": "auth" });
 
   // Handy for sitemap/footers if needed
   eleventyConfig.addGlobalData("buildDate", () =>
