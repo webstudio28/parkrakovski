@@ -26,3 +26,6 @@ Thumbs.db
 
 # Local docs (ignore entire folder)
 local_docs/
+
+# Admin panel secrets (never commit)
+src/admin/panel/config.php

@@ -8,13 +8,18 @@ ensure_session();
 
 $cfg = panel_config();
 $cfgUser = (string)($cfg["username"] ?? "");
-$cfgHash = (string)($cfg["password_hash"] ?? "");
+$cfgHash = trim((string)($cfg["password_hash"] ?? ""));
 $cfgPath = __DIR__ . "/config.php";
 $cfgExists = file_exists($cfgPath);
 
 $error = "";
 $hashInfo = $cfgHash ? password_get_info($cfgHash) : ["algo" => 0, "algoName" => "unknown"];
-$hashLooksValid = (($hashInfo["algo"] ?? 0) !== 0);
+$hashAlgoName =
+  (($hashInfo["algo"] ?? 0) !== 0)
+    ? (string)($hashInfo["algoName"] ?? "unknown")
+    : (panel_is_acceptable_password_hash($cfgHash) ? "bcrypt (detected)" : "unknown");
+
+$hashLooksValid = panel_is_acceptable_password_hash($cfgHash);
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
   verify_csrf($_POST["csrf"] ?? null);
@@ -78,7 +83,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
           <div>If you see “not configured”, create <code>config.php</code> on the server next to this file.</div>
           <div style="margin-top:6px; opacity:0.75;">
             Config detected: <strong><?php echo $cfgExists ? "yes" : "no"; ?></strong>,
-            hash format: <strong><?php echo html((string)($hashInfo["algoName"] ?? "unknown")); ?></strong>
+            hash format: <strong><?php echo html((string)$hashAlgoName); ?></strong>
           </div>
         </div>
       </form>
