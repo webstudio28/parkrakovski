@@ -116,5 +116,26 @@
   body.modal-open {
     overflow: hidden;
   }
+
+  /* Partners: infinite moving strip with drag support */
+  .partners-strip-wrapper {
+    overflow: hidden;
+    width: 100%;
+    mask-image: linear-gradient(to right, transparent, black 7%, black 93%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 7%, black 93%, transparent);
+  }
+  .partners-strip {
+    display: flex;
+    width: max-content;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+  .partners-strip-set {
+    display: flex;
+    flex-shrink: 0;
+    gap: 1.25rem;
+    padding-left: 1rem;
+    padding-right: 0.25rem;
+  }
 }
 
