@@ -3,6 +3,12 @@
         "name": "Base 11ty Site",
         "language": "en"
     },
+    "colors": {
+        "background": "#FFFFFF",
+        "blue": "#003E8D",
+        "teal": "#006484",
+        "yellow": "#B5961D"
+    },
     "seo": {
         "siteUrl": "https://example.com",
         "defaultTitle": "Base 11ty Site",

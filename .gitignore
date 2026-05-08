@@ -29,3 +29,7 @@ local_docs/
 
 # Admin panel secrets (never commit)
 src/admin/panel/config.php
+
+# Local hero video assets (keep local, don't commit binaries)
+src/assets/video/hero-video.mp4
+src/assets/videos/hero-video.mp4

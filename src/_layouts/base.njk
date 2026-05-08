@@ -11,15 +11,22 @@
 
     <link rel="icon" href="{{ '/favicon.svg' | url }}" type="image/svg+xml" />
     <link rel="stylesheet" href="{{ '/assets/css/styles.css' | url }}" />
+
+    <style>
+      :root {
+        --color-bg: {{ site.colors.background | default('#FFFFFF') }};
+        --color-brand-blue: {{ site.colors.blue | default('#003E8D') }};
+        --color-brand-teal: {{ site.colors.teal | default('#006484') }};
+        --color-brand-yellow: {{ site.colors.yellow | default('#B5961D') }};
+      }
+    </style>
   </head>
 
-  <body class="min-h-dvh flex flex-col">
+  <body class="min-h-dvh flex flex-col bg-[var(--color-bg)] text-slate-900">
     {% include "header.njk" %}
 
     <main class="flex-1">
-      <div class="mx-auto max-w-5xl px-4 py-10">
-        {{ content | safe }}
-      </div>
+      {{ content | safe }}
     </main>
 
     {% include "footer.njk" %}

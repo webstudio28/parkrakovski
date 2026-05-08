@@ -1,0 +1,12 @@
+{
+  "items": [
+    { "title": "Lidl",        "category": "Супермаркет",  "color": "#0050AA", "url": "#" },
+    { "title": "Kaufland",    "category": "Хипермаркет",  "color": "#E10915", "url": "#" },
+    { "title": "DM",          "category": "Дрогерия",     "color": "#00387B", "url": "#" },
+    { "title": "Pepco",       "category": "Мода и дом",   "color": "#DC0030", "url": "#" },
+    { "title": "KFC",         "category": "Хранене",      "color": "#E4002B", "url": "#" },
+    { "title": "Спорт Депо",  "category": "Спорт",        "color": "#0E8C3A", "url": "#" },
+    { "title": "Технополис",  "category": "Електроника",  "color": "#F7941D", "url": "#" },
+    { "title": "Аптека",      "category": "Здраве",       "color": "#009639", "url": "#" }
+  ]
+}

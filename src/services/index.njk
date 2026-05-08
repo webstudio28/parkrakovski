@@ -4,19 +4,21 @@ title: Services
 description: Overview of services.
 ---
 
-<section class="space-y-6">
-  <header class="space-y-2">
-    <h1 class="text-3xl font-semibold tracking-tight">Services</h1>
-    <p class="text-slate-700">Two example services, wired into the navigation via `src/_data/site.js`.</p>
-  </header>
+<div class="mx-auto max-w-5xl px-4 py-10">
+  <section class="space-y-6">
+    <header class="space-y-2">
+      <h1 class="text-3xl font-semibold tracking-tight">Services</h1>
+      <p class="text-slate-700">Two example services, wired into the navigation via `src/_data/site.js`.</p>
+    </header>
 
-  <div class="grid gap-4 sm:grid-cols-2">
-    {% for s in services.items %}
-      <a class="block rounded-xl border border-slate-200 p-4 hover:bg-slate-50" href="{{ ('/services/' ~ s.slug ~ '/') | url }}">
-        <div class="font-medium">{{ s.title }}</div>
-        <div class="text-sm text-slate-600 mt-1">{{ s.summary }}</div>
-      </a>
-    {% endfor %}
-  </div>
-</section>
+    <div class="grid gap-4 sm:grid-cols-2">
+      {% for s in services.items %}
+        <a class="block rounded-xl border border-slate-200 p-4 hover:bg-slate-50" href="{{ ('/services/' ~ s.slug ~ '/') | url }}">
+          <div class="font-medium">{{ s.title }}</div>
+          <div class="text-sm text-slate-600 mt-1">{{ s.summary }}</div>
+        </a>
+      {% endfor %}
+    </div>
+  </section>
+</div>
 
