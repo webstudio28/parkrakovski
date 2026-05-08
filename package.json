@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "serve": "eleventy --serve",
-    "start": "npm-run-all --parallel css:watch serve",
+    "start": "npm-run-all css:build --parallel css:watch serve",
     "dev": "npm start",
     "build": "npm run css:build && eleventy",
     "panel:hash": "node ./scripts/panel-hash.cjs",
