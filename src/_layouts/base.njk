@@ -22,15 +22,25 @@
     </style>
   </head>
 
-  <body class="min-h-dvh flex flex-col bg-[var(--color-bg)] text-slate-900">
-    {% include "header.njk" %}
+  <body class="relative min-h-dvh flex flex-col text-slate-900">
+    <div aria-hidden="true" class="pointer-events-none fixed inset-0 z-0">
+      <img
+        src="{{ '/assets/images/main-bg.jpg' | url }}"
+        alt=""
+        class="absolute inset-0 h-full w-full object-cover opacity-30"
+      />
+      <div class="absolute opacity-5 inset-0 bg-[linear-gradient(90deg,rgba(0,62,141,0.78)_0%,rgba(0,100,132,0.58)_56%,rgba(181,150,29,0.42)_100%)]"></div>
+    </div>
 
-    <main class="flex-1">
-      {{ content | safe }}
-    </main>
+    <div class="relative z-10 flex min-h-dvh flex-col">
+      {% include "header.njk" %}
 
-    {% include "footer.njk" %}
-    <script>
+      <main class="flex-1">
+        {{ content | safe }}
+      </main>
+
+      {% include "footer.njk" %}
+      <script>
       (function () {
         var headerSurface = document.querySelector(".js-header-surface");
         if (!headerSurface) return;
@@ -108,7 +118,8 @@
           if (event.key === "Escape" && isOpen) closeMenu();
         });
       })();
-    </script>
+      </script>
+    </div>
   </body>
 </html>
 
