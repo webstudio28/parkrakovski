@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "serve": "eleventy --serve",
+    "serve": "eleventy --serve --incremental",
     "start": "npm-run-all css:build --parallel css:watch serve",
     "dev": "npm start",
     "build": "npm run css:build && eleventy",
