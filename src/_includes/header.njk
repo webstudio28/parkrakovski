@@ -1,38 +1,87 @@
-<header class="sticky top-0 z-40 border-b border-slate-200 bg-white/90 backdrop-blur">
-  <div class="mx-auto max-w-5xl px-4 py-3 flex items-center justify-between gap-6">
-    <a href="{{ '/' | url }}" class="font-semibold tracking-tight">
-      {{ site.brand.name }}
-    </a>
+<header class="sticky top-3 z-50 px-3 sm:px-4">
+  <div class="mx-auto max-w-6xl">
+    <div class="pk-header-surface js-header-surface">
+      <a href="{{ '/' | url }}" class="shrink-0 text-sm sm:text-base font-semibold tracking-tight text-slate-900">
+        {{ site.brand.name }}
+      </a>
 
-    <nav aria-label="Main">
-      <ul class="flex items-center gap-4 text-sm">
-        {% for item in site.nav.header %}
-          <li class="relative">
-            <a
-              href="{{ item.url | url }}"
-              class="px-2 py-1 rounded-md hover:bg-slate-100"
-            >
-              {{ item.label }}
-            </a>
+      <nav class="hidden md:flex flex-1 items-center justify-center" aria-label="Main">
+        <ul class="flex items-center gap-1 text-sm">
+          {% for item in site.nav.header %}
+            <li class="relative group">
+              <a
+                href="{{ item.url | url }}"
+                class="inline-flex items-center rounded-full px-3 py-2 font-medium text-slate-700 transition hover:text-brand-teal hover:bg-white/70"
+              >
+                {{ item.label }}
+              </a>
 
-            {% if item.children and item.children.length %}
-              <ul class="absolute left-0 mt-2 min-w-44 rounded-lg border border-slate-200 bg-white shadow-lg p-1">
-                {% for child in item.children %}
-                  <li>
-                    <a
-                      href="{{ child.url | url }}"
-                      class="block px-3 py-2 rounded-md hover:bg-slate-100"
-                    >
-                      {{ child.label }}
-                    </a>
-                  </li>
-                {% endfor %}
-              </ul>
-            {% endif %}
-          </li>
-        {% endfor %}
-      </ul>
-    </nav>
+              {% if item.children and item.children.length %}
+                <ul class="pointer-events-none absolute left-1/2 top-full z-20 mt-2 min-w-52 -translate-x-1/2 rounded-2xl border border-slate-200 bg-white/95 p-1.5 opacity-0 shadow-xl shadow-slate-900/10 backdrop-blur transition group-hover:pointer-events-auto group-hover:opacity-100">
+                  {% for child in item.children %}
+                    <li>
+                      <a
+                        href="{{ child.url | url }}"
+                        class="block rounded-xl px-3 py-2 text-slate-700 hover:bg-slate-100 hover:text-slate-900"
+                      >
+                        {{ child.label }}
+                      </a>
+                    </li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+            </li>
+          {% endfor %}
+        </ul>
+      </nav>
+
+      <a
+        href="{{ '/services/' | url }}"
+        class="hidden md:inline-flex items-center rounded-full bg-brand-yellow px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:brightness-110"
+      >
+        Обекти
+      </a>
+
+      <button
+        type="button"
+        class="pk-mobile-toggle md:hidden"
+        id="mobile-menu-toggle"
+        aria-label="Отвори меню"
+        aria-expanded="false"
+        aria-controls="mobile-menu-panel"
+      >
+        <span class="pk-mobile-toggle__line"></span>
+        <span class="pk-mobile-toggle__line"></span>
+        <span class="pk-mobile-toggle__line"></span>
+      </button>
+    </div>
   </div>
 </header>
+
+<div id="mobile-menu-backdrop" class="pk-mobile-backdrop" aria-hidden="true" hidden></div>
+
+<aside id="mobile-menu-panel" class="pk-mobile-panel" aria-hidden="true" hidden>
+  <div class="pk-mobile-panel__inner">
+    <button
+      type="button"
+      class="pk-mobile-close"
+      id="mobile-menu-close"
+      aria-label="Затвори меню"
+    >
+      &times;
+    </button>
+
+    <nav class="pk-mobile-nav" aria-label="Mobile">
+      {% for item in site.nav.header %}
+        <a href="{{ item.url | url }}" class="pk-mobile-link">{{ item.label }}</a>
+        {% if item.children and item.children.length %}
+          {% for child in item.children %}
+            <a href="{{ child.url | url }}" class="pk-mobile-sublink">{{ child.label }}</a>
+          {% endfor %}
+        {% endif %}
+      {% endfor %}
+      <a href="{{ '/services/' | url }}" class="pk-mobile-link pk-mobile-link--cta">Обекти</a>
+    </nav>
+  </div>
+</aside>
 
