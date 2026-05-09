@@ -17,17 +17,21 @@
     "nav": {
         "header": [
             {
-                "label": "Home",
+                "label": "Начало",
                 "url": "/"
             },
             {
-                "label": "Andon wow",
+                "label": "Обекти",
                 "url": "/services/",
                 "childrenFrom": "services"
             },
             {
-                "label": "About Us",
+                "label": "За нас",
                 "url": "/about/"
+            },
+            {
+                "label": "Контакти",
+                "url": "/contacts/"
             }
         ]
     }
