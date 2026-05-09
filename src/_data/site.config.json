@@ -22,8 +22,7 @@
             },
             {
                 "label": "Обекти",
-                "url": "/services/",
-                "childrenFrom": "services"
+                "url": "/services/"
             },
             {
                 "label": "За нас",

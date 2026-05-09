@@ -10,15 +10,30 @@
 
 @layer components {
   .pk-header-surface {
-    @apply relative flex items-center gap-4 rounded-full border border-slate-200/70 bg-white/80 px-5 py-3 shadow-sm transition-all duration-200 sm:px-6;
-    -webkit-backdrop-filter: blur(10px) saturate(120%);
-    backdrop-filter: blur(10px) saturate(120%);
+    @apply relative flex items-center gap-4 rounded-full border border-transparent bg-transparent px-5 py-3 shadow-none transition-all duration-200 sm:px-6;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
   }
 
   .pk-header-surface.is-glassy {
-    @apply bg-white/65 border-white/70 shadow-lg shadow-slate-900/10;
-    -webkit-backdrop-filter: blur(14px) saturate(130%);
-    backdrop-filter: blur(14px) saturate(130%);
+    @apply bg-white/90 border-slate-200/80 shadow-lg;
+    -webkit-backdrop-filter: blur(16px) saturate(135%);
+    backdrop-filter: blur(16px) saturate(135%);
+  }
+
+  .pk-desktop-link {
+    color: rgba(255, 255, 255, 0.92);
+  }
+  .pk-desktop-link:hover {
+    color: rgba(255, 255, 255, 1);
+    background: rgba(255, 255, 255, 0.14);
+  }
+  .pk-header-surface.is-glassy .pk-desktop-link {
+    color: rgb(51 65 85);
+  }
+  .pk-header-surface.is-glassy .pk-desktop-link:hover {
+    color: var(--color-brand-teal);
+    background: rgba(255, 255, 255, 0.7);
   }
 
   .pk-mobile-toggle {
@@ -33,9 +48,12 @@
     justify-content: center;
     align-items: center;
     gap: 0.27rem;
-    color: rgba(15, 23, 42, 0.9);
+    color: rgba(255, 255, 255, 0.92);
     transition: color 180ms ease;
     -webkit-tap-highlight-color: transparent;
+  }
+  .pk-header-surface.is-glassy .pk-mobile-toggle {
+    color: rgba(15, 23, 42, 0.9);
   }
 
   .pk-mobile-toggle__line {

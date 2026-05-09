@@ -1,12 +1,67 @@
 {
   "items": [
-    { "title": "Lidl",        "category": "Супермаркет",  "color": "#0050AA", "url": "#" },
-    { "title": "Kaufland",    "category": "Хипермаркет",  "color": "#E10915", "url": "#" },
-    { "title": "DM",          "category": "Дрогерия",     "color": "#00387B", "url": "#" },
-    { "title": "Pepco",       "category": "Мода и дом",   "color": "#DC0030", "url": "#" },
-    { "title": "KFC",         "category": "Хранене",      "color": "#E4002B", "url": "#" },
-    { "title": "Спорт Депо",  "category": "Спорт",        "color": "#0E8C3A", "url": "#" },
-    { "title": "Технополис",  "category": "Електроника",  "color": "#F7941D", "url": "#" },
-    { "title": "Аптека",      "category": "Здраве",       "color": "#009639", "url": "#" }
+    {
+      "title": "Lidl",
+      "category": "Супермаркет",
+      "color": "#0050AA",
+      "url": "https://www.lidl.bg/",
+      "logo": "/assets/images/partners/lidl.svg"
+    },
+    {
+      "title": "ЗОРА",
+      "category": "Техника",
+      "color": "#E30613",
+      "url": "https://zora.bg/",
+      "logo": "/assets/images/partners/zora.png"
+    },
+    {
+      "title": "T Market",
+      "category": "Супермаркет",
+      "color": "#FFB81C",
+      "url": "https://tmarket.bg/",
+      "logo": "/assets/images/partners/t-market.svg"
+    },
+    {
+      "title": "Lilly",
+      "category": "Дрогерия",
+      "color": "#D0006F",
+      "url": "https://lillydrogerie.bg/",
+      "logo": "/assets/images/partners/lilly.svg"
+    },
+    {
+      "title": "Pepco",
+      "category": "Мода и дом",
+      "color": "#DC0030",
+      "url": "https://www.pepco.bg/",
+      "logo": "/assets/images/partners/pepco.svg"
+    },
+    {
+      "title": "аптека 36.6",
+      "category": "Здраве",
+      "color": "#00A651",
+      "url": "https://366.bg/",
+      "logo": "/assets/images/partners/apteka-366.svg"
+    },
+    {
+      "title": "KiK",
+      "category": "Текстил",
+      "color": "#F47920",
+      "url": "https://kik-bg.com/",
+      "logo": "/assets/images/partners/kik.svg"
+    },
+    {
+      "title": "Sinsay",
+      "category": "Мода",
+      "color": "#1A1A1A",
+      "url": "https://sinsay.com/bg/bg/",
+      "logo": "/assets/images/partners/sinsay.svg"
+    },
+    {
+      "title": "Via Deco",
+      "category": "Мебели и декор",
+      "color": "#2C2C2C",
+      "url": "https://viadeco.bg/",
+      "logo": "/assets/images/partners/viadeco.png"
+    }
   ]
 }

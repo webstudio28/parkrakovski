@@ -1,14 +1,21 @@
+const fs = require("fs");
 const path = require("path");
 
-const config = require(path.join(__dirname, "site.config.json"));
-
-function loadJson(name) {
+function readJsonFile(relPath) {
   try {
-    // eslint-disable-next-line global-require, import/no-dynamic-require
-    return require(path.join(__dirname, name));
+    const full = path.join(__dirname, relPath);
+    return JSON.parse(fs.readFileSync(full, "utf8"));
   } catch {
     return null;
   }
+}
+
+// Always read from disk — avoid `require(".json")` which Node caches and can show
+// stale `nav.header` during Eleventy watch/incremental builds.
+const config = readJsonFile("site.config.json") || {};
+
+function loadJson(name) {
+  return readJsonFile(name);
 }
 
 const servicesRaw = loadJson("services.json");
