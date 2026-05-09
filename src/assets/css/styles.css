@@ -1501,6 +1501,22 @@ body.modal-open {
   background-image: linear-gradient(to top, var(--tw-gradient-stops));
 }
 
+.bg-\[linear-gradient\(to_bottom\2c rgba\(181\2c 150\2c 29\2c 0\.45\)_0\%\2c rgba\(181\2c 150\2c 29\2c 0\.75\)_45\%\2c transparent_100\%\)\] {
+  background-image: linear-gradient(to bottom,rgba(181,150,29,0.45) 0%,rgba(181,150,29,0.75) 45%,transparent 100%);
+}
+
+.bg-\[linear-gradient\(to_bottom\2c transparent_0\%\2c rgba\(181\2c 150\2c 29\2c 0\.75\)_55\%\2c rgba\(181\2c 150\2c 29\2c 0\.45\)_100\%\)\] {
+  background-image: linear-gradient(to bottom,transparent 0%,rgba(181,150,29,0.75) 55%,rgba(181,150,29,0.45) 100%);
+}
+
+.bg-\[linear-gradient\(to_left\2c transparent_0\%\2c rgba\(181\2c 150\2c 29\2c 0\.75\)_100\%\)\] {
+  background-image: linear-gradient(to left,transparent 0%,rgba(181,150,29,0.75) 100%);
+}
+
+.bg-\[linear-gradient\(to_right\2c transparent_0\%\2c rgba\(181\2c 150\2c 29\2c 0\.75\)_100\%\)\] {
+  background-image: linear-gradient(to right,transparent 0%,rgba(181,150,29,0.75) 100%);
+}
+
 .from-slate-950 {
   --tw-gradient-from: #020617 var(--tw-gradient-from-position);
   --tw-gradient-to: rgb(2 6 23 / 0) var(--tw-gradient-to-position);
@@ -1883,6 +1899,10 @@ body.modal-open {
 
 .text-white\/85 {
   color: rgb(255 255 255 / 0.85);
+}
+
+.text-white\/80 {
+  color: rgb(255 255 255 / 0.8);
 }
 
 .underline {
