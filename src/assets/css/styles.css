@@ -987,6 +987,10 @@ body.modal-open {
   margin-top: 2.5rem;
 }
 
+.mt-14 {
+  margin-top: 3.5rem;
+}
+
 .mt-2 {
   margin-top: 0.5rem;
 }
@@ -1409,6 +1413,10 @@ body.modal-open {
   background-color: rgb(255 255 255 / 0.95);
 }
 
+.bg-white\/45 {
+  background-color: rgb(255 255 255 / 0.45);
+}
+
 .bg-\[linear-gradient\(90deg\2c rgba\(0\2c 62\2c 141\2c 0\.78\)_0\%\2c rgba\(0\2c 100\2c 132\2c 0\.58\)_56\%\2c rgba\(181\2c 150\2c 29\2c 0\.42\)_100\%\)\] {
   background-image: linear-gradient(90deg,rgba(0,62,141,0.78) 0%,rgba(0,100,132,0.58) 56%,rgba(181,150,29,0.42) 100%);
 }
@@ -1566,6 +1574,10 @@ body.modal-open {
   padding-top: 5rem;
 }
 
+.pt-10 {
+  padding-top: 2.5rem;
+}
+
 .pt-4 {
   padding-top: 1rem;
 }
@@ -1622,6 +1634,11 @@ body.modal-open {
   line-height: 1rem;
 }
 
+.text-5xl {
+  font-size: 3rem;
+  line-height: 1;
+}
+
 .font-bold {
   font-weight: 700;
 }
@@ -1673,6 +1690,10 @@ body.modal-open {
 
 .leading-tight {
   line-height: 1.25;
+}
+
+.leading-\[0\.98\] {
+  line-height: 0.98;
 }
 
 .tracking-\[0\.25em\] {
@@ -1754,6 +1775,10 @@ body.modal-open {
   color: rgb(255 255 255 / 0.9);
 }
 
+.text-white\/95 {
+  color: rgb(255 255 255 / 0.95);
+}
+
 .underline {
   text-decoration-line: underline;
 }
@@ -1832,6 +1857,11 @@ body.modal-open {
 
 .shadow-slate-900\/15 {
   --tw-shadow-color: rgb(15 23 42 / 0.15);
+  --tw-shadow: var(--tw-shadow-colored);
+}
+
+.shadow-black\/25 {
+  --tw-shadow-color: rgb(0 0 0 / 0.25);
   --tw-shadow: var(--tw-shadow-colored);
 }
 
@@ -1937,6 +1967,11 @@ body.modal-open {
   color: rgb(15 23 42 / var(--tw-text-opacity, 1));
 }
 
+.hover\:text-white:hover {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+}
+
 .hover\:underline:hover {
   text-decoration-line: underline;
 }
@@ -1954,6 +1989,11 @@ body.modal-open {
 .hover\:ring-slate-900:hover {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(15 23 42 / var(--tw-ring-opacity, 1));
+}
+
+.hover\:ring-slate-100:hover {
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgb(241 245 249 / var(--tw-ring-opacity, 1));
 }
 
 .hover\:brightness-110:hover {
@@ -2064,6 +2104,10 @@ body.modal-open {
 
   .sm\:mt-10 {
     margin-top: 2.5rem;
+  }
+
+  .sm\:mt-20 {
+    margin-top: 5rem;
   }
 
   .sm\:mt-14 {
@@ -2282,6 +2326,11 @@ body.modal-open {
   .lg\:text-7xl {
     font-size: 4.5rem;
     line-height: 1;
+  }
+
+  .lg\:text-xl {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
   }
 }
 
