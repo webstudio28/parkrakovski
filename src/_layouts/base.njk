@@ -45,8 +45,10 @@
         var headerSurface = document.querySelector(".js-header-surface");
         if (!headerSurface) return;
 
+        var isHomePage = {{ 'true' if page.url == '/' else 'false' }};
+
         function onScroll() {
-          if (window.scrollY > 18) headerSurface.classList.add("is-glassy");
+          if (!isHomePage || window.scrollY > 18) headerSurface.classList.add("is-glassy");
           else headerSurface.classList.remove("is-glassy");
         }
 
