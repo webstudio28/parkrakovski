@@ -309,7 +309,7 @@ description: Welcome to the base Eleventy website.
             <p class="mt-2 text-[11px] sm:text-xs uppercase tracking-[0.2em] font-semibold text-slate-500">{{ shop.category }}</p>
 
             <a
-              href="{{ shop.url | default('#') }}"
+              href="{{ ('/obekti/' + shop.slug + '/') | url }}"
               class="absolute right-7 bottom-7 inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 text-slate-400 transition hover:border-slate-300 hover:bg-slate-100 hover:text-slate-900"
               aria-label="Виж повече за {{ shop.title }}"
             >
@@ -352,7 +352,7 @@ description: Welcome to the base Eleventy website.
             <p class="mt-2 text-[11px] sm:text-xs uppercase tracking-[0.2em] font-semibold text-slate-500">{{ shop.category }}</p>
 
             <a
-              href="{{ shop.url | default('#') }}"
+              href="{{ ('/obekti/' + shop.slug + '/') | url }}"
               class="absolute right-7 bottom-7 inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 text-slate-400 transition hover:border-slate-300 hover:bg-slate-100 hover:text-slate-900"
               aria-label="Виж повече за {{ shop.title }}"
             >
@@ -391,7 +391,7 @@ description: Welcome to the base Eleventy website.
       </div>
       <div class="lg:col-span-4 flex lg:justify-end">
         <a
-          href="#"
+          href="{{ '/novini/' | url }}"
           class="inline-flex items-center gap-2 rounded-full bg-brand-teal px-6 py-3 text-sm font-semibold tracking-wide text-white shadow-lg shadow-black/20 transition hover:brightness-110"
         >
           Всички новини
