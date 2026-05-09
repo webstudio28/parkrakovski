@@ -10,56 +10,100 @@ eleventyComputed:
   description: "{{ post.excerpt }}"
 ---
 
-{# ── Breadcrumb ──────────────────────────────────────────────────────────── #}
-<nav class="mx-auto max-w-4xl px-4 sm:px-6 mb-8" aria-label="Навигация">
-  <ol class="flex items-center gap-2 text-sm text-slate-500">
-    <li><a href="{{ '/' | url }}" class="transition hover:text-slate-900">Начало</a></li>
-    <li aria-hidden="true"><span class="text-slate-300">/</span></li>
-    <li><a href="{{ '/novini/' | url }}" class="transition hover:text-slate-900">Новини</a></li>
-    <li aria-hidden="true"><span class="text-slate-300">/</span></li>
-    <li class="font-medium text-slate-900 truncate max-w-[200px]">{{ post.title }}</li>
-  </ol>
-</nav>
+<section class="relative py-16 sm:py-24">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6">
 
-{# ── Article ─────────────────────────────────────────────────────────────── #}
-<article class="mx-auto max-w-4xl px-4 sm:px-6 pb-20 sm:pb-28">
+    {# ── Breadcrumb ── #}
+    <nav class="mb-10 flex items-center gap-2 text-sm text-slate-500" aria-label="Навигация">
+      <a href="{{ '/' | url }}" class="transition hover:text-slate-900">Начало</a>
+      <span aria-hidden="true" class="text-slate-300">/</span>
+      <a href="{{ '/novini/' | url }}" class="transition hover:text-slate-900">Новини</a>
+      <span aria-hidden="true" class="text-slate-300">/</span>
+      <span class="font-medium text-slate-900 truncate max-w-[200px] sm:max-w-xs">{{ post.title }}</span>
+    </nav>
 
-  {# Hero image #}
-  <div class="overflow-hidden rounded-3xl shadow-xl shadow-black/[0.08]">
-    <img
-      src="{{ post.image | url }}"
-      alt="{{ post.title }}"
-      class="h-64 w-full object-cover sm:h-80 lg:h-[420px]"
-      loading="eager"
-      decoding="async"
-    />
-  </div>
+    {# ── Article layout (Za nas pattern) ── #}
+    <div class="relative grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-10 items-start">
 
-  {# Meta + title #}
-  <div class="mt-10 space-y-3">
-    <p class="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--color-brand-yellow)]">{{ post.date }}</p>
-    <h1 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">{{ post.title }}</h1>
-    <p class="text-lg text-slate-600 leading-relaxed border-l-4 border-[var(--color-brand-yellow)] pl-4">{{ post.excerpt }}</p>
-  </div>
+      {# Main content card #}
+      <div class="lg:col-span-8">
 
-  {# Body #}
-  <div class="mt-10 rounded-3xl bg-white/80 p-8 shadow-md shadow-black/[0.06] ring-1 ring-slate-200/50 sm:p-10">
-    <div class="prose prose-slate max-w-none prose-p:leading-relaxed prose-p:text-slate-700">
-      {% set paragraphs = post.body | replace('\n\n', '</p><p>') | replace('\n', '<br>') %}
-      <p>{{ paragraphs | safe }}</p>
+        {# Hero image card #}
+        <div class="relative overflow-hidden rounded-[2rem] sm:rounded-[2.5rem] shadow-2xl shadow-slate-900/15 ring-1 ring-white/40 aspect-[16/9]">
+          <img
+            src="{{ post.image | url }}"
+            alt="{{ post.title }}"
+            class="absolute inset-0 h-full w-full object-cover"
+            loading="eager"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-slate-950/20 to-transparent" aria-hidden="true"></div>
+
+          <div class="absolute left-6 top-6 sm:left-8 sm:top-8 flex items-center gap-3">
+            <span class="h-px w-8 bg-brand-yellow"></span>
+            <span class="text-[10px] sm:text-xs font-semibold tracking-[0.32em] uppercase text-white/85">{{ post.date }}</span>
+          </div>
+
+          <div class="absolute left-6 bottom-6 sm:left-10 sm:bottom-10 max-w-[85%]">
+            <h1 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-tight [text-shadow:0_4px_18px_rgba(0,0,0,0.55)]">{{ post.title }}</h1>
+          </div>
+        </div>
+
+        {# Excerpt / lead ── #}
+        <div class="mt-6 sm:mt-8 flex items-start gap-4 rounded-[1.5rem] bg-white/92 backdrop-blur-sm p-6 sm:p-8 shadow-lg shadow-slate-900/10 ring-1 ring-slate-200/60">
+          <span class="mt-1 shrink-0 block h-px w-10 bg-brand-yellow"></span>
+          <p class="text-base sm:text-lg text-slate-700 leading-relaxed italic">{{ post.excerpt }}</p>
+        </div>
+
+        {# Body text card #}
+        <div class="mt-5 rounded-[1.75rem] sm:rounded-[2rem] bg-white shadow-xl shadow-slate-900/10 p-7 sm:p-10">
+          <div class="prose prose-slate max-w-none prose-p:leading-relaxed prose-p:text-slate-700 prose-headings:font-extrabold">
+            {% set body = post.body | replace('\n\n', '</p><p>') | replace('\n', '<br>') %}
+            <p>{{ body | safe }}</p>
+          </div>
+        </div>
+
+        {# Back link #}
+        <div class="mt-8">
+          <a
+            href="{{ '/novini/' | url }}"
+            class="group inline-flex items-center gap-2 text-sm font-semibold tracking-wide text-slate-700 hover:text-slate-900"
+          >
+            <svg class="h-4 w-4 rotate-180 transition-transform group-hover:-translate-x-1" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M7.293 4.293a1 1 0 011.414 0l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414-1.414L11.586 10 7.293 5.707a1 1 0 010-1.414z"/></svg>
+            Към всички новини
+            <span class="h-px w-6 bg-slate-400 transition-all group-hover:w-10 group-hover:bg-brand-yellow"></span>
+          </a>
+        </div>
+      </div>
+
+      {# Sidebar — other news ── #}
+      <aside class="lg:col-span-4 space-y-5">
+        <div class="flex items-center gap-3 mb-6">
+          <span class="h-px w-10 bg-brand-yellow"></span>
+          <span class="text-[10px] sm:text-xs font-semibold tracking-[0.32em] uppercase text-brand-yellow">Още новини</span>
+        </div>
+        {% for other in news.items %}
+          {% if other.slug != post.slug %}
+          <a
+            href="{{ other.url | url }}"
+            class="group relative flex gap-4 rounded-2xl bg-white p-4 shadow-md shadow-black/[0.07] ring-1 ring-slate-200/60 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200"
+          >
+            <span class="absolute left-4 top-0 h-px w-6 -translate-y-px bg-brand-yellow transition-all duration-300 group-hover:w-14" aria-hidden="true"></span>
+            <img
+              src="{{ other.image | url }}"
+              alt=""
+              class="h-16 w-16 shrink-0 rounded-xl object-cover"
+              loading="lazy"
+              aria-hidden="true"
+            />
+            <div class="min-w-0">
+              <p class="text-[10px] font-semibold uppercase tracking-widest text-brand-yellow mb-1">{{ other.date }}</p>
+              <p class="text-sm font-bold leading-snug text-slate-900 group-hover:text-brand-teal transition-colors line-clamp-2">{{ other.title }}</p>
+            </div>
+          </a>
+          {% endif %}
+        {% endfor %}
+      </aside>
+
     </div>
   </div>
-
-  {# Back link #}
-  <div class="mt-10">
-    <a
-      href="{{ '/novini/' | url }}"
-      class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-6 py-3 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-[var(--color-brand-teal)] hover:text-[var(--color-brand-teal)]"
-    >
-      <svg class="h-4 w-4 rotate-180" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-        <path d="M7.293 4.293a1 1 0 011.414 0l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414-1.414L11.586 10 7.293 5.707a1 1 0 010-1.414z"/>
-      </svg>
-      Към всички новини
-    </a>
-  </div>
-</article>
+</section>

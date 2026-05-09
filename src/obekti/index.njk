@@ -4,68 +4,71 @@ title: "Обекти — Ритеил парк Раковски"
 description: "Разгледайте всички магазини и партньори в Ритеил парк Раковски."
 ---
 
-{# ── Page hero ────────────────────────────────────────────────────────────── #}
-<section class="bg-white/80 py-16 sm:py-20">
+<section class="relative bg-white/80 py-20 sm:py-28">
   <div class="mx-auto max-w-7xl px-4 sm:px-6">
-    <div class="flex items-start gap-3 mb-3">
-      <span class="mt-1.5 block h-3 w-3 shrink-0 rounded-full bg-[var(--color-brand-yellow)]"></span>
-      <span class="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--color-brand-yellow)]">Магазини &amp; Партньори</span>
-    </div>
-    <h1 class="text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
-      Всичко на<br class="hidden sm:block" />
-      <span class="text-[var(--color-brand-teal)]">едно място</span>
-    </h1>
-    <p class="mt-5 max-w-2xl text-lg text-slate-600 leading-relaxed">
-      Водещи марки, разнообразни услуги и удобен паркинг — открийте всички търговски обекти в Ритеил парк Раковски.
-    </p>
-  </div>
-</section>
 
-{# ── Partners grid ─────────────────────────────────────────────────────────── #}
-<section class="py-14 sm:py-20">
-  <div class="mx-auto max-w-7xl px-4 sm:px-6">
-    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    {# ── Editorial header ── #}
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-end">
+      <div class="lg:col-span-8">
+        <div class="flex items-center gap-3">
+          <span class="h-px w-10 bg-brand-yellow"></span>
+          <span class="text-[10px] sm:text-xs font-semibold tracking-[0.32em] uppercase text-brand-yellow">Магазини &amp; Партньори</span>
+        </div>
+        <h1 class="mt-2 text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-[1.05]">
+          Всичко на едно
+          <span class="block italic font-light text-slate-900">
+            <span class="underline decoration-brand-yellow decoration-[3px] underline-offset-[10px]">място</span>.
+          </span>
+        </h1>
+        <p class="mt-8 text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl">
+          Водещи марки, разнообразни услуги и удобен паркинг — открийте всички търговски обекти в Ритеил парк Раковски, събрани под един покрив.
+        </p>
+      </div>
+      <div class="lg:col-span-4 flex lg:justify-end">
+        <a
+          href="{{ '/kontakti/' | url }}"
+          class="group inline-flex items-center gap-2 text-sm font-semibold tracking-wide text-slate-700 hover:text-slate-900"
+        >
+          Контакти и адрес
+          <span class="h-px w-6 bg-slate-400 transition-all group-hover:w-10 group-hover:bg-brand-yellow"></span>
+        </a>
+      </div>
+    </div>
+
+    {# ── Partner cards grid ── #}
+    <div class="mt-14 sm:mt-20 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
       {% for shop in shops.items %}
       <a
         href="{{ ('/obekti/' + shop.slug + '/') | url }}"
-        class="group relative flex flex-col overflow-hidden rounded-3xl bg-white shadow-lg shadow-black/[0.07] ring-1 ring-slate-200/60 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/[0.12]"
+        class="group relative flex flex-col rounded-3xl bg-white p-7 sm:p-8 shadow-lg shadow-black/10 ring-1 ring-slate-200/60 hover:shadow-xl hover:shadow-black/15 hover:-translate-y-1 transition-all duration-300"
       >
-        {# Accent bar #}
-        <span
-          class="block h-1.5 w-full shrink-0"
-          style="background-color: {{ shop.color }};"
-          aria-hidden="true"
-        ></span>
+        {# Yellow top accent #}
+        <span class="absolute left-8 top-0 h-px w-10 -translate-y-px bg-brand-yellow transition-all duration-300 group-hover:w-24" aria-hidden="true"></span>
 
-        <div class="flex flex-1 flex-col gap-4 p-6 sm:p-7">
-          {# Logo #}
-          <div class="flex h-16 items-center">
-            <img
-              src="{{ shop.logo | url }}"
-              alt="{{ shop.title }}"
-              class="max-h-12 max-w-[140px] object-contain"
-              loading="lazy"
-              decoding="async"
-            />
-          </div>
-
-          {# Info #}
-          <div class="flex-1">
-            <h2 class="text-xl font-semibold text-slate-900 group-hover:text-[var(--color-brand-teal)] transition-colors">{{ shop.title }}</h2>
-            <p class="mt-1 text-sm font-medium text-slate-500">{{ shop.category }}</p>
-            <p class="mt-3 text-sm text-slate-600 leading-relaxed line-clamp-2">{{ shop.description }}</p>
-          </div>
-
-          {# CTA arrow #}
-          <span class="inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--color-brand-teal)] transition group-hover:gap-2.5">
-            Виж повече
-            <svg class="h-4 w-4 transition-transform group-hover:translate-x-0.5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-              <path d="M7.293 4.293a1 1 0 011.414 0l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414-1.414L11.586 10 7.293 5.707a1 1 0 010-1.414z"/>
-            </svg>
-          </span>
+        {# Logo #}
+        <div class="flex items-center min-h-[4.5rem] sm:min-h-[5rem]">
+          {% if shop.logo %}
+          <img
+            src="{{ shop.logo | url }}"
+            alt="{{ shop.title }}"
+            class="max-h-12 max-w-[140px] w-auto object-contain object-left"
+            loading="lazy"
+            decoding="async"
+          />
+          {% endif %}
         </div>
+
+        <h2 class="mt-6 text-xl sm:text-2xl font-bold text-slate-900 leading-tight transition-colors group-hover:text-brand-teal">{{ shop.title }}</h2>
+        <p class="mt-1 text-[11px] sm:text-xs uppercase tracking-[0.2em] font-semibold text-slate-500">{{ shop.category }}</p>
+        <p class="mt-4 text-sm text-slate-600 leading-relaxed line-clamp-2 flex-1">{{ shop.description }}</p>
+
+        <span class="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-teal">
+          Виж повече
+          <svg class="h-4 w-4 transition-transform group-hover:translate-x-1" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M7.293 4.293a1 1 0 011.414 0l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414-1.414L11.586 10 7.293 5.707a1 1 0 010-1.414z"/></svg>
+        </span>
       </a>
       {% endfor %}
     </div>
+
   </div>
 </section>

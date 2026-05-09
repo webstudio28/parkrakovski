@@ -10,130 +10,142 @@ eleventyComputed:
   description: "{{ shop.description }}"
 ---
 
-{# ── Breadcrumb ──────────────────────────────────────────────────────────── #}
-<nav class="mx-auto max-w-7xl px-4 sm:px-6 mb-8" aria-label="Навигация">
-  <ol class="flex items-center gap-2 text-sm text-slate-500">
-    <li><a href="{{ '/' | url }}" class="transition hover:text-slate-900">Начало</a></li>
-    <li aria-hidden="true"><span class="text-slate-300">/</span></li>
-    <li><a href="{{ '/obekti/' | url }}" class="transition hover:text-slate-900">Обекти</a></li>
-    <li aria-hidden="true"><span class="text-slate-300">/</span></li>
-    <li class="font-medium text-slate-900">{{ shop.title }}</li>
-  </ol>
-</nav>
+<section class="relative bg-white/80 py-20 sm:py-28">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6">
 
-{# ── Hero card ───────────────────────────────────────────────────────────── #}
-<section class="mx-auto max-w-7xl px-4 sm:px-6">
-  <div class="overflow-hidden rounded-3xl bg-white shadow-xl shadow-black/[0.08] ring-1 ring-slate-200/60">
-    {# Top accent #}
-    <div class="h-2 w-full" style="background-color: {{ shop.color }};"></div>
+    {# ── Breadcrumb ── #}
+    <nav class="mb-10 flex items-center gap-2 text-sm text-slate-500" aria-label="Навигация">
+      <a href="{{ '/' | url }}" class="transition hover:text-slate-900">Начало</a>
+      <span aria-hidden="true" class="text-slate-300">/</span>
+      <a href="{{ '/obekti/' | url }}" class="transition hover:text-slate-900">Обекти</a>
+      <span aria-hidden="true" class="text-slate-300">/</span>
+      <span class="font-medium text-slate-900">{{ shop.title }}</span>
+    </nav>
 
-    <div class="flex flex-col gap-8 p-8 sm:p-12 md:flex-row md:items-center md:gap-12">
-      {# Logo block #}
-      <div class="flex shrink-0 items-center justify-center rounded-2xl bg-slate-50 p-8 md:h-44 md:w-44">
-        <img
-          src="{{ shop.logo | url }}"
-          alt="{{ shop.title }}"
-          class="max-h-24 max-w-[160px] object-contain"
-          loading="eager"
-          decoding="async"
-        />
-      </div>
+    {# ── Floating hero card (Za nas pattern) ── #}
+    <div class="relative grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-10 items-stretch">
 
-      {# Details #}
-      <div class="flex-1 space-y-4">
-        <div>
-          <span class="inline-block rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-wider text-white" style="background-color: {{ shop.color }};">
-            {{ shop.category }}
-          </span>
+      {# Text card #}
+      <div class="relative order-first lg:col-span-7 rounded-[2rem] sm:rounded-[2.5rem] bg-white/92 backdrop-blur-sm flex flex-col lg:justify-center p-8 sm:p-12">
+        {# Yellow top accent #}
+        <span class="absolute left-10 top-0 h-px w-10 -translate-y-px bg-brand-yellow" aria-hidden="true"></span>
+
+        <div class="flex items-center gap-3">
+          <span class="h-px w-10 bg-brand-yellow"></span>
+          <span class="text-[10px] sm:text-xs font-semibold tracking-[0.32em] uppercase text-brand-yellow">{{ shop.category }}</span>
         </div>
-        <h1 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">{{ shop.title }}</h1>
-        <p class="text-base leading-relaxed text-slate-600">{{ shop.description }}</p>
 
-        <div class="flex flex-wrap items-center gap-4 pt-2">
-          {% if shop.hours %}
-          <div class="flex items-center gap-2 text-sm text-slate-500">
-            <svg class="h-4 w-4 shrink-0 text-[var(--color-brand-teal)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-              <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
-            </svg>
-            {{ shop.hours }}
-          </div>
+        {# Logo #}
+        <div class="mt-6 flex items-center min-h-[4rem]">
+          {% if shop.logo %}
+          <img
+            src="{{ shop.logo | url }}"
+            alt="{{ shop.title }}"
+            class="max-h-14 max-w-[180px] w-auto object-contain object-left"
+            loading="eager"
+            decoding="async"
+          />
           {% endif %}
+        </div>
+
+        <h1 class="mt-4 text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-[1.05]">
+          {{ shop.title }}
+          <span class="block italic font-light text-slate-900">
+            <span class="underline decoration-brand-yellow decoration-[3px] underline-offset-[10px]">в парка</span>.
+          </span>
+        </h1>
+
+        <div class="mt-8 space-y-4 text-slate-600 text-base sm:text-lg leading-relaxed max-w-xl">
+          <p>{{ shop.description }}</p>
+        </div>
+
+        <div class="mt-10 flex flex-wrap items-center gap-5">
           {% if shop.url %}
           <a
             href="{{ shop.url }}"
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex items-center gap-2 rounded-full bg-[var(--color-brand-teal)] px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:opacity-90"
+            class="inline-flex items-center gap-2 rounded-full bg-brand-teal px-6 py-3 text-sm font-semibold tracking-wide text-white shadow-lg shadow-black/20 transition hover:brightness-110"
           >
             Официален сайт
-            <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-              <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"/>
-              <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"/>
-            </svg>
+            <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"/><path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"/></svg>
           </a>
           {% endif %}
+          <a
+            href="{{ '/obekti/' | url }}"
+            class="group inline-flex items-center gap-2 text-sm font-semibold tracking-wide text-slate-700 hover:text-slate-900"
+          >
+            Всички обекти
+            <span class="h-px w-6 bg-slate-400 transition-all group-hover:w-10 group-hover:bg-brand-yellow"></span>
+          </a>
         </div>
       </div>
-    </div>
-  </div>
-</section>
 
-{# ── Info section ───────────────────────────────────────────────────────── #}
-<section class="py-14 sm:py-20">
-  <div class="mx-auto max-w-7xl px-4 sm:px-6">
-    <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
+      {# Image / color card #}
+      <div
+        class="relative order-last lg:col-span-5 rounded-[2rem] sm:rounded-[2.5rem] overflow-hidden ring-1 ring-white/40 shadow-2xl shadow-slate-900/15 min-h-[260px] sm:min-h-[360px] flex items-center justify-center"
+        style="background-color: {{ shop.color }}08;"
+      >
+        <div class="absolute inset-0" style="background: linear-gradient(135deg, {{ shop.color }}18 0%, {{ shop.color }}06 100%);"></div>
+        <div class="absolute top-0 left-0 right-0 h-2 rounded-t-[2rem]" style="background-color: {{ shop.color }};"></div>
 
-      {# About the shop #}
-      <div class="rounded-3xl bg-white/80 p-8 shadow-md shadow-black/[0.06] ring-1 ring-slate-200/50">
-        <div class="flex items-center gap-2 mb-5">
-          <span class="block h-3 w-3 rounded-full bg-[var(--color-brand-yellow)]"></span>
-          <h2 class="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--color-brand-yellow)]">За обекта</h2>
-        </div>
-        <p class="text-slate-700 leading-relaxed">
-          Добре дошли в <strong>{{ shop.title }}</strong> — {{ shop.category | lower }} в Ритеил парк Раковски. Тук ще намерите богат асортимент от продукти и услуги, съчетани с приятна атмосфера и квалифицирано обслужване. Посетете ни и убедете се лично!
-        </p>
-        <p class="mt-4 text-slate-700 leading-relaxed">
-          Комплексът разполага с удобен паркинг за над 120 автомобила и лесен достъп от главните пътища. Очакваме ви всеки ден с усмивка!
-        </p>
-      </div>
+        <div class="relative flex flex-col items-center justify-center gap-8 p-10">
+          {% if shop.logo %}
+          <img
+            src="{{ shop.logo | url }}"
+            alt="{{ shop.title }}"
+            class="max-h-20 max-w-[200px] w-auto object-contain"
+            loading="eager"
+            decoding="async"
+          />
+          {% endif %}
 
-      {# Location & Info #}
-      <div class="rounded-3xl bg-white/80 p-8 shadow-md shadow-black/[0.06] ring-1 ring-slate-200/50">
-        <div class="flex items-center gap-2 mb-5">
-          <span class="block h-3 w-3 rounded-full bg-[var(--color-brand-teal)]"></span>
-          <h2 class="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--color-brand-teal)]">Местоположение</h2>
-        </div>
-        <div class="space-y-3 text-sm text-slate-700">
-          <div class="flex gap-3">
-            <svg class="mt-0.5 h-5 w-5 shrink-0 text-slate-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/>
-            </svg>
-            <span>Ритеил парк Раковски, ул. Примерна 1, Раковски, обл. Пловдив</span>
-          </div>
           {% if shop.hours %}
-          <div class="flex gap-3">
-            <svg class="mt-0.5 h-5 w-5 shrink-0 text-slate-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-              <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
-            </svg>
-            <span>{{ shop.hours }}</span>
+          <div class="rounded-2xl bg-white/80 backdrop-blur-sm px-6 py-5 text-center shadow-md ring-1 ring-white/60">
+            <p class="text-[10px] font-semibold uppercase tracking-[0.3em] text-slate-400 mb-2">Работно време</p>
+            <p class="text-sm font-medium text-slate-800 leading-relaxed">{{ shop.hours | replace('|', '<br>') | safe }}</p>
           </div>
           {% endif %}
         </div>
+
+        <div class="absolute left-6 bottom-6 flex items-center gap-3">
+          <span class="h-px w-8 bg-brand-yellow"></span>
+          <span class="text-[10px] font-semibold tracking-[0.32em] uppercase text-slate-500">Раковски</span>
+        </div>
       </div>
 
     </div>
 
-    {# Back link #}
-    <div class="mt-12 text-center">
-      <a
-        href="{{ '/obekti/' | url }}"
-        class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-6 py-3 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-[var(--color-brand-teal)] hover:text-[var(--color-brand-teal)]"
-      >
-        <svg class="h-4 w-4 rotate-180" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-          <path d="M7.293 4.293a1 1 0 011.414 0l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414-1.414L11.586 10 7.293 5.707a1 1 0 010-1.414z"/>
-        </svg>
-        Към всички обекти
-      </a>
+    {# ── Info strip (counter pattern) ── #}
+    <div class="mt-8 sm:mt-10 rounded-[1.75rem] sm:rounded-[2.25rem] overflow-hidden bg-white shadow-xl shadow-slate-900/10">
+      <div class="grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-slate-200/80">
+        <div class="relative px-7 py-8 sm:py-9 group">
+          <div class="flex items-center gap-3 mb-3">
+            <svg class="h-5 w-5 text-brand-teal shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+            <span class="text-[10px] uppercase tracking-[0.25em] font-semibold text-slate-500">Местоположение</span>
+          </div>
+          <p class="text-sm text-slate-700 leading-relaxed">Ритеил парк Раковски<br/>ул. Примерна 1, Раковски</p>
+          <span class="absolute left-7 bottom-3 h-px w-0 bg-brand-yellow/80 transition-all duration-500 group-hover:w-12"></span>
+        </div>
+        <div class="relative px-7 py-8 sm:py-9 group">
+          <div class="flex items-center gap-3 mb-3">
+            <svg class="h-5 w-5 text-brand-yellow shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span class="text-[10px] uppercase tracking-[0.25em] font-semibold text-slate-500">Работно време</span>
+          </div>
+          <p class="text-sm text-slate-700 leading-relaxed">{{ shop.hours | replace(' | ', '<br>') | safe if shop.hours else 'Вижте при магазина' }}</p>
+          <span class="absolute left-7 bottom-3 h-px w-0 bg-brand-yellow/80 transition-all duration-500 group-hover:w-12"></span>
+        </div>
+        <div class="relative px-7 py-8 sm:py-9 group">
+          <div class="flex items-center gap-3 mb-3">
+            <svg class="h-5 w-5 text-brand-teal shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>
+            <span class="text-[10px] uppercase tracking-[0.25em] font-semibold text-slate-500">Категория</span>
+          </div>
+          <p class="text-sm font-semibold text-slate-900">{{ shop.category }}</p>
+          <p class="mt-1 text-sm text-slate-600 leading-relaxed">Ритеил парк Раковски</p>
+          <span class="absolute left-7 bottom-3 h-px w-0 bg-brand-yellow/80 transition-all duration-500 group-hover:w-12"></span>
+        </div>
+      </div>
     </div>
+
   </div>
 </section>
