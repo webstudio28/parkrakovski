@@ -34,16 +34,16 @@
         </ul>
       </nav>
 
-      <div class="flex w-full max-w-xs flex-col items-center sm:max-w-none">
+      <div class="flex w-full flex-col items-center">
         <h2 class="text-[10px] font-semibold uppercase tracking-[0.32em] text-brand-yellow">Новини</h2>
         <span class="mt-2.5 block h-px w-10 bg-white/20"></span>
-        <ul class="mt-4 w-full max-w-xs space-y-1 sm:max-w-none">
+        <ul class="mx-auto mt-4 w-full max-w-xs space-y-1 text-center sm:max-w-none">
           {% for post in news.items %}
             {% if loop.index <= 5 %}
               <li>
                 <a
                   href="{{ post.url | default('#') | url }}"
-                  class="block py-1 text-[13px] font-medium leading-snug text-white/85 transition first:pt-0 hover:text-brand-yellow"
+                  class="block py-1 text-center text-[13px] font-medium leading-snug text-white/85 transition first:pt-0 hover:text-brand-yellow"
                 >
                   {{ post.title }}
                 </a>
@@ -53,7 +53,7 @@
         </ul>
         <a
           href="{{ '/novini/' | url }}"
-          class="mt-5 inline-flex items-center justify-center gap-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/45 transition hover:text-brand-teal"
+          class="mt-5 inline-flex w-full max-w-xs items-center justify-center gap-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/45 transition hover:text-brand-teal sm:max-w-none"
         >
           Виж всички
           <svg class="h-3 w-3" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M7.293 4.293a1 1 0 011.414 0l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414-1.414L11.586 10 7.293 5.707a1 1 0 010-1.414z"/></svg>
