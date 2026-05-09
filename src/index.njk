@@ -83,25 +83,52 @@ description: Welcome to the base Eleventy website.
   </script>
 
   <!-- Dark overlay -->
-  <div class="absolute inset-0 z-[1] bg-black/75"></div>
+  <div class="absolute inset-0 z-[1] bg-black/60"></div>
 
-  <div class="relative z-10 flex min-h-[100svh] items-center justify-center px-4">
-    <div class="text-center max-w-3xl">
-      <h1 class="text-white tracking-tight">
-        <span class="block text-3xl sm:text-5xl font-light">Ритеил парк</span>
-        <span class="block text-4xl sm:text-6xl font-extrabold mt-2">Раковски</span>
+  <!-- Left vertical rule -->
+  <div aria-hidden="true" class="absolute left-6 top-0 bottom-0 z-[2] hidden lg:flex flex-col items-center py-16 gap-0">
+    <div class="w-px flex-1 bg-gradient-to-b from-transparent via-white/25 to-white/15"></div>
+    <span class="text-[9px] font-medium tracking-[0.45em] uppercase text-white/35 [writing-mode:vertical-rl] py-5 select-none">Раковски</span>
+    <div class="w-px flex-1 bg-gradient-to-b from-white/15 via-white/25 to-transparent"></div>
+  </div>
+
+  <!-- Right vertical rule -->
+  <div aria-hidden="true" class="absolute right-6 top-0 bottom-0 z-[2] hidden lg:flex flex-col items-center py-16 gap-0">
+    <div class="w-px flex-1 bg-gradient-to-b from-transparent via-white/25 to-white/15"></div>
+    <span class="text-[9px] font-medium tracking-[0.45em] uppercase text-white/35 [writing-mode:vertical-rl] py-5 select-none">2026</span>
+    <div class="w-px flex-1 bg-gradient-to-b from-white/15 via-white/25 to-transparent"></div>
+  </div>
+
+  <!-- Main content -->
+  <div class="relative z-10 flex min-h-[100svh] items-center justify-center px-6 sm:px-12 lg:px-24">
+    <div class="max-w-2xl text-center">
+
+      <!-- Eyebrow -->
+      <div class="flex items-center justify-center gap-4 mb-0">
+        <span class="block h-px w-10 bg-white shrink-0"></span>
+        <span class="text-xl sm:text-2xl lg:text-3xl font-semibold tracking-[0.12em] uppercase text-white">Ритеил парк</span>
+        <span class="block h-px w-10 bg-white shrink-0"></span>
+      </div>
+
+      <!-- H1 -->
+      <h1 class="text-white tracking-tight leading-none">
+        <span class="block text-6xl sm:text-8xl lg:text-[6.5rem] font-extrabold -mt-3 sm:-mt-4 lg:-mt-5">Раковски</span>
       </h1>
 
-      <p class="mt-6 text-white/90 text-base sm:text-lg leading-relaxed">
+
+      <!-- Help text -->
+      <p class="mt-6 text-white/70 text-base sm:text-lg leading-relaxed max-w-md mx-auto">
         Всичко от което се нуждате е вече на едно място. Спестяваш време
       </p>
 
-      <div class="mt-8 flex items-center justify-center">
+      <!-- CTA -->
+      <div class="mt-10 sm:mt-12 flex justify-center">
         <a
           href="{{ '/services/' | url }}"
-          class="inline-flex items-center justify-center rounded-2xl bg-brand-yellow px-7 py-3 text-white font-semibold shadow-lg shadow-black/20 hover:brightness-110 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70 focus-visible:ring-offset-2 focus-visible:ring-offset-black/30"
+          class="inline-flex items-center gap-3 rounded-full bg-brand-teal px-7 py-3.5 text-white font-semibold shadow-lg shadow-black/25 hover:brightness-110 transition text-sm sm:text-base"
         >
           Разгледай обектите
+          <svg viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4" aria-hidden="true"><path d="M7.293 4.293a1 1 0 011.414 0l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414-1.414L11.586 10 7.293 5.707a1 1 0 010-1.414z"/></svg>
         </a>
       </div>
     </div>
