@@ -10,7 +10,7 @@
 
 @layer components {
   .pk-header-surface {
-    @apply relative flex items-center gap-3 rounded-full border border-slate-200/70 bg-white/80 px-4 py-2 shadow-sm transition-all duration-200 sm:px-5;
+    @apply relative flex items-center gap-4 rounded-full border border-slate-200/70 bg-white/80 px-5 py-3 shadow-sm transition-all duration-200 sm:px-6;
     -webkit-backdrop-filter: blur(10px) saturate(120%);
     backdrop-filter: blur(10px) saturate(120%);
   }
@@ -110,7 +110,7 @@
     @apply ml-4 rounded-xl px-4 py-2 text-sm text-slate-600 transition hover:bg-slate-100 hover:text-slate-900;
   }
   .pk-mobile-link--cta {
-    @apply mt-2 bg-brand-yellow text-white hover:bg-brand-yellow hover:text-white hover:brightness-110;
+    @apply mt-2 bg-brand-teal text-white hover:bg-brand-teal hover:text-white hover:brightness-110;
   }
 
   body.modal-open {
