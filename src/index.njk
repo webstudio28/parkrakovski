@@ -6,7 +6,7 @@ description: Welcome to the base Eleventy website.
 
 <section
   id="hero-section"
-  class="relative -mt-20 min-h-[100svh] w-full overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-[var(--color-brand-teal)] pt-20 sm:-mt-24 sm:pt-24"
+  class="relative h-[100svh] w-full overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-[var(--color-brand-teal)]"
 >
   <video
     id="hero-video"
@@ -85,22 +85,29 @@ description: Welcome to the base Eleventy website.
   <!-- Dark overlay -->
   <div class="absolute inset-0 z-[1] bg-black/60"></div>
 
-  <!-- Left vertical rule -->
+  <!-- Left vertical rule (desktop only) -->
   <div aria-hidden="true" class="absolute left-6 top-0 bottom-0 z-[2] hidden lg:flex flex-col items-center py-16 gap-0">
     <div class="w-px flex-1 bg-gradient-to-b from-transparent via-white/25 to-white/15"></div>
     <span class="text-[9px] font-medium tracking-[0.45em] uppercase text-white/35 [writing-mode:vertical-rl] py-5 select-none">Раковски</span>
     <div class="w-px flex-1 bg-gradient-to-b from-white/15 via-white/25 to-transparent"></div>
   </div>
 
-  <!-- Right vertical rule -->
+  <!-- Right vertical rule (desktop only) -->
   <div aria-hidden="true" class="absolute right-6 top-0 bottom-0 z-[2] hidden lg:flex flex-col items-center py-16 gap-0">
     <div class="w-px flex-1 bg-gradient-to-b from-transparent via-white/25 to-white/15"></div>
     <span class="text-[9px] font-medium tracking-[0.45em] uppercase text-white/35 [writing-mode:vertical-rl] py-5 select-none">2026</span>
     <div class="w-px flex-1 bg-gradient-to-b from-white/15 via-white/25 to-transparent"></div>
   </div>
 
+  <!-- Mobile bottom horizontal 2026 rule -->
+  <div aria-hidden="true" class="absolute bottom-5 inset-x-6 z-[2] flex items-center justify-center gap-4 lg:hidden">
+    <span class="h-px flex-1 bg-white/35"></span>
+    <span class="text-[10px] font-medium tracking-[0.42em] uppercase text-white/75">2026</span>
+    <span class="h-px flex-1 bg-white/35"></span>
+  </div>
+
   <!-- Main content -->
-  <div class="relative z-10 flex min-h-[100svh] items-center justify-center px-6 sm:px-12 lg:px-24">
+  <div class="relative z-10 flex h-full items-center justify-center px-6 sm:px-12 lg:px-24">
     <div class="max-w-2xl text-center">
 
       <!-- Eyebrow -->

@@ -866,6 +866,11 @@ body.modal-open {
   inset: 0px;
 }
 
+.inset-x-6 {
+  left: 1.5rem;
+  right: 1.5rem;
+}
+
 .-left-40 {
   left: -10rem;
 }
@@ -952,6 +957,18 @@ body.modal-open {
 
 .right-6 {
   right: 1.5rem;
+}
+
+.left-2 {
+  left: 0.5rem;
+}
+
+.right-2 {
+  right: 0.5rem;
+}
+
+.bottom-5 {
+  bottom: 1.25rem;
 }
 
 .z-0 {
@@ -1136,6 +1153,10 @@ body.modal-open {
 
 .h-px {
   height: 1px;
+}
+
+.h-\[100svh\] {
+  height: 100svh;
 }
 
 .min-h-\[100\%\] {
@@ -1539,6 +1560,10 @@ body.modal-open {
   background-color: rgb(255 255 255 / 0.5);
 }
 
+.bg-white\/35 {
+  background-color: rgb(255 255 255 / 0.35);
+}
+
 .bg-\[linear-gradient\(90deg\2c rgba\(0\2c 62\2c 141\2c 0\.78\)_0\%\2c rgba\(0\2c 100\2c 132\2c 0\.58\)_56\%\2c rgba\(181\2c 150\2c 29\2c 0\.42\)_100\%\)\] {
   background-image: linear-gradient(90deg,rgba(0,62,141,0.78) 0%,rgba(0,100,132,0.58) 56%,rgba(181,150,29,0.42) 100%);
 }
@@ -1930,6 +1955,10 @@ body.modal-open {
   letter-spacing: 0.12em;
 }
 
+.tracking-\[0\.42em\] {
+  letter-spacing: 0.42em;
+}
+
 .text-brand-teal {
   color: var(--color-brand-teal);
 }
@@ -2003,6 +2032,10 @@ body.modal-open {
 
 .text-white\/65 {
   color: rgb(255 255 255 / 0.65);
+}
+
+.text-white\/75 {
+  color: rgb(255 255 255 / 0.75);
 }
 
 .underline {
@@ -2324,6 +2357,14 @@ body.modal-open {
     top: 2rem;
   }
 
+  .sm\:left-4 {
+    left: 1rem;
+  }
+
+  .sm\:right-4 {
+    right: 1rem;
+  }
+
   .sm\:-mt-24 {
     margin-top: -6rem;
   }
@@ -2489,6 +2530,11 @@ body.modal-open {
     padding-right: 3rem;
   }
 
+  .sm\:py-14 {
+    padding-top: 3.5rem;
+    padding-bottom: 3.5rem;
+  }
+
   .sm\:pt-24 {
     padding-top: 6rem;
   }
@@ -2572,6 +2618,14 @@ body.modal-open {
 }
 
 @media (min-width: 1024px) {
+  .lg\:left-6 {
+    left: 1.5rem;
+  }
+
+  .lg\:right-6 {
+    right: 1.5rem;
+  }
+
   .lg\:order-first {
     order: -9999;
   }
@@ -2604,6 +2658,10 @@ body.modal-open {
     display: flex;
   }
 
+  .lg\:hidden {
+    display: none;
+  }
+
   .lg\:min-h-\[520px\] {
     min-height: 520px;
   }
@@ -2632,6 +2690,11 @@ body.modal-open {
   .lg\:px-24 {
     padding-left: 6rem;
     padding-right: 6rem;
+  }
+
+  .lg\:py-16 {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
   }
 
   .lg\:text-6xl {
