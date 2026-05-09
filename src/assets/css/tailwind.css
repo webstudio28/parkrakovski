@@ -10,13 +10,13 @@
 
 @layer components {
   .pk-header-surface {
-    @apply relative flex items-center gap-4 rounded-full bg-black/20 px-5 py-3 shadow-none transition-all duration-200 sm:px-6;
+    @apply relative flex items-center gap-3 rounded-full bg-black/20 px-3 py-2 shadow-none transition-all duration-200 sm:gap-4 sm:px-6 sm:py-3;
     -webkit-backdrop-filter: none;
     backdrop-filter: none;
   }
 
   .pk-header-surface.is-glassy {
-    @apply bg-white/90 border-slate-200/80 shadow-lg;
+    @apply bg-white/[0.98] border-slate-200/90 shadow-lg;
     -webkit-backdrop-filter: blur(16px) saturate(135%);
     backdrop-filter: blur(16px) saturate(135%);
   }
