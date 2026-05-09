@@ -20,12 +20,12 @@
 
     <div class="mx-auto mt-12 max-w-2xl border-t border-white/[0.08] pt-12 sm:mt-14 sm:pt-14"></div>
 
-    {# Три колони: връзки · новини · контакти #}
-    <div class="mx-auto grid max-w-5xl grid-cols-1 gap-10 sm:grid-cols-2 sm:gap-x-12 sm:gap-y-12 lg:grid-cols-3 lg:gap-14">
-      <nav aria-label="Бързи връзки">
+    {# Три колони: всяка колона съдържание центрирано в клетката (мобилен + десктоп) #}
+    <div class="mx-auto grid max-w-5xl grid-cols-1 gap-10 text-center sm:grid-cols-2 sm:gap-x-12 sm:gap-y-12 lg:grid-cols-3 lg:gap-14">
+      <nav class="flex w-full flex-col items-center" aria-label="Бързи връзки">
         <h2 class="text-[10px] font-semibold uppercase tracking-[0.32em] text-brand-yellow">Бързи връзки</h2>
         <span class="mt-2.5 block h-px w-10 bg-white/20"></span>
-        <ul class="mt-5 space-y-2.5">
+        <ul class="mt-5 w-full max-w-xs space-y-2.5 sm:max-w-none">
           {% for item in site.nav.header %}
             <li>
               <a href="{{ item.url | url }}" class="text-[15px] text-white/80 transition hover:text-white">{{ item.label }}</a>
@@ -34,10 +34,10 @@
         </ul>
       </nav>
 
-      <div>
+      <div class="flex w-full max-w-xs flex-col items-center sm:max-w-none">
         <h2 class="text-[10px] font-semibold uppercase tracking-[0.32em] text-brand-yellow">Новини</h2>
         <span class="mt-2.5 block h-px w-10 bg-white/20"></span>
-        <ul class="mt-4 space-y-1">
+        <ul class="mt-4 w-full max-w-xs space-y-1 sm:max-w-none">
           {% for post in news.items %}
             {% if loop.index <= 5 %}
               <li>
@@ -53,19 +53,19 @@
         </ul>
         <a
           href="{{ '/' | url }}#novini"
-          class="mt-5 inline-flex items-center gap-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/45 transition hover:text-brand-teal"
+          class="mt-5 inline-flex items-center justify-center gap-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/45 transition hover:text-brand-teal"
         >
           Виж всички
           <svg class="h-3 w-3" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M7.293 4.293a1 1 0 011.414 0l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414-1.414L11.586 10 7.293 5.707a1 1 0 010-1.414z"/></svg>
         </a>
       </div>
 
-      <div class="sm:col-span-2 lg:col-span-1">
+      <div class="flex w-full flex-col items-center sm:col-span-2 lg:col-span-1">
         <h2 class="text-[10px] font-semibold uppercase tracking-[0.32em] text-brand-yellow">Контакти</h2>
         <span class="mt-2.5 block h-px w-10 bg-white/20"></span>
         {% set fc = site.footer | default({}) %}
         {% set phoneDisplay = fc.phone | default('+359 000 000 000') %}
-        <address class="mt-5 not-italic text-sm leading-relaxed text-white/65">
+        <address class="mt-5 max-w-sm text-center not-italic text-sm leading-relaxed text-white/65">
           <p>{{ fc.address | default('ул. Примерна 1, Раковски') }}</p>
           <p class="mt-2">
             <a href="tel:{{ phoneDisplay | replace(' ', '') }}" class="transition hover:text-white">{{ phoneDisplay }}</a>
@@ -74,7 +74,7 @@
             <a href="mailto:{{ fc.email | default('info@parkrakovski.bg') }}" class="transition hover:text-white">{{ fc.email | default('info@parkrakovski.bg') }}</a>
           </p>
         </address>
-        <div class="mt-6 flex flex-wrap items-center gap-3">
+        <div class="mt-6 flex flex-wrap items-center justify-center gap-3">
           {% set soc = fc.social | default({}) %}
           <a
             href="{{ soc.facebook | default('#') }}"
@@ -104,9 +104,8 @@
       </div>
     </div>
 
-    <div class="mt-14 flex flex-col gap-3 border-t border-white/[0.07] pt-8 text-center text-[11px] text-white/38 sm:flex-row sm:items-center sm:justify-between sm:text-left sm:text-xs">
-      <p>&copy; {{ site.currentYear }} {{ site.brand.name }}</p>
-      <p>Всички права запазени · Раковски</p>
+    <div class="mt-14 border-t border-white/[0.07] pt-8">
+      <p class="text-center text-[11px] text-white/45 sm:text-xs">© {{ site.brand.name }}</p>
     </div>
   </div>
 </footer>
