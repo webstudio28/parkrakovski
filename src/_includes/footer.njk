@@ -1,11 +1,112 @@
-<footer class="border-t border-slate-200 bg-slate-50">
-  <div class="mx-auto max-w-5xl px-4 py-8 text-sm text-slate-600 flex flex-col sm:flex-row gap-2 sm:items-center sm:justify-between">
-    <div>&copy; {{ site.currentYear }} {{ site.brand.name }}</div>
-    <div class="flex items-center gap-3">
-      <a class="hover:underline underline-offset-2" href="{{ '/' | url }}">Home</a>
-      <a class="hover:underline underline-offset-2" href="{{ '/services/' | url }}">Services</a>
-      <a class="hover:underline underline-offset-2" href="{{ '/about/' | url }}">About Us</a>
+<footer class="relative mt-auto border-t border-white/[0.06] bg-[#0b0d11] text-white">
+  <div class="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[var(--color-brand-yellow)]/35 to-transparent"></div>
+
+  <div class="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-16">
+    {# Центрирано лого + слоган #}
+    <div class="flex flex-col items-center text-center">
+      <a href="{{ '/' | url }}" class="inline-flex transition hover:opacity-90" aria-label="{{ site.brand.name }} — начало">
+        <img
+          src="{{ '/assets/images/logo.png' | url }}"
+          alt=""
+          class="h-16 w-auto drop-shadow-[0_4px_20px_rgba(0,0,0,0.45)] sm:h-[4.5rem] md:h-20"
+          loading="lazy"
+          decoding="async"
+        />
+      </a>
+      <p class="mx-auto mt-5 max-w-xl text-sm leading-relaxed text-white/58 sm:text-base sm:leading-relaxed">
+        {{ site.brand.tagline | default('Всичко от което се нуждате е вече на едно място.') }}
+      </p>
+    </div>
+
+    <div class="mx-auto mt-12 max-w-2xl border-t border-white/[0.08] pt-12 sm:mt-14 sm:pt-14"></div>
+
+    {# Три колони: връзки · новини · контакти #}
+    <div class="mx-auto grid max-w-5xl grid-cols-1 gap-10 sm:grid-cols-2 sm:gap-x-12 sm:gap-y-12 lg:grid-cols-3 lg:gap-14">
+      <nav aria-label="Бързи връзки">
+        <h2 class="text-[10px] font-semibold uppercase tracking-[0.32em] text-brand-yellow">Бързи връзки</h2>
+        <span class="mt-2.5 block h-px w-10 bg-white/20"></span>
+        <ul class="mt-5 space-y-2.5">
+          {% for item in site.nav.header %}
+            <li>
+              <a href="{{ item.url | url }}" class="text-[15px] text-white/80 transition hover:text-white">{{ item.label }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      </nav>
+
+      <div>
+        <h2 class="text-[10px] font-semibold uppercase tracking-[0.32em] text-brand-yellow">Новини</h2>
+        <span class="mt-2.5 block h-px w-10 bg-white/20"></span>
+        <ul class="mt-4 space-y-1">
+          {% for post in news.items %}
+            {% if loop.index <= 5 %}
+              <li>
+                <a
+                  href="{{ post.url | default('#') | url }}"
+                  class="block py-1 text-[13px] font-medium leading-snug text-white/85 transition first:pt-0 hover:text-brand-yellow"
+                >
+                  {{ post.title }}
+                </a>
+              </li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+        <a
+          href="{{ '/' | url }}#novini"
+          class="mt-5 inline-flex items-center gap-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/45 transition hover:text-brand-teal"
+        >
+          Виж всички
+          <svg class="h-3 w-3" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M7.293 4.293a1 1 0 011.414 0l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414-1.414L11.586 10 7.293 5.707a1 1 0 010-1.414z"/></svg>
+        </a>
+      </div>
+
+      <div class="sm:col-span-2 lg:col-span-1">
+        <h2 class="text-[10px] font-semibold uppercase tracking-[0.32em] text-brand-yellow">Контакти</h2>
+        <span class="mt-2.5 block h-px w-10 bg-white/20"></span>
+        {% set fc = site.footer | default({}) %}
+        {% set phoneDisplay = fc.phone | default('+359 000 000 000') %}
+        <address class="mt-5 not-italic text-sm leading-relaxed text-white/65">
+          <p>{{ fc.address | default('ул. Примерна 1, Раковски') }}</p>
+          <p class="mt-2">
+            <a href="tel:{{ phoneDisplay | replace(' ', '') }}" class="transition hover:text-white">{{ phoneDisplay }}</a>
+          </p>
+          <p class="mt-2">
+            <a href="mailto:{{ fc.email | default('info@parkrakovski.bg') }}" class="transition hover:text-white">{{ fc.email | default('info@parkrakovski.bg') }}</a>
+          </p>
+        </address>
+        <div class="mt-6 flex flex-wrap items-center gap-3">
+          {% set soc = fc.social | default({}) %}
+          <a
+            href="{{ soc.facebook | default('#') }}"
+            class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/[0.04] text-white/70 transition hover:border-brand-yellow/50 hover:bg-white/[0.08] hover:text-white"
+            aria-label="Facebook"
+            rel="noopener noreferrer"
+          >
+            <svg class="h-[18px] w-[18px]" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-4h2v-1.5C10 8.57 11.57 7 13.5 7H16v4h-2c-.55 0-1 .45-1 1V15h3l-.5 4H13v6.95c4.56-.93 8-4.96 8-9.95z"/></svg>
+          </a>
+          <a
+            href="{{ soc.instagram | default('#') }}"
+            class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/[0.04] text-white/70 transition hover:border-brand-yellow/50 hover:bg-white/[0.08] hover:text-white"
+            aria-label="Instagram"
+            rel="noopener noreferrer"
+          >
+            <svg class="h-[18px] w-[18px]" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM5.838 12a6.162 6.162 0 1112.324 0 6.162 6.162 0 01-12.324 0zm12.406-7.845a1.44 1.44 0 11-2.881 0 1.44 1.44 0 012.881 0zM12 9.838a2.162 2.162 0 100 4.324 2.162 2.162 0 000-4.324z"/></svg>
+          </a>
+          <a
+            href="{{ soc.youtube | default('#') }}"
+            class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/[0.04] text-white/70 transition hover:border-brand-yellow/50 hover:bg-white/[0.08] hover:text-white"
+            aria-label="YouTube"
+            rel="noopener noreferrer"
+          >
+            <svg class="h-[18px] w-[18px]" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.8 8.001a2.2 2.2 0 00-1.55-1.56C18.2 6 12 6 12 6s-6.2 0-7.25.44A2.2 2.2 0 002.2 8v8a2.2 2.2 0 001.55 1.56C5.8 18 12 18 12 18s6.2 0 7.25-.44A2.2 2.2 0 0021.8 16V8zM10 15V9l5 3-5 3z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-14 flex flex-col gap-3 border-t border-white/[0.07] pt-8 text-center text-[11px] text-white/38 sm:flex-row sm:items-center sm:justify-between sm:text-left sm:text-xs">
+      <p>&copy; {{ site.currentYear }} {{ site.brand.name }}</p>
+      <p>Всички права запазени · Раковски</p>
     </div>
   </div>
 </footer>
-

@@ -1,7 +1,8 @@
 {
     "brand": {
-        "name": "Base 11ty Site",
-        "language": "en"
+        "name": "Ритеил парк Раковски",
+        "language": "bg",
+        "tagline": "Всичко от което се нуждате е вече на едно място. Спестяваш време."
     },
     "colors": {
         "background": "#FFFFFF",
@@ -13,6 +14,16 @@
         "siteUrl": "https://example.com",
         "defaultTitle": "Base 11ty Site",
         "defaultDescription": "A minimal Eleventy starter with data-driven navigation."
+    },
+    "footer": {
+        "address": "ул. Примерна 1, Раковски, област Пловдив",
+        "phone": "+359 000 000 000",
+        "email": "info@parkrakovski.bg",
+        "social": {
+            "facebook": "#",
+            "instagram": "#",
+            "youtube": "#"
+        }
     },
     "nav": {
         "header": [
