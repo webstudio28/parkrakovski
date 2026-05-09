@@ -12,7 +12,7 @@
   var suppressClick = false;
   var startX = 0;
   var startPos = 0;
-  var speed = 0.75;
+  var speed = 0.3;
 
   function getClientX(e) {
     return e.touches ? e.touches[0].clientX : e.clientX;
@@ -63,6 +63,10 @@
 
   strip.style.cursor = 'grab';
   strip.style.willChange = 'transform';
+
+  strip.addEventListener('dragstart', function (e) {
+    e.preventDefault();
+  });
 
   strip.addEventListener('mousedown', onDown);
   strip.addEventListener('touchstart', onDown, { passive: true });

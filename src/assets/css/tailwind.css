@@ -10,7 +10,7 @@
 
 @layer components {
   .pk-header-surface {
-    @apply relative flex items-center gap-4 rounded-full border border-transparent bg-transparent px-5 py-3 shadow-none transition-all duration-200 sm:px-6;
+    @apply relative flex items-center gap-4 rounded-full bg-black/20 px-5 py-3 shadow-none transition-all duration-200 sm:px-6;
     -webkit-backdrop-filter: none;
     backdrop-filter: none;
   }
