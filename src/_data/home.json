@@ -18,12 +18,12 @@
     "buttons": [
       {
         "label": "Научи повече",
-        "url": "/about/",
+        "url": "/za-nas/",
         "style": "primary"
       },
       {
         "label": "Виж обектите",
-        "url": "/services/",
+        "url": "/obekti/",
         "style": "secondary"
       }
     ],

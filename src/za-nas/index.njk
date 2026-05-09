@@ -1,0 +1,141 @@
+---
+layout: inner.njk
+title: "За нас — Ритеил парк Раковски"
+description: "Научете повече за Ритеил парк Раковски — история, мисия и визия за развитие на търговския комплекс."
+---
+
+{# ── Page hero ────────────────────────────────────────────────────────────── #}
+<section class="bg-white/80 py-16 sm:py-20">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6">
+    <div class="flex items-start gap-3 mb-3">
+      <span class="mt-1.5 block h-3 w-3 shrink-0 rounded-full bg-[var(--color-brand-yellow)]"></span>
+      <span class="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--color-brand-yellow)]">За нас</span>
+    </div>
+    <h1 class="text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
+      В сърцето на<br class="hidden sm:block" />
+      <span class="text-[var(--color-brand-teal)]">Раковски</span>
+    </h1>
+    <p class="mt-5 max-w-2xl text-lg text-slate-600 leading-relaxed">
+      Създадени с идеята за по-удобно ежедневие — Ритеил парк Раковски е модерно търговско пространство, което обединява водещи марки, услуги и удобства на едно място.
+    </p>
+  </div>
+</section>
+
+{# ── Main content: image + text ────────────────────────────────────────────── #}
+<section class="py-14 sm:py-20">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6">
+    <div class="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:items-center lg:gap-16">
+
+      {# Image #}
+      <div class="relative overflow-hidden rounded-3xl shadow-2xl shadow-black/10">
+        <img
+          src="{{ '/assets/images/news/news1.webp' | url }}"
+          alt="Ритеил парк Раковски"
+          class="h-72 w-full object-cover sm:h-96 lg:h-[480px]"
+          loading="lazy"
+          decoding="async"
+        />
+        {# Floating badge #}
+        <div class="absolute bottom-6 left-6 rounded-2xl bg-white/90 px-5 py-4 shadow-lg backdrop-blur-sm ring-1 ring-white/60">
+          <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand-yellow)]">От 2026</p>
+          <p class="mt-0.5 text-base font-bold text-slate-900 leading-tight">В сърцето на<br/>Раковски</p>
+        </div>
+      </div>
+
+      {# Text #}
+      <div class="space-y-6">
+        <div class="space-y-4 text-slate-700 leading-relaxed">
+          <p>
+            Ритеил парк Раковски е новото търговско сърце на общината — проект, създаден с ясна визия: да улесни ежедневието на хората в региона, като събере под един покрив всичко необходимо за модерния живот.
+          </p>
+          <p>
+            С над 25 000 кв.м. търговска площ, повече от 10 водещи марки и паркинг за над 120 автомобила, комплексът предлага безупречен комфорт и удобство за всеки посетител — независимо от неговите нужди.
+          </p>
+          <p>
+            Нашата мисия е да предоставим на жителите на Раковски и региона достъп до качествени стоки и услуги, в приятна и модерна среда, на едно удобно за достъп място.
+          </p>
+        </div>
+
+        <div class="flex flex-wrap gap-4 pt-2">
+          <a
+            href="{{ '/obekti/' | url }}"
+            class="inline-flex items-center gap-2 rounded-full bg-[var(--color-brand-teal)] px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:opacity-90"
+          >
+            Разгледай обектите
+            <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path d="M7.293 4.293a1 1 0 011.414 0l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414-1.414L11.586 10 7.293 5.707a1 1 0 010-1.414z"/>
+            </svg>
+          </a>
+          <a
+            href="{{ '/kontakti/' | url }}"
+            class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-6 py-3 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-[var(--color-brand-teal)] hover:text-[var(--color-brand-teal)]"
+          >
+            Свържи се с нас
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{# ── Counters ──────────────────────────────────────────────────────────────── #}
+<section class="py-14 sm:py-16">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6">
+    <div class="grid grid-cols-2 gap-5 sm:grid-cols-4">
+      <div class="flex flex-col items-center rounded-3xl bg-white shadow-md shadow-black/[0.06] ring-1 ring-slate-200/50 p-6 text-center">
+        <span class="text-4xl font-extrabold text-[var(--color-brand-teal)] sm:text-5xl">10+</span>
+        <span class="mt-2 text-sm text-slate-600">Търговски обекти</span>
+      </div>
+      <div class="flex flex-col items-center rounded-3xl bg-white shadow-md shadow-black/[0.06] ring-1 ring-slate-200/50 p-6 text-center">
+        <span class="text-4xl font-extrabold text-[var(--color-brand-yellow)] sm:text-5xl">120+</span>
+        <span class="mt-2 text-sm text-slate-600">Паркоместа</span>
+      </div>
+      <div class="flex flex-col items-center rounded-3xl bg-white shadow-md shadow-black/[0.06] ring-1 ring-slate-200/50 p-6 text-center">
+        <span class="text-4xl font-extrabold text-[var(--color-brand-teal)] sm:text-5xl">25k</span>
+        <span class="mt-2 text-sm text-slate-600">кв.м. търговска площ</span>
+      </div>
+      <div class="flex flex-col items-center rounded-3xl bg-white shadow-md shadow-black/[0.06] ring-1 ring-slate-200/50 p-6 text-center">
+        <span class="text-4xl font-extrabold text-[var(--color-brand-yellow)] sm:text-5xl">7</span>
+        <span class="mt-2 text-sm text-slate-600">Дни в седмицата</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+{# ── Second image + extra text ─────────────────────────────────────────────── #}
+<section class="pb-20 sm:pb-28">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6">
+    <div class="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:items-center lg:gap-16">
+
+      {# Text #}
+      <div class="order-2 space-y-5 lg:order-1">
+        <div class="flex items-start gap-3">
+          <span class="mt-1.5 block h-3 w-3 shrink-0 rounded-full bg-[var(--color-brand-yellow)]"></span>
+          <span class="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--color-brand-yellow)]">Нашата визия</span>
+        </div>
+        <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+          Модерно пространство<br/>за всеки
+        </h2>
+        <div class="space-y-4 text-slate-700 leading-relaxed">
+          <p>
+            Вярваме, че качественото пазаруване и приятният престой в търговски комплекс не са лукс, а достъпна реалност. Затова Ритеил парк Раковски е проектиран с внимание към детайла — удобни алеи, широки коридори и чисто, просторно пространство.
+          </p>
+          <p>
+            В близко бъдеще планираме разширяване на асортимента от обекти, въвеждане на нови услуги и подобрения в инфраструктурата. Работим постоянно, за да направим вашето посещение максимално приятно.
+          </p>
+        </div>
+      </div>
+
+      {# Image #}
+      <div class="order-1 overflow-hidden rounded-3xl shadow-2xl shadow-black/10 lg:order-2">
+        <img
+          src="{{ '/assets/images/news/news2.webp' | url }}"
+          alt="Ритеил парк Раковски — визия"
+          class="h-72 w-full object-cover sm:h-96 lg:h-[400px]"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+    </div>
+  </div>
+</section>

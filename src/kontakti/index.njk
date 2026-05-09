@@ -1,0 +1,129 @@
+---
+layout: inner.njk
+title: "Контакти — Ритеил парк Раковски"
+description: "Свържете се с Ритеил парк Раковски. Намерете ни на картата, позвънете ни или напишете имейл."
+---
+
+{# ── Page hero ────────────────────────────────────────────────────────────── #}
+<section class="bg-white/80 py-16 sm:py-20">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6">
+    <div class="flex items-start gap-3 mb-3">
+      <span class="mt-1.5 block h-3 w-3 shrink-0 rounded-full bg-[var(--color-brand-yellow)]"></span>
+      <span class="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--color-brand-yellow)]">Контакти</span>
+    </div>
+    <h1 class="text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
+      Свържете се<br class="hidden sm:block" />
+      <span class="text-[var(--color-brand-teal)]">с нас</span>
+    </h1>
+    <p class="mt-5 max-w-2xl text-lg text-slate-600 leading-relaxed">
+      Имате въпрос, предложение или искате да научите повече? Ние сме тук, за да помогнем.
+    </p>
+  </div>
+</section>
+
+{# ── Contact info + map ────────────────────────────────────────────────────── #}
+<section class="py-14 sm:py-20">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6">
+    <div class="grid grid-cols-1 gap-10 lg:grid-cols-5 lg:items-start lg:gap-12">
+
+      {# Contact cards — left column #}
+      <div class="space-y-5 lg:col-span-2">
+
+        {# Address #}
+        <div class="flex gap-5 rounded-3xl bg-white/80 p-6 shadow-md shadow-black/[0.06] ring-1 ring-slate-200/50">
+          <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-[var(--color-brand-teal)]/10">
+            <svg class="h-5 w-5 text-[var(--color-brand-teal)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/>
+            </svg>
+          </div>
+          <div>
+            <h2 class="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-1">Адрес</h2>
+            <p class="text-sm font-medium text-slate-800 leading-relaxed">
+              {{ site.footer.address | default('ул. Примерна 1, Раковски, обл. Пловдив') }}
+            </p>
+          </div>
+        </div>
+
+        {# Phone #}
+        <div class="flex gap-5 rounded-3xl bg-white/80 p-6 shadow-md shadow-black/[0.06] ring-1 ring-slate-200/50">
+          <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-[var(--color-brand-yellow)]/10">
+            <svg class="h-5 w-5 text-[var(--color-brand-yellow)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11.5a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .82h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.66a16 16 0 006.29 6.29l1.21-1.21a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+            </svg>
+          </div>
+          <div>
+            <h2 class="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-1">Телефон</h2>
+            {% set phone = site.footer.phone | default('+359 000 000 000') %}
+            <a href="tel:{{ phone | replace(' ', '') }}" class="text-sm font-medium text-slate-800 transition hover:text-[var(--color-brand-teal)]">{{ phone }}</a>
+          </div>
+        </div>
+
+        {# Email #}
+        <div class="flex gap-5 rounded-3xl bg-white/80 p-6 shadow-md shadow-black/[0.06] ring-1 ring-slate-200/50">
+          <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-[var(--color-brand-teal)]/10">
+            <svg class="h-5 w-5 text-[var(--color-brand-teal)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
+            </svg>
+          </div>
+          <div>
+            <h2 class="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-1">Имейл</h2>
+            {% set email = site.footer.email | default('info@parkrakovski.bg') %}
+            <a href="mailto:{{ email }}" class="text-sm font-medium text-slate-800 transition hover:text-[var(--color-brand-teal)]">{{ email }}</a>
+          </div>
+        </div>
+
+        {# Working hours #}
+        <div class="flex gap-5 rounded-3xl bg-white/80 p-6 shadow-md shadow-black/[0.06] ring-1 ring-slate-200/50">
+          <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-[var(--color-brand-yellow)]/10">
+            <svg class="h-5 w-5 text-[var(--color-brand-yellow)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+            </svg>
+          </div>
+          <div>
+            <h2 class="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-1">Работно време</h2>
+            <p class="text-sm font-medium text-slate-800 leading-relaxed">
+              Пон – Съб: 08:00 – 21:00<br/>
+              Неделя: 09:00 – 20:00
+            </p>
+          </div>
+        </div>
+
+        {# Social #}
+        <div class="rounded-3xl bg-white/80 p-6 shadow-md shadow-black/[0.06] ring-1 ring-slate-200/50">
+          <h2 class="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-4">Социални мрежи</h2>
+          <div class="flex gap-3">
+            {% set soc = site.footer.social | default({}) %}
+            <a href="{{ soc.facebook | default('#') }}" rel="noopener noreferrer" aria-label="Facebook"
+              class="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-slate-100 text-slate-600 transition hover:bg-[var(--color-brand-teal)] hover:text-white">
+              <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-4h2v-1.5C10 8.57 11.57 7 13.5 7H16v4h-2c-.55 0-1 .45-1 1V15h3l-.5 4H13v6.95c4.56-.93 8-4.96 8-9.95z"/></svg>
+            </a>
+            <a href="{{ soc.instagram | default('#') }}" rel="noopener noreferrer" aria-label="Instagram"
+              class="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-slate-100 text-slate-600 transition hover:bg-[var(--color-brand-teal)] hover:text-white">
+              <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM5.838 12a6.162 6.162 0 1112.324 0 6.162 6.162 0 01-12.324 0zm12.406-7.845a1.44 1.44 0 11-2.881 0 1.44 1.44 0 012.881 0zM12 9.838a2.162 2.162 0 100 4.324 2.162 2.162 0 000-4.324z"/></svg>
+            </a>
+            <a href="{{ soc.youtube | default('#') }}" rel="noopener noreferrer" aria-label="YouTube"
+              class="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-slate-100 text-slate-600 transition hover:bg-[var(--color-brand-teal)] hover:text-white">
+              <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.8 8.001a2.2 2.2 0 00-1.55-1.56C18.2 6 12 6 12 6s-6.2 0-7.25.44A2.2 2.2 0 002.2 8v8a2.2 2.2 0 001.55 1.56C5.8 18 12 18 12 18s6.2 0 7.25-.44A2.2 2.2 0 0021.8 16V8zM10 15V9l5 3-5 3z"/></svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      {# Map — right column #}
+      <div class="overflow-hidden rounded-3xl shadow-xl shadow-black/[0.08] ring-1 ring-slate-200/60 lg:col-span-3">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2952.3272406567735!2d24.915860275936137!3d42.27153747120129!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40a9d58ed619e4fb%3A0xd28fac427aa094ed!2sRetail%20Park%20Rakovski!5e0!3m2!1sbg!2sbg!4v1778326640417!5m2!1sbg!2sbg"
+          width="100%"
+          height="500"
+          style="border:0; display:block;"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Ритеил парк Раковски на картата"
+        ></iframe>
+      </div>
+
+    </div>
+  </div>
+</section>

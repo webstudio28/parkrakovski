@@ -1,0 +1,64 @@
+---
+layout: inner.njk
+title: "Новини — Ритеил парк Раковски"
+description: "Последни новини и обяви от Ритеил парк Раковски."
+---
+
+{# ── Page hero ────────────────────────────────────────────────────────────── #}
+<section class="bg-white/80 py-16 sm:py-20">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6">
+    <div class="flex items-start gap-3 mb-3">
+      <span class="mt-1.5 block h-3 w-3 shrink-0 rounded-full bg-[var(--color-brand-yellow)]"></span>
+      <span class="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--color-brand-yellow)]">Новини</span>
+    </div>
+    <h1 class="text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
+      Последни<br class="hidden sm:block" />
+      <span class="text-[var(--color-brand-teal)]">обяви</span>
+    </h1>
+    <p class="mt-5 max-w-2xl text-lg text-slate-600 leading-relaxed">
+      Следете актуалните новини, промоции и съобщения от Ритеил парк Раковски — всичко на едно място.
+    </p>
+  </div>
+</section>
+
+{# ── News grid ─────────────────────────────────────────────────────────────── #}
+<section class="py-14 sm:py-20">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6">
+    <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      {% for post in news.items %}
+      <article class="group flex flex-col overflow-hidden rounded-3xl bg-white shadow-lg shadow-black/[0.07] ring-1 ring-slate-200/60 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/[0.12]">
+        {# Image #}
+        <a href="{{ post.url | url }}" class="block overflow-hidden">
+          <div class="news-card__media relative overflow-hidden" style="border-radius: 1.5rem 1.5rem 0 0;">
+            <img
+              src="{{ post.image | url }}"
+              alt="{{ post.title }}"
+              class="news-card__img h-52 w-full object-cover"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        </a>
+
+        {# Content #}
+        <div class="flex flex-1 flex-col gap-3 p-6">
+          <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand-yellow)]">{{ post.date }}</p>
+          <h2 class="text-lg font-bold leading-snug text-slate-900 group-hover:text-[var(--color-brand-teal)] transition-colors">
+            <a href="{{ post.url | url }}">{{ post.title }}</a>
+          </h2>
+          <p class="flex-1 text-sm leading-relaxed text-slate-600">{{ post.excerpt | truncate(120) }}</p>
+          <a
+            href="{{ post.url | url }}"
+            class="inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--color-brand-teal)] transition group-hover:gap-2.5 mt-2"
+          >
+            Прочети
+            <svg class="h-4 w-4 transition-transform group-hover:translate-x-0.5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path d="M7.293 4.293a1 1 0 011.414 0l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414-1.414L11.586 10 7.293 5.707a1 1 0 010-1.414z"/>
+            </svg>
+          </a>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>

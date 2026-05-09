@@ -1,0 +1,65 @@
+---
+pagination:
+  data: news.items
+  size: 1
+  alias: post
+permalink: "/novini/{{ post.slug }}/"
+layout: inner.njk
+eleventyComputed:
+  title: "{{ post.title }} — Ритеил парк Раковски"
+  description: "{{ post.excerpt }}"
+---
+
+{# ── Breadcrumb ──────────────────────────────────────────────────────────── #}
+<nav class="mx-auto max-w-4xl px-4 sm:px-6 mb-8" aria-label="Навигация">
+  <ol class="flex items-center gap-2 text-sm text-slate-500">
+    <li><a href="{{ '/' | url }}" class="transition hover:text-slate-900">Начало</a></li>
+    <li aria-hidden="true"><span class="text-slate-300">/</span></li>
+    <li><a href="{{ '/novini/' | url }}" class="transition hover:text-slate-900">Новини</a></li>
+    <li aria-hidden="true"><span class="text-slate-300">/</span></li>
+    <li class="font-medium text-slate-900 truncate max-w-[200px]">{{ post.title }}</li>
+  </ol>
+</nav>
+
+{# ── Article ─────────────────────────────────────────────────────────────── #}
+<article class="mx-auto max-w-4xl px-4 sm:px-6 pb-20 sm:pb-28">
+
+  {# Hero image #}
+  <div class="overflow-hidden rounded-3xl shadow-xl shadow-black/[0.08]">
+    <img
+      src="{{ post.image | url }}"
+      alt="{{ post.title }}"
+      class="h-64 w-full object-cover sm:h-80 lg:h-[420px]"
+      loading="eager"
+      decoding="async"
+    />
+  </div>
+
+  {# Meta + title #}
+  <div class="mt-10 space-y-3">
+    <p class="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--color-brand-yellow)]">{{ post.date }}</p>
+    <h1 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">{{ post.title }}</h1>
+    <p class="text-lg text-slate-600 leading-relaxed border-l-4 border-[var(--color-brand-yellow)] pl-4">{{ post.excerpt }}</p>
+  </div>
+
+  {# Body #}
+  <div class="mt-10 rounded-3xl bg-white/80 p-8 shadow-md shadow-black/[0.06] ring-1 ring-slate-200/50 sm:p-10">
+    <div class="prose prose-slate max-w-none prose-p:leading-relaxed prose-p:text-slate-700">
+      {% set paragraphs = post.body | replace('\n\n', '</p><p>') | replace('\n', '<br>') %}
+      <p>{{ paragraphs | safe }}</p>
+    </div>
+  </div>
+
+  {# Back link #}
+  <div class="mt-10">
+    <a
+      href="{{ '/novini/' | url }}"
+      class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-6 py-3 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-[var(--color-brand-teal)] hover:text-[var(--color-brand-teal)]"
+    >
+      <svg class="h-4 w-4 rotate-180" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+        <path d="M7.293 4.293a1 1 0 011.414 0l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414-1.414L11.586 10 7.293 5.707a1 1 0 010-1.414z"/>
+      </svg>
+      Към всички новини
+    </a>
+  </div>
+</article>

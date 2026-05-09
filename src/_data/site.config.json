@@ -33,15 +33,19 @@
             },
             {
                 "label": "Обекти",
-                "url": "/services/"
+                "url": "/obekti/"
             },
             {
                 "label": "За нас",
-                "url": "/about/"
+                "url": "/za-nas/"
+            },
+            {
+                "label": "Новини",
+                "url": "/novini/"
             },
             {
                 "label": "Контакти",
-                "url": "/contacts/"
+                "url": "/kontakti/"
             }
         ]
     }
