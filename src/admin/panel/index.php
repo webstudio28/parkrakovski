@@ -31,7 +31,7 @@ require_login();
           <h1 style="margin:0; font-size: 20px;">Admin panel</h1>
           <div style="opacity:0.8; font-size: 13px;">
             <?php if (panel_is_local_dev()): ?>
-              Local mode — edits save directly to <code>src/_data/</code> on disk (no login).
+              Local mode — login required; saves go to <code>src/_data/</code> on disk.
             <?php else: ?>
               Edits commit to GitHub, then CI deploys.
             <?php endif; ?>

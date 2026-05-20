@@ -29,6 +29,10 @@ local_docs/
 
 # Admin panel secrets (never commit)
 src/admin/panel/config.php
+src/admin/panel/config.local.php
+
+# Project-local PHP path (XAMPP etc.) — does not affect other projects
+php.path.local
 
 # Local hero video assets (keep local, don't commit binaries)
 

@@ -6,16 +6,15 @@ require_once __DIR__ . "/_inc/util.php";
 
 ensure_session();
 
-if (panel_is_local_dev()) {
-  $_SESSION["panel_logged_in"] = true;
+if (!empty($_SESSION["panel_logged_in"])) {
   redirect("/index.php");
 }
 
 $cfg = panel_config();
 $cfgUser = (string)($cfg["username"] ?? "");
 $cfgHash = trim((string)($cfg["password_hash"] ?? ""));
-$cfgPath = __DIR__ . "/config.php";
-$cfgExists = file_exists($cfgPath);
+$cfgPath = panel_config_source_path();
+$cfgExists = $cfgPath !== null && file_exists($cfgPath);
 
 $error = "";
 $hashInfo = $cfgHash ? password_get_info($cfgHash) : ["algo" => 0, "algoName" => "unknown"];
@@ -85,9 +84,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <?php endif; ?>
 
         <div class="hint">
-          <div>If you see “not configured”, create <code>config.php</code> on the server next to this file.</div>
+          <?php if (panel_is_local_dev()): ?>
+            <div>Local dev: <strong>admin</strong> / <strong>1234</strong> (from <code>config.local.php</code>).</div>
+          <?php else: ?>
+            <div>If you see “not configured”, create <code>config.php</code> on the server next to this file.</div>
+          <?php endif; ?>
           <div style="margin-top:6px; opacity:0.75;">
-            Config detected: <strong><?php echo $cfgExists ? "yes" : "no"; ?></strong>,
+            Config: <strong><?php echo $cfgExists ? "yes" : "demo fallback"; ?></strong>,
             hash format: <strong><?php echo html((string)$hashAlgoName); ?></strong>
           </div>
         </div>

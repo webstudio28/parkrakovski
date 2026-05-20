@@ -4,8 +4,8 @@
  *
  * Server path: `root/parkrakovski/admin/panel/config.php`
  *
- * Local dev (http://127.0.0.1:8081): no config.php needed — auto login and
- * JSON saves write directly to src/_data/ on disk. Run: npm start
+ * Local dev (http://127.0.0.1:8081): copy config.local.example.php to
+ * config.local.php — login admin / 1234, saves write to src/_data/ on disk.
  */
 
 return [

@@ -29,16 +29,41 @@ function panel_is_acceptable_password_hash(string $hash): bool {
   return (bool) preg_match('#^\$2[a-z]+\$\d{2}\$[./A-Za-z0-9]{53}$#', $hash);
 }
 
+function panel_demo_local_config(): array {
+  return [
+    "username" => "admin",
+    "password_hash" => '$2b$12$Yz.oJ7uW6GGdJqGWJ1/ZXuGzbAn8S998XEq637i9DCL2B9GTMC3pi',
+    "files" => [
+      "services" => "src/_data/services.json",
+      "site" => "src/_data/site.config.json",
+    ],
+  ];
+}
+
+function panel_config_source_path(): ?string {
+  $local = __DIR__ . "/../config.local.php";
+  $prod = __DIR__ . "/../config.php";
+  if (panel_is_local_dev() && file_exists($local)) {
+    return $local;
+  }
+  if (file_exists($prod)) {
+    return $prod;
+  }
+  return null;
+}
+
 function panel_config(): array {
-  $path = __DIR__ . "/../config.php";
-  if (!file_exists($path)) {
-    return [];
+  $path = panel_config_source_path();
+  if ($path !== null) {
+    $cfg = require $path;
+    if (is_array($cfg)) {
+      return panel_normalize_config($cfg);
+    }
   }
-  $cfg = require $path;
-  if (!is_array($cfg)) {
-    return [];
+  if (panel_is_local_dev()) {
+    return panel_normalize_config(panel_demo_local_config());
   }
-  return panel_normalize_config($cfg);
+  return [];
 }
 
 /** Project root (parkrakovski/), not src/ */
@@ -99,10 +124,6 @@ function ensure_session(): void {
 
 function require_login(): void {
   ensure_session();
-  if (panel_is_local_dev()) {
-    $_SESSION["panel_logged_in"] = true;
-    return;
-  }
   if (empty($_SESSION["panel_logged_in"])) {
     redirect("/login.php");
   }

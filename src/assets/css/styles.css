@@ -1901,6 +1901,10 @@ body.modal-open {
   border-color: rgb(226 232 240 / var(--tw-border-opacity, 1));
 }
 
+.border-slate-200\/80 {
+  border-color: rgb(226 232 240 / 0.8);
+}
+
 .border-white\/15 {
   border-color: rgb(255 255 255 / 0.15);
 }
@@ -1915,10 +1919,6 @@ body.modal-open {
 
 .border-white\/\[0\.08\] {
   border-color: rgb(255 255 255 / 0.08);
-}
-
-.border-slate-200\/80 {
-  border-color: rgb(226 232 240 / 0.8);
 }
 
 .bg-\[\#0b0d11\] {
@@ -2426,10 +2426,6 @@ body.modal-open {
 
 .tracking-\[0\.18em\] {
   letter-spacing: 0.18em;
-}
-
-.tracking-\[0\.22em\] {
-  letter-spacing: 0.22em;
 }
 
 .tracking-\[0\.25em\] {
@@ -2992,12 +2988,12 @@ body.modal-open {
     margin-top: 3.5rem;
   }
 
-  .sm\:mt-20 {
-    margin-top: 5rem;
+  .sm\:mt-2\.5 {
+    margin-top: 0.625rem;
   }
 
-  .sm\:mt-3 {
-    margin-top: 0.75rem;
+  .sm\:mt-20 {
+    margin-top: 5rem;
   }
 
   .sm\:mt-4 {
@@ -3010,10 +3006,6 @@ body.modal-open {
 
   .sm\:mt-8 {
     margin-top: 2rem;
-  }
-
-  .sm\:mt-2\.5 {
-    margin-top: 0.625rem;
   }
 
   .sm\:h-10 {

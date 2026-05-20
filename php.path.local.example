@@ -1,0 +1,3 @@
+# Copy to php.path.local (gitignored) and set your PHP path — one line only.
+# This project uses PHP only for npm run panel:serve; it does not start XAMPP Apache/MySQL.
+C:\xampp\php\php.exe
