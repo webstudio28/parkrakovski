@@ -12,6 +12,9 @@
   }
 
   function serializeForm(form) {
+    if (typeof window.__pkSyncRichEditors === "function") {
+      window.__pkSyncRichEditors();
+    }
     var fields = qsa("input, textarea, select", form).filter(function (el) {
       if (!el.name) return false;
       var t = (el.type || "").toLowerCase();
@@ -34,35 +37,37 @@
   }
 
   function updateDirtyState(form) {
+    if (!form || form._pkDirtyBusy) return;
     var saveBtn = qs("[data-pk-save]", form);
     if (!saveBtn || !form._pkSnapshot) return;
-    var dirty = serializeForm(form) !== form._pkSnapshot;
-    saveBtn.disabled = !dirty;
+    form._pkDirtyBusy = true;
+    try {
+      var dirty = serializeForm(form) !== form._pkSnapshot;
+      saveBtn.disabled = !dirty;
+    } finally {
+      form._pkDirtyBusy = false;
+    }
   }
+
+  window.__pkUpdateDirtyState = updateDirtyState;
 
   function initDirtyForms() {
     qsa("form[data-pk-dirty-form]").forEach(function (form) {
       form._pkSnapshot = serializeForm(form);
       updateDirtyState(form);
 
-      form.addEventListener("input", function () {
+      form.addEventListener("input", function (e) {
+        if (e.target.matches("[data-pk-rich-source]")) return;
         updateDirtyState(form);
       });
       form.addEventListener("change", function () {
         updateDirtyState(form);
       });
-
-      if (typeof MutationObserver !== "undefined") {
-        var mo = new MutationObserver(function () {
-          updateDirtyState(form);
-        });
-        mo.observe(form, { childList: true, subtree: true, attributes: true, attributeFilter: ["value", "hidden"] });
-      }
     });
   }
 
   function markDirtyFromEvent(e) {
-    var form = (e.target && e.target.closest) ? e.target.closest("form[data-pk-dirty-form]") : null;
+    var form = e.target && e.target.closest ? e.target.closest("form[data-pk-dirty-form]") : null;
     if (form) updateDirtyState(form);
   }
 

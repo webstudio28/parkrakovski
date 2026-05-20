@@ -38,8 +38,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   $entry = [
     "slug" => $newSlug,
     "title" => panel_post_string("title"),
-    "summary" => panel_post_string("summary"),
-    "body" => panel_post_string("body"),
+    "summary" => panel_post_rich_html("summary"),
+    "body" => panel_post_rich_html("body"),
   ];
 
   $updated = [];
@@ -80,8 +80,8 @@ panel_page_open("Услуга — админ панел");
         <div class="pk-section">
           <?php panel_field_text("Заглавие", "title", (string)($svc["title"] ?? "")); ?>
           <?php panel_field_text("Slug", "slug", (string)($svc["slug"] ?? "")); ?>
-          <?php panel_field_textarea("Резюме", "summary", (string)($svc["summary"] ?? ""), 2); ?>
-          <?php panel_field_textarea("Текст", "body", (string)($svc["body"] ?? ""), 8); ?>
+          <?php panel_field_rich_text("Резюме", "summary", (string)($svc["summary"] ?? ""), 2); ?>
+          <?php panel_field_rich_text("Текст", "body", (string)($svc["body"] ?? ""), 8); ?>
         </div>
         <?php panel_save_button(); ?>
       </form>

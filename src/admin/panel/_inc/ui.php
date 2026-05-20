@@ -463,6 +463,102 @@ function panel_styles(): void {
       border-radius: 0.85rem;
       border: 1px dashed rgba(255, 255, 255, 0.15);
     }
+
+    .pk-rich__toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.35rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .pk-rich__sep {
+      width: 1px;
+      height: 1.25rem;
+      background: rgba(255, 255, 255, 0.2);
+      margin: 0 0.15rem;
+    }
+
+    .pk-rich__btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.1rem;
+      height: 2.1rem;
+      padding: 0;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 0.5rem;
+      background: rgba(15, 23, 42, 0.45);
+      color: #e2e8f0;
+      cursor: pointer;
+      font-size: 0.85rem;
+    }
+
+    .pk-rich__btn:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(181, 150, 29, 0.45);
+    }
+
+    .pk-rich__editor {
+      min-height: 5.5rem;
+      padding: 0.75rem 0.85rem;
+      line-height: 1.55;
+      overflow-y: auto;
+      max-height: 18rem;
+    }
+
+    .pk-rich__editor:focus {
+      outline: 2px solid rgba(181, 150, 29, 0.55);
+      outline-offset: 1px;
+    }
+
+    .pk-rich__editor i[class*="fa-"] {
+      font-style: normal;
+      margin: 0 0.12em;
+      color: #b5961d;
+    }
+
+    .pk-icon-picker {
+      margin-top: 0.5rem;
+      padding: 0.75rem;
+      border-radius: 0.75rem;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background: rgba(15, 23, 42, 0.55);
+    }
+
+    .pk-icon-picker__title {
+      margin: 0 0 0.5rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #94a3b8;
+    }
+
+    .pk-icon-picker__grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(2.25rem, 1fr));
+      gap: 0.35rem;
+      max-width: 22rem;
+    }
+
+    .pk-icon-picker__item {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.25rem;
+      height: 2.25rem;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 0.5rem;
+      background: rgba(255, 255, 255, 0.06);
+      color: #e2e8f0;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    .pk-icon-picker__item:hover {
+      background: rgba(181, 150, 29, 0.25);
+      border-color: rgba(181, 150, 29, 0.5);
+      color: #fff;
+    }
   </style>
   <?php
 }
@@ -490,6 +586,7 @@ function panel_page_open(string $title): void {
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title><?php echo html($title); ?></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <?php panel_styles(); ?>
   </head>
   <body>
@@ -498,6 +595,7 @@ function panel_page_open(string $title): void {
 
 function panel_page_close(bool $withScripts = true): void {
   if ($withScripts) {
+    echo '<script src="./assets/rich-editor.js"></script>';
     echo '<script src="./assets/panel.js"></script>';
   }
   ?>

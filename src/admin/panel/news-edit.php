@@ -50,8 +50,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     "slug" => $newSlug,
     "title" => panel_post_string("title"),
     "date" => panel_post_string("date"),
-    "excerpt" => panel_post_string("excerpt"),
-    "body" => panel_post_string("body"),
+    "excerpt" => panel_post_rich_html("excerpt"),
+    "body" => panel_post_rich_html("body"),
     "image" => panel_post_string("image"),
     "url" => "/novini/" . $newSlug . "/",
   ];
@@ -115,8 +115,8 @@ panel_page_open($title . " — админ панел");
             <?php panel_field_text("Slug", "slug", (string)($post["slug"] ?? "")); ?>
           </div>
           <?php panel_field_media("Снимка", "image", (string)($post["image"] ?? ""), "news", true); ?>
-          <?php panel_field_textarea("Кратко описание", "excerpt", (string)($post["excerpt"] ?? ""), 3); ?>
-          <?php panel_field_textarea("Пълен текст", "body", (string)($post["body"] ?? ""), 12); ?>
+          <?php panel_field_rich_text("Кратко описание", "excerpt", (string)($post["excerpt"] ?? ""), 3); ?>
+          <?php panel_field_rich_text("Пълен текст", "body", (string)($post["body"] ?? ""), 12); ?>
         </div>
 
         <?php panel_save_button(); ?>

@@ -49,7 +49,7 @@ description: "Разгледайте всички магазини и партн
 
         <h2 class="mt-6 text-xl sm:text-2xl font-bold text-slate-900 leading-tight transition-colors group-hover:text-brand-teal">{{ shop.title }}</h2>
         <p class="mt-1 text-[11px] sm:text-xs uppercase tracking-[0.2em] font-semibold text-slate-500">{{ shop.category }}</p>
-        <p class="mt-4 text-sm text-slate-600 leading-relaxed line-clamp-2 flex-1">{{ shop.description }}</p>
+        <p class="rich-content mt-4 text-sm text-slate-600 leading-relaxed line-clamp-2 flex-1">{{ shop.description | safe }}</p>
 
         <span class="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-teal">
           Виж повече

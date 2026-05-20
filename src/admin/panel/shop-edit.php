@@ -6,6 +6,7 @@ require_once __DIR__ . "/_inc/util.php";
 require_once __DIR__ . "/_inc/ui.php";
 require_once __DIR__ . "/_inc/panel-data.php";
 require_once __DIR__ . "/_inc/forms.php";
+require_once __DIR__ . "/_inc/rich-text.php";
 
 require_login();
 
@@ -53,11 +54,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   $promotions = [];
   $images = $_POST["promo_image"] ?? [];
   $alts = $_POST["promo_alt"] ?? [];
-  $descs = $_POST["promo_description"] ?? [];
+  $descs = panel_post_rich_html_list("promo_description");
   if (is_array($images)) {
     foreach ($images as $i => $img) {
       $img = trim((string)$img);
-      $desc = trim((string)($descs[$i] ?? ""));
+      $desc = (string)($descs[$i] ?? "");
       if ($img === "" && $desc === "") {
         continue;
       }
@@ -77,7 +78,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     "url" => panel_post_string("url"),
     "logo" => panel_post_string("logo"),
     "image" => panel_post_string("image"),
-    "description" => panel_post_string("description"),
+    "description" => panel_post_rich_html("description"),
     "hours" => panel_post_string("hours"),
     "phone" => panel_post_string("phone"),
     "promotions" => $promotions,
@@ -155,7 +156,7 @@ panel_page_open($pageTitle . " — админ панел");
             <?php panel_field_text("Телефон", "phone", (string)($shop["phone"] ?? "")); ?>
           </div>
           <?php panel_field_textarea("Работно време", "hours", (string)($shop["hours"] ?? ""), 2); ?>
-          <?php panel_field_textarea("Описание", "description", (string)($shop["description"] ?? ""), 5); ?>
+          <?php panel_field_rich_text("Описание", "description", (string)($shop["description"] ?? ""), 5); ?>
         </div>
 
         <div class="pk-section">

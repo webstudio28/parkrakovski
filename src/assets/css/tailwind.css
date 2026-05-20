@@ -385,5 +385,17 @@
       width: clamp(22rem, 26vw, 32rem);
     }
   }
+
+  .rich-content i[class*="fa-"] {
+    font-style: normal;
+    display: inline-block;
+    margin: 0 0.15em;
+    vertical-align: -0.1em;
+    color: var(--color-brand-teal, #006484);
+  }
+
+  .rich-content u {
+    text-underline-offset: 0.15em;
+  }
 }
 

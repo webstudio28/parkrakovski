@@ -11,6 +11,10 @@ module.exports = function (eleventyConfig) {
     new Date().toISOString().slice(0, 10),
   );
 
+  eleventyConfig.addFilter("stripHtml", (value) =>
+    String(value ?? "").replace(/<[^>]*>/g, "").replace(/\s+/g, " ").trim(),
+  );
+
   // Dev server: smoother live reload + small typing debounce so
   // saving partial/malformed JSON doesn't immediately crash the build
   eleventyConfig.setServerOptions({

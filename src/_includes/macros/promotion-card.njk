@@ -24,8 +24,8 @@
             {{ shop.title }}
           </p>
         {% endif %}
-        <p class="{% if showShopTitle %}mt-2 sm:mt-2.5 {% endif %}text-sm sm:text-base leading-relaxed text-slate-600">
-          {{ promo.description }}
+        <p class="rich-content {% if showShopTitle %}mt-2 sm:mt-2.5 {% endif %}text-sm sm:text-base leading-relaxed text-slate-600">
+          {{ promo.description | safe }}
         </p>
       </div>
     </div>

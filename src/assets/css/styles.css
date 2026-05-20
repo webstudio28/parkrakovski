@@ -1092,6 +1092,18 @@ body.modal-open {
   }
 }
 
+.rich-content i[class*="fa-"] {
+  font-style: normal;
+  display: inline-block;
+  margin: 0 0.15em;
+  vertical-align: -0.1em;
+  color: var(--color-brand-teal, #006484);
+}
+
+.rich-content u {
+  text-underline-offset: 0.15em;
+}
+
 .pointer-events-none {
   pointer-events: none;
 }

@@ -7,7 +7,7 @@ permalink: "/obekti/{{ shop.slug }}/"
 layout: inner.njk
 eleventyComputed:
   title: "{{ shop.title }} в Ритеил парк Раковски"
-  description: "{{ shop.description }}"
+  description: "{{ shop.description | stripHtml }}"
 ---
 
 <section class="relative bg-white/80 pt-28 sm:pt-32 pb-20 sm:pb-28">
@@ -49,8 +49,8 @@ eleventyComputed:
           {{ shop.title }} в Ритеил парк Раковски
         </h1>
 
-        <div class="mt-6 max-w-2xl space-y-4 text-base leading-relaxed text-slate-600 sm:text-lg">
-          <p>{{ shop.description }}</p>
+        <div class="rich-content mt-6 max-w-2xl text-base leading-relaxed text-slate-600 sm:text-lg">
+          {{ shop.description | safe }}
         </div>
 
         {% if shop.url %}
