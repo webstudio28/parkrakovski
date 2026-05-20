@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+require_once __DIR__ . "/panel-data.php";
+
 function panel_styles(): void {
   ?>
   <style>
@@ -150,8 +152,15 @@ function panel_styles(): void {
       transition: filter 0.15s ease, transform 0.15s ease;
     }
 
-    .pk-btn:hover {
+    .pk-btn:hover:not(:disabled) {
       filter: brightness(1.1);
+    }
+
+    .pk-btn:disabled {
+      opacity: 0.42;
+      cursor: not-allowed;
+      filter: none;
+      box-shadow: none;
     }
 
     .pk-btn--ghost {
@@ -271,8 +280,206 @@ function panel_styles(): void {
       font-size: 0.85em;
       color: #cbd5e1;
     }
+
+    .pk-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      margin-top: 1.25rem;
+    }
+
+    .pk-toolbar__left,
+    .pk-toolbar__right {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    .pk-btn--sm {
+      width: auto;
+      margin-top: 0;
+      padding: 0.45rem 0.85rem;
+      font-size: 0.82rem;
+    }
+
+    .pk-btn--danger {
+      background: #b91c1c;
+    }
+
+    .pk-btn--danger:hover {
+      filter: brightness(1.08);
+    }
+
+    .pk-section {
+      margin-top: 1.25rem;
+      padding: 1.15rem 1.2rem;
+      border-radius: 1rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .pk-section__title {
+      margin: 0 0 1rem;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #f1f5f9;
+    }
+
+    .pk-grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.85rem;
+    }
+
+    @media (max-width: 720px) {
+      .pk-grid-2 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .pk-list {
+      display: grid;
+      gap: 0.65rem;
+      margin-top: 1rem;
+    }
+
+    .pk-list-item {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      padding: 0.85rem 1rem;
+      border-radius: 0.85rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      text-decoration: none;
+      color: inherit;
+      transition: border-color 0.15s ease, background 0.15s ease;
+    }
+
+    .pk-list-item:hover {
+      border-color: rgba(181, 150, 29, 0.45);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .pk-list-item__thumb {
+      width: 3.25rem;
+      height: 3.25rem;
+      border-radius: 0.65rem;
+      object-fit: cover;
+      background: rgba(15, 23, 42, 0.6);
+      flex-shrink: 0;
+    }
+
+    .pk-list-item__body {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .pk-list-item__title {
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    .pk-list-item__meta {
+      margin-top: 0.2rem;
+      font-size: 0.78rem;
+      color: #94a3b8;
+    }
+
+    .pk-repeater {
+      display: grid;
+      gap: 0.85rem;
+    }
+
+    .pk-repeater-item {
+      padding: 1rem;
+      border-radius: 0.85rem;
+      border: 1px dashed rgba(255, 255, 255, 0.18);
+      background: rgba(15, 23, 42, 0.35);
+    }
+
+    .pk-repeater-item__head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .pk-media {
+      display: grid;
+      gap: 0.65rem;
+    }
+
+    .pk-media__preview {
+      width: 100%;
+      max-width: 14rem;
+      aspect-ratio: 3 / 4;
+      border-radius: 0.75rem;
+      object-fit: cover;
+      background: rgba(15, 23, 42, 0.55);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+    }
+
+    .pk-media__preview--wide {
+      max-width: 100%;
+      aspect-ratio: 16 / 10;
+    }
+
+    .pk-media__row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    .pk-media__path {
+      flex: 1;
+      min-width: 12rem;
+      font-size: 0.78rem;
+      color: #94a3b8;
+      word-break: break-all;
+    }
+
+    .pk-file {
+      font-size: 0.78rem;
+      color: #cbd5e1;
+    }
+
+    .pk-actions-inline {
+      display: flex;
+      gap: 0.35rem;
+      flex-wrap: wrap;
+    }
+
+    .pk-empty {
+      margin-top: 1rem;
+      padding: 1.25rem;
+      text-align: center;
+      color: #94a3b8;
+      border-radius: 0.85rem;
+      border: 1px dashed rgba(255, 255, 255, 0.15);
+    }
   </style>
   <?php
+}
+
+function panel_save_button(): void {
+  ?>
+  <button class="pk-btn" type="submit" data-pk-save disabled><?php echo html(panel_save_button_label()); ?></button>
+  <?php
+}
+
+function panel_flash_render(): void {
+  $flash = function_exists("panel_flash_get") ? panel_flash_get() : null;
+  if (!$flash) {
+    return;
+  }
+  $class = ($flash["type"] ?? "") === "ok" ? "pk-ok" : "pk-err";
+  echo '<div class="' . html($class) . '" role="status">' . html((string)($flash["message"] ?? "")) . '</div>';
 }
 
 function panel_page_open(string $title): void {
@@ -289,7 +496,10 @@ function panel_page_open(string $title): void {
   <?php
 }
 
-function panel_page_close(): void {
+function panel_page_close(bool $withScripts = true): void {
+  if ($withScripts) {
+    echo '<script src="./assets/panel.js"></script>';
+  }
   ?>
   </body>
 </html>

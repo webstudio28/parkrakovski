@@ -27,7 +27,12 @@ return [
   // Files editable via this panel (repo paths)
   "files" => [
     "services" => "src/_data/services.json",
-    "site" => "src/_data/site.config.json"
-  ]
+    "site" => "src/_data/site.config.json",
+    "shops" => "src/_data/shops.json",
+    "news" => "src/_data/news.json",
+  ],
+
+  "uploads_dir" => "src/assets/images/uploads",
+  "uploads_url_prefix" => "/assets/images/uploads",
 ];
 
