@@ -41,6 +41,41 @@ function panel_config(): array {
   return panel_normalize_config($cfg);
 }
 
+/** Project root (parkrakovski/), not src/ */
+function panel_repo_root(): string {
+  $cfg = panel_config();
+  if (!empty($cfg["repo_root"]) && is_string($cfg["repo_root"])) {
+    return rtrim(str_replace("\\", "/", $cfg["repo_root"]), "/");
+  }
+  return dirname(__DIR__, 4);
+}
+
+function panel_is_local_dev(): bool {
+  if (getenv("PANEL_LOCAL_DEV") === "1") {
+    return true;
+  }
+  $host = strtolower((string)($_SERVER["HTTP_HOST"] ?? ""));
+  $host = preg_replace("/:\d+$/", "", $host);
+  return in_array($host, ["localhost", "127.0.0.1", "[::1]"], true);
+}
+
+function panel_save_success_message(): string {
+  return panel_is_local_dev()
+    ? "Saved to disk. Refresh the site (Eleventy will pick up JSON changes)."
+    : "Saved. GitHub Actions will deploy shortly.";
+}
+
+function panel_save_button_label(): string {
+  return panel_is_local_dev() ? "Save to disk" : "Save (commit to GitHub)";
+}
+
+function panel_edit_hint(string $repoPath): string {
+  if (panel_is_local_dev()) {
+    return "Local file: " . $repoPath;
+  }
+  return "Edits commit to GitHub: " . $repoPath;
+}
+
 function panel_base_path(): string {
   $scriptName = $_SERVER["SCRIPT_NAME"] ?? "";
   return rtrim(str_replace("\\", "/", dirname($scriptName)), "/");
@@ -64,6 +99,10 @@ function ensure_session(): void {
 
 function require_login(): void {
   ensure_session();
+  if (panel_is_local_dev()) {
+    $_SESSION["panel_logged_in"] = true;
+    return;
+  }
   if (empty($_SESSION["panel_logged_in"])) {
     redirect("/login.php");
   }

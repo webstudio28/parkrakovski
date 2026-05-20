@@ -2,7 +2,10 @@
 /**
  * Copy this file to `config.php` ON THE SERVER ONLY (do not commit secrets).
  *
- * Server path (as you described): `root/parkrakovski/admin/panel/config.php`
+ * Server path: `root/parkrakovski/admin/panel/config.php`
+ *
+ * Local dev (http://127.0.0.1:8081): no config.php needed — auto login and
+ * JSON saves write directly to src/_data/ on disk. Run: npm start
  */
 
 return [

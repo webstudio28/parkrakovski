@@ -57,7 +57,38 @@ function gh_repo_info(): array {
   return [$owner, $repo, $branch];
 }
 
+function panel_local_file_path(string $repoPath): string {
+  $rel = str_replace(["\\", "/"], DIRECTORY_SEPARATOR, ltrim($repoPath, "/\\"));
+  return panel_repo_root() . DIRECTORY_SEPARATOR . $rel;
+}
+
+function panel_local_file_sha(string $fullPath): string {
+  if (!is_file($fullPath)) {
+    return "local-missing";
+  }
+  return "local-" . md5_file($fullPath);
+}
+
 function gh_get_file(string $repoPath): array {
+  if (panel_is_local_dev()) {
+    $full = panel_local_file_path($repoPath);
+    if (!is_file($full)) {
+      return ["ok" => false, "error" => "File not found locally: " . $repoPath];
+    }
+    $raw = file_get_contents($full);
+    if ($raw === false) {
+      return ["ok" => false, "error" => "Could not read local file."];
+    }
+    return [
+      "ok" => true,
+      "status" => 200,
+      "data" => [
+        "content" => base64_encode($raw),
+        "sha" => panel_local_file_sha($full),
+      ],
+    ];
+  }
+
   [$owner, $repo, $branch] = gh_repo_info();
   if (!$owner || !$repo) {
     return ["ok" => false, "error" => "GitHub repo not configured."];
@@ -67,6 +98,28 @@ function gh_get_file(string $repoPath): array {
 }
 
 function gh_update_file(string $repoPath, string $contentUtf8, string $sha, string $message): array {
+  if (panel_is_local_dev()) {
+    $full = panel_local_file_path($repoPath);
+    $dir = dirname($full);
+    if (!is_dir($dir) && !mkdir($dir, 0775, true) && !is_dir($dir)) {
+      return ["ok" => false, "error" => "Could not create directory for file."];
+    }
+    if (is_file($full) && panel_local_file_sha($full) !== $sha) {
+      return [
+        "ok" => false,
+        "error" => "File changed on disk since load. Reload the page and try again.",
+      ];
+    }
+    if (file_put_contents($full, $contentUtf8) === false) {
+      return ["ok" => false, "error" => "Could not write local file."];
+    }
+    return [
+      "ok" => true,
+      "status" => 200,
+      "data" => ["content" => ["sha" => panel_local_file_sha($full)]],
+    ];
+  }
+
   [$owner, $repo, $branch] = gh_repo_info();
   $payload = [
     "message" => $message,

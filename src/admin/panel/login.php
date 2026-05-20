@@ -6,6 +6,11 @@ require_once __DIR__ . "/_inc/util.php";
 
 ensure_session();
 
+if (panel_is_local_dev()) {
+  $_SESSION["panel_logged_in"] = true;
+  redirect("/index.php");
+}
+
 $cfg = panel_config();
 $cfgUser = (string)($cfg["username"] ?? "");
 $cfgHash = trim((string)($cfg["password_hash"] ?? ""));

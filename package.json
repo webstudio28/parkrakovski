@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "serve": "eleventy --serve --incremental",
-    "start": "npm-run-all css:build --parallel css:watch serve",
+    "prepanel:serve": "npx @11ty/eleventy",
+    "panel:serve": "php -S 127.0.0.1:8081 -t _site",
+    "start": "npm-run-all css:build --parallel css:watch serve panel:serve",
     "dev": "npm start",
     "build": "npm run css:build && eleventy",
     "panel:hash": "node ./scripts/panel-hash.cjs",

@@ -27,7 +27,7 @@ function normalize_services_json(string $jsonText): array {
 // Load current file from GitHub
 $fileRes = gh_get_file($servicesPath);
 if (!$fileRes["ok"]) {
-  $error = "Failed to load from GitHub: " . ($fileRes["error"] ?? "Unknown error");
+  $error = "Failed to load file: " . ($fileRes["error"] ?? "Unknown error");
 } else {
   $contentB64 = $fileRes["data"]["content"] ?? "";
   $sha = (string)($fileRes["data"]["sha"] ?? "");
@@ -50,9 +50,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $msg = "chore(cms): update services";
     $putRes = gh_update_file($servicesPath, $pretty, $saveSha, $msg);
     if (!$putRes["ok"]) {
-      $error = "Failed to save to GitHub: " . ($putRes["error"] ?? "Unknown error");
+      $error = "Failed to save: " . ($putRes["error"] ?? "Unknown error");
     } else {
-      $success = "Saved. GitHub Actions will deploy shortly.";
+      $success = panel_save_success_message();
       // Refresh SHA + text
       $newSha = $putRes["data"]["content"]["sha"] ?? null;
       if (is_string($newSha) && $newSha) $sha = $newSha;
@@ -91,7 +91,7 @@ $pretty = json_encode($normalized, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | 
       <div class="top">
         <div>
           <h1 style="margin:0; font-size: 20px;">Services</h1>
-          <div style="opacity:0.8; font-size: 13px;">Edits commit to GitHub: <code><?php echo html((string)$servicesPath); ?></code></div>
+          <div style="opacity:0.8; font-size: 13px;"><code><?php echo html(panel_edit_hint((string)$servicesPath)); ?></code></div>
         </div>
         <div style="display:flex; gap: 8px;">
           <a class="btn" href="./index.php">Back</a>
@@ -104,7 +104,7 @@ $pretty = json_encode($normalized, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | 
           <input type="hidden" name="csrf" value="<?php echo html(csrf_token()); ?>" />
           <input type="hidden" name="sha" value="<?php echo html((string)$sha); ?>" />
           <textarea name="json"><?php echo html($pretty); ?></textarea>
-          <button type="submit">Save (commit to GitHub)</button>
+          <button type="submit"><?php echo html(panel_save_button_label()); ?></button>
 
           <?php if ($error): ?>
             <div class="msg err"><?php echo html($error); ?></div>
