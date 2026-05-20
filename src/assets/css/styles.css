@@ -1031,7 +1031,7 @@ body.modal-open {
   display: flex;
   flex-wrap: nowrap;
   align-items: stretch;
-  gap: 1.25rem;
+  gap: 1.35rem;
   overflow-x: auto;
   overflow-y: visible;
   -webkit-overflow-scrolling: touch;
@@ -1040,6 +1040,7 @@ body.modal-open {
   touch-action: pan-x pan-y;
   box-sizing: border-box;
   width: 100%;
+  cursor: grab;
   padding-top: 0.35rem;
   padding-bottom: 2.5rem;
   padding-right: max(1rem, calc((100vw - 80rem) / 2 + 1rem));
@@ -1072,9 +1073,9 @@ body.modal-open {
   pointer-events: none;
 }
 
-@media (max-width: 1023px) {
+@media (min-width: 1024px) {
   .promotions-carousel__track {
-    cursor: grab;
+    gap: 2.75rem;
   }
 }
 
@@ -1087,7 +1088,7 @@ body.modal-open {
 
 @media (min-width: 1024px) {
   .promotion-card {
-    width: clamp(17rem, 19vw, 22rem);
+    width: clamp(22rem, 26vw, 32rem);
   }
 }
 
@@ -1914,6 +1915,10 @@ body.modal-open {
 
 .border-white\/\[0\.08\] {
   border-color: rgb(255 255 255 / 0.08);
+}
+
+.border-slate-200\/80 {
+  border-color: rgb(226 232 240 / 0.8);
 }
 
 .bg-\[\#0b0d11\] {
@@ -2845,22 +2850,6 @@ body.modal-open {
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 
-.focus-visible\:outline:focus-visible {
-  outline-style: solid;
-}
-
-.focus-visible\:outline-2:focus-visible {
-  outline-width: 2px;
-}
-
-.focus-visible\:outline-offset-2:focus-visible {
-  outline-offset: 2px;
-}
-
-.focus-visible\:outline-brand-teal:focus-visible {
-  outline-color: var(--color-brand-teal);
-}
-
 .group:hover .group-hover\:pointer-events-auto {
   pointer-events: auto;
 }
@@ -3021,6 +3010,10 @@ body.modal-open {
 
   .sm\:mt-8 {
     margin-top: 2rem;
+  }
+
+  .sm\:mt-2\.5 {
+    margin-top: 0.625rem;
   }
 
   .sm\:h-10 {

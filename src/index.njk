@@ -369,6 +369,7 @@ description: Welcome to the base Eleventy website.
 {# ─────────────────────────────────────────────────────────────────────────
    SECTION: Промоции  (partner promos · gutter-aligned carousel — arrows on lg)
    ───────────────────────────────────────────────────────────────────────── #}
+{% from "macros/promotion-card.njk" import promotionCard %}
 <section id="promotsii" class="relative scroll-mt-28 bg-white py-20 sm:py-28" aria-labelledby="promotions-heading">
   <div class="mx-auto max-w-7xl px-4 sm:px-6">
     <div class="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-end lg:gap-12">
@@ -383,9 +384,6 @@ description: Welcome to the base Eleventy website.
             <span class="underline decoration-brand-yellow decoration-[3px] underline-offset-[10px]">този месец</span>.
           </span>
         </h2>
-        <p class="mt-6 max-w-3xl text-base sm:text-lg leading-relaxed text-slate-600">
-          Актуални кампании и намаления в обектите на парка — на едно място, с обновяване според партньорите.
-        </p>
       </div>
     </div>
   </div>
@@ -429,37 +427,9 @@ description: Welcome to the base Eleventy website.
         role="list"
       >
       {% for shop in shops.items %}
-        {% if shop.promotion %}
-          <article class="promotion-card group" role="listitem">
-            <a
-              href="{{ ('/obekti/' + shop.slug + '/') | url }}"
-              class="promotion-card__link block rounded-3xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-teal"
-            >
-              <div class="promotion-card__media relative aspect-[3/4] overflow-hidden rounded-3xl shadow-lg shadow-black/12 ring-1 ring-slate-200/60 transition duration-300 group-hover:-translate-y-1 group-hover:shadow-xl group-hover:ring-slate-300/70">
-                <span
-                  class="absolute left-4 top-4 z-[1] h-px w-10 bg-brand-yellow transition-all duration-300 group-hover:w-14 sm:left-5 sm:top-5"
-                  aria-hidden="true"
-                ></span>
-                <img
-                  src="{{ shop.promotion.image | url }}"
-                  alt="{{ shop.promotion.alt | default(shop.title + ' — промоция') }}"
-                  class="h-full w-full object-cover transition duration-700 ease-out group-hover:scale-[1.03]"
-                  loading="lazy"
-                  decoding="async"
-                />
-                <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-900/25 via-transparent to-transparent opacity-90" aria-hidden="true"></div>
-              </div>
-              <div class="mt-4 sm:mt-5">
-                <p class="text-sm sm:text-base leading-relaxed text-slate-600">
-                  {{ shop.promotion.description }}
-                </p>
-                <p class="mt-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-500 sm:mt-3">
-                  {{ shop.title }}
-                </p>
-              </div>
-            </a>
-          </article>
-        {% endif %}
+        {% for promo in shop.promotions %}
+          {{ promotionCard(shop, promo, true) }}
+        {% endfor %}
       {% endfor %}
       </div>
     </div>

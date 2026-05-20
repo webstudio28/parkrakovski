@@ -1,61 +1,41 @@
 (function () {
-  function enableHorizontalDrag(viewport) {
-    if (!viewport) return;
-    var isDown = false;
+  /**
+   * Partners-strip style drag: down on strip, move/end on window,
+   * drives horizontal scroll (finite list, no loop).
+   */
+  function attachStripDrag(strip) {
+    var dragging = false;
     var startX = 0;
     var startScroll = 0;
-    var moved = false;
-    var DRAG_THRESHOLD = 4;
 
-    viewport.addEventListener("pointerdown", function (e) {
-      if (e.pointerType === "touch") return;
-      isDown = true;
-      moved = false;
+    function onDown(e) {
+      if (e.button !== 0) return;
+      dragging = true;
       startX = e.clientX;
-      startScroll = viewport.scrollLeft;
-      viewport.classList.add("is-dragging");
-      try {
-        viewport.setPointerCapture(e.pointerId);
-      } catch (err) {}
-    });
-
-    viewport.addEventListener("pointermove", function (e) {
-      if (!isDown) return;
-      var dx = e.clientX - startX;
-      if (Math.abs(dx) > DRAG_THRESHOLD) moved = true;
-      viewport.scrollLeft = startScroll - dx;
-    });
-
-    function endDrag(e) {
-      if (!isDown) return;
-      isDown = false;
-      viewport.classList.remove("is-dragging");
-      if (e && e.pointerId != null) {
-        try {
-          viewport.releasePointerCapture(e.pointerId);
-        } catch (err) {}
-      }
+      startScroll = strip.scrollLeft;
+      strip.classList.add("is-dragging");
+      strip.style.cursor = "grabbing";
     }
 
-    viewport.addEventListener("pointerup", endDrag);
-    viewport.addEventListener("pointercancel", endDrag);
-    viewport.addEventListener("pointerleave", endDrag);
+    function onMove(e) {
+      if (!dragging) return;
+      strip.scrollLeft = startScroll - (e.clientX - startX);
+    }
 
-    viewport.addEventListener(
-      "click",
-      function (e) {
-        if (moved) {
-          e.preventDefault();
-          e.stopPropagation();
-          moved = false;
-        }
-      },
-      true,
-    );
+    function onUp() {
+      if (!dragging) return;
+      dragging = false;
+      strip.classList.remove("is-dragging");
+      strip.style.cursor = "grab";
+    }
 
-    viewport.addEventListener("dragstart", function (e) {
+    strip.style.cursor = "grab";
+    strip.addEventListener("dragstart", function (e) {
       e.preventDefault();
     });
+    strip.addEventListener("mousedown", onDown);
+    window.addEventListener("mousemove", onMove);
+    window.addEventListener("mouseup", onUp);
   }
 
   document.querySelectorAll("[data-promotions-wrap]").forEach(function (root) {
@@ -95,8 +75,6 @@
     window.addEventListener("resize", updateArrows);
     updateArrows();
 
-    if (window.matchMedia("(max-width: 767px)").matches) {
-      enableHorizontalDrag(strip);
-    }
+    attachStripDrag(strip);
   });
 })();

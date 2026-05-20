@@ -327,7 +327,7 @@
     display: flex;
     flex-wrap: nowrap;
     align-items: stretch;
-    gap: 1.25rem;
+    gap: 1.35rem;
     overflow-x: auto;
     overflow-y: visible;
     -webkit-overflow-scrolling: touch;
@@ -336,6 +336,7 @@
     touch-action: pan-x pan-y;
     box-sizing: border-box;
     width: 100%;
+    cursor: grab;
     padding-top: 0.35rem;
     padding-bottom: 2.5rem;
     padding-right: max(1rem, calc((100vw - 80rem) / 2 + 1rem));
@@ -366,9 +367,9 @@
     pointer-events: none;
   }
 
-  @media (max-width: 1023px) {
+  @media (min-width: 1024px) {
     .promotions-carousel__track {
-      cursor: grab;
+      gap: 2.75rem;
     }
   }
 
@@ -381,7 +382,7 @@
 
   @media (min-width: 1024px) {
     .promotion-card {
-      width: clamp(17rem, 19vw, 22rem);
+      width: clamp(22rem, 26vw, 32rem);
     }
   }
 }

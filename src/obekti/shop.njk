@@ -121,3 +121,67 @@ eleventyComputed:
 
   </div>
 </section>
+
+{% if shop.promotions and shop.promotions | length %}
+{% from "macros/promotion-card.njk" import promotionCard %}
+<section class="relative border-t border-slate-200/80 bg-white/80 py-16 sm:py-24" aria-labelledby="shop-promotions-heading">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6">
+    <div class="flex items-center gap-3">
+      <span class="h-px w-10 bg-brand-yellow"></span>
+      <span class="text-[10px] sm:text-xs font-semibold tracking-[0.32em] uppercase text-brand-yellow">Промоции</span>
+    </div>
+    <h2 id="shop-promotions-heading" class="mt-2 text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-slate-900 leading-[1.05]">
+      Актуални оферти
+      <span class="block italic font-light text-slate-900">
+        <span class="underline decoration-brand-yellow decoration-[3px] underline-offset-[10px]">в {{ shop.title }}</span>
+      </span>
+    </h2>
+  </div>
+
+  <div data-promotions-wrap>
+    <div class="mx-auto max-w-7xl px-4 sm:px-6">
+      <div class="promotions-carousel__head mt-8 sm:mt-10">
+        <p class="promotions-carousel__label" id="shop-promotions-carousel-label">
+          Промоции
+        </p>
+        <div class="promotions-carousel__nav">
+          <button
+            type="button"
+            class="promotions-carousel__arrow promotions-carousel__arrow--prev"
+            data-promotions-prev
+            aria-label="Предишна промоция"
+          >
+            <svg class="promotions-carousel__chevron" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="21 8 12 16 21 24" vector-effect="non-scaling-stroke"></polyline>
+            </svg>
+          </button>
+          <button
+            type="button"
+            class="promotions-carousel__arrow promotions-carousel__arrow--next"
+            data-promotions-next
+            aria-label="Следваща промоция"
+          >
+            <svg class="promotions-carousel__chevron" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="11 8 20 16 11 24" vector-effect="non-scaling-stroke"></polyline>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="promotions-carousel__viewport">
+      <div
+        class="promotions-carousel__track"
+        data-promotions-scroller
+        aria-labelledby="shop-promotions-carousel-label"
+        role="list"
+      >
+        {% for promo in shop.promotions %}
+          {{ promotionCard(shop, promo, false) }}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  <script src="{{ '/assets/js/promotions-carousel.js' | url }}" defer></script>
+</section>
+{% endif %}
