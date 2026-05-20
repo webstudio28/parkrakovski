@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 require_once __DIR__ . "/_inc/util.php";
+require_once __DIR__ . "/_inc/ui.php";
 
 ensure_session();
 
@@ -13,17 +14,9 @@ if (!empty($_SESSION["panel_logged_in"])) {
 $cfg = panel_config();
 $cfgUser = (string)($cfg["username"] ?? "");
 $cfgHash = trim((string)($cfg["password_hash"] ?? ""));
-$cfgPath = panel_config_source_path();
-$cfgExists = $cfgPath !== null && file_exists($cfgPath);
+$hashLooksValid = panel_is_acceptable_password_hash($cfgHash);
 
 $error = "";
-$hashInfo = $cfgHash ? password_get_info($cfgHash) : ["algo" => 0, "algoName" => "unknown"];
-$hashAlgoName =
-  (($hashInfo["algo"] ?? 0) !== 0)
-    ? (string)($hashInfo["algoName"] ?? "unknown")
-    : (panel_is_acceptable_password_hash($cfgHash) ? "bcrypt (detected)" : "unknown");
-
-$hashLooksValid = panel_is_acceptable_password_hash($cfgHash);
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
   verify_csrf($_POST["csrf"] ?? null);
@@ -32,70 +25,39 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   $pass = (string)($_POST["password"] ?? "");
 
   if (!$cfgUser || !$cfgHash || !$hashLooksValid) {
-    $error = "Panel is not configured. Create config.php on the server next to login.php.";
+    $error = "Панелът не е настроен. Свържете се с администратор.";
   } elseif (hash_equals($cfgUser, $user) && password_verify($pass, $cfgHash)) {
     $_SESSION["panel_logged_in"] = true;
     redirect("/index.php");
   } else {
-    if (!hash_equals($cfgUser, $user)) {
-      $error = "Invalid username.";
-    } else {
-      $error = "Invalid password.";
-    }
+    $error = "Невалидно потребителско име или парола.";
   }
 }
 
+panel_page_open("Вход — админ панел");
 ?>
-<!doctype html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Admin Login</title>
-    <style>
-      body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial; background: #0b1220; color: #e5e7eb; margin: 0; }
-      .wrap { min-height: 100vh; display: grid; place-items: center; padding: 24px; }
-      .card { width: 100%; max-width: 420px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 16px; padding: 20px; }
-      label { display: block; font-size: 14px; margin-top: 12px; opacity: 0.9; }
-      input { width: 100%; padding: 10px 12px; margin-top: 6px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.18); background: rgba(0,0,0,0.2); color: #fff; }
-      button { margin-top: 16px; width: 100%; padding: 10px 12px; border-radius: 10px; border: 0; background: #22c55e; color: #052e16; font-weight: 700; cursor: pointer; }
-      .err { margin-top: 12px; color: #fecaca; font-size: 14px; }
-      .hint { margin-top: 10px; font-size: 12px; opacity: 0.75; }
-      a { color: #93c5fd; }
-    </style>
-  </head>
-  <body>
-    <div class="wrap">
-      <form class="card" method="post" action="">
-        <h1 style="margin: 0 0 4px; font-size: 20px;">Admin panel</h1>
-        <div style="opacity:0.85; font-size: 13px;">Login to edit site content.</div>
+    <div class="pk-login-wrap">
+      <form class="pk-card pk-form" method="post" action="">
+        <div class="pk-eyebrow">Ритеил парк Раковски</div>
+        <h1 class="pk-title">Админ панел</h1>
 
-        <label>Username</label>
-        <input name="username" autocomplete="username" required />
+        <div class="pk-field">
+          <label class="pk-label" for="username">Потребителско име</label>
+          <input class="pk-input" id="username" name="username" autocomplete="username" required />
+        </div>
 
-        <label>Password</label>
-        <input name="password" type="password" autocomplete="current-password" required />
+        <div class="pk-field">
+          <label class="pk-label" for="password">Парола</label>
+          <input class="pk-input" id="password" name="password" type="password" autocomplete="current-password" required />
+        </div>
 
         <input type="hidden" name="csrf" value="<?php echo html(csrf_token()); ?>" />
-        <button type="submit">Sign in</button>
+        <button class="pk-btn" type="submit">Вход</button>
 
         <?php if ($error): ?>
-          <div class="err"><?php echo html($error); ?></div>
+          <div class="pk-err" role="alert"><?php echo html($error); ?></div>
         <?php endif; ?>
-
-        <div class="hint">
-          <?php if (panel_is_local_dev()): ?>
-            <div>Local dev: <strong>admin</strong> / <strong>1234</strong> (from <code>config.local.php</code>).</div>
-          <?php else: ?>
-            <div>If you see “not configured”, create <code>config.php</code> on the server next to this file.</div>
-          <?php endif; ?>
-          <div style="margin-top:6px; opacity:0.75;">
-            Config: <strong><?php echo $cfgExists ? "yes" : "demo fallback"; ?></strong>,
-            hash format: <strong><?php echo html((string)$hashAlgoName); ?></strong>
-          </div>
-        </div>
       </form>
     </div>
-  </body>
-</html>
-
+<?php
+panel_page_close();

@@ -3,54 +3,40 @@
 declare(strict_types=1);
 
 require_once __DIR__ . "/_inc/util.php";
+require_once __DIR__ . "/_inc/ui.php";
 
 require_login();
 
+panel_page_open("Админ панел");
 ?>
-<!doctype html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Admin panel</title>
-    <style>
-      body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial; background: #0b1220; color: #e5e7eb; margin: 0; }
-      .wrap { max-width: 900px; margin: 0 auto; padding: 24px; }
-      .top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-      .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-top: 18px; }
-      .card { display: block; padding: 14px; border-radius: 16px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); color: inherit; text-decoration: none; }
-      .card:hover { border-color: rgba(34,197,94,0.5); }
-      a { color: #93c5fd; }
-      .btn { display: inline-block; padding: 8px 10px; border-radius: 10px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.14); color: #e5e7eb; text-decoration: none; }
-    </style>
-  </head>
-  <body>
-    <div class="wrap">
-      <div class="top">
+    <div class="pk-wrap">
+      <div class="pk-top">
         <div>
-          <h1 style="margin:0; font-size: 20px;">Admin panel</h1>
-          <div style="opacity:0.8; font-size: 13px;">
+          <div class="pk-eyebrow">Ритеил парк Раковски</div>
+          <h1 class="pk-title">Админ панел</h1>
+          <p class="pk-sub">
             <?php if (panel_is_local_dev()): ?>
-              Local mode — login required; saves go to <code>src/_data/</code> on disk.
+              Локален режим — запис в <code>src/_data/</code>
             <?php else: ?>
-              Edits commit to GitHub, then CI deploys.
+              Промените се изпращат към GitHub и се публикуват автоматично
             <?php endif; ?>
-          </div>
+          </p>
         </div>
-        <a class="btn" href="./logout.php">Logout</a>
+        <div class="pk-top__actions">
+          <a class="pk-btn pk-btn--ghost" href="./logout.php">Изход</a>
+        </div>
       </div>
 
-      <div class="cards">
-        <a class="card" href="./services.php">
-          <div style="font-weight: 700;">Services</div>
-          <div style="opacity:0.8; font-size: 13px; margin-top: 6px;">Edit `src/_data/services.json`</div>
+      <div class="pk-grid">
+        <a class="pk-tile" href="./services.php">
+          <div class="pk-tile__title">Услуги</div>
+          <div class="pk-tile__meta"><code>src/_data/services.json</code></div>
         </a>
-        <a class="card" href="./site.php">
-          <div style="font-weight: 700;">Site settings</div>
-          <div style="opacity:0.8; font-size: 13px; margin-top: 6px;">Edit `src/_data/site.config.json`</div>
+        <a class="pk-tile" href="./site.php">
+          <div class="pk-tile__title">Настройки на сайта</div>
+          <div class="pk-tile__meta"><code>src/_data/site.config.json</code></div>
         </a>
       </div>
     </div>
-  </body>
-</html>
-
+<?php
+panel_page_close();

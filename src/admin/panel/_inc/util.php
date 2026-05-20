@@ -86,19 +86,19 @@ function panel_is_local_dev(): bool {
 
 function panel_save_success_message(): string {
   return panel_is_local_dev()
-    ? "Saved to disk. Refresh the site (Eleventy will pick up JSON changes)."
-    : "Saved. GitHub Actions will deploy shortly.";
+    ? "Записано на диска. Презаредете сайта, за да видите промените."
+    : "Записано. GitHub Actions ще пусне деплой скоро.";
 }
 
 function panel_save_button_label(): string {
-  return panel_is_local_dev() ? "Save to disk" : "Save (commit to GitHub)";
+  return panel_is_local_dev() ? "Запази на диска" : "Запази (към GitHub)";
 }
 
 function panel_edit_hint(string $repoPath): string {
   if (panel_is_local_dev()) {
-    return "Local file: " . $repoPath;
+    return "Локален файл: " . $repoPath;
   }
-  return "Edits commit to GitHub: " . $repoPath;
+  return "Запис към GitHub: " . $repoPath;
 }
 
 function panel_base_path(): string {
@@ -142,7 +142,7 @@ function verify_csrf(?string $token): void {
   $expected = $_SESSION["csrf"] ?? "";
   if (!$token || !$expected || !hash_equals((string)$expected, (string)$token)) {
     http_response_code(400);
-    echo "Bad CSRF token.";
+    echo "Невалиден CSRF токен.";
     exit;
   }
 }
