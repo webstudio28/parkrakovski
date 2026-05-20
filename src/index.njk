@@ -147,7 +147,7 @@ description: Welcome to the base Eleventy website.
 {# ─────────────────────────────────────────────────────────────────────────
    SECTION: За нас  (editorial, dark, split-screen with stat ribbon)
    ───────────────────────────────────────────────────────────────────────── #}
-<section class="relative py-16 sm:py-24">
+<section class="relative bg-white/80 py-16 sm:py-24">
   <div class="mx-auto max-w-7xl px-4 sm:px-6">
     <div class="relative grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-10 items-stretch">
       {# ── IMAGE CARD (floating) ── #}
@@ -246,7 +246,7 @@ description: Welcome to the base Eleventy website.
 {# ─────────────────────────────────────────────────────────────────────────
    SECTION: Обекти  (editorial, floating cards — no wrapper container)
    ───────────────────────────────────────────────────────────────────────── #}
-<section class="relative bg-white/80 py-20 sm:py-28">
+<section class="relative py-20 sm:py-28">
   <div class="mx-auto max-w-7xl px-4 sm:px-6">
 
     {# ── EDITORIAL HEADER ── #}
@@ -364,6 +364,107 @@ description: Welcome to the base Eleventy website.
     </div>
   </div>
   <script src="{{ '/assets/js/partners-strip.js' | url }}" defer></script>
+</section>
+
+{# ─────────────────────────────────────────────────────────────────────────
+   SECTION: Промоции  (partner promos · gutter-aligned carousel — arrows on lg)
+   ───────────────────────────────────────────────────────────────────────── #}
+<section id="promotsii" class="relative scroll-mt-28 bg-white py-20 sm:py-28" aria-labelledby="promotions-heading">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6">
+    <div class="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-end lg:gap-12">
+      <div class="lg:col-span-8">
+        <div class="flex items-center gap-3">
+          <span class="h-px w-10 bg-brand-yellow"></span>
+          <span class="text-[10px] sm:text-xs font-semibold tracking-[0.32em] uppercase text-brand-yellow">Промоции</span>
+        </div>
+        <h2 id="promotions-heading" class="mt-2 text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-[1.05]">
+          Оферти от партньорите
+          <span class="block italic font-light text-slate-900">
+            <span class="underline decoration-brand-yellow decoration-[3px] underline-offset-[10px]">този месец</span>.
+          </span>
+        </h2>
+        <p class="mt-6 max-w-3xl text-base sm:text-lg leading-relaxed text-slate-600">
+          Актуални кампании и намаления в обектите на парка — на едно място, с обновяване според партньорите.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div data-promotions-wrap>
+    <div class="mx-auto max-w-7xl px-4 sm:px-6">
+      <div class="promotions-carousel__head mt-10 sm:mt-12">
+        <p class="promotions-carousel__label" id="promotions-carousel-label">
+          Избрани промоции
+        </p>
+        <div class="promotions-carousel__nav">
+          <button
+            type="button"
+            class="promotions-carousel__arrow promotions-carousel__arrow--prev"
+            data-promotions-prev
+            aria-label="Предишна промоция"
+          >
+            <svg class="promotions-carousel__chevron" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="21 8 12 16 21 24" vector-effect="non-scaling-stroke"></polyline>
+            </svg>
+          </button>
+          <button
+            type="button"
+            class="promotions-carousel__arrow promotions-carousel__arrow--next"
+            data-promotions-next
+            aria-label="Следваща промоция"
+          >
+            <svg class="promotions-carousel__chevron" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="11 8 20 16 11 24" vector-effect="non-scaling-stroke"></polyline>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="promotions-carousel__viewport">
+      <div
+        class="promotions-carousel__track"
+        data-promotions-scroller
+        aria-labelledby="promotions-carousel-label"
+        role="list"
+      >
+      {% for shop in shops.items %}
+        {% if shop.promotion %}
+          <article class="promotion-card group" role="listitem">
+            <a
+              href="{{ ('/obekti/' + shop.slug + '/') | url }}"
+              class="promotion-card__link block rounded-3xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-teal"
+            >
+              <div class="promotion-card__media relative aspect-[3/4] overflow-hidden rounded-3xl shadow-lg shadow-black/12 ring-1 ring-slate-200/60 transition duration-300 group-hover:-translate-y-1 group-hover:shadow-xl group-hover:ring-slate-300/70">
+                <span
+                  class="absolute left-4 top-4 z-[1] h-px w-10 bg-brand-yellow transition-all duration-300 group-hover:w-14 sm:left-5 sm:top-5"
+                  aria-hidden="true"
+                ></span>
+                <img
+                  src="{{ shop.promotion.image | url }}"
+                  alt="{{ shop.promotion.alt | default(shop.title + ' — промоция') }}"
+                  class="h-full w-full object-cover transition duration-700 ease-out group-hover:scale-[1.03]"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-900/25 via-transparent to-transparent opacity-90" aria-hidden="true"></div>
+              </div>
+              <div class="mt-4 sm:mt-5">
+                <p class="text-sm sm:text-base leading-relaxed text-slate-600">
+                  {{ shop.promotion.description }}
+                </p>
+                <p class="mt-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-500 sm:mt-3">
+                  {{ shop.title }}
+                </p>
+              </div>
+            </a>
+          </article>
+        {% endif %}
+      {% endfor %}
+      </div>
+    </div>
+  </div>
+  <script src="{{ '/assets/js/promotions-carousel.js' | url }}" defer></script>
 </section>
 
 {# ─────────────────────────────────────────────────────────────────────────
