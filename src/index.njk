@@ -520,3 +520,93 @@ description: Welcome to the base Eleventy website.
   </div>
 </section>
 
+{# ─────────────────────────────────────────────────────────────────────────
+   SECTION: Галерия  (gutter-aligned carousel — arrows on lg)
+   ───────────────────────────────────────────────────────────────────────── #}
+<section id="galeriya" class="relative scroll-mt-28 bg-white py-20 sm:py-28" aria-labelledby="gallery-heading">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6">
+    <div class="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-end lg:gap-12">
+      <div class="lg:col-span-8">
+        <div class="flex items-center gap-3">
+          <span class="h-px w-10 bg-brand-yellow"></span>
+          <span class="text-[10px] sm:text-xs font-semibold tracking-[0.32em] uppercase text-brand-yellow">Галерия</span>
+        </div>
+        <h2 id="gallery-heading" class="mt-2 text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-[1.05]">
+          Разгледай снимки от
+          <span class="block italic font-light text-slate-900">
+            <span class="underline decoration-brand-yellow decoration-[3px] underline-offset-[10px]">ритейл парка</span>
+          </span>
+        </h2>
+      </div>
+    </div>
+  </div>
+
+  <div data-gallery-wrap>
+    <div class="mx-auto max-w-7xl px-4 sm:px-6">
+      <div class="gallery-carousel__head mt-10 sm:mt-12">
+        <p class="gallery-carousel__label" id="home-gallery-carousel-label">
+          Избрани кадри
+        </p>
+        <div class="gallery-carousel__nav">
+          <button
+            type="button"
+            class="gallery-carousel__arrow gallery-carousel__arrow--prev"
+            data-gallery-prev
+            aria-label="Предишна снимка"
+          >
+            <svg class="gallery-carousel__chevron" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="21 8 12 16 21 24" vector-effect="non-scaling-stroke"></polyline>
+            </svg>
+          </button>
+          <button
+            type="button"
+            class="gallery-carousel__arrow gallery-carousel__arrow--next"
+            data-gallery-next
+            aria-label="Следваща снимка"
+          >
+            <svg class="gallery-carousel__chevron" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="11 8 20 16 11 24" vector-effect="non-scaling-stroke"></polyline>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery-carousel__viewport">
+      <div
+        class="gallery-carousel__track"
+        data-gallery-scroller
+        aria-labelledby="home-gallery-carousel-label"
+        role="list"
+      >
+      {% for shop in shops.items %}
+        {% if shop.images and shop.images.length %}
+          {% for image in shop.images %}
+            <article class="gallery-card" role="listitem">
+              <img
+                src="{{ image.src | default(image) | url }}"
+                alt="{{ image.alt | default(shop.title) }}"
+                class="gallery-card__image"
+                loading="lazy"
+                decoding="async"
+              />
+            </article>
+          {% endfor %}
+        {% elif shop.image %}
+          <article class="gallery-card" role="listitem">
+            <img
+              src="{{ shop.image | url }}"
+              alt="{{ shop.title }}"
+              class="gallery-card__image"
+              loading="lazy"
+              decoding="async"
+            />
+          </article>
+        {% endif %}
+      {% endfor %}
+      </div>
+    </div>
+  </div>
+  <script src="{{ '/assets/js/gallery-carousel.js' | url }}" defer></script>
+</section>
+

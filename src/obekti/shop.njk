@@ -10,6 +10,12 @@ eleventyComputed:
   description: "{{ shop.description | stripHtml }}"
 ---
 
+{% set firstGalleryImage = '' %}
+{% if shop.images and shop.images.length %}
+  {% set firstGalleryItem = shop.images[0] %}
+  {% set firstGalleryImage = firstGalleryItem.src | default(firstGalleryItem) %}
+{% endif %}
+
 <section class="relative bg-white/80 pt-28 sm:pt-32 pb-20 sm:pb-28">
   <div class="mx-auto max-w-7xl px-4 sm:px-6">
 
@@ -70,6 +76,9 @@ eleventyComputed:
 
       {# Photo card #}
       {% set shopImage = shop.image | default('/assets/images/news/news3.webp') %}
+      {% if firstGalleryImage %}
+        {% set shopImage = firstGalleryImage %}
+      {% endif %}
       <div class="relative order-last lg:col-span-5 min-h-[260px] sm:min-h-[360px] lg:min-h-[520px] overflow-hidden rounded-[2rem] sm:rounded-[2.5rem] ring-1 ring-white/40 shadow-2xl shadow-slate-900/15">
         <img
           src="{{ shopImage | url }}"
@@ -183,5 +192,90 @@ eleventyComputed:
     </div>
   </div>
   <script src="{{ '/assets/js/promotions-carousel.js' | url }}" defer></script>
+</section>
+{% endif %}
+
+{% if (shop.images and shop.images.length) or (shop.promotions and shop.promotions.length) %}
+<section class="relative border-t border-slate-200/80 bg-white py-16 sm:py-24" aria-labelledby="shop-gallery-heading">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6">
+    <div class="flex items-center gap-3">
+      <span class="h-px w-10 bg-brand-yellow"></span>
+      <span class="text-[10px] sm:text-xs font-semibold tracking-[0.32em] uppercase text-brand-yellow">Галерия</span>
+    </div>
+    <h2 id="shop-gallery-heading" class="mt-2 text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-slate-900 leading-[1.05]">
+      Снимки
+      <span class="italic font-light text-slate-900">
+        <span class="underline decoration-brand-yellow decoration-[3px] underline-offset-[10px]">от {{ shop.title }}</span>
+      </span>
+    </h2>
+  </div>
+
+  <div data-gallery-wrap>
+    <div class="mx-auto max-w-7xl px-4 sm:px-6">
+      <div class="gallery-carousel__head mt-8 sm:mt-10">
+        <p class="gallery-carousel__label" id="shop-gallery-carousel-label">
+          Галерия
+        </p>
+        <div class="gallery-carousel__nav">
+          <button
+            type="button"
+            class="gallery-carousel__arrow gallery-carousel__arrow--prev"
+            data-gallery-prev
+            aria-label="Предишна снимка"
+          >
+            <svg class="gallery-carousel__chevron" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="21 8 12 16 21 24" vector-effect="non-scaling-stroke"></polyline>
+            </svg>
+          </button>
+          <button
+            type="button"
+            class="gallery-carousel__arrow gallery-carousel__arrow--next"
+            data-gallery-next
+            aria-label="Следваща снимка"
+          >
+            <svg class="gallery-carousel__chevron" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="11 8 20 16 11 24" vector-effect="non-scaling-stroke"></polyline>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery-carousel__viewport">
+      <div
+        class="gallery-carousel__track"
+        data-gallery-scroller
+        aria-labelledby="shop-gallery-carousel-label"
+        role="list"
+      >
+        {% if shop.images and shop.images.length %}
+          {% for image in shop.images %}
+          <article class="gallery-card" role="listitem">
+            <img
+              src="{{ image.src | default(image) | url }}"
+              alt="{{ image.alt | default(shop.title) }}"
+              class="gallery-card__image"
+              loading="lazy"
+              decoding="async"
+            />
+          </article>
+          {% endfor %}
+        {% else %}
+          {% for promo in shop.promotions %}
+          <article class="gallery-card" role="listitem">
+            <img
+              src="{{ promo.image | url }}"
+              alt="{{ promo.alt | default(shop.title) }}"
+              class="gallery-card__image"
+              loading="lazy"
+              decoding="async"
+            />
+          </article>
+          {% endfor %}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  <script src="{{ '/assets/js/gallery-carousel.js' | url }}" defer></script>
 </section>
 {% endif %}
