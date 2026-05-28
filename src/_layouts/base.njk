@@ -9,7 +9,8 @@
     <meta name="description" content="{{ description or site.seo.defaultDescription }}" />
     <link rel="canonical" href="{{ site.seo.siteUrl }}{{ page.url | url }}" />
 
-    <link rel="icon" href="{{ '/favicon.svg' | url }}" type="image/svg+xml" />
+    <link rel="icon" href="{{ '/favicon.png' | url }}?v={{ buildDate }}" type="image/png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="{{ '/favicon.png' | url }}?v={{ buildDate }}" />
     <link rel="stylesheet" href="{{ '/assets/css/styles.css' | url }}" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
 

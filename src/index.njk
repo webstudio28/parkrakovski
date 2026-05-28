@@ -158,18 +158,12 @@ description: Welcome to the base Eleventy website.
           class="absolute inset-0 h-full w-full object-cover"
           loading="lazy"
         />
-        <div class="absolute inset-0 bg-gradient-to-br from-slate-950/60 via-slate-950/25 to-brand-teal/20 mix-blend-multiply" aria-hidden="true"></div>
-        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/75 via-slate-950/10 to-transparent" aria-hidden="true"></div>
+        <div class="home-about__scrim" aria-hidden="true"></div>
 
-        <div class="absolute left-6 top-6 sm:left-8 sm:top-8 flex items-center gap-3">
-          <span class="h-px w-8 bg-brand-yellow"></span>
-          <span class="text-[10px] sm:text-xs font-semibold tracking-[0.32em] uppercase text-white/85">{{ home.about.floatingBadge.eyebrow }}</span>
-        </div>
-
-        <div class="absolute left-6 bottom-6 sm:left-10 sm:bottom-10 max-w-[85%]">
-          <div class="text-[10px] sm:text-xs font-medium tracking-[0.3em] uppercase text-white/70">{{ home.about.floatingBadge.line1 }}</div>
-          <div class="mt-1 text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-[0.95] uppercase">
-            {{ home.about.floatingBadge.line2 }}
+        <div class="home-about__caption">
+          <div class="flex items-center gap-3">
+            <span class="h-px w-10 shrink-0 bg-brand-yellow" aria-hidden="true"></span>
+            <span class="text-[10px] sm:text-xs font-semibold tracking-[0.32em] uppercase text-white">{{ home.about.floatingBadge.eyebrow }}</span>
           </div>
         </div>
       </div>

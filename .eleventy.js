@@ -2,7 +2,7 @@ module.exports = function (eleventyConfig) {
   // Passthrough copy: src/assets → _site/assets
   eleventyConfig.addPassthroughCopy({ "src/assets": "assets" });
   // Favicon at site root
-  eleventyConfig.addPassthroughCopy({ "src/favicon.svg": "favicon.svg" });
+  eleventyConfig.addPassthroughCopy({ "src/favicon.png": "favicon.png" });
   // Admin area (panel, optional other tools)
   eleventyConfig.addPassthroughCopy({ "src/admin": "admin" });
 
