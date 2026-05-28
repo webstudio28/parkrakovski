@@ -579,30 +579,16 @@ description: Welcome to the base Eleventy website.
         aria-labelledby="home-gallery-carousel-label"
         role="list"
       >
-      {% for shop in shops.items %}
-        {% if shop.images and shop.images.length %}
-          {% for image in shop.images %}
-            <article class="gallery-card" role="listitem">
-              <img
-                src="{{ image.src | default(image) | url }}"
-                alt="{{ image.alt | default(shop.title) }}"
-                class="gallery-card__image"
-                loading="lazy"
-                decoding="async"
-              />
-            </article>
-          {% endfor %}
-        {% elif shop.image %}
-          <article class="gallery-card" role="listitem">
-            <img
-              src="{{ shop.image | url }}"
-              alt="{{ shop.title }}"
-              class="gallery-card__image"
-              loading="lazy"
-              decoding="async"
-            />
-          </article>
-        {% endif %}
+      {% for image in home.gallery %}
+        <article class="gallery-card" role="listitem">
+          <img
+            src="{{ image.src | default(image) | url }}"
+            alt="{{ image.alt | default('Ритеил парк Раковски') }}"
+            class="gallery-card__image"
+            loading="lazy"
+            decoding="async"
+          />
+        </article>
       {% endfor %}
       </div>
     </div>

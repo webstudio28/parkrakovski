@@ -6,8 +6,8 @@
             "category": "Супермаркет",
             "color": "#0050AA",
             "url": "https://www.lidl.bg/",
-            "logo": "/assets/images/partners/lidl.svg",
-            "image": "/assets/images/news/news3.webp",
+            "logo": "/assets/images/partners/Lidl/logo.webp",
+            "image": "/assets/images/partners/Lidl/lidl1.webp",
             "description": "Lidl е водещата дискаунт верига в Европа, предлагаща широка гама от хранителни и нехранителни стоки на изключително конкурентни цени. В нашия комплекс ще намерите пресни продукти, качествени деликатеси и всичко необходимо за вашия дом.",
             "hours": "Пон–Съб: 07:30–22:00 | Нед: 08:00–21:00",
             "phone": "",
@@ -17,6 +17,11 @@
                     "alt": "",
                     "description": "tova e opisanie"
                 }
+            ],
+            "images": [
+                "/assets/images/partners/Lidl/lidl1.webp",
+                "/assets/images/partners/Lidl/lidl2.webp",
+                "/assets/images/partners/Lidl/lidl3.webp"
             ]
         },
         {
@@ -25,7 +30,7 @@
             "category": "Техника",
             "color": "#E30613",
             "url": "https://zora.bg/",
-            "logo": "/assets/images/partners/zora.png",
+            "logo": "/assets/images/partners/Zora/logo.webp",
             "promotions": [
                 {
                     "image": "/assets/images/news/news2.webp",
@@ -38,34 +43,22 @@
                     "description": "Избрани телевизори и аудио системи с отстъпка и опция за разсрочено плащане."
                 }
             ],
-            "image": "/assets/images/news/news3.webp",
+            "image": "/assets/images/partners/Zora/zora1.webp",
             "description": "ЗОРА е утвърдена верига за малка домакинска техника, електроника и потребителска електроника. Открийте широк асортимент от телевизори, смартфони, домакински уреди и аксесоари на изгодни цени.",
             "hours": "Пон–Съб: 09:00–20:00 | Нед: 10:00–19:00",
-            "phone": ""
-        },
-        {
-            "slug": "t-market",
-            "title": "T Market",
-            "category": "Супермаркет",
-            "color": "#FFB81C",
-            "url": "https://tmarket.bg/",
-            "logo": "/assets/images/partners/t-market.webp",
-            "promotions": [
-                {
-                    "image": "/assets/images/news/news3.webp",
-                    "alt": "Промоция T Market — майски оферти",
-                    "description": "T Market през месец май. Много намаления на любимите ви продукти."
-                },
-                {
-                    "image": "/assets/images/news/news1.webp",
-                    "alt": "Промоция T Market — свеж маркет",
-                    "description": "Двойни точки за лоялни клиенти при покупка над 30 лв. в щанда за месо и риба."
-                }
-            ],
-            "image": "/assets/images/news/news3.webp",
-            "description": "T Market е модерна хранителна верига с акцент върху пресни и качествени продукти на разумни цени. Богат избор от пресни плодове, зеленчуци, месо и млечни продукти ви очаква всеки ден.",
-            "hours": "Пон–Нед: 07:00–22:00",
-            "phone": ""
+            "phone": "",
+            "images": [
+                "/assets/images/partners/Zora/zora1.webp",
+                "/assets/images/partners/Zora/zora2.webp",
+                "/assets/images/partners/Zora/zora3.webp",
+                "/assets/images/partners/Zora/zora4.webp",
+                "/assets/images/partners/Zora/zora5.webp",
+                "/assets/images/partners/Zora/zora6.webp",
+                "/assets/images/partners/Zora/zora7.webp",
+                "/assets/images/partners/Zora/zora8.webp",
+                "/assets/images/partners/Zora/zora9.webp",
+                "/assets/images/partners/Zora/zora10.webp"
+            ]
         },
         {
             "slug": "lilly",
@@ -73,7 +66,7 @@
             "category": "Дрогерия",
             "color": "#D0006F",
             "url": "https://lillydrogerie.bg/",
-            "logo": "/assets/images/partners/lilly.svg",
+            "logo": "/assets/images/partners/lilly/logo.webp",
             "promotions": [
                 {
                     "image": "/assets/images/news/news1.webp",
@@ -86,10 +79,30 @@
                     "description": "Втори продукт с 50% отстъпка от серия за баня и грижа за коса за избрани марки."
                 }
             ],
-            "image": "/assets/images/news/news3.webp",
+            "image": "/assets/images/partners/lilly/lilly1.webp",
             "description": "Lilly Drogerie е водещата верига дрогерии в България с богат избор от козметика, парфюми, продукти за красота, хигиена и здраве. Намерете всичко за грижата за вас и вашето семейство на едно място.",
             "hours": "Пон–Съб: 09:00–20:00 | Нед: 10:00–19:00",
-            "phone": ""
+            "phone": "",
+            "images": [
+                "/assets/images/partners/lilly/lilly1.webp",
+                "/assets/images/partners/lilly/lilly2.webp",
+                "/assets/images/partners/lilly/lilly3.webp",
+                "/assets/images/partners/lilly/lilly4.webp",
+                "/assets/images/partners/lilly/lilly5.webp",
+                "/assets/images/partners/lilly/lilly6.webp",
+                "/assets/images/partners/lilly/lilly7.webp",
+                "/assets/images/partners/lilly/lilly8.webp",
+                "/assets/images/partners/lilly/lilly9.webp",
+                "/assets/images/partners/lilly/lilly10.webp",
+                "/assets/images/partners/lilly/lilly11.webp",
+                "/assets/images/partners/lilly/lilly12.webp",
+                "/assets/images/partners/lilly/lilly13.webp",
+                "/assets/images/partners/lilly/lilly14.webp",
+                "/assets/images/partners/lilly/lilly15.webp",
+                "/assets/images/partners/lilly/lilly16.webp",
+                "/assets/images/partners/lilly/lilly17.webp",
+                "/assets/images/partners/lilly/lilly18.webp"
+            ]
         },
         {
             "slug": "pepco",
@@ -97,7 +110,7 @@
             "category": "Мода и дом",
             "color": "#DC0030",
             "url": "https://www.pepco.bg/",
-            "logo": "/assets/images/partners/pepco.svg",
+            "logo": "/assets/images/partners/Pepco/logo.webp",
             "promotions": [
                 {
                     "image": "/assets/images/news/news2.webp",
@@ -110,10 +123,39 @@
                     "description": "Детски дрехи и обувки: три артикула за цената на два до изчерпване на количествата."
                 }
             ],
-            "image": "/assets/images/news/news3.webp",
+            "image": "/assets/images/partners/Pepco/pepco1.webp",
             "description": "Pepco предлага достъпна мода за цялото семейство — облекло, домашни текстили и сезонни декорации. Открийте последните тенденции в модата на изключително изгодни цени за деца, жени и мъже.",
             "hours": "Пон–Съб: 09:00–20:00 | Нед: 10:00–19:00",
-            "phone": ""
+            "phone": "",
+            "images": [
+                "/assets/images/partners/Pepco/pepco1.webp",
+                "/assets/images/partners/Pepco/pepco2.webp",
+                "/assets/images/partners/Pepco/pepco3.webp",
+                "/assets/images/partners/Pepco/pepco4.webp",
+                "/assets/images/partners/Pepco/pepco5.webp",
+                "/assets/images/partners/Pepco/pepco6.webp",
+                "/assets/images/partners/Pepco/pepco7.webp",
+                "/assets/images/partners/Pepco/pepco8.webp",
+                "/assets/images/partners/Pepco/pepco9.webp",
+                "/assets/images/partners/Pepco/pepco10.webp",
+                "/assets/images/partners/Pepco/pepco11.webp",
+                "/assets/images/partners/Pepco/pepco12.webp",
+                "/assets/images/partners/Pepco/pepco13.webp",
+                "/assets/images/partners/Pepco/pepco14.webp",
+                "/assets/images/partners/Pepco/pepco15.webp",
+                "/assets/images/partners/Pepco/pepco16.webp",
+                "/assets/images/partners/Pepco/pepco17.webp",
+                "/assets/images/partners/Pepco/pepco18.webp",
+                "/assets/images/partners/Pepco/pepco19.webp",
+                "/assets/images/partners/Pepco/pepco20.webp",
+                "/assets/images/partners/Pepco/pepco21.webp",
+                "/assets/images/partners/Pepco/pepco22.webp",
+                "/assets/images/partners/Pepco/pepco23.webp",
+                "/assets/images/partners/Pepco/pepco24.webp",
+                "/assets/images/partners/Pepco/pepco25.webp",
+                "/assets/images/partners/Pepco/pepco26.webp",
+                "/assets/images/partners/Pepco/pepco27.webp"
+            ]
         },
         {
             "slug": "apteka-366",
@@ -121,7 +163,7 @@
             "category": "Здраве",
             "color": "#00A651",
             "url": "https://366.bg/",
-            "logo": "/assets/images/partners/apteka-366.svg",
+            "logo": "/assets/images/partners/Apteka 36.6/logo.webp",
             "promotions": [
                 {
                     "image": "/assets/images/news/news3.webp",
@@ -134,10 +176,23 @@
                     "description": "Безплатно измерване на кръвно налягане и кръвна захар всеки уикенд между 10:00 и 14:00."
                 }
             ],
-            "image": "/assets/images/news/news3.webp",
+            "image": "/assets/images/partners/Apteka 36.6/apteka-3661.webp",
             "description": "Аптека 36.6 е сред водещите аптечни вериги в страната с богат избор от лекарствени продукти, хранителни добавки и козметика. Квалифицирани фармацевти са готови да ви помогнат с всяко ваше запитване.",
             "hours": "Пон–Съб: 08:00–20:00 | Нед: 09:00–18:00",
-            "phone": ""
+            "phone": "",
+            "images": [
+                "/assets/images/partners/Apteka 36.6/apteka-3661.webp",
+                "/assets/images/partners/Apteka 36.6/apteka-3662.webp",
+                "/assets/images/partners/Apteka 36.6/apteka-3663.webp",
+                "/assets/images/partners/Apteka 36.6/apteka-3664.webp",
+                "/assets/images/partners/Apteka 36.6/apteka-3665.webp",
+                "/assets/images/partners/Apteka 36.6/apteka-3666.webp",
+                "/assets/images/partners/Apteka 36.6/apteka-3667.webp",
+                "/assets/images/partners/Apteka 36.6/apteka-3668.webp",
+                "/assets/images/partners/Apteka 36.6/apteka-3669.webp",
+                "/assets/images/partners/Apteka 36.6/apteka-36610.webp",
+                "/assets/images/partners/Apteka 36.6/apteka-36611.webp"
+            ]
         },
         {
             "slug": "kik",
@@ -145,7 +200,7 @@
             "category": "Текстил",
             "color": "#F47920",
             "url": "https://kik-bg.com/",
-            "logo": "/assets/images/partners/kik.svg",
+            "logo": "/assets/images/partners/KiK/logo.webp",
             "promotions": [
                 {
                     "image": "/assets/images/news/news1.webp",
@@ -158,10 +213,18 @@
                     "description": "Одеала, калъфки и кухненски кърпи с до 25% отстъпка при покупка на няколко броя."
                 }
             ],
-            "image": "/assets/images/news/news3.webp",
+            "image": "/assets/images/partners/KiK/kik1.webp",
             "description": "KiK предлага широка гама от текстилни изделия, облекло и домашни артикули на привлекателни цени. От ежедневни дрехи до домашен текстил — всичко на едно удобно за вас място.",
             "hours": "Пон–Съб: 09:00–20:00 | Нед: 10:00–19:00",
-            "phone": ""
+            "phone": "",
+            "images": [
+                "/assets/images/partners/KiK/kik1.webp",
+                "/assets/images/partners/KiK/kik2.webp",
+                "/assets/images/partners/KiK/kik3.webp",
+                "/assets/images/partners/KiK/kik4.webp",
+                "/assets/images/partners/KiK/kik5.webp",
+                "/assets/images/partners/KiK/kik6.webp"
+            ]
         },
         {
             "slug": "sinsay",
@@ -182,10 +245,23 @@
                     "description": "Чанти, бижута и чорапи: втора единица с отстъпка 30% при покупка на две."
                 }
             ],
-            "image": "/assets/images/news/news3.webp",
+            "image": "/assets/images/partners/Sinsay/sinsay1.webp",
             "description": "Sinsay е модна верига за млади хора с актуални тенденции в облеклото и аксесоарите. Открийте стилни и достъпни колекции за ежедневието, спорта и специалните поводи.",
             "hours": "Пон–Съб: 09:00–20:00 | Нед: 10:00–19:00",
-            "phone": ""
+            "phone": "",
+            "images": [
+                "/assets/images/partners/Sinsay/sinsay1.webp",
+                "/assets/images/partners/Sinsay/sinsay2.webp",
+                "/assets/images/partners/Sinsay/sinsay3.webp",
+                "/assets/images/partners/Sinsay/sinsay4.webp",
+                "/assets/images/partners/Sinsay/sinsay5.webp",
+                "/assets/images/partners/Sinsay/sinsay6.webp",
+                "/assets/images/partners/Sinsay/sinsay7.webp",
+                "/assets/images/partners/Sinsay/sinsay8.webp",
+                "/assets/images/partners/Sinsay/sinsay9.webp",
+                "/assets/images/partners/Sinsay/sinsay10.webp",
+                "/assets/images/partners/Sinsay/sinsay11.webp"
+            ]
         },
         {
             "slug": "via-deco",
@@ -193,7 +269,7 @@
             "category": "Мебели и декор",
             "color": "#2C2C2C",
             "url": "https://viadeco.bg/",
-            "logo": "/assets/images/partners/viadeco.png",
+            "logo": "/assets/images/partners/Via Deco - Mebeli/logo.webp",
             "promotions": [
                 {
                     "image": "/assets/images/news/news3.webp",
@@ -206,10 +282,108 @@
                     "description": "Лампи и декоративно осветление с безплатна доставка за поръчки над 150 лв."
                 }
             ],
-            "image": "/assets/images/news/news3.webp",
+            "image": "/assets/images/partners/Via Deco - Mebeli/via-deco1.webp",
             "description": "Via Deco предлага стилни и функционални мебели, декоративни елементи и решения за дома. Намерете вдъхновение за обзавеждане и украса на всяко помещение с изделия в различни стилове и ценови категории.",
             "hours": "Пон–Съб: 09:00–19:00 | Нед: 10:00–18:00",
-            "phone": ""
+            "phone": "",
+            "images": [
+                "/assets/images/partners/Via Deco - Mebeli/via-deco1.webp",
+                "/assets/images/partners/Via Deco - Mebeli/via-deco2.webp",
+                "/assets/images/partners/Via Deco - Mebeli/via-deco3.webp",
+                "/assets/images/partners/Via Deco - Mebeli/via-deco4.webp",
+                "/assets/images/partners/Via Deco - Mebeli/via-deco5.webp",
+                "/assets/images/partners/Via Deco - Mebeli/via-deco6.webp",
+                "/assets/images/partners/Via Deco - Mebeli/via-deco7.webp",
+                "/assets/images/partners/Via Deco - Mebeli/via-deco8.webp",
+                "/assets/images/partners/Via Deco - Mebeli/via-deco9.webp",
+                "/assets/images/partners/Via Deco - Mebeli/via-deco10.webp"
+            ]
+        },
+        {
+            "slug": "bgskara",
+            "title": "BG Skara",
+            "category": "Храна",
+            "color": "#C41E3A",
+            "url": "",
+            "logo": "/assets/images/partners/BG Skara/logo.webp",
+            "image": "/assets/images/partners/BG Skara/bgskara1.webp",
+            "description": "BG Skara в Ритеил парк Раковски — място за вкусна скара и качествено месо.",
+            "hours": "Пон–Нед: 10:00–22:00",
+            "phone": "",
+            "promotions": [],
+            "images": [
+                "/assets/images/partners/BG Skara/bgskara1.webp",
+                "/assets/images/partners/BG Skara/bgskara2.webp",
+                "/assets/images/partners/BG Skara/bgskara3.webp"
+            ]
+        },
+        {
+            "slug": "optica",
+            "title": "Оптика",
+            "category": "Услуги",
+            "color": "#006484",
+            "url": "",
+            "logo": "/assets/images/partners/Optica/logo.webp",
+            "image": "/assets/images/partners/Optica/optica1.webp",
+            "description": "Оптика в Ритеил парк Раковски — очила, лещи и професионална грижа за зрението.",
+            "hours": "Пон–Съб: 09:00–19:00 | Нед: 10:00–18:00",
+            "phone": "",
+            "promotions": [],
+            "images": [
+                "/assets/images/partners/Optica/optica1.webp",
+                "/assets/images/partners/Optica/optica2.webp",
+                "/assets/images/partners/Optica/optica3.webp",
+                "/assets/images/partners/Optica/optica4.webp",
+                "/assets/images/partners/Optica/optica5.webp",
+                "/assets/images/partners/Optica/optica6.webp"
+            ]
+        },
+        {
+            "slug": "skuteri",
+            "title": "Скутери",
+            "category": "Услуги",
+            "color": "#F47920",
+            "url": "",
+            "logo": "/assets/images/partners/Skuteri/logo.webp",
+            "image": "/assets/images/partners/Skuteri/skuteri1.webp",
+            "description": "Скутери в Ритеил парк Раковски — продажба, сервиз и аксесоари за мотори.",
+            "hours": "Пон–Съб: 09:00–19:00 | Нед: 10:00–16:00",
+            "phone": "",
+            "promotions": [],
+            "images": [
+                "/assets/images/partners/Skuteri/skuteri1.webp",
+                "/assets/images/partners/Skuteri/skuteri2.webp",
+                "/assets/images/partners/Skuteri/skuteri3.webp",
+                "/assets/images/partners/Skuteri/skuteri4.webp",
+                "/assets/images/partners/Skuteri/skuteri5.webp",
+                "/assets/images/partners/Skuteri/skuteri6.webp",
+                "/assets/images/partners/Skuteri/skuteri7.webp",
+                "/assets/images/partners/Skuteri/skuteri8.webp",
+                "/assets/images/partners/Skuteri/skuteri9.webp",
+                "/assets/images/partners/Skuteri/skuteri10.webp"
+            ]
+        },
+        {
+            "slug": "teantoys",
+            "title": "Tean Toys",
+            "category": "Играчки",
+            "color": "#FFB81C",
+            "url": "",
+            "logo": "/assets/images/partners/Tean Toys/logo.webp",
+            "image": "/assets/images/partners/Tean Toys/teantoys1.webp",
+            "description": "Tean Toys в Ритеил парк Раковски — играчки и подаръци за деца.",
+            "hours": "Пон–Съб: 09:00–20:00 | Нед: 10:00–18:00",
+            "phone": "",
+            "promotions": [],
+            "images": [
+                "/assets/images/partners/Tean Toys/teantoys1.webp",
+                "/assets/images/partners/Tean Toys/teantoys2.webp",
+                "/assets/images/partners/Tean Toys/teantoys3.webp",
+                "/assets/images/partners/Tean Toys/teantoys4.webp",
+                "/assets/images/partners/Tean Toys/teantoys5.webp",
+                "/assets/images/partners/Tean Toys/teantoys6.webp",
+                "/assets/images/partners/Tean Toys/teantoys7.webp"
+            ]
         }
     ]
 }
