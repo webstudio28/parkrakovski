@@ -532,9 +532,9 @@ description: Welcome to the base Eleventy website.
           <span class="text-[10px] sm:text-xs font-semibold tracking-[0.32em] uppercase text-brand-yellow">Галерия</span>
         </div>
         <h2 id="gallery-heading" class="mt-2 text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-[1.05]">
-          Разгледай снимки от
+          Снимки от
           <span class="block italic font-light text-slate-900">
-            <span class="underline decoration-brand-yellow decoration-[3px] underline-offset-[10px]">ритейл парка</span>
+            <span class="underline decoration-brand-yellow decoration-[3px] underline-offset-[10px]">Ритейл Парк Раковски</span>
           </span>
         </h2>
       </div>
@@ -580,11 +580,18 @@ description: Welcome to the base Eleventy website.
         role="list"
       >
       {% for image in home.gallery %}
-        <article class="gallery-card" role="listitem">
+        <article
+          class="gallery-card gallery-card--interactive"
+          role="listitem"
+          data-gallery-lightbox-trigger
+          data-gallery-lightbox-index="{{ loop.index0 }}"
+        >
           <img
             src="{{ image.src | default(image) | url }}"
             alt="{{ image.alt | default('Ритеил парк Раковски') }}"
             class="gallery-card__image"
+            data-gallery-lightbox-item
+            data-gallery-lightbox-index="{{ loop.index0 }}"
             loading="lazy"
             decoding="async"
           />

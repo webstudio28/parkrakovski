@@ -476,6 +476,22 @@
     .gallery-carousel__arrow {
       width: 3rem;
       height: 3rem;
+      background: var(--color-brand-blue, #003e8d);
+      border-color: var(--color-brand-blue, #003e8d);
+      color: #fff;
+      box-shadow:
+        0 4px 14px rgb(0 62 141 / 0.28),
+        0 1px 0 rgb(255 255 255 / 0.12) inset;
+    }
+
+    .gallery-carousel__arrow:hover:not(:disabled) {
+      background: var(--color-brand-teal, #006484);
+      border-color: var(--color-brand-teal, #006484);
+      color: #fff;
+      transform: translateY(-1px);
+      box-shadow:
+        0 6px 18px rgb(0 100 132 / 0.32),
+        0 1px 0 rgb(255 255 255 / 0.15) inset;
     }
 
     .gallery-carousel__chevron {
@@ -527,10 +543,6 @@
     user-select: none;
   }
 
-  .gallery-carousel__track.is-dragging * {
-    pointer-events: none;
-  }
-
   .gallery-card {
     flex: 0 0 auto;
     width: min(76vw, 16.5rem);
@@ -543,6 +555,16 @@
     box-shadow:
       0 20px 36px -22px rgba(15, 23, 42, 0.45),
       0 8px 18px rgba(15, 23, 42, 0.12);
+  }
+
+  .gallery-card--interactive {
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+  }
+
+  .gallery-card--interactive .gallery-card__image {
+    pointer-events: auto;
   }
 
   .gallery-card__image {
@@ -566,6 +588,240 @@
 
     .gallery-card {
       width: clamp(12rem, 13.2vw, 14rem);
+    }
+  }
+
+  /* Gallery lightbox (valeto-style) */
+  .gallery-lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 5000;
+    display: grid;
+    place-items: center;
+    padding: 1rem;
+  }
+
+  .gallery-lightbox[hidden] {
+    display: none !important;
+  }
+
+  .gallery-lightbox__backdrop {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: rgba(15, 23, 42, 0.78);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+  }
+
+  .gallery-lightbox__panel {
+    position: relative;
+    z-index: 1;
+    width: min(100%, 72rem);
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .gallery-lightbox__stage {
+    min-height: min(76vh, 42rem);
+    width: 100%;
+    display: grid;
+    place-items: center;
+  }
+
+  .gallery-lightbox__clip {
+    width: 100%;
+    height: min(76vh, 42rem);
+    border-radius: 1rem;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+  }
+
+  .gallery-lightbox__image {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    user-select: none;
+    -webkit-user-drag: none;
+    border-radius: 0.5rem;
+  }
+
+  .gallery-lightbox__arrow {
+    width: 2.7rem;
+    height: 2.7rem;
+    border: none;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.95);
+    border-radius: 9999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: color 160ms ease, transform 160ms ease;
+  }
+
+  .gallery-lightbox__arrow:hover {
+    color: #fff;
+    transform: translateY(-1px);
+  }
+
+  .gallery-lightbox__chevron {
+    width: 1.95rem;
+    height: auto;
+    aspect-ratio: 1;
+    display: block;
+    filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.75))
+      drop-shadow(0 0 10px rgba(0, 0, 0, 0.45));
+  }
+
+  @media (min-width: 768px) {
+    .gallery-lightbox__arrow {
+      width: 4.25rem;
+      height: 4.25rem;
+    }
+
+    .gallery-lightbox__chevron {
+      width: 3.5rem;
+    }
+  }
+
+  .gallery-lightbox__close {
+    position: absolute;
+    top: -2.7rem;
+    right: 0;
+    display: grid;
+    place-items: center;
+    width: 2.6rem;
+    height: 2.6rem;
+    border-radius: 9999px;
+    border: 0;
+    background: rgba(255, 255, 255, 0.95);
+    color: var(--color-brand-blue, #003e8d);
+    font-size: 1.75rem;
+    font-weight: 700;
+    line-height: 1;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(15, 23, 42, 0.2);
+  }
+
+  .gallery-lightbox__close:hover {
+    background: #fff;
+    color: var(--color-brand-teal, #006484);
+  }
+
+  @media (max-width: 767px) {
+    .gallery-lightbox__panel {
+      grid-template-columns: 1fr;
+      gap: 0.6rem;
+    }
+
+    .gallery-lightbox__arrow {
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 3;
+    }
+
+    .gallery-lightbox__arrow:hover,
+    .gallery-lightbox__arrow:active {
+      transform: translateY(-50%);
+      opacity: 0.88;
+    }
+
+    .gallery-lightbox__arrow--prev {
+      left: max(0.45rem, env(safe-area-inset-left, 0px));
+    }
+
+    .gallery-lightbox__arrow--next {
+      right: max(0.45rem, env(safe-area-inset-right, 0px));
+    }
+
+    .gallery-lightbox__close {
+      position: fixed;
+      top: calc(env(safe-area-inset-top, 0px) + 0.65rem);
+      right: max(0.65rem, env(safe-area-inset-right, 0px));
+      left: auto;
+      z-index: 3;
+    }
+  }
+
+  @keyframes gallery-modal-fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes gallery-modal-panel-in {
+    from {
+      opacity: 0;
+      transform: translateY(10px) scale(0.985);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  .gallery-lightbox:not([hidden]) {
+    animation: gallery-modal-fade-in 220ms ease-out;
+  }
+
+  .gallery-lightbox:not([hidden]) .gallery-lightbox__backdrop {
+    animation: gallery-modal-fade-in 240ms ease-out;
+  }
+
+  .gallery-lightbox:not([hidden]) .gallery-lightbox__panel {
+    animation: gallery-modal-panel-in 240ms cubic-bezier(0.22, 0.61, 0.36, 1);
+  }
+
+  /* Partner hero: bottom scrim only (utilities not always in Tailwind build) */
+  .shop-hero__scrim {
+    pointer-events: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    height: 8.5rem;
+    background: linear-gradient(
+      to top,
+      rgba(2, 6, 23, 0.92) 0%,
+      rgba(2, 6, 23, 0.62) 38%,
+      rgba(2, 6, 23, 0.22) 68%,
+      transparent 100%
+    );
+  }
+
+  @media (min-width: 640px) {
+    .shop-hero__scrim {
+      height: 10.5rem;
+    }
+  }
+
+  .shop-hero__caption {
+    position: absolute;
+    z-index: 2;
+    bottom: 1.5rem;
+    left: 1.5rem;
+    right: 1.5rem;
+  }
+
+  @media (min-width: 640px) {
+    .shop-hero__caption {
+      bottom: 2rem;
+      left: 2rem;
+      right: 2rem;
     }
   }
 

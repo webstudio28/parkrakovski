@@ -87,12 +87,13 @@ eleventyComputed:
           loading="eager"
           decoding="async"
         />
-        <div class="absolute inset-0 bg-gradient-to-br from-slate-950/55 via-slate-950/20 to-brand-teal/25 mix-blend-multiply" aria-hidden="true"></div>
-        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/15 to-transparent" aria-hidden="true"></div>
+        <div class="shop-hero__scrim" aria-hidden="true"></div>
 
-        <div class="absolute bottom-6 left-6 right-6 z-10 flex items-start gap-3 sm:left-8 sm:right-8 sm:bottom-8">
-          <span class="mt-1.5 h-px w-8 shrink-0 bg-brand-yellow"></span>
-          <span class="max-w-[16rem] text-xs font-medium leading-snug text-white/90 sm:max-w-none sm:text-sm">{{ site.brand.name | default('Ритеил парк Раковски') }}</span>
+        <div class="shop-hero__caption">
+          <div class="flex items-center gap-3">
+            <span class="h-px w-10 shrink-0 bg-brand-yellow" aria-hidden="true"></span>
+            <span class="text-xs font-medium leading-snug text-white sm:text-sm">{{ site.brand.name | default('Ритеил парк Раковски') }}</span>
+          </div>
         </div>
       </div>
 
@@ -250,11 +251,18 @@ eleventyComputed:
       >
         {% if shop.images and shop.images.length %}
           {% for image in shop.images %}
-          <article class="gallery-card" role="listitem">
+          <article
+            class="gallery-card gallery-card--interactive"
+            role="listitem"
+            data-gallery-lightbox-trigger
+            data-gallery-lightbox-index="{{ loop.index0 }}"
+          >
             <img
               src="{{ image.src | default(image) | url }}"
               alt="{{ image.alt | default(shop.title) }}"
               class="gallery-card__image"
+              data-gallery-lightbox-item
+              data-gallery-lightbox-index="{{ loop.index0 }}"
               loading="lazy"
               decoding="async"
             />
@@ -262,11 +270,18 @@ eleventyComputed:
           {% endfor %}
         {% else %}
           {% for promo in shop.promotions %}
-          <article class="gallery-card" role="listitem">
+          <article
+            class="gallery-card gallery-card--interactive"
+            role="listitem"
+            data-gallery-lightbox-trigger
+            data-gallery-lightbox-index="{{ loop.index0 }}"
+          >
             <img
               src="{{ promo.image | url }}"
               alt="{{ promo.alt | default(shop.title) }}"
               class="gallery-card__image"
+              data-gallery-lightbox-item
+              data-gallery-lightbox-index="{{ loop.index0 }}"
               loading="lazy"
               decoding="async"
             />

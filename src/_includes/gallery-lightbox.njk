@@ -1,0 +1,29 @@
+<div
+  id="gallery-lightbox"
+  class="gallery-lightbox"
+  role="dialog"
+  aria-modal="true"
+  aria-hidden="true"
+  aria-label="Галерия снимки"
+  hidden
+>
+  <div class="gallery-lightbox__backdrop" data-gallery-lightbox-close></div>
+  <div class="gallery-lightbox__panel" role="document">
+    <button type="button" class="gallery-lightbox__close" data-gallery-lightbox-close aria-label="Затвори галерията">&times;</button>
+    <button type="button" class="gallery-lightbox__arrow gallery-lightbox__arrow--prev" data-gallery-lightbox-prev aria-label="Предишна снимка">
+      <svg class="gallery-lightbox__chevron" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polyline points="21 8 12 16 21 24" vector-effect="non-scaling-stroke"/>
+      </svg>
+    </button>
+    <div class="gallery-lightbox__stage" data-gallery-lightbox-stage>
+      <div class="gallery-lightbox__clip">
+        <img class="gallery-lightbox__image" data-gallery-lightbox-image src="" alt="" />
+      </div>
+    </div>
+    <button type="button" class="gallery-lightbox__arrow gallery-lightbox__arrow--next" data-gallery-lightbox-next aria-label="Следваща снимка">
+      <svg class="gallery-lightbox__chevron" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polyline points="11 8 20 16 11 24" vector-effect="non-scaling-stroke"/>
+      </svg>
+    </button>
+  </div>
+</div>

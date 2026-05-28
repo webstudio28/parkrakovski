@@ -1,21 +1,29 @@
 (function () {
   function attachStripDrag(strip) {
     var dragging = false;
+    var moved = false;
     var startX = 0;
     var startScroll = 0;
 
     function onDown(e) {
       if (e.button !== 0) return;
       dragging = true;
+      moved = false;
       startX = e.clientX;
       startScroll = strip.scrollLeft;
-      strip.classList.add("is-dragging");
-      strip.style.cursor = "grabbing";
     }
 
     function onMove(e) {
       if (!dragging) return;
-      strip.scrollLeft = startScroll - (e.clientX - startX);
+      var dx = e.clientX - startX;
+      if (Math.abs(dx) > 4) {
+        if (!moved) {
+          moved = true;
+          strip.classList.add("is-dragging");
+          strip.style.cursor = "grabbing";
+        }
+        strip.scrollLeft = startScroll - dx;
+      }
     }
 
     function onUp() {
@@ -23,6 +31,13 @@
       dragging = false;
       strip.classList.remove("is-dragging");
       strip.style.cursor = "grab";
+      if (moved) {
+        window.__gallerySuppressClick = true;
+        window.setTimeout(function () {
+          window.__gallerySuppressClick = false;
+        }, 200);
+      }
+      moved = false;
     }
 
     strip.style.cursor = "grab";
@@ -32,6 +47,16 @@
     strip.addEventListener("mousedown", onDown);
     window.addEventListener("mousemove", onMove);
     window.addEventListener("mouseup", onUp);
+
+    strip.addEventListener(
+      "click",
+      function (e) {
+        if (!window.__gallerySuppressClick) return;
+        e.preventDefault();
+        e.stopPropagation();
+      },
+      true
+    );
   }
 
   document.querySelectorAll("[data-gallery-wrap]").forEach(function (root) {

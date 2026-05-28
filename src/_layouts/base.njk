@@ -41,6 +41,8 @@
       </main>
 
       {% include "footer.njk" %}
+      {% include "gallery-lightbox.njk" %}
+      <script src="{{ '/assets/js/gallery-lightbox.js' | url }}" defer></script>
       <script>
       (function () {
         var headerSurface = document.querySelector(".js-header-surface");

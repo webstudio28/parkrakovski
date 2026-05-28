@@ -10,6 +10,7 @@
     "dev": "npm start",
     "build": "npm run css:build && eleventy",
     "panel:hash": "node ./scripts/panel-hash.cjs",
+    "images:optimize": "python scripts/optimize-webp.py",
     "css:build": "tailwindcss -i ./src/assets/css/tailwind.css -o ./src/assets/css/styles.css --minify",
     "css:watch": "tailwindcss -i ./src/assets/css/tailwind.css -o ./src/assets/css/styles.css --watch"
   },

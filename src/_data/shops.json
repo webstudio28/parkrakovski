@@ -30,7 +30,7 @@
             "category": "Техника",
             "color": "#E30613",
             "url": "https://zora.bg/",
-            "logo": "/assets/images/partners/Zora/logo.webp",
+            "logo": "/assets/images/partners/Zora/logo.jpg",
             "promotions": [
                 {
                     "image": "/assets/images/news/news2.webp",
@@ -200,7 +200,7 @@
             "category": "Текстил",
             "color": "#F47920",
             "url": "https://kik-bg.com/",
-            "logo": "/assets/images/partners/KiK/logo.webp",
+            "logo": "/assets/images/partners/KiK/logo.jpg",
             "promotions": [
                 {
                     "image": "/assets/images/news/news1.webp",
@@ -319,13 +319,13 @@
         },
         {
             "slug": "optica",
-            "title": "Оптика",
+            "title": "Optica",
             "category": "Услуги",
             "color": "#006484",
-            "url": "",
-            "logo": "/assets/images/partners/Optica/logo.webp",
+            "url": "https://opticgreta.com/",
+            "logo": "/assets/images/partners/Optica/logo.png",
             "image": "/assets/images/partners/Optica/optica1.webp",
-            "description": "Оптика в Ритеил парк Раковски — очила, лещи и професионална грижа за зрението.",
+            "description": "Optica в Ритеил парк Раковски — очила, лещи и професионална грижа за зрението.",
             "hours": "Пон–Съб: 09:00–19:00 | Нед: 10:00–18:00",
             "phone": "",
             "promotions": [],
@@ -344,7 +344,7 @@
             "category": "Услуги",
             "color": "#F47920",
             "url": "",
-            "logo": "/assets/images/partners/Skuteri/logo.webp",
+            "logo": "/assets/images/partners/Skuteri/logo.png",
             "image": "/assets/images/partners/Skuteri/skuteri1.webp",
             "description": "Скутери в Ритеил парк Раковски — продажба, сервиз и аксесоари за мотори.",
             "hours": "Пон–Съб: 09:00–19:00 | Нед: 10:00–16:00",
