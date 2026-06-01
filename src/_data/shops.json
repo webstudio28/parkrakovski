@@ -14,14 +14,9 @@
             "promotions": [
                 {
                     "image": "/assets/images/uploads/promo-20260520-142145-22fb4f9a.png",
-                    "alt": "",
+                    "alt": "Промоция Lidl — седмична брошура",
                     "description": "tova e opisanie"
                 }
-            ],
-            "images": [
-                "/assets/images/partners/Lidl/lidl1.webp",
-                "/assets/images/partners/Lidl/lidl2.webp",
-                "/assets/images/partners/Lidl/lidl3.webp"
             ]
         },
         {
