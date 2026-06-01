@@ -85,18 +85,7 @@
             "color": "#D0006F",
             "url": "https://lillydrogerie.bg/",
             "logo": "/assets/images/partners/lilly/logo.webp",
-            "promotions": [
-                {
-                    "image": "/assets/images/news/news1.webp",
-                    "alt": "Промоция Lilly — козметика",
-                    "description": "Lilly през май — избрани парфюми и грижа за кожата с отстъпки до края на месеца."
-                },
-                {
-                    "image": "/assets/images/news/news3.webp",
-                    "alt": "Промоция Lilly — лична хигиена",
-                    "description": "Втори продукт с 50% отстъпка от серия за баня и грижа за коса за избрани марки."
-                }
-            ],
+            "promotions": [],
             "image": "/assets/images/partners/lilly/lilly1.webp",
             "description": "Lilly Drogerie е водещата верига дрогерии в България с богат избор от козметика, парфюми, продукти за красота, хигиена и здраве. Намерете всичко за грижата за вас и вашето семейство на едно място.",
             "hours": "Пон–Съб: 09:00–20:00 | Нед: 10:00–19:00",
@@ -129,18 +118,7 @@
             "color": "#DC0030",
             "url": "https://www.pepco.bg/",
             "logo": "/assets/images/partners/Pepco/logo.webp",
-            "promotions": [
-                {
-                    "image": "/assets/images/news/news2.webp",
-                    "alt": "Промоция Pepco — пролет",
-                    "description": "Pepco — пролетна селекция облекло и текстил за дома на специални цени през май."
-                },
-                {
-                    "image": "/assets/images/news/news3.webp",
-                    "alt": "Промоция Pepco — детски артикули",
-                    "description": "Детски дрехи и обувки: три артикула за цената на два до изчерпване на количествата."
-                }
-            ],
+            "promotions": [],
             "image": "/assets/images/partners/Pepco/pepco1.webp",
             "description": "Pepco предлага достъпна мода за цялото семейство — облекло, домашни текстили и сезонни декорации. Открийте последните тенденции в модата на изключително изгодни цени за деца, жени и мъже.",
             "hours": "Пон–Съб: 09:00–20:00 | Нед: 10:00–19:00",
@@ -182,18 +160,7 @@
             "color": "#00A651",
             "url": "https://366.bg/",
             "logo": "/assets/images/partners/Apteka 36.6/logo.webp",
-            "promotions": [
-                {
-                    "image": "/assets/images/news/news3.webp",
-                    "alt": "Промоция аптека 36.6 — витамини",
-                    "description": "аптека 36.6 — бонус точки и промо пакети за витамини и аптечни предложения през май."
-                },
-                {
-                    "image": "/assets/images/news/news1.webp",
-                    "alt": "Промоция аптека 36.6 — консултация",
-                    "description": "Безплатно измерване на кръвно налягане и кръвна захар всеки уикенд между 10:00 и 14:00."
-                }
-            ],
+            "promotions": [],
             "image": "/assets/images/partners/Apteka 36.6/apteka-3661.webp",
             "description": "Аптека 36.6 е сред водещите аптечни вериги в страната с богат избор от лекарствени продукти, хранителни добавки и козметика. Квалифицирани фармацевти са готови да ви помогнат с всяко ваше запитване.",
             "hours": "Пон–Съб: 08:00–20:00 | Нед: 09:00–18:00",
@@ -219,18 +186,7 @@
             "color": "#F47920",
             "url": "https://kik-bg.com/",
             "logo": "/assets/images/partners/KiK/logo.jpg",
-            "promotions": [
-                {
-                    "image": "/assets/images/news/news1.webp",
-                    "alt": "Промоция KiK — текстил",
-                    "description": "KiK през май — намаления на пролетен текстил и аксесоари за цялото семейство."
-                },
-                {
-                    "image": "/assets/images/news/news2.webp",
-                    "alt": "Промоция KiK — домашен уют",
-                    "description": "Одеала, калъфки и кухненски кърпи с до 25% отстъпка при покупка на няколко броя."
-                }
-            ],
+            "promotions": [],
             "image": "/assets/images/partners/KiK/kik1.webp",
             "description": "KiK предлага широка гама от текстилни изделия, облекло и домашни артикули на привлекателни цени. От ежедневни дрехи до домашен текстил — всичко на едно удобно за вас място.",
             "hours": "Пон–Съб: 09:00–20:00 | Нед: 10:00–19:00",
@@ -251,18 +207,7 @@
             "color": "#1A1A1A",
             "url": "https://sinsay.com/bg/bg/",
             "logo": "/assets/images/partners/sinsay.svg",
-            "promotions": [
-                {
-                    "image": "/assets/images/news/news2.webp",
-                    "alt": "Промоция Sinsay — нова колекция",
-                    "description": "Sinsay — нови колекции и селектирани артикули на промо цени през месец май."
-                },
-                {
-                    "image": "/assets/images/news/news3.webp",
-                    "alt": "Промоция Sinsay — аксесоари",
-                    "description": "Чанти, бижута и чорапи: втора единица с отстъпка 30% при покупка на две."
-                }
-            ],
+            "promotions": [],
             "image": "/assets/images/partners/Sinsay/sinsay1.webp",
             "description": "Sinsay е модна верига за млади хора с актуални тенденции в облеклото и аксесоарите. Открийте стилни и достъпни колекции за ежедневието, спорта и специалните поводи.",
             "hours": "Пон–Съб: 09:00–20:00 | Нед: 10:00–19:00",
@@ -288,18 +233,7 @@
             "color": "#2C2C2C",
             "url": "https://viadeco.bg/",
             "logo": "/assets/images/partners/Via Deco - Mebeli/logo.webp",
-            "promotions": [
-                {
-                    "image": "/assets/images/news/news3.webp",
-                    "alt": "Промоция Via Deco — мебели",
-                    "description": "Via Deco през май — оформяме дома с декор и мебелни решения с отстъпка до -30%."
-                },
-                {
-                    "image": "/assets/images/news/news2.webp",
-                    "alt": "Промоция Via Deco — осветление",
-                    "description": "Лампи и декоративно осветление с безплатна доставка за поръчки над 150 лв."
-                }
-            ],
+            "promotions": [],
             "image": "/assets/images/partners/Via Deco - Mebeli/via-deco1.webp",
             "description": "Via Deco предлага стилни и функционални мебели, декоративни елементи и решения за дома. Намерете вдъхновение за обзавеждане и украса на всяко помещение с изделия в различни стилове и ценови категории.",
             "hours": "Пон–Съб: 09:00–19:00 | Нед: 10:00–18:00",
