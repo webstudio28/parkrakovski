@@ -49,7 +49,7 @@ description: "Научете повече за Ритеил парк Раков�
 
         <div class="mt-8 space-y-4 text-slate-600 text-base sm:text-lg leading-relaxed max-w-xl">
           <p>Ритеил парк Раковски е новото място за пазар, услуги и почивка — създадено да улеснява живота на местната общност. Любимите ви марки, удобен паркинг и просторна търговска зона на едно място.</p>
-          <p>С над 25 000 кв.м. търговска площ и повече от 10 водещи марки, комплексът е проектиран с мисъл за вашия комфорт и удобство.</p>
+          <p>С 8 400 кв.м. търговска площ (вкл. Лидл) и 12 обекта, комплексът е проектиран с мисъл за вашия комфорт и удобство.</p>
         </div>
 
         <div class="mt-10 flex flex-wrap items-center gap-5">
@@ -75,41 +75,27 @@ description: "Научете повече за Ритеил парк Раков�
     {# ── Counter strip ── #}
     <div class="mt-8 sm:mt-10 rounded-[1.75rem] sm:rounded-[2.25rem] overflow-hidden bg-white shadow-xl shadow-slate-900/10">
       <div class="grid grid-cols-2 sm:grid-cols-4 divide-x divide-y sm:divide-y-0 divide-slate-200/80">
-        <div class="relative px-5 py-7 sm:px-7 sm:py-9 group">
-          <div class="flex items-baseline gap-2">
-            <span class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 tabular-nums">10</span>
-            <span class="text-2xl sm:text-3xl font-extrabold text-brand-yellow leading-none">+</span>
+        {% for counter in home.about.counters %}
+          {% set suffixIsUnit = counter.suffix and counter.suffix != '+' %}
+          <div class="relative px-5 py-7 sm:px-7 sm:py-9 group">
+            <div class="flex items-baseline gap-2">
+              <span class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 tabular-nums js-counter" data-counter-target="{{ counter.value }}">0</span>
+              {% if counter.suffix == '+' %}
+                <span class="text-2xl sm:text-3xl font-extrabold text-brand-yellow leading-none">+</span>
+              {% elif suffixIsUnit %}
+                <span class="text-base sm:text-lg font-medium text-slate-500 leading-none">{{ counter.suffix }}</span>
+              {% endif %}
+            </div>
+            <div class="mt-3 text-[10px] sm:text-xs uppercase tracking-[0.25em] font-semibold text-slate-500">{{ counter.label }}</div>
+            <span class="absolute left-5 sm:left-7 bottom-3 h-px w-0 bg-brand-yellow/80 transition-all duration-500 group-hover:w-12"></span>
           </div>
-          <div class="mt-3 text-[10px] sm:text-xs uppercase tracking-[0.25em] font-semibold text-slate-500">Търговски обекти</div>
-          <span class="absolute left-5 sm:left-7 bottom-3 h-px w-0 bg-brand-yellow/80 transition-all duration-500 group-hover:w-12"></span>
-        </div>
-        <div class="relative px-5 py-7 sm:px-7 sm:py-9 group">
-          <div class="flex items-baseline gap-2">
-            <span class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 tabular-nums">120</span>
-            <span class="text-2xl sm:text-3xl font-extrabold text-brand-yellow leading-none">+</span>
-          </div>
-          <div class="mt-3 text-[10px] sm:text-xs uppercase tracking-[0.25em] font-semibold text-slate-500">Паркоместа</div>
-          <span class="absolute left-5 sm:left-7 bottom-3 h-px w-0 bg-brand-yellow/80 transition-all duration-500 group-hover:w-12"></span>
-        </div>
-        <div class="relative px-5 py-7 sm:px-7 sm:py-9 group">
-          <div class="flex items-baseline gap-2">
-            <span class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 tabular-nums">25000</span>
-          </div>
-          <div class="mt-3 text-[10px] sm:text-xs uppercase tracking-[0.25em] font-semibold text-slate-500">кв.м. търговска площ</div>
-          <span class="absolute left-5 sm:left-7 bottom-3 h-px w-0 bg-brand-yellow/80 transition-all duration-500 group-hover:w-12"></span>
-        </div>
-        <div class="relative px-5 py-7 sm:px-7 sm:py-9 group">
-          <div class="flex items-baseline gap-2">
-            <span class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 tabular-nums">7</span>
-            <span class="text-base sm:text-lg font-medium text-slate-500 leading-none">дни</span>
-          </div>
-          <div class="mt-3 text-[10px] sm:text-xs uppercase tracking-[0.25em] font-semibold text-slate-500">Отворено в седмицата</div>
-          <span class="absolute left-5 sm:left-7 bottom-3 h-px w-0 bg-brand-yellow/80 transition-all duration-500 group-hover:w-12"></span>
-        </div>
+        {% endfor %}
       </div>
     </div>
 
   </div>
+
+  <script src="{{ '/assets/js/counters.js' | url }}" defer></script>
 </section>
 
 {# ── Section 2: Vision (second editorial block) ───────────────────────── #}

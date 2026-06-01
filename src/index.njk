@@ -84,7 +84,7 @@ description: Welcome to the base Eleventy website.
 
       <!-- Help text -->
       <p class="mt-3 sm:mt-4 text-white/70 text-base sm:text-lg leading-relaxed max-w-md mx-auto [text-shadow:0_2px_10px_rgba(0,0,0,0.45)]">
-        Всичко от което се нуждате е вече на едно място. Спестяваш време
+        {{ site.brand.tagline | default('Всичко от което се нуждаете, на едно място.') }}
       </p>
       </div>
     </div>

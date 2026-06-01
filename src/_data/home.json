@@ -27,23 +27,23 @@
         ],
         "counters": [
             {
-                "label": "Търговски обекти",
-                "value": 10,
-                "suffix": "+sgdfergrth",
+                "label": "Брой обекти",
+                "value": 12,
+                "suffix": "+",
                 "accent": "yellow",
                 "icon": "shops"
             },
             {
                 "label": "Паркоместа",
-                "value": 120,
+                "value": 198,
                 "suffix": "+",
                 "accent": "teal",
                 "icon": "parking"
             },
             {
-                "label": "кв.м. търговска площ",
-                "value": 25000,
-                "suffix": "",
+                "label": "Търг. площ",
+                "value": 8400,
+                "suffix": "кв.м.",
                 "accent": "yellow",
                 "icon": "area"
             },

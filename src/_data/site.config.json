@@ -2,7 +2,7 @@
     "brand": {
         "name": "Ритеил парк Раковски",
         "language": "bg",
-        "tagline": "Всичко от което се нуждате е вече на едно място"
+        "tagline": "Всичко от което се нуждаете, на едно място."
     },
     "colors": {
         "background": "#FFFFFF",
@@ -11,14 +11,14 @@
         "yellow": "#B5961D"
     },
     "seo": {
-        "siteUrl": "https://example.com",
-        "defaultTitle": "Base 11ty Site",
-        "defaultDescription": "A minimal Eleventy starter with data-driven navigation."
+        "siteUrl": "https://retailparkrakovski.com",
+        "defaultTitle": "Ритеил парк Раковски",
+        "defaultDescription": "Всичко от което се нуждаете, на едно място. Магазини, услуги и удобен паркинг в Раковски."
     },
     "footer": {
         "address": "ул. Примерна 1, Раковски, област Пловдив",
         "phone": "+359 000 000 000",
-        "email": "info@parkrakovski.bg",
+        "email": "info@retailparkrakovski.com",
         "social": {
             "facebook": "#",
             "instagram": "#",
