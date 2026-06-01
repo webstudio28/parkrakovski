@@ -26,6 +26,10 @@
             "color": "#E30613",
             "url": "https://zora.bg/",
             "logo": "/assets/images/partners/Zora/logo.jpg",
+            "image": "/assets/images/partners/Zora/zora1.webp",
+            "description": "ЗОРА е утвърдена верига за малка домакинска техника, електроника и потребителска електроника. Открийте широк асортимент от телевизори, смартфони, домакински уреди и аксесоари на изгодни цени.",
+            "hours": "Пон–Съб: 09:00–20:00 | Нед: 10:00–19:00",
+            "phone": "",
             "promotions": [
                 {
                     "image": "/assets/images/news/news2.webp",
@@ -35,24 +39,8 @@
                 {
                     "image": "/assets/images/news/news1.webp",
                     "alt": "Промоция ЗОРА — TV и звук",
-                    "description": "Избрани телевизори и аудио системи с отстъпка и опция за разсрочено плащане."
+                    "description": "Избрани телевизори и аудио системи с отстъпка и опция за"
                 }
-            ],
-            "image": "/assets/images/partners/Zora/zora1.webp",
-            "description": "ЗОРА е утвърдена верига за малка домакинска техника, електроника и потребителска електроника. Открийте широк асортимент от телевизори, смартфони, домакински уреди и аксесоари на изгодни цени.",
-            "hours": "Пон–Съб: 09:00–20:00 | Нед: 10:00–19:00",
-            "phone": "",
-            "images": [
-                "/assets/images/partners/Zora/zora1.webp",
-                "/assets/images/partners/Zora/zora2.webp",
-                "/assets/images/partners/Zora/zora3.webp",
-                "/assets/images/partners/Zora/zora4.webp",
-                "/assets/images/partners/Zora/zora5.webp",
-                "/assets/images/partners/Zora/zora6.webp",
-                "/assets/images/partners/Zora/zora7.webp",
-                "/assets/images/partners/Zora/zora8.webp",
-                "/assets/images/partners/Zora/zora9.webp",
-                "/assets/images/partners/Zora/zora10.webp"
             ]
         },
         {
