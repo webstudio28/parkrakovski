@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 require_once __DIR__ . "/rich-text.php";
+require_once __DIR__ . "/panel-data.php";
 require_once __DIR__ . "/shop-hours.php";
 
 function panel_field_text(string $label, string $name, string $value = "", string $type = "text", string $hint = "", string $extraAttrs = ""): void {
@@ -24,12 +25,24 @@ function panel_field_textarea(string $label, string $name, string $value = "", i
   <?php
 }
 
-function panel_field_rich_text(string $label, string $name, string $value = "", int $rows = 4, string $hint = ""): void {
+function panel_field_rich_text(string $label, string $name, string $value = "", int $rows = 4, string $hint = "", int $maxPlainChars = 0): void {
+  if ($maxPlainChars > 0) {
+    $value = panel_rich_html_truncate($value, $maxPlainChars);
+  }
   $safe = panel_sanitize_rich_html($value);
   $fieldId = "pk-rich-" . preg_replace("/[^a-z0-9_-]+/i", "-", $name) . "-" . bin2hex(random_bytes(3));
   ?>
-  <div class="pk-field pk-rich" data-pk-rich>
-    <span class="pk-label"><?php echo html($label); ?></span>
+  <div
+    class="pk-field pk-rich"
+    data-pk-rich
+    <?php echo $maxPlainChars > 0 ? 'data-pk-rich-max="' . (int)$maxPlainChars . '"' : ""; ?>
+  >
+    <div class="pk-rich__label-row">
+      <span class="pk-label"><?php echo html($label); ?></span>
+      <?php if ($maxPlainChars > 0): ?>
+        <span class="pk-rich__count" data-pk-rich-count>0 / <?php echo (int)$maxPlainChars; ?></span>
+      <?php endif; ?>
+    </div>
     <?php if ($hint): ?><p class="pk-hint" style="margin:0 0 0.5rem;"><?php echo html($hint); ?></p><?php endif; ?>
     <div class="pk-rich__toolbar" role="toolbar" aria-label="Форматиране на текст">
       <button type="button" class="pk-rich__btn" data-pk-cmd="bold" title="Удебелен" aria-label="Удебелен"><i class="fa-solid fa-bold" aria-hidden="true"></i></button>
@@ -184,19 +197,53 @@ function panel_field_shop_gallery(array $paths): void {
   <?php
 }
 
+function panel_field_promo_media(string $name, string $value, string $uploadPrefix): void {
+  $hidden = $value === "";
+  $hasImage = $value !== "";
+  $btnLabel = $hasImage ? "Смени снимка" : "Качи снимка";
+  ?>
+  <div class="pk-promo-media" data-pk-media>
+    <img
+      class="pk-promo-media__thumb"
+      data-pk-media-preview
+      src="<?php echo $hasImage ? html($value) : ""; ?>"
+      alt=""
+      loading="lazy"
+      decoding="async"
+      <?php echo $hidden ? "hidden" : ""; ?>
+    />
+    <input type="hidden" name="<?php echo html($name); ?>" data-pk-media-path value="<?php echo html($value); ?>" />
+    <label class="pk-btn pk-btn--ghost pk-btn--sm pk-file">
+      <span data-pk-upload-btn-text><?php echo html($btnLabel); ?></span>
+      <input type="file" accept="image/*" data-pk-upload="<?php echo html($uploadPrefix); ?>" hidden />
+    </label>
+    <span class="pk-media__path" data-pk-upload-status <?php echo $hasImage ? "hidden" : ""; ?>><?php echo $hasImage ? "" : "Няма снимка"; ?></span>
+  </div>
+  <?php
+}
+
 function panel_promotion_repeater_item(int $index, array $promo = []): void {
   $image = (string)($promo["image"] ?? "");
-  $alt = (string)($promo["alt"] ?? "");
   $description = (string)($promo["description"] ?? "");
   ?>
-  <div class="pk-repeater-item" data-pk-repeater-item>
+  <div class="pk-promo-card pk-repeater-item" data-pk-repeater-item>
     <div class="pk-repeater-item__head">
       <strong>Промоция <?php echo (int)$index + 1; ?></strong>
       <button type="button" class="pk-btn pk-btn--ghost pk-btn--sm pk-btn--danger" data-pk-remove-repeater>Изтрий</button>
     </div>
-    <?php panel_field_media("Снимка", "promo_image[]", $image, "promo", true); ?>
-    <?php panel_field_text("Alt текст", "promo_alt[]", $alt); ?>
-    <?php panel_field_rich_text("Описание", "promo_description[]", $description, 3); ?>
+    <div class="pk-promo-card__body">
+      <?php panel_field_promo_media("promo_image[]", $image, "promo"); ?>
+      <div class="pk-promo-card__fields">
+        <?php panel_field_rich_text(
+          "Описание",
+          "promo_description[]",
+          $description,
+          3,
+          "Макс. " . panel_shop_promo_description_max() . " знака.",
+          panel_shop_promo_description_max()
+        ); ?>
+      </div>
+    </div>
   </div>
   <?php
 }

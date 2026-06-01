@@ -394,11 +394,73 @@ function panel_styles(): void {
       gap: 0.85rem;
     }
 
-    .pk-repeater-item {
+    .pk-repeater--promos {
+      grid-template-columns: 1fr;
+    }
+
+    @media (min-width: 720px) {
+      .pk-repeater--promos {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .pk-repeater--promos {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    .pk-repeater-item,
+    .pk-promo-card {
       padding: 1rem;
       border-radius: 0.85rem;
       border: 1px dashed rgba(255, 255, 255, 0.18);
       background: rgba(15, 23, 42, 0.35);
+    }
+
+    .pk-promo-card {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .pk-promo-card__body {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      min-width: 0;
+    }
+
+    .pk-promo-card__fields {
+      display: grid;
+      gap: 0.65rem;
+      min-width: 0;
+    }
+
+    .pk-promo-card__fields .pk-rich__editor {
+      min-height: 5.5rem;
+    }
+
+    .pk-promo-media {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.45rem;
+    }
+
+    .pk-promo-media__thumb {
+      display: block;
+      width: 5.5rem;
+      height: 5.5rem;
+      object-fit: cover;
+      border-radius: 0.5rem;
+      background: rgba(15, 23, 42, 0.55);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+    }
+
+    .pk-promo-media .pk-media__path {
+      min-width: 0;
+      font-size: 0.72rem;
     }
 
     .pk-repeater-item__head {
@@ -529,6 +591,29 @@ function panel_styles(): void {
       color: #94a3b8;
       border-radius: 0.85rem;
       border: 1px dashed rgba(255, 255, 255, 0.15);
+    }
+
+    .pk-rich__label-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 0.5rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .pk-rich__label-row .pk-label {
+      margin: 0;
+    }
+
+    .pk-rich__count {
+      font-size: 0.72rem;
+      color: #94a3b8;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    .pk-rich__count--limit {
+      color: #fbbf24;
     }
 
     .pk-rich__toolbar {

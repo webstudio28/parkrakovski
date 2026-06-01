@@ -37,29 +37,12 @@
             "phone": "wergergttrg",
             "promotions": [
                 {
-                    "image": "/assets/images/uploads/promo-20260601-082325-01607cad.jpg",
-                    "alt": "Промоция Lidl — седмична брошура",
-                    "description": "tova e opisanie za promociq"
+                    "image": "/assets/images/uploads/promo-20260601-105224-e0f1a842.jpg",
+                    "alt": "Lidl — Ритеил парк Раковски — kxpn",
+                    "description": "opisanie za tazi promociq"
                 }
             ],
-            "images": [
-                {
-                    "src": "/assets/images/uploads/shop-gallery-20260601-090254-25f663c5.jpg",
-                    "alt": "Lidl — Ритеил парк Раковски — ei1v"
-                },
-                {
-                    "src": "/assets/images/uploads/shop-gallery-20260601-090254-408c0a56.jpg",
-                    "alt": "Lidl — Ритеил парк Раковски — zwbm"
-                },
-                {
-                    "src": "/assets/images/uploads/shop-gallery-20260601-090633-d25ec432.png",
-                    "alt": "Lidl — Ритеил парк Раковски — 5le4"
-                },
-                {
-                    "src": "/assets/images/uploads/shop-gallery-20260601-090633-0a649313.png",
-                    "alt": "Lidl — Ритеил парк Раковски — he4d"
-                }
-            ]
+            "images": []
         },
         {
             "slug": "zora",

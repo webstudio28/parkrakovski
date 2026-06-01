@@ -143,6 +143,61 @@ function panel_gallery_normalize_for_storage(array $paths, array $existingImages
   return $out;
 }
 
+/**
+ * @param list<array{image: string, description: string}> $rows
+ * @param list<array{image?: string, alt?: string, description?: string}> $existingPromotions
+ * @return list<array{image: string, alt: string, description: string}>
+ */
+function panel_shop_promotions_max(): int {
+  return 3;
+}
+
+function panel_shop_promo_description_max(): int {
+  return 150;
+}
+
+/** @param list<mixed> $promotions */
+function panel_promotions_cap(array $promotions): array {
+  return array_slice(array_values($promotions), 0, panel_shop_promotions_max());
+}
+
+function panel_promotions_normalize_for_storage(array $rows, array $existingPromotions, string $partnerTitle): array {
+  if (!function_exists("panel_rich_html_truncate")) {
+    require_once __DIR__ . "/rich-text.php";
+  }
+  $descMax = panel_shop_promo_description_max();
+  $siteName = panel_site_brand_name();
+  $altByImage = [];
+  foreach ($existingPromotions as $promo) {
+    if (!is_array($promo)) {
+      continue;
+    }
+    $path = trim((string)($promo["image"] ?? ""));
+    if ($path === "") {
+      continue;
+    }
+    $alt = trim((string)($promo["alt"] ?? ""));
+    if ($alt !== "") {
+      $altByImage[$path] = $alt;
+    }
+  }
+
+  $out = [];
+  foreach ($rows as $row) {
+    $image = trim((string)($row["image"] ?? ""));
+    $description = (string)($row["description"] ?? "");
+    if ($image === "" && $description === "") {
+      continue;
+    }
+    $out[] = [
+      "image" => $image,
+      "alt" => $image !== "" ? ($altByImage[$image] ?? panel_gallery_alt_text($partnerTitle, $siteName)) : "",
+      "description" => panel_rich_html_truncate($description, $descMax),
+    ];
+  }
+  return $out;
+}
+
 /** Non-empty trimmed paths from a POST array field (e.g. gallery_image[]). */
 function panel_post_path_list(string $key): array {
   $raw = $_POST[$key] ?? [];

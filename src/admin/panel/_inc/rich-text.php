@@ -71,6 +71,34 @@ function panel_sanitize_rich_html(string $html): string {
   return trim($html);
 }
 
+function panel_rich_plain_text(string $html): string {
+  $html = panel_sanitize_rich_html($html);
+  if ($html === "") {
+    return "";
+  }
+  $plain = html_entity_decode(strip_tags($html), ENT_QUOTES | ENT_HTML5, "UTF-8");
+  $plain = preg_replace("/\s+/u", " ", $plain) ?? "";
+  return trim($plain);
+}
+
+function panel_rich_plain_length(string $html): int {
+  return mb_strlen(panel_rich_plain_text($html));
+}
+
+function panel_rich_html_truncate(string $html, int $maxPlainChars): string {
+  if ($maxPlainChars < 1) {
+    return panel_sanitize_rich_html($html);
+  }
+  $sanitized = panel_sanitize_rich_html($html);
+  $plain = panel_rich_plain_text($sanitized);
+  if (mb_strlen($plain) <= $maxPlainChars) {
+    return $sanitized;
+  }
+  $plain = mb_substr($plain, 0, $maxPlainChars);
+  $plain = rtrim($plain);
+  return panel_sanitize_rich_html(htmlspecialchars($plain, ENT_QUOTES | ENT_HTML5, "UTF-8"));
+}
+
 function panel_post_rich_html(string $key, string $default = ""): string {
   return panel_sanitize_rich_html(panel_post_string($key, $default));
 }

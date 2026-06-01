@@ -55,27 +55,26 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   if ($newSlug === "item" && $originalSlug !== "") {
     $newSlug = $originalSlug;
   }
-  $promotions = [];
+  $promoRows = [];
   $images = $_POST["promo_image"] ?? [];
-  $alts = $_POST["promo_alt"] ?? [];
   $descs = panel_post_rich_html_list("promo_description");
   if (is_array($images)) {
     foreach ($images as $i => $img) {
-      $img = trim((string)$img);
-      $desc = (string)($descs[$i] ?? "");
-      if ($img === "" && $desc === "") {
-        continue;
-      }
-      $promotions[] = [
-        "image" => $img,
-        "alt" => trim((string)($alts[$i] ?? "")),
-        "description" => $desc,
+      $promoRows[] = [
+        "image" => trim((string)$img),
+        "description" => (string)($descs[$i] ?? ""),
       ];
     }
   }
 
   $galleryPaths = panel_post_path_list("gallery_image");
   $existing = $isNew ? [] : panel_find_item_by_slug($items, $originalSlug);
+  $existingPromotions = is_array($existing["promotions"] ?? null) ? $existing["promotions"] : [];
+  $promotions = panel_promotions_cap(panel_promotions_normalize_for_storage(
+    $promoRows,
+    $existingPromotions,
+    panel_post_string("title")
+  ));
   $existingImages = is_array($existing["images"] ?? null) ? $existing["images"] : [];
   $galleryImages = panel_gallery_normalize_for_storage(
     $galleryPaths,
@@ -135,7 +134,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   $isNew = false;
 }
 
-$promotions = is_array($shop["promotions"] ?? null) ? $shop["promotions"] : [];
+$promotions = panel_promotions_cap(is_array($shop["promotions"] ?? null) ? $shop["promotions"] : []);
+$promoMax = panel_shop_promotions_max();
+$promoAtCap = count($promotions) >= $promoMax;
 $galleryPaths = [];
 if (is_array($shop["images"] ?? null)) {
   foreach ($shop["images"] as $img) {
@@ -198,9 +199,18 @@ panel_page_open($pageTitle . " — админ панел");
         <div class="pk-section">
           <div class="pk-repeater-item__head">
             <h2 class="pk-section__title" style="margin:0;">Промоции</h2>
-            <button type="button" class="pk-btn pk-btn--ghost pk-btn--sm" data-pk-add-repeater data-target-list="#promo-list" data-target-template="#promo-template">+ Добави промоция</button>
+            <button
+              type="button"
+              class="pk-btn pk-btn--ghost pk-btn--sm"
+              data-pk-add-repeater
+              data-pk-max="<?php echo (int)$promoMax; ?>"
+              data-target-list="#promo-list"
+              data-target-template="#promo-template"
+              <?php echo $promoAtCap ? "disabled" : ""; ?>
+            >+ Добави промоция</button>
           </div>
-          <div class="pk-repeater" id="promo-list">
+          <p class="pk-hint" style="margin:0 0 1rem;">Максимум <?php echo (int)$promoMax; ?> промоции на обект.</p>
+          <div class="pk-repeater pk-repeater--promos" id="promo-list" data-pk-repeater-list data-pk-max="<?php echo (int)$promoMax; ?>">
             <?php foreach ($promotions as $i => $promo): ?>
               <?php panel_promotion_repeater_item((int)$i, is_array($promo) ? $promo : []); ?>
             <?php endforeach; ?>

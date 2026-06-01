@@ -11,19 +11,36 @@
     return el ? el.value : "";
   }
 
+  function domSort(a, b) {
+    if (a === b) return 0;
+    if (!a.compareDocumentPosition || !a.isConnected || !b.isConnected) return 0;
+    var pos = a.compareDocumentPosition(b);
+    if (pos & Node.DOCUMENT_POSITION_FOLLOWING) return -1;
+    if (pos & Node.DOCUMENT_POSITION_PRECEDING) return 1;
+    return 0;
+  }
+
   function serializeForm(form) {
-    if (typeof window.__pkSyncRichEditors === "function") {
-      window.__pkSyncRichEditors();
+    if (!form._pkSerializing) {
+      form._pkSerializing = true;
+      try {
+        if (typeof window.__pkSyncRichEditors === "function") {
+          window.__pkSyncRichEditors();
+        }
+      } finally {
+        form._pkSerializing = false;
+      }
     }
     var fields = qsa("input, textarea, select", form).filter(function (el) {
       if (!el.name) return false;
+      if (el.closest("template")) return false;
       var t = (el.type || "").toLowerCase();
       if (t === "submit" || t === "button" || t === "file") return false;
       return true;
     });
     fields.sort(function (a, b) {
       if (a.name !== b.name) return a.name < b.name ? -1 : 1;
-      return 0;
+      return domSort(a, b);
     });
     return fields
       .map(function (el) {
@@ -72,9 +89,23 @@
     });
   }
 
-  function markDirtyFromEvent(e) {
-    var form = e.target && e.target.closest ? e.target.closest("form[data-pk-dirty-form]") : null;
+  function notifyFormDirty(fromEl) {
+    var el = fromEl;
+    if (fromEl && fromEl.target) {
+      el = fromEl.target.nodeType === 1 ? fromEl.target : fromEl.target.parentElement;
+    }
+    if (!el) return;
+    var form =
+      el.nodeName === "FORM" && el.matches("[data-pk-dirty-form]")
+        ? el
+        : el.closest
+          ? el.closest("form[data-pk-dirty-form]")
+          : null;
     if (form) updateDirtyState(form);
+  }
+
+  function markDirtyFromEvent(e) {
+    notifyFormDirty(e);
   }
 
   function updateGalleryEmpty(gallery) {
@@ -178,11 +209,65 @@
     probe.src = path;
   }
 
+  function scheduleDirtyCheck(form) {
+    if (!form) return;
+    if (form._pkDirtyTimer) {
+      clearTimeout(form._pkDirtyTimer);
+    }
+    form._pkDirtyTimer = setTimeout(function () {
+      form._pkDirtyTimer = null;
+      updateDirtyState(form);
+    }, 0);
+  }
+
+  function watchListDirty(listEl) {
+    if (!listEl || typeof MutationObserver === "undefined") return;
+    var form = listEl.closest ? listEl.closest("form[data-pk-dirty-form]") : null;
+    if (!form) return;
+    var mo = new MutationObserver(function () {
+      updateRepeaterCap(listEl);
+      scheduleDirtyCheck(form);
+    });
+    mo.observe(listEl, { childList: true });
+  }
+
+  function watchGalleryDirty(gallery) {
+    var grid = qs("[data-pk-gallery-grid]", gallery);
+    if (!grid) return;
+    watchListDirty(grid);
+  }
+
+  function repeaterListCount(list) {
+    return qsa("[data-pk-repeater-item]", list).length;
+  }
+
+  function updateRepeaterCap(list) {
+    if (!list) return;
+    var max = parseInt(list.getAttribute("data-pk-max") || "0", 10);
+    if (!max) return;
+    var listId = list.id;
+    var btn = listId
+      ? qs('[data-pk-add-repeater][data-target-list="#' + listId + '"]')
+      : null;
+    if (!btn) return;
+    var atCap = repeaterListCount(list) >= max;
+    btn.disabled = atCap;
+  }
+
+  function initRepeaterLists() {
+    qsa("[data-pk-repeater-list]").forEach(function (list) {
+      watchListDirty(list);
+      updateRepeaterCap(list);
+    });
+  }
+
   function initShopGalleries() {
     qsa("[data-pk-gallery]").forEach(function (gallery) {
       var addBtn = qs("[data-pk-gallery-add]", gallery);
       var fileInput = qs("[data-pk-gallery-input]", gallery);
       if (!addBtn || !fileInput) return;
+
+      watchGalleryDirty(gallery);
 
       addBtn.addEventListener("click", function () {
         fileInput.click();
@@ -220,7 +305,7 @@
             } else {
               applyGalleryUploadPath(item, res.path);
             }
-            markDirtyFromEvent({ target: item || gallery });
+            notifyFormDirty(gallery);
           });
         });
       });
@@ -228,12 +313,13 @@
       gallery.addEventListener("click", function (e) {
         var removeBtn = e.target.closest("[data-pk-gallery-remove]");
         if (!removeBtn) return;
+        e.preventDefault();
         var item = removeBtn.closest("[data-pk-gallery-item]");
         if (item) {
           revokeGalleryPreview(item);
           item.remove();
           updateGalleryEmpty(gallery);
-          markDirtyFromEvent(e);
+          notifyFormDirty(gallery);
         }
       });
 
@@ -303,11 +389,15 @@
   document.addEventListener("click", function (e) {
     var btn = e.target.closest("[data-pk-remove-repeater]");
     if (!btn) return;
+    e.preventDefault();
     var item = btn.closest("[data-pk-repeater-item]");
-    if (item) {
-      item.remove();
-      markDirtyFromEvent(e);
-    }
+    if (!item) return;
+    var form = btn.closest("form[data-pk-dirty-form]");
+    var list = item.parentElement;
+    item.remove();
+    if (list) updateRepeaterCap(list);
+    if (form) updateDirtyState(form);
+    else if (list) notifyFormDirty(list);
   });
 
   document.addEventListener("click", function (e) {
@@ -318,13 +408,17 @@
     var list = qs(btn.getAttribute("data-target-list"));
     if (!tpl || !list) return;
 
+    var max = parseInt(btn.getAttribute("data-pk-max") || list.getAttribute("data-pk-max") || "0", 10);
+    if (max && repeaterListCount(list) >= max) return;
+
     var html = tpl.innerHTML.replace(/__INDEX__/g, String(Date.now()));
     var wrap = document.createElement("div");
     wrap.innerHTML = html.trim();
     var node = wrap.firstElementChild;
     if (node) {
       list.appendChild(node);
-      markDirtyFromEvent(e);
+      updateRepeaterCap(list);
+      notifyFormDirty(list);
     }
   });
 
@@ -367,10 +461,12 @@
       initDirtyForms();
       initHoursRows();
       initShopGalleries();
+      initRepeaterLists();
     });
   } else {
     initDirtyForms();
     initHoursRows();
     initShopGalleries();
+    initRepeaterLists();
   }
 })();

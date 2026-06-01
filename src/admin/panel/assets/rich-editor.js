@@ -13,13 +13,50 @@
     }
   }
 
+  function richPlainLength(html) {
+    var div = document.createElement("div");
+    div.innerHTML = html || "";
+    var text = (div.textContent || div.innerText || "").replace(/\s+/g, " ").trim();
+    return text.length;
+  }
+
+  function updateRichCount(wrap) {
+    var max = parseInt(wrap.getAttribute("data-pk-rich-max") || "0", 10);
+    var counter = qs("[data-pk-rich-count]", wrap);
+    if (!max || !counter) return;
+    var editor = qs("[data-pk-rich-editor]", wrap);
+    var len = editor ? richPlainLength(editor.innerHTML) : 0;
+    counter.textContent = len + " / " + max;
+    counter.classList.toggle("pk-rich__count--limit", len >= max);
+  }
+
+  function enforceRichMax(wrap) {
+    var max = parseInt(wrap.getAttribute("data-pk-rich-max") || "0", 10);
+    var editor = qs("[data-pk-rich-editor]", wrap);
+    var source = qs("[data-pk-rich-source]", wrap);
+    if (!max || !editor) return;
+    while (richPlainLength(editor.innerHTML) > max) {
+      var text = (editor.textContent || "").replace(/\s+/g, " ");
+      editor.textContent = text.slice(0, max);
+    }
+    if (source) source.value = editor.innerHTML.trim();
+    updateRichCount(wrap);
+  }
+
   function syncRichField(wrap, silent) {
     var editor = qs("[data-pk-rich-editor]", wrap);
     var source = qs("[data-pk-rich-source]", wrap);
     if (!editor || !source) return;
+    if (!silent) {
+      enforceRichMax(wrap);
+    }
     var next = editor.innerHTML.trim();
-    if (source.value === next) return;
+    if (source.value === next) {
+      if (!silent) updateRichCount(wrap);
+      return;
+    }
     source.value = next;
+    if (!silent) updateRichCount(wrap);
     if (!silent) {
       markFormDirty(wrap);
     }
@@ -65,6 +102,7 @@
       editor.innerHTML = source.value;
     }
     syncRichField(wrap, true);
+    updateRichCount(wrap);
     wrap.setAttribute("data-pk-rich-ready", "1");
   }
 
@@ -171,7 +209,10 @@
       "submit",
       function (e) {
         if (e.target && e.target.matches("form[data-pk-dirty-form]")) {
-          syncAllRich(true);
+          qsa("[data-pk-rich]", e.target).forEach(function (wrap) {
+            enforceRichMax(wrap);
+            syncRichField(wrap, true);
+          });
         }
       },
       true,
