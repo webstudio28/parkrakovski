@@ -166,22 +166,29 @@ function panel_gallery_thumb_item(string $path = ""): void {
 }
 
 /** @param list<string> $paths */
-function panel_field_shop_gallery(array $paths): void {
+function panel_field_shop_gallery(
+  array $paths,
+  string $uploadPrefix = "shop-gallery",
+  string $title = "Галерия",
+  string $hint = "Каруселът на страницата на обекта. Ако е празно, се ползват снимките от промоциите."
+): void {
   ?>
   <div class="pk-section">
     <div class="pk-gallery" data-pk-gallery>
       <div class="pk-repeater-item__head">
-        <h2 class="pk-section__title" style="margin:0;">Галерия</h2>
+        <h2 class="pk-section__title" style="margin:0;"><?php echo html($title); ?></h2>
         <button type="button" class="pk-btn pk-btn--ghost pk-btn--sm" data-pk-gallery-add>+ Добави снимки</button>
       </div>
-      <p class="pk-hint" style="margin:0 0 1rem;">Каруселът на страницата на обекта. Ако е празно, се ползват снимките от промоциите.</p>
+      <?php if ($hint !== ""): ?>
+        <p class="pk-hint" style="margin:0 0 1rem;"><?php echo html($hint); ?></p>
+      <?php endif; ?>
       <input
         type="file"
         accept="image/*"
         multiple
         hidden
         data-pk-gallery-input
-        data-pk-upload-prefix="shop-gallery"
+        data-pk-upload-prefix="<?php echo html($uploadPrefix); ?>"
       />
       <div class="pk-gallery__grid" data-pk-gallery-grid>
         <?php foreach ($paths as $path): ?>

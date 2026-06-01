@@ -13,6 +13,7 @@ return [
     "site" => "src/_data/site.config.json",
     "shops" => "src/_data/shops.json",
     "news" => "src/_data/news.json",
+    "home" => "src/_data/home.json",
   ],
 
   "uploads_dir" => "src/assets/images/uploads",

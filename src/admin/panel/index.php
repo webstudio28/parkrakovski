@@ -29,6 +29,10 @@ panel_page_open("Админ панел");
       </div>
 
       <div class="pk-grid">
+        <a class="pk-tile" href="./home.php">
+          <div class="pk-tile__title">Начална страница</div>
+          <div class="pk-tile__meta">Броячи, галерия</div>
+        </a>
         <a class="pk-tile" href="./shops.php">
           <div class="pk-tile__title">Обекти и промоции</div>
           <div class="pk-tile__meta">Партньори, снимки, оферти</div>
@@ -38,8 +42,8 @@ panel_page_open("Админ панел");
           <div class="pk-tile__meta">Статии и събития</div>
         </a>
         <a class="pk-tile" href="./site.php">
-          <div class="pk-tile__title">Настройки</div>
-          <div class="pk-tile__meta">Марка, меню, футър, SEO</div>
+          <div class="pk-tile__title">Контакти</div>
+          <div class="pk-tile__meta">Адрес, телефон, социални мрежи</div>
         </a>
       </div>
     </div>

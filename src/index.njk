@@ -321,6 +321,7 @@ description: Welcome to the base Eleventy website.
 {# ─────────────────────────────────────────────────────────────────────────
    SECTION: Промоции  (partner promos · gutter-aligned carousel — arrows on lg)
    ───────────────────────────────────────────────────────────────────────── #}
+{% if homePromotions and homePromotions | length %}
 {% from "macros/promotion-card.njk" import promotionCard %}
 <section id="promotsii" class="relative scroll-mt-28 bg-white py-20 sm:py-28" aria-labelledby="promotions-heading">
   <div class="mx-auto max-w-7xl px-4 sm:px-6">
@@ -386,10 +387,12 @@ description: Welcome to the base Eleventy website.
   </div>
   <script src="{{ '/assets/js/promotions-carousel.js' | url }}" defer></script>
 </section>
+{% endif %}
 
 {# ─────────────────────────────────────────────────────────────────────────
    SECTION: Последни новини  (editorial header + карти; mobile horizontal scroll)
    ───────────────────────────────────────────────────────────────────────── #}
+{% if news.items and news.items | length %}
 <section id="novini" class="relative scroll-mt-28 py-20 sm:py-28">
   <div class="mx-auto max-w-7xl px-4 sm:px-6">
 
@@ -469,6 +472,7 @@ description: Welcome to the base Eleventy website.
     </div>
   </div>
 </section>
+{% endif %}
 
 {# ─────────────────────────────────────────────────────────────────────────
    SECTION: Галерия  (gutter-aligned carousel — arrows on lg)

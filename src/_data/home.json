@@ -1,70 +1,70 @@
 {
-  "about": {
-    "badge": "За нас",
-    "titlePrefix": "Модерно място за",
-    "titleHighlight": "ежедневието",
-    "paragraphs": [
-      "Ритеил парк Раковски е новото място за пазар, услуги и почивка — създадено да улеснява живота на местната общност. Любимите ви марки, удобен паркинг и просторна търговска зона на едно място."
-    ],
-    "image": {
-      "src": "/assets/images/home-about.png",
-      "alt": "Ритеил парк Раковски"
+    "about": {
+        "badge": "За нас",
+        "titlePrefix": "Модерно място за",
+        "titleHighlight": "ежедневието",
+        "paragraphs": [
+            "Ритеил парк Раковски е новото място за пазар, услуги и почивка — създадено да улеснява живота на местната общност. Любимите ви марки, удобен паркинг и просторна търговска зона на едно място."
+        ],
+        "image": {
+            "src": "/assets/images/home-about.png",
+            "alt": "Ритеил парк Раковски"
+        },
+        "floatingBadge": {
+            "eyebrow": "От 2026"
+        },
+        "buttons": [
+            {
+                "label": "Научи повече",
+                "url": "/za-nas/",
+                "style": "primary"
+            },
+            {
+                "label": "Виж обектите",
+                "url": "/obekti/",
+                "style": "secondary"
+            }
+        ],
+        "counters": [
+            {
+                "label": "Търговски обекти",
+                "value": 10,
+                "suffix": "+sgdfergrth",
+                "accent": "yellow",
+                "icon": "shops"
+            },
+            {
+                "label": "Паркоместа",
+                "value": 120,
+                "suffix": "+",
+                "accent": "teal",
+                "icon": "parking"
+            },
+            {
+                "label": "кв.м. търговска площ",
+                "value": 25000,
+                "suffix": "",
+                "accent": "yellow",
+                "icon": "area"
+            },
+            {
+                "label": "Отворено в седмицата",
+                "value": 7,
+                "suffix": "дни",
+                "accent": "teal",
+                "icon": "clock"
+            }
+        ]
     },
-    "floatingBadge": {
-      "eyebrow": "От 2026"
-    },
-    "buttons": [
-      {
-        "label": "Научи повече",
-        "url": "/za-nas/",
-        "style": "primary"
-      },
-      {
-        "label": "Виж обектите",
-        "url": "/obekti/",
-        "style": "secondary"
-      }
-    ],
-    "counters": [
-      {
-        "label": "Търговски обекти",
-        "value": 10,
-        "suffix": "+",
-        "accent": "yellow",
-        "icon": "shops"
-      },
-      {
-        "label": "Паркоместа",
-        "value": 120,
-        "suffix": "+",
-        "accent": "teal",
-        "icon": "parking"
-      },
-      {
-        "label": "кв.м. търговска площ",
-        "value": 25000,
-        "suffix": "",
-        "accent": "yellow",
-        "icon": "area"
-      },
-      {
-        "label": "Отворено в седмицата",
-        "value": 7,
-        "suffix": "дни",
-        "accent": "teal",
-        "icon": "clock"
-      }
+    "gallery": [
+        "/assets/images/home-gallery/IMG_1149.webp",
+        "/assets/images/home-gallery/IMG_1163.webp",
+        "/assets/images/home-gallery/IMG_2336.webp",
+        "/assets/images/home-gallery/IMG_2341.webp",
+        "/assets/images/home-gallery/IMG_2434.webp",
+        "/assets/images/home-gallery/IMG_2436.webp",
+        "/assets/images/home-gallery/IMG_2437.webp",
+        "/assets/images/home-gallery/IMG_2446.webp",
+        "/assets/images/home-gallery/IMG_2450.webp"
     ]
-  },
-  "gallery": [
-    "/assets/images/home-gallery/IMG_1149.webp",
-    "/assets/images/home-gallery/IMG_1163.webp",
-    "/assets/images/home-gallery/IMG_2336.webp",
-    "/assets/images/home-gallery/IMG_2341.webp",
-    "/assets/images/home-gallery/IMG_2434.webp",
-    "/assets/images/home-gallery/IMG_2436.webp",
-    "/assets/images/home-gallery/IMG_2437.webp",
-    "/assets/images/home-gallery/IMG_2446.webp",
-    "/assets/images/home-gallery/IMG_2450.webp"
-  ]
 }

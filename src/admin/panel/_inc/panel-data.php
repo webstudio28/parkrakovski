@@ -11,6 +11,7 @@ function panel_file_key(string $key): string {
     "site" => "src/_data/site.config.json",
     "shops" => "src/_data/shops.json",
     "news" => "src/_data/news.json",
+    "home" => "src/_data/home.json",
   ];
   return (string)($map[$key] ?? $defaults[$key] ?? "");
 }
