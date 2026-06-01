@@ -378,10 +378,8 @@ description: Welcome to the base Eleventy website.
         aria-labelledby="promotions-carousel-label"
         role="list"
       >
-      {% for shop in shops.items %}
-        {% for promo in shop.promotions %}
-          {{ promotionCard(shop, promo, true) }}
-        {% endfor %}
+      {% for item in homePromotions %}
+        {{ promotionCard(item.shop, item.promo, true) }}
       {% endfor %}
       </div>
     </div>
@@ -458,7 +456,7 @@ description: Welcome to the base Eleventy website.
               {{ post.excerpt | safe }}
             </p>
             <a
-              href="{{ post.url | default('#') }}"
+              href="{{ ('/novini/' ~ post.slug ~ '/') | url }}"
               class="news-card__link mt-6 inline-flex items-center gap-2 rounded-full bg-slate-100 px-4 py-2 text-sm font-semibold text-slate-800"
             >
               Прочети повече

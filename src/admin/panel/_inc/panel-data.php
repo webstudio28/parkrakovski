@@ -156,6 +156,30 @@ function panel_shop_promo_description_max(): int {
   return 150;
 }
 
+function panel_news_default_date(): string {
+  $months = [
+    1 => "януари",
+    2 => "февруари",
+    3 => "март",
+    4 => "април",
+    5 => "май",
+    6 => "юни",
+    7 => "юли",
+    8 => "август",
+    9 => "септември",
+    10 => "октомври",
+    11 => "ноември",
+    12 => "декември",
+  ];
+  $month = (int)date("n");
+  return (int)date("j") . " " . ($months[$month] ?? "") . " " . date("Y");
+}
+
+function panel_news_permalink(string $slug): string {
+  $slug = panel_slugify($slug);
+  return $slug !== "" ? "/novini/" . $slug . "/" : "/novini/";
+}
+
 /** @param list<mixed> $promotions */
 function panel_promotions_cap(array $promotions): array {
   return array_slice(array_values($promotions), 0, panel_shop_promotions_max());

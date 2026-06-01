@@ -35,13 +35,7 @@
                 }
             },
             "phone": "wergergttrg",
-            "promotions": [
-                {
-                    "image": "/assets/images/uploads/promo-20260601-105224-e0f1a842.jpg",
-                    "alt": "Lidl — Ритеил парк Раковски — kxpn",
-                    "description": "opisanie za tazi promociq"
-                }
-            ],
+            "promotions": [],
             "images": []
         },
         {

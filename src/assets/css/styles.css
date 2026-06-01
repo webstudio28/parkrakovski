@@ -4022,6 +4022,10 @@ body.modal-open {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
+  .lg\:grid-cols-\[repeat\(auto-fit\2c minmax\(min\(100\%\2c 12rem\)\2c 1fr\)\)\] {
+    grid-template-columns: repeat(auto-fit,minmax(min(100%, 12rem),1fr));
+  }
+
   .lg\:items-end {
     align-items: flex-end;
   }

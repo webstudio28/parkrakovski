@@ -90,10 +90,11 @@ eleventyComputed:
 
     </div>
 
-    {# ── Info strip (counter pattern) ── #}
+    {# ── Info strip — only blocks with data ── #}
     {% set hourLines = shop.hours | formatShopHours %}
-    <div class="mt-8 sm:mt-10 rounded-[1.75rem] sm:rounded-[2.25rem] overflow-hidden bg-white shadow-xl shadow-slate-900/10">
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-slate-200/80">
+    {% set hasPhone = shop.phone and (shop.phone | replace(' ', '') | replace('-', '') | length) > 0 %}
+  <div class="mt-8 sm:mt-10 rounded-[1.75rem] sm:rounded-[2.25rem] overflow-hidden bg-white shadow-xl shadow-slate-900/10">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[repeat(auto-fit,minmax(min(100%,12rem),1fr))] divide-y sm:divide-y-0 sm:divide-x divide-slate-200/80">
         <div class="relative px-7 py-8 sm:py-9 group">
           <div class="flex items-center gap-3 mb-3">
             <svg class="h-5 w-5 text-brand-teal shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
@@ -102,34 +103,31 @@ eleventyComputed:
           <p class="text-sm text-slate-700 leading-relaxed">Ритеил парк Раковски<br/>ул. Примерна 1, Раковски</p>
           <span class="absolute left-7 bottom-3 h-px w-0 bg-brand-yellow/80 transition-all duration-500 group-hover:w-12"></span>
         </div>
+        {% if hourLines.length %}
         <div class="relative px-7 py-8 sm:py-9 group">
           <div class="flex items-center gap-3 mb-3">
             <svg class="h-5 w-5 text-brand-yellow shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
             <span class="text-[10px] uppercase tracking-[0.25em] font-semibold text-slate-500">Работно време</span>
           </div>
-          {% if hourLines.length %}
-            <div class="text-sm text-slate-700 leading-relaxed space-y-1">
-              {% for line in hourLines %}
-                <p>{{ line }}</p>
-              {% endfor %}
-            </div>
-          {% else %}
-            <p class="text-sm text-slate-700 leading-relaxed">Вижте при магазина</p>
-          {% endif %}
+          <div class="text-sm text-slate-700 leading-relaxed space-y-1">
+            {% for line in hourLines %}
+              <p>{{ line }}</p>
+            {% endfor %}
+          </div>
           <span class="absolute left-7 bottom-3 h-px w-0 bg-brand-yellow/80 transition-all duration-500 group-hover:w-12"></span>
         </div>
+        {% endif %}
+        {% if hasPhone %}
         <div class="relative px-7 py-8 sm:py-9 group">
           <div class="flex items-center gap-3 mb-3">
             <svg class="h-5 w-5 text-brand-teal shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
             <span class="text-[10px] uppercase tracking-[0.25em] font-semibold text-slate-500">Телефон</span>
           </div>
-          {% if shop.phone %}
-            <a href="tel:{{ shop.phone | replace(' ', '') | replace('-', '') }}" class="text-sm font-semibold text-brand-teal hover:underline">{{ shop.phone }}</a>
-          {% else %}
-            <p class="text-sm text-slate-500">—</p>
-          {% endif %}
+          <a href="tel:{{ shop.phone | replace(' ', '') | replace('-', '') }}" class="text-sm font-semibold text-brand-teal hover:underline">{{ shop.phone }}</a>
           <span class="absolute left-7 bottom-3 h-px w-0 bg-brand-yellow/80 transition-all duration-500 group-hover:w-12"></span>
         </div>
+        {% endif %}
+        {% if shop.category %}
         <div class="relative px-7 py-8 sm:py-9 group">
           <div class="flex items-center gap-3 mb-3">
             <svg class="h-5 w-5 text-brand-teal shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>
@@ -138,6 +136,7 @@ eleventyComputed:
           <p class="text-sm font-semibold text-slate-900">{{ shop.category }}</p>
           <span class="absolute left-7 bottom-3 h-px w-0 bg-brand-yellow/80 transition-all duration-500 group-hover:w-12"></span>
         </div>
+        {% endif %}
       </div>
     </div>
 

@@ -27,8 +27,11 @@ $post = [
   "excerpt" => "",
   "body" => "",
   "image" => "",
-  "url" => "",
 ];
+
+if ($isNew && trim((string)($post["date"] ?? "")) === "") {
+  $post["date"] = panel_news_default_date();
+}
 
 if (!$isNew) {
   foreach ($items as $item) {
@@ -45,20 +48,25 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   verify_csrf($_POST["csrf"] ?? null);
 
   $originalSlug = panel_post_string("original_slug");
-  $newSlug = panel_slugify(panel_post_string("slug") ?: panel_post_string("title"));
+  $newSlug = panel_slugify(panel_post_string("title"));
+  if ($newSlug === "item" && $originalSlug !== "") {
+    $newSlug = $originalSlug;
+  }
   $existing = $isNew ? [] : panel_find_item_by_slug($items, $originalSlug);
-  $url = panel_post_string("url");
-  if ($url === "") {
-    $url = "/novini/" . $newSlug . "/";
+  $date = panel_post_string("date");
+  if ($date === "") {
+    $date = trim((string)($existing["date"] ?? "")) !== ""
+      ? (string)$existing["date"]
+      : panel_news_default_date();
   }
   $formEntry = [
     "slug" => $newSlug,
     "title" => panel_post_string("title"),
-    "date" => panel_post_string("date"),
+    "date" => $date,
     "excerpt" => panel_post_rich_html("excerpt"),
     "body" => panel_post_rich_html("body"),
     "image" => panel_post_string("image"),
-    "url" => $url,
+    "url" => panel_news_permalink($newSlug),
   ];
   $entry = panel_merge_entry($existing, $formEntry);
 
@@ -117,9 +125,7 @@ panel_page_open($title . " — админ панел");
         <div class="pk-section">
           <div class="pk-grid-2">
             <?php panel_field_text("Заглавие", "title", (string)($post["title"] ?? "")); ?>
-            <?php panel_field_text("Дата", "date", (string)($post["date"] ?? ""), "text", "напр. 12 май 2026"); ?>
-            <?php panel_field_text("Slug", "slug", (string)($post["slug"] ?? "")); ?>
-            <?php panel_field_text("URL (по избор)", "url", (string)($post["url"] ?? ""), "text", "Празно = /novini/slug/"); ?>
+            <?php panel_field_text("Дата", "date", (string)($post["date"] ?? ""), "text", "Попълва се автоматично при нова новина; можете да я промените."); ?>
           </div>
           <?php panel_field_media("Снимка", "image", (string)($post["image"] ?? ""), "news", true); ?>
           <?php panel_field_rich_text("Кратко описание", "excerpt", (string)($post["excerpt"] ?? ""), 3); ?>

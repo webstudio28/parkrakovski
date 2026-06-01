@@ -42,7 +42,7 @@
             {% if loop.index <= 5 %}
               <li>
                 <a
-                  href="{{ post.url | default('#') | url }}"
+                  href="{{ ('/novini/' ~ post.slug ~ '/') | url }}"
                   class="block py-1 text-center text-[13px] font-medium leading-snug text-white/85 transition first:pt-0 hover:text-brand-yellow"
                 >
                   {{ post.title }}
