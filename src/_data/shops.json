@@ -75,18 +75,7 @@
                 }
             },
             "phone": "4235436546",
-            "promotions": [
-                {
-                    "image": "/assets/images/news/news2.webp",
-                    "alt": "Промоция ЗОРА — малки уреди",
-                    "description": "ЗОРА през май — намаления на малки домакински уреди и сезонна техника за дома."
-                },
-                {
-                    "image": "/assets/images/news/news1.webp",
-                    "alt": "Промоция ЗОРА — TV и звук",
-                    "description": "Избрани телевизори и аудио системи с отстъпка и опция за"
-                }
-            ],
+            "promotions": [],
             "images": []
         },
         {
