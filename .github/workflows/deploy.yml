@@ -6,6 +6,11 @@ on:
       - main
   workflow_dispatch:
 
+# One deploy at a time — parallel CMS commits were racing FTP deletes (550 errors).
+concurrency:
+  group: deploy-cpanel
+  cancel-in-progress: false
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
