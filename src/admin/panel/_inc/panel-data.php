@@ -71,10 +71,8 @@ function panel_post_bool(string $key): bool {
 }
 
 function panel_redirect_with(string $path, array $query = []): void {
-  if ($query) {
-    $path .= (strpos($path, "?") !== false ? "&" : "?") . http_build_query($query);
-  }
-  redirect($path);
+  header("Location: " . panel_url($path, $query), true, 302);
+  exit;
 }
 
 function panel_flash_set(string $type, string $message): void {

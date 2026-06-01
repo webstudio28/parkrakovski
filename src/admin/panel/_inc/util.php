@@ -106,9 +106,26 @@ function panel_base_path(): string {
   return rtrim(str_replace("\\", "/", dirname($scriptName)), "/");
 }
 
-function redirect(string $path): void {
+/**
+ * Absolute URL path for a panel script (handles ./shop-edit.php and /news.php).
+ */
+function panel_url(string $path, array $query = []): string {
   $base = panel_base_path();
-  header("Location: " . ($base ? $base : "") . $path, true, 302);
+  $path = str_replace("\\", "/", $path);
+  if (str_starts_with($path, "./")) {
+    $path = substr($path, 2);
+  }
+  $path = ltrim($path, "/");
+  $url = ($base !== "" ? $base : "") . "/" . $path;
+  $url = preg_replace("#/+#", "/", $url) ?? $url;
+  if ($query !== []) {
+    $url .= "?" . http_build_query($query);
+  }
+  return $url;
+}
+
+function redirect(string $path): void {
+  header("Location: " . panel_url($path), true, 302);
   exit;
 }
 
