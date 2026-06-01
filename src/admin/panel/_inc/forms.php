@@ -88,6 +88,18 @@ function panel_field_media(string $label, string $name, string $value, string $u
   <?php
 }
 
+function panel_gallery_repeater_item(int $index, string $path = ""): void {
+  ?>
+  <div class="pk-repeater-item" data-pk-repeater-item>
+    <div class="pk-repeater-item__head">
+      <strong>Снимка <?php echo (int)$index + 1; ?></strong>
+      <button type="button" class="pk-btn pk-btn--ghost pk-btn--sm pk-btn--danger" data-pk-remove-repeater>Изтрий</button>
+    </div>
+    <?php panel_field_media("Галерия", "gallery_image[]", $path, "shop-gallery", true); ?>
+  </div>
+  <?php
+}
+
 function panel_promotion_repeater_item(int $index, array $promo = []): void {
   $image = (string)($promo["image"] ?? "");
   $alt = (string)($promo["alt"] ?? "");

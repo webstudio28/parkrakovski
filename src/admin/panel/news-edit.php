@@ -46,15 +46,21 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
   $originalSlug = panel_post_string("original_slug");
   $newSlug = panel_slugify(panel_post_string("slug") ?: panel_post_string("title"));
-  $entry = [
+  $existing = $isNew ? [] : panel_find_item_by_slug($items, $originalSlug);
+  $url = panel_post_string("url");
+  if ($url === "") {
+    $url = "/novini/" . $newSlug . "/";
+  }
+  $formEntry = [
     "slug" => $newSlug,
     "title" => panel_post_string("title"),
     "date" => panel_post_string("date"),
     "excerpt" => panel_post_rich_html("excerpt"),
     "body" => panel_post_rich_html("body"),
     "image" => panel_post_string("image"),
-    "url" => "/novini/" . $newSlug . "/",
+    "url" => $url,
   ];
+  $entry = panel_merge_entry($existing, $formEntry);
 
   foreach ($items as $item) {
     if (($item["slug"] ?? "") === $newSlug && ($isNew || ($item["slug"] ?? "") !== $originalSlug)) {
@@ -113,6 +119,7 @@ panel_page_open($title . " — админ панел");
             <?php panel_field_text("Заглавие", "title", (string)($post["title"] ?? "")); ?>
             <?php panel_field_text("Дата", "date", (string)($post["date"] ?? ""), "text", "напр. 12 май 2026"); ?>
             <?php panel_field_text("Slug", "slug", (string)($post["slug"] ?? "")); ?>
+            <?php panel_field_text("URL (по избор)", "url", (string)($post["url"] ?? ""), "text", "Празно = /novini/slug/"); ?>
           </div>
           <?php panel_field_media("Снимка", "image", (string)($post["image"] ?? ""), "news", true); ?>
           <?php panel_field_rich_text("Кратко описание", "excerpt", (string)($post["excerpt"] ?? ""), 3); ?>

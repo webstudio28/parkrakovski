@@ -33,6 +33,7 @@ $shop = [
   "hours" => "",
   "phone" => "",
   "promotions" => [],
+  "images" => [],
 ];
 
 if (!$isNew) {
@@ -70,7 +71,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
   }
 
-  $entry = [
+  $galleryImages = panel_post_path_list("gallery_image");
+  $existing = $isNew ? [] : panel_find_item_by_slug($items, $originalSlug);
+
+  $formEntry = [
     "slug" => $newSlug,
     "title" => panel_post_string("title"),
     "category" => panel_post_string("category"),
@@ -82,7 +86,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     "hours" => panel_post_string("hours"),
     "phone" => panel_post_string("phone"),
     "promotions" => $promotions,
+    "images" => $galleryImages,
   ];
+  $entry = panel_merge_entry($existing, $formEntry);
 
   foreach ($items as $item) {
     $slug = (string)($item["slug"] ?? "");
@@ -122,6 +128,21 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 }
 
 $promotions = is_array($shop["promotions"] ?? null) ? $shop["promotions"] : [];
+$galleryImages = [];
+if (is_array($shop["images"] ?? null)) {
+  foreach ($shop["images"] as $img) {
+    if (is_string($img)) {
+      $path = trim($img);
+    } elseif (is_array($img)) {
+      $path = trim((string)($img["src"] ?? $img["url"] ?? ""));
+    } else {
+      $path = "";
+    }
+    if ($path !== "") {
+      $galleryImages[] = $path;
+    }
+  }
+}
 $pageTitle = $isNew ? "Нов обект" : "Редакция: " . (string)($shop["title"] ?? "");
 
 panel_page_open($pageTitle . " — админ панел");
@@ -169,6 +190,19 @@ panel_page_open($pageTitle . " — админ панел");
 
         <div class="pk-section">
           <div class="pk-repeater-item__head">
+            <h2 class="pk-section__title" style="margin:0;">Галерия (снимки на страницата)</h2>
+            <button type="button" class="pk-btn pk-btn--ghost pk-btn--sm" data-pk-add-repeater data-target-list="#gallery-list" data-target-template="#gallery-template">+ Добави снимка</button>
+          </div>
+          <p class="pk-hint" style="margin:0 0 1rem;">Каруселът на страницата на обекта. Ако е празно, се ползват снимките от промоциите.</p>
+          <div class="pk-repeater" id="gallery-list">
+            <?php foreach ($galleryImages as $i => $imgPath): ?>
+              <?php panel_gallery_repeater_item((int)$i, $imgPath); ?>
+            <?php endforeach; ?>
+          </div>
+        </div>
+
+        <div class="pk-section">
+          <div class="pk-repeater-item__head">
             <h2 class="pk-section__title" style="margin:0;">Промоции</h2>
             <button type="button" class="pk-btn pk-btn--ghost pk-btn--sm" data-pk-add-repeater data-target-list="#promo-list" data-target-template="#promo-template">+ Добави промоция</button>
           </div>
@@ -182,6 +216,10 @@ panel_page_open($pageTitle . " — админ панел");
         <?php panel_save_button(); ?>
       </form>
     </div>
+
+    <template id="gallery-template">
+      <?php panel_gallery_repeater_item(0, ""); ?>
+    </template>
 
     <template id="promo-template">
       <?php panel_promotion_repeater_item(0, []); ?>

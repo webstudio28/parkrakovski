@@ -70,6 +70,39 @@ function panel_post_bool(string $key): bool {
   return !empty($_POST[$key]);
 }
 
+/** Non-empty trimmed paths from a POST array field (e.g. gallery_image[]). */
+function panel_post_path_list(string $key): array {
+  $raw = $_POST[$key] ?? [];
+  if (!is_array($raw)) {
+    return [];
+  }
+  $out = [];
+  foreach ($raw as $path) {
+    $path = trim((string)$path);
+    if ($path !== "") {
+      $out[] = $path;
+    }
+  }
+  return $out;
+}
+
+function panel_find_item_by_slug(array $items, string $slug): array {
+  foreach ($items as $item) {
+    if (!is_array($item)) {
+      continue;
+    }
+    if ((string)($item["slug"] ?? "") === $slug) {
+      return $item;
+    }
+  }
+  return [];
+}
+
+/** Keep JSON keys not shown in the form; form values win on overlap. */
+function panel_merge_entry(array $existing, array $fromForm): array {
+  return array_merge($existing, $fromForm);
+}
+
 function panel_redirect_with(string $path, array $query = []): void {
   header("Location: " . panel_url($path, $query), true, 302);
   exit;

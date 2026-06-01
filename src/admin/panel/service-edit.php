@@ -35,12 +35,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   verify_csrf($_POST["csrf"] ?? null);
   $originalSlug = panel_post_string("original_slug");
   $newSlug = panel_slugify(panel_post_string("slug") ?: panel_post_string("title"));
-  $entry = [
+  $existing = $isNew ? [] : panel_find_item_by_slug($items, $originalSlug);
+  $formEntry = [
     "slug" => $newSlug,
     "title" => panel_post_string("title"),
     "summary" => panel_post_rich_html("summary"),
     "body" => panel_post_rich_html("body"),
   ];
+  $entry = panel_merge_entry($existing, $formEntry);
 
   $updated = [];
   $replaced = false;

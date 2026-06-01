@@ -36,7 +36,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
   }
 
-  $data = [
+  $prev = is_array($loaded["data"]) ? $loaded["data"] : [];
+  $built = [
     "brand" => [
       "name" => panel_post_string("brand_name"),
       "language" => panel_post_string("brand_language", "bg"),
@@ -65,6 +66,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     ],
     "nav" => ["header" => $nav],
   ];
+  $data = array_replace_recursive($prev, $built);
+  $data["nav"]["header"] = $nav;
 
   $save = panel_save_json_file($path, $data, $sha, "chore(cms): update site settings");
   if ($save["ok"]) {
