@@ -43,7 +43,7 @@ panel_page_open("Админ панел");
         </a>
         <a class="pk-tile" href="./site.php">
           <div class="pk-tile__title">Контакти</div>
-          <div class="pk-tile__meta">Адрес, телефон, социални мрежи</div>
+          <div class="pk-tile__meta">Адрес, телефон, работно време, социални мрежи</div>
         </a>
       </div>
     </div>

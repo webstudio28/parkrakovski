@@ -75,15 +75,24 @@ description: "Свържете се с Ритеил парк Раковски. �
           </div>
           {% endif %}
 
+          {% set hourLines = site.footer.hours | formatShopHours %}
           <div class="group relative flex gap-5">
             <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-brand-yellow/10">
               <svg class="h-5 w-5 text-brand-yellow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
             </div>
             <div>
               <p class="text-[10px] uppercase tracking-[0.28em] font-semibold text-slate-400 mb-1">Работно време</p>
+              {% if hourLines.length %}
               <p class="text-sm font-medium text-slate-800 leading-relaxed">
-                Пон – Съб: 08:00 – 21:00<br/>
-                Неделя: 09:00 – 20:00
+                {% for line in hourLines %}
+                  {{ line }}{% if not loop.last %}<br/>{% endif %}
+                {% endfor %}
+              </p>
+              {% endif %}
+              <p class="{% if hourLines.length %}mt-3 {% endif %}text-sm text-slate-600">
+                <a href="{{ '/obekti/' | url }}" class="font-medium text-brand-teal transition hover:text-brand-blue">
+                  За да видите работното време на избран обект кликнете тук
+                </a>
               </p>
             </div>
           </div>

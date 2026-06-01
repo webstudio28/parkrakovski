@@ -28,6 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
       "address" => panel_post_string("footer_address"),
       "phone" => panel_post_string("footer_phone"),
       "email" => panel_post_string("footer_email"),
+      "hours" => panel_shop_hours_for_storage(panel_post_shop_hours()),
       "social" => [
         "facebook" => panel_post_string("social_facebook"),
         "instagram" => panel_post_string("social_instagram"),
@@ -47,6 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 $footer = $data["footer"] ?? [];
 $social = $footer["social"] ?? [];
+$hoursSchedule = panel_shop_hours_normalize($footer["hours"] ?? null);
 
 panel_page_open("Настройки — админ панел");
 ?>
@@ -76,6 +78,11 @@ panel_page_open("Настройки — админ панел");
             <?php panel_field_text("Instagram", "social_instagram", (string)($social["instagram"] ?? "")); ?>
             <?php panel_field_text("YouTube", "social_youtube", (string)($social["youtube"] ?? "")); ?>
           </div>
+        </div>
+
+        <div class="pk-section">
+          <h2 class="pk-section__title">Работно време</h2>
+          <?php panel_field_shop_hours($hoursSchedule); ?>
         </div>
 
         <?php panel_save_button(); ?>

@@ -21,7 +21,44 @@
     "footer": {
         "address": "ул. Петър Парчевич 21, 4150 Раковски",
         "phone": "",
-        "email": "sfg@dsfg.com",
+        "email": "",
+        "hours": {
+            "mon": {
+                "open": "08:00",
+                "close": "21:00",
+                "closed": true
+            },
+            "tue": {
+                "open": "08:00",
+                "close": "21:00",
+                "closed": true
+            },
+            "wed": {
+                "open": "08:00",
+                "close": "21:00",
+                "closed": true
+            },
+            "thu": {
+                "open": "08:00",
+                "close": "21:00",
+                "closed": true
+            },
+            "fri": {
+                "open": "08:00",
+                "close": "21:00",
+                "closed": true
+            },
+            "sat": {
+                "open": "08:00",
+                "close": "21:00",
+                "closed": true
+            },
+            "sun": {
+                "open": "09:00",
+                "close": "20:00",
+                "closed": true
+            }
+        },
         "social": {
             "facebook": "",
             "instagram": "",
