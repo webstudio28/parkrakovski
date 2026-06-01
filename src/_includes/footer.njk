@@ -64,43 +64,32 @@
         <h2 class="text-[10px] font-semibold uppercase tracking-[0.32em] text-brand-yellow">Контакти</h2>
         <span class="mt-2.5 block h-px w-10 bg-white/20"></span>
         {% set fc = site.footer | default({}) %}
-        {% set phoneDisplay = fc.phone | default('+359 000 000 000') %}
+        {% set soc = fc.social | default({}) %}
+        {% set hasContactDetails = fc.address | hasValue or fc.phone | hasValue or fc.email | hasValue %}
+        {% set hasSocial = soc.facebook | hasValue or soc.instagram | hasValue or soc.youtube | hasValue %}
+        {% if hasContactDetails %}
         <address class="mt-5 max-w-sm text-center not-italic text-sm leading-relaxed text-white/65">
-          <p>{{ fc.address | default('ул. Примерна 1, Раковски') }}</p>
-          <p class="mt-2">
-            <a href="tel:{{ phoneDisplay | replace(' ', '') }}" class="transition hover:text-white">{{ phoneDisplay }}</a>
+          {% if fc.address | hasValue %}
+          <p>{{ fc.address }}</p>
+          {% endif %}
+          {% if fc.phone | hasValue %}
+          <p{% if fc.address | hasValue %} class="mt-2"{% endif %}>
+            <a href="tel:{{ fc.phone | replace(' ', '') }}" class="transition hover:text-white">{{ fc.phone }}</a>
           </p>
+          {% endif %}
+          {% if fc.email | hasValue %}
           <p class="mt-2">
-            <a href="mailto:{{ fc.email | default('info@parkrakovski.bg') }}" class="transition hover:text-white">{{ fc.email | default('info@parkrakovski.bg') }}</a>
+            <a href="mailto:{{ fc.email }}" class="transition hover:text-white">{{ fc.email }}</a>
           </p>
+          {% endif %}
         </address>
-        <div class="mt-6 flex flex-wrap items-center justify-center gap-3">
-          {% set soc = fc.social | default({}) %}
-          <a
-            href="{{ soc.facebook | default('#') }}"
-            class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/[0.04] text-white/70 transition hover:border-brand-yellow/50 hover:bg-white/[0.08] hover:text-white"
-            aria-label="Facebook"
-            rel="noopener noreferrer"
-          >
-            <svg class="h-[18px] w-[18px]" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-4h2v-1.5C10 8.57 11.57 7 13.5 7H16v4h-2c-.55 0-1 .45-1 1V15h3l-.5 4H13v6.95c4.56-.93 8-4.96 8-9.95z"/></svg>
-          </a>
-          <a
-            href="{{ soc.instagram | default('#') }}"
-            class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/[0.04] text-white/70 transition hover:border-brand-yellow/50 hover:bg-white/[0.08] hover:text-white"
-            aria-label="Instagram"
-            rel="noopener noreferrer"
-          >
-            <svg class="h-[18px] w-[18px]" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM5.838 12a6.162 6.162 0 1112.324 0 6.162 6.162 0 01-12.324 0zm12.406-7.845a1.44 1.44 0 11-2.881 0 1.44 1.44 0 012.881 0zM12 9.838a2.162 2.162 0 100 4.324 2.162 2.162 0 000-4.324z"/></svg>
-          </a>
-          <a
-            href="{{ soc.youtube | default('#') }}"
-            class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/[0.04] text-white/70 transition hover:border-brand-yellow/50 hover:bg-white/[0.08] hover:text-white"
-            aria-label="YouTube"
-            rel="noopener noreferrer"
-          >
-            <svg class="h-[18px] w-[18px]" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.8 8.001a2.2 2.2 0 00-1.55-1.56C18.2 6 12 6 12 6s-6.2 0-7.25.44A2.2 2.2 0 002.2 8v8a2.2 2.2 0 001.55 1.56C5.8 18 12 18 12 18s6.2 0 7.25-.44A2.2 2.2 0 0021.8 16V8zM10 15V9l5 3-5 3z"/></svg>
-          </a>
+        {% endif %}
+        {% if hasSocial %}
+        <div class="mt-6">
+          {% from "macros/social-links.njk" import socialLinks %}
+          {{ socialLinks(soc, "footer") }}
         </div>
+        {% endif %}
       </div>
     </div>
 

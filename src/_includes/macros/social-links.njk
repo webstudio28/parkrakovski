@@ -1,0 +1,34 @@
+{# Brand icons — fill via currentColor (footer: light; contacts: brand colors in CSS) #}
+{% macro socialIcon(name) %}
+  {% if name == "facebook" %}
+  <svg class="pk-social__svg" viewBox="0 0 320 512" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06H297V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"/></svg>
+  {% elif name == "instagram" %}
+  <svg class="pk-social__svg" viewBox="0 0 448 512" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.3 0-74.7-33.4-74.7-74.7s33.4-74.7 74.7-74.7 74.7 33.4 74.7 74.7-33.4 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.9-26.9 26.9s-26.9-12-26.9-26.9 12-26.9 26.9-26.9 26.9 12 26.9 26.9zM398.8 80c-20.8-20.8-48.5-32-77.9-32H127.1C63.5 48 12 99.5 12 163.1v193.8C12 420.5 63.5 472 127.1 472h193.8c63.6 0 115.1-51.5 115.1-115.1V163.1c0-29.4-11.2-57.1-32-77.9zM398 356.9c0 42.6-34.5 77.1-77.1 77.1H127.1c-42.6 0-77.1-34.5-77.1-77.1V163.1c0-42.6 34.5-77.1 77.1-77.1h193.8c42.6 0 77.1 34.5 77.1 77.1v193.8z"/></svg>
+  {% elif name == "youtube" %}
+  <svg class="pk-social__svg" viewBox="0 0 24 24" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+  {% endif %}
+{% endmacro %}
+
+{% macro socialLinks(social, variant) %}
+  {% set soc = social | default({}) %}
+  {% set hasSocial = soc.facebook | hasValue or soc.instagram | hasValue or soc.youtube | hasValue %}
+  {% if hasSocial %}
+  <div class="pk-social pk-social--{{ variant }}">
+    {% if soc.facebook | hasValue %}
+    <a href="{{ soc.facebook }}" class="pk-social__link pk-social__link--facebook" rel="noopener noreferrer" aria-label="Facebook">
+      {{ socialIcon("facebook") }}
+    </a>
+    {% endif %}
+    {% if soc.instagram | hasValue %}
+    <a href="{{ soc.instagram }}" class="pk-social__link pk-social__link--instagram" rel="noopener noreferrer" aria-label="Instagram">
+      {{ socialIcon("instagram") }}
+    </a>
+    {% endif %}
+    {% if soc.youtube | hasValue %}
+    <a href="{{ soc.youtube }}" class="pk-social__link pk-social__link--youtube" rel="noopener noreferrer" aria-label="YouTube">
+      {{ socialIcon("youtube") }}
+    </a>
+    {% endif %}
+  </div>
+  {% endif %}
+{% endmacro %}

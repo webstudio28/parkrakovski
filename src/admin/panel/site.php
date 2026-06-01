@@ -39,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
   $save = panel_save_json_file($path, $data, $sha, "chore(cms): update site footer");
   if ($save["ok"]) {
-    panel_flash_set("ok", "Настройките са записани.");
+    panel_flash_set("ok", panel_save_success_message());
     panel_redirect_with("./site.php");
   }
   panel_flash_set("err", $save["error"] ?? "Грешка.");

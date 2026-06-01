@@ -7,7 +7,7 @@ permalink: "/novini/{{ post.slug }}/"
 layout: inner.njk
 eleventyComputed:
   title: "{{ post.title }} — Ритеил парк Раковски"
-  description: "{{ post.excerpt | stripHtml }}"
+  description: "{{ post.excerpt | stripHtml | truncateChars(160) }}"
 ---
 
 <section class="relative pt-28 sm:pt-32 pb-16 sm:pb-24">

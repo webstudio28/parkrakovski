@@ -84,9 +84,10 @@ function panel_is_local_dev(): bool {
 }
 
 function panel_save_success_message(): string {
-  return panel_is_local_dev()
-    ? "Записано на диска. Презаредете сайта, за да видите промените."
-    : "Записано. GitHub Actions ще пусне деплой скоро.";
+  if (panel_is_local_dev()) {
+    return "Промените са запазени. Презаредете сайта, за да ги видите.";
+  }
+  return "Промените са запазени. Ще бъдат отразени до няколко минути";
 }
 
 function panel_save_button_label(): string {

@@ -1,0 +1,41 @@
+---
+permalink: /llms.txt
+eleventyExcludeFromCollections: true
+sitemap: false
+robots: noindex
+---
+# {{ site.brand.name }}
+
+> {{ site.brand.tagline }}
+
+Official website for Retail Park Rakovski — a retail park in Rakovski, Bulgaria with shops, services, parking, and dining.
+
+## Site
+
+- Canonical URL: {{ site.seo.siteUrl | stripTrailingSlash }}/
+- Language: Bulgarian (bg)
+- Address: {{ site.footer.address }}
+- Contact email: {{ site.footer.email }}
+
+## Main pages
+
+- Home: {{ site.seo.siteUrl | stripTrailingSlash }}/
+- Shops / partners: {{ site.seo.siteUrl | stripTrailingSlash }}/obekti/
+- About: {{ site.seo.siteUrl | stripTrailingSlash }}/za-nas/
+- News: {{ site.seo.siteUrl | stripTrailingSlash }}/novini/
+- Contact: {{ site.seo.siteUrl | stripTrailingSlash }}/kontakti/
+
+## Facts (public marketing)
+
+- 12+ retail units
+- 198+ parking spaces
+- ~8,400 sq.m. retail area (including Lidl)
+
+## Crawling
+
+- Sitemap: {{ site.seo.siteUrl | stripTrailingSlash }}/sitemap.xml
+- Admin CMS (`/admin/`) is not intended for indexing; disallow in robots.txt.
+
+## Optional
+
+- Full machine-readable page list: {{ site.seo.siteUrl | stripTrailingSlash }}/sitemap.xml

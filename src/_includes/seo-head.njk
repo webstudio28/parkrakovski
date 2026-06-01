@@ -1,0 +1,33 @@
+{% set metaTitle = title | default(site.seo.defaultTitle) %}
+{% set metaDescription = description | default(site.seo.defaultDescription) | stripHtml | truncateChars(160) %}
+{% set ogDescription = site.brand.tagline | default(site.seo.defaultDescription) %}
+{% set origin = site.seo.siteUrl | stripTrailingSlash %}
+{% set canonicalPath = page.url | url %}
+{% set canonicalUrl = origin + canonicalPath %}
+{% set robotsContent = robots | default("index, follow") %}
+{% set ogImagePath = home.about.image.src | default(site.seo.ogImage | default("/assets/images/home-about.png")) %}
+{% set ogImageUrl = ogImagePath | url | absoluteUrl(site.seo.siteUrl) %}
+{% set siteName = site.brand.name | default("Ритеил парк Раковски") %}
+{% set ogLocale = site.seo.locale | default("bg_BG") %}
+
+<title>{{ metaTitle }}</title>
+<meta name="description" content="{{ metaDescription }}" />
+<meta name="robots" content="{{ robotsContent }}" />
+<link rel="canonical" href="{{ canonicalUrl }}" />
+
+<meta property="og:type" content="{{ ogType | default('website') }}" />
+<meta property="og:site_name" content="{{ siteName }}" />
+<meta property="og:locale" content="{{ ogLocale }}" />
+<meta property="og:title" content="{{ metaTitle }}" />
+<meta property="og:description" content="{{ ogDescription }}" />
+<meta property="og:url" content="{{ canonicalUrl }}" />
+{% if ogImageUrl %}
+<meta property="og:image" content="{{ ogImageUrl }}" />
+{% endif %}
+
+<meta name="twitter:card" content="{{ site.seo.twitterCard | default('summary_large_image') }}" />
+<meta name="twitter:title" content="{{ metaTitle }}" />
+<meta name="twitter:description" content="{{ ogDescription }}" />
+{% if ogImageUrl %}
+<meta name="twitter:image" content="{{ ogImageUrl }}" />
+{% endif %}

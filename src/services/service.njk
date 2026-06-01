@@ -5,6 +5,8 @@ pagination:
   alias: service
 permalink: "/services/{{ service.slug }}/"
 layout: base.njk
+sitemap: false
+robots: "noindex, follow"
 eleventyComputed:
   title: "{{ service.title }}"
   description: "{{ service.summary | stripHtml }}"

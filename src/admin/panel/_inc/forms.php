@@ -170,7 +170,7 @@ function panel_field_shop_gallery(
   array $paths,
   string $uploadPrefix = "shop-gallery",
   string $title = "Галерия",
-  string $hint = "Каруселът на страницата на обекта. Ако е празно, се ползват снимките от промоциите."
+  string $hint = "Каруселът на страницата на обекта. Ако няма снимки, секцията не се показва."
 ): void {
   ?>
   <div class="pk-section">

@@ -93,7 +93,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
   $save = panel_save_json_file($path, ["items" => array_values($updated)], $sha, "chore(cms): update news " . $newSlug);
   if ($save["ok"]) {
-    panel_flash_set("ok", "Записано.");
+    panel_flash_set("ok", panel_save_success_message());
     panel_redirect_with("./news-edit.php", ["slug" => $newSlug]);
   }
   panel_flash_set("err", $save["error"] ?? "Грешка.");

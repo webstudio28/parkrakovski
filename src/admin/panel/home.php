@@ -56,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
   $save = panel_save_json_file($path, $data, $sha, "chore(cms): update home page");
   if ($save["ok"]) {
-    panel_flash_set("ok", "Началната страница е записана.");
+    panel_flash_set("ok", panel_save_success_message());
     panel_redirect_with("./home.php");
   }
   panel_flash_set("err", $save["error"] ?? "Грешка.");

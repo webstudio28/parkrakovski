@@ -6,8 +6,8 @@ pagination:
 permalink: "/obekti/{{ shop.slug }}/"
 layout: inner.njk
 eleventyComputed:
-  title: "{{ shop.title }} в Ритеил парк Раковски"
-  description: "{{ shop.description | stripHtml }}"
+  title: "{{ shop.title }} — Ритеил парк Раковски"
+  description: "{{ shop.description | stripHtml | truncateChars(160) }}"
 ---
 
 <section class="relative bg-white/80 pt-28 sm:pt-32 pb-20 sm:pb-28">
@@ -100,7 +100,9 @@ eleventyComputed:
             <svg class="h-5 w-5 text-brand-teal shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
             <span class="text-[10px] uppercase tracking-[0.25em] font-semibold text-slate-500">Местоположение</span>
           </div>
-          <p class="text-sm text-slate-700 leading-relaxed">Ритеил парк Раковски<br/>ул. Примерна 1, Раковски</p>
+          <p class="text-sm text-slate-700 leading-relaxed">
+            {{ site.brand.name | default('Ритеил парк Раковски') }}{% if site.footer.address | hasValue %}<br/>{{ site.footer.address }}{% endif %}
+          </p>
           <span class="absolute left-7 bottom-3 h-px w-0 bg-brand-yellow/80 transition-all duration-500 group-hover:w-12"></span>
         </div>
         {% if hourLines.length %}
@@ -207,7 +209,7 @@ eleventyComputed:
 </section>
 {% endif %}
 
-{% if (shop.images and shop.images.length) or (shop.promotions and shop.promotions.length) %}
+{% if shop.images and shop.images.length %}
 <section class="relative border-t border-slate-200/80 bg-white py-16 sm:py-24" aria-labelledby="shop-gallery-heading">
   <div class="mx-auto max-w-7xl px-4 sm:px-6">
     <div class="flex items-center gap-3">
@@ -260,8 +262,7 @@ eleventyComputed:
         aria-labelledby="shop-gallery-carousel-label"
         role="list"
       >
-        {% if shop.images and shop.images.length %}
-          {% for image in shop.images %}
+        {% for image in shop.images %}
           <article
             class="gallery-card gallery-card--interactive"
             role="listitem"
@@ -278,27 +279,7 @@ eleventyComputed:
               decoding="async"
             />
           </article>
-          {% endfor %}
-        {% else %}
-          {% for promo in shop.promotions %}
-          <article
-            class="gallery-card gallery-card--interactive"
-            role="listitem"
-            data-gallery-lightbox-trigger
-            data-gallery-lightbox-index="{{ loop.index0 }}"
-          >
-            <img
-              src="{{ promo.image | url }}"
-              alt="{{ promo.alt | default(shop.title) }}"
-              class="gallery-card__image"
-              data-gallery-lightbox-item
-              data-gallery-lightbox-index="{{ loop.index0 }}"
-              loading="lazy"
-              decoding="async"
-            />
-          </article>
-          {% endfor %}
-        {% endif %}
+        {% endfor %}
       </div>
     </div>
   </div>

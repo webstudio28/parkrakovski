@@ -12,17 +12,20 @@
     },
     "seo": {
         "siteUrl": "https://retailparkrakovski.com",
-        "defaultTitle": "Ритеил парк Раковски",
-        "defaultDescription": "Всичко от което се нуждаете, на едно място. Магазини, услуги и удобен паркинг в Раковски."
+        "defaultTitle": "Ритеил парк Раковски — магазини и паркинг на едно място",
+        "defaultDescription": "Всичко от което се нуждаете, на едно място. 12 обекта, 198 паркоместа и 8 400 кв.м. търговска площ в Раковски.",
+        "ogImage": "/assets/images/home-about.png",
+        "locale": "bg_BG",
+        "twitterCard": "summary_large_image"
     },
     "footer": {
-        "address": "ул. Примерна 1, Раковски, област Пловдив",
-        "phone": "+359 000 000 000",
-        "email": "info@retailparkrakovski.com",
+        "address": "ул. Петър Парчевич 21, 4150 Раковски",
+        "phone": "",
+        "email": "sfg@dsfg.com",
         "social": {
-            "facebook": "#",
-            "instagram": "#",
-            "youtube": "#"
+            "facebook": "",
+            "instagram": "",
+            "youtube": ""
         }
     },
     "nav": {

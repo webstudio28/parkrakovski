@@ -1,0 +1,6 @@
+# Ensure UTF-8 for plain text and XML (llms.txt, sitemap.xml, robots.txt)
+AddDefaultCharset UTF-8
+
+<IfModule mod_mime.c>
+  AddCharset UTF-8 .txt .xml
+</IfModule>

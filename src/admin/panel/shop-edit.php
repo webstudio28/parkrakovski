@@ -125,7 +125,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
   $save = panel_save_json_file($path, ["items" => array_values($updated)], $sha, "chore(cms): update shop " . $newSlug);
   if ($save["ok"]) {
-    panel_flash_set("ok", "Записано успешно.");
+    panel_flash_set("ok", panel_save_success_message());
     panel_redirect_with("./shop-edit.php", ["slug" => $newSlug]);
   }
   panel_flash_set("err", $save["error"] ?? "Грешка при запис.");

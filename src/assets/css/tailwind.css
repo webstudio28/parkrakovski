@@ -1018,5 +1018,78 @@
   .rich-content u {
     text-underline-offset: 0.15em;
   }
+
+  /* Social brand links (footer + contacts) */
+  .pk-social {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+  }
+
+  .pk-social__link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 9999px;
+    transition:
+      color 0.2s ease,
+      background-color 0.2s ease,
+      border-color 0.2s ease,
+      box-shadow 0.2s ease,
+      transform 0.2s ease;
+  }
+
+  .pk-social__link:hover {
+    transform: translateY(-1px);
+  }
+
+  .pk-social__svg {
+    width: 1.25rem;
+    height: 1.25rem;
+    display: block;
+  }
+
+  .pk-social--footer .pk-social__link {
+    border: 1px solid rgb(255 255 255 / 0.15);
+    background: rgb(255 255 255 / 0.04);
+    color: rgb(255 255 255 / 0.85);
+  }
+
+  .pk-social--footer .pk-social__link:hover {
+    border-color: rgb(181 150 29 / 0.5);
+    background: rgb(255 255 255 / 0.08);
+    color: #fff;
+  }
+
+  .pk-social--contacts {
+    justify-content: flex-start;
+  }
+
+  .pk-social--contacts .pk-social__link {
+    border: 1px solid rgb(226 232 240);
+    background: #fff;
+    box-shadow: 0 1px 2px rgb(15 23 42 / 0.06);
+  }
+
+  .pk-social--contacts .pk-social__link--facebook {
+    color: #1877f2;
+  }
+
+  .pk-social--contacts .pk-social__link--instagram {
+    color: #e4405f;
+  }
+
+  .pk-social--contacts .pk-social__link--youtube {
+    color: #ff0000;
+  }
+
+  .pk-social--contacts .pk-social__link:hover {
+    border-color: var(--color-brand-teal, #006484);
+    box-shadow: 0 4px 12px rgb(15 23 42 / 0.1);
+  }
 }
 

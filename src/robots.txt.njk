@@ -1,0 +1,12 @@
+---
+permalink: /robots.txt
+eleventyExcludeFromCollections: true
+sitemap: false
+robots: noindex
+---
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /admin
+
+Sitemap: {{ site.seo.siteUrl | stripTrailingSlash }}/sitemap.xml
