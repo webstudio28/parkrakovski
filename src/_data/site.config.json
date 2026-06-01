@@ -23,41 +23,13 @@
         "phone": "",
         "email": "",
         "hours": {
-            "mon": {
-                "open": "10:00",
-                "close": "19:00",
-                "closed": true
-            },
-            "tue": {
-                "open": "10:00",
-                "close": "19:00",
-                "closed": true
-            },
-            "wed": {
-                "open": "10:00",
-                "close": "19:00",
-                "closed": true
-            },
-            "thu": {
-                "open": "10:00",
-                "close": "19:00",
-                "closed": true
-            },
-            "fri": {
-                "open": "10:00",
-                "close": "19:00",
-                "closed": true
-            },
-            "sat": {
-                "open": "10:00",
-                "close": "19:00",
-                "closed": true
-            },
-            "sun": {
-                "open": "10:00",
-                "close": "19:00",
-                "closed": true
-            }
+            "mon": { "open": "10:00", "close": "19:00" },
+            "tue": { "open": "10:00", "close": "19:00" },
+            "wed": { "open": "10:00", "close": "19:00" },
+            "thu": { "open": "10:00", "close": "19:00" },
+            "fri": { "open": "10:00", "close": "19:00" },
+            "sat": { "open": "10:00", "close": "19:00" },
+            "sun": { "open": "10:00", "close": "19:00" }
         },
         "social": {
             "facebook": "",

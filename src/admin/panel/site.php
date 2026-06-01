@@ -37,6 +37,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     ],
   ];
   $data = array_replace_recursive($prev, $built);
+  // Hours must replace wholesale — recursive merge keeps stale per-day keys (e.g. closed: true).
+  $data["footer"]["hours"] = $built["footer"]["hours"];
 
   $save = panel_save_json_file($path, $data, $sha, "chore(cms): update site footer");
   if ($save["ok"]) {
