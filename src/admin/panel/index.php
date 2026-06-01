@@ -37,10 +37,6 @@ panel_page_open("Админ панел");
           <div class="pk-tile__title">Новини</div>
           <div class="pk-tile__meta">Статии и събития</div>
         </a>
-        <a class="pk-tile" href="./services.php">
-          <div class="pk-tile__title">Услуги</div>
-          <div class="pk-tile__meta">Текстови страници</div>
-        </a>
         <a class="pk-tile" href="./site.php">
           <div class="pk-tile__title">Настройки</div>
           <div class="pk-tile__meta">Марка, меню, футър, SEO</div>

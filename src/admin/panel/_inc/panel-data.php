@@ -8,7 +8,6 @@ function panel_file_key(string $key): string {
   $cfg = panel_config();
   $map = $cfg["files"] ?? [];
   $defaults = [
-    "services" => "src/_data/services.json",
     "site" => "src/_data/site.config.json",
     "shops" => "src/_data/shops.json",
     "news" => "src/_data/news.json",

@@ -34,7 +34,6 @@ function panel_demo_local_config(): array {
     "username" => "admin",
     "password_hash" => '$2b$12$Yz.oJ7uW6GGdJqGWJ1/ZXuGzbAn8S998XEq637i9DCL2B9GTMC3pi',
     "files" => [
-      "services" => "src/_data/services.json",
       "site" => "src/_data/site.config.json",
     ],
   ];

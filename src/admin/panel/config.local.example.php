@@ -10,7 +10,6 @@ return [
   "password_hash" => '$2b$12$Yz.oJ7uW6GGdJqGWJ1/ZXuGzbAn8S998XEq637i9DCL2B9GTMC3pi',
 
   "files" => [
-    "services" => "src/_data/services.json",
     "site" => "src/_data/site.config.json",
     "shops" => "src/_data/shops.json",
     "news" => "src/_data/news.json",
