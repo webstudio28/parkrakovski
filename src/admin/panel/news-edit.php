@@ -72,7 +72,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
   foreach ($items as $item) {
     if (($item["slug"] ?? "") === $newSlug && ($isNew || ($item["slug"] ?? "") !== $originalSlug)) {
-      panel_flash_set("err", "Вече съществува новина с този slug.");
+      panel_flash_set("err", "Вече съществува новина с това заглавие.");
       panel_redirect_with("./news-edit.php", $isNew ? [] : ["slug" => $originalSlug]);
     }
   }

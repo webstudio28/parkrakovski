@@ -17,9 +17,9 @@ panel_page_open("Админ панел");
           <h1 class="pk-title">Админ панел</h1>
           <p class="pk-sub">
             <?php if (panel_is_local_dev()): ?>
-              Локален режим — запис в <code>src/_data/</code> и <code>src/assets/images/uploads/</code>
+              Режим за разработка — промените се виждат след презареждане на сайта
             <?php else: ?>
-              Промените се изпращат към GitHub и се публикуват автоматично
+              Промените се публикуват автоматично до няколко минути след запазяване
             <?php endif; ?>
           </p>
         </div>

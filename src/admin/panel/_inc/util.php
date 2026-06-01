@@ -91,14 +91,67 @@ function panel_save_success_message(): string {
 }
 
 function panel_save_button_label(): string {
-  return panel_is_local_dev() ? "Запази на диска" : "Запази (към GitHub)";
+  return "Запази";
 }
 
 function panel_edit_hint(string $repoPath): string {
-  if (panel_is_local_dev()) {
-    return "Локален файл: " . $repoPath;
+  return "";
+}
+
+/**
+ * Strip technical/backend details from errors shown to editors.
+ */
+function panel_public_error(string $error, string $fallback = "Възникна грешка. Опитайте отново."): string {
+  $error = trim($error);
+  if ($error === "") {
+    return $fallback;
   }
-  return "Запис към GitHub: " . $repoPath;
+
+  if (
+    str_contains($error, "променено")
+    || str_contains($error, "Презаредете страницата")
+  ) {
+    return $error;
+  }
+
+  $lower = mb_strtolower($error);
+  $blocked = [
+    "github",
+    "git ",
+    "git-",
+    "curl",
+    "token",
+    "api error",
+    "api.",
+    "repo",
+    "commit",
+    "chore(",
+    "local-",
+    "file not found",
+    "could not",
+    "invalid json",
+    "src/_data",
+    "src/assets",
+    "on disk",
+    "since load",
+    " slug",
+    "slug.",
+  ];
+  foreach ($blocked as $needle) {
+    if (str_contains($lower, $needle)) {
+      return $fallback;
+    }
+  }
+
+  if (preg_match('/\bslug\b/i', $error)) {
+    return $fallback;
+  }
+
+  if (!preg_match('/[а-яА-ЯёЁ]/u', $error)) {
+    return $fallback;
+  }
+
+  return $error;
 }
 
 function panel_base_path(): string {

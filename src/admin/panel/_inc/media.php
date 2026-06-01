@@ -97,13 +97,13 @@ function panel_upload_image(array $file, string $prefix = "img"): array {
 
   if (panel_is_local_dev()) {
     if (file_put_contents($absPath, $bytes) === false) {
-      return ["ok" => false, "error" => "Неуспешен запис на диска."];
+      return ["ok" => false, "error" => "Грешка при качване. Опитайте отново."];
     }
     panel_mirror_upload_for_local_preview($repoPath, $bytes);
   } else {
     $put = gh_put_binary_file($repoPath, $bytes, "chore(cms): upload " . $name);
     if (!$put["ok"]) {
-      return ["ok" => false, "error" => $put["error"] ?? "Грешка при качване към GitHub."];
+      return ["ok" => false, "error" => panel_public_error((string)($put["error"] ?? ""), "Грешка при качване. Опитайте отново.")];
     }
   }
 
@@ -114,7 +114,7 @@ function panel_upload_image(array $file, string $prefix = "img"): array {
 function gh_put_binary_file(string $repoPath, string $bytes, string $message): array {
   [$owner, $repo, $branch] = gh_repo_info();
   if (!$owner || !$repo) {
-    return ["ok" => false, "error" => "GitHub не е конфигуриран."];
+    return ["ok" => false, "error" => "Грешка при качване. Опитайте отново."];
   }
 
   $existing = gh_api("GET", "/repos/$owner/$repo/contents/" . rawurlencode($repoPath) . "?ref=" . rawurlencode($branch));

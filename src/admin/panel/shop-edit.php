@@ -100,7 +100,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   foreach ($items as $item) {
     $slug = (string)($item["slug"] ?? "");
     if ($slug === $newSlug && ($isNew || $slug !== $originalSlug)) {
-      panel_flash_set("err", "Вече съществува обект с този slug.");
+      panel_flash_set("err", "Вече съществува обект с това име.");
       panel_redirect_with("./shop-edit.php", $isNew ? [] : ["slug" => $originalSlug]);
     }
   }

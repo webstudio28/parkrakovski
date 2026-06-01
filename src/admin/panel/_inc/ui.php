@@ -803,7 +803,11 @@ function panel_flash_render(): void {
     return;
   }
   $class = ($flash["type"] ?? "") === "ok" ? "pk-ok" : "pk-err";
-  echo '<div class="' . html($class) . '" role="status">' . html((string)($flash["message"] ?? "")) . '</div>';
+  $message = (string)($flash["message"] ?? "");
+  if (($flash["type"] ?? "") !== "ok") {
+    $message = panel_public_error($message);
+  }
+  echo '<div class="' . html($class) . '" role="status">' . html($message) . '</div>';
 }
 
 function panel_page_open(string $title): void {

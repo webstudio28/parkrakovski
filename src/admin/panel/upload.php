@@ -25,6 +25,9 @@ if (empty($_FILES["file"])) {
 
 $prefix = panel_post_string("prefix", "upload");
 $result = panel_upload_image($_FILES["file"], $prefix);
+if (!$result["ok"] && isset($result["error"])) {
+  $result["error"] = panel_public_error((string)$result["error"], "Грешка при качване. Опитайте отново.");
+}
 
 http_response_code($result["ok"] ? 200 : 400);
 echo json_encode($result, JSON_UNESCAPED_UNICODE);

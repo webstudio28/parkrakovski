@@ -8,7 +8,7 @@ function gh_api(string $method, string $path, ?array $body = null): array {
   $cfg = panel_config();
   $token = $cfg["github"]["token"] ?? "";
   if (!$token) {
-    return ["ok" => false, "status" => 500, "error" => "GitHub token missing in panel config."];
+    return ["ok" => false, "status" => 500, "error" => "panel_not_configured"];
   }
 
   $url = "https://api.github.com" . $path;
@@ -38,11 +38,11 @@ function gh_api(string $method, string $path, ?array $body = null): array {
 
   $json = json_decode($raw, true);
   if ($json === null && json_last_error() !== JSON_ERROR_NONE) {
-    return ["ok" => false, "status" => $status, "error" => "Invalid JSON from GitHub."];
+    return ["ok" => false, "status" => $status, "error" => "panel_remote_invalid"];
   }
 
   if ($status >= 400) {
-    $msg = is_array($json) ? ($json["message"] ?? "GitHub API error") : "GitHub API error";
+    $msg = is_array($json) ? ($json["message"] ?? "panel_remote_error") : "panel_remote_error";
     return ["ok" => false, "status" => $status, "error" => $msg, "details" => $json];
   }
 
@@ -91,7 +91,7 @@ function gh_get_file(string $repoPath): array {
 
   [$owner, $repo, $branch] = gh_repo_info();
   if (!$owner || !$repo) {
-    return ["ok" => false, "error" => "GitHub repo not configured."];
+    return ["ok" => false, "error" => "panel_not_configured"];
   }
   $p = rawurlencode($repoPath);
   return gh_api("GET", "/repos/$owner/$repo/contents/$p?ref=" . rawurlencode($branch));
@@ -107,7 +107,7 @@ function gh_update_file(string $repoPath, string $contentUtf8, string $sha, stri
     if (is_file($full) && panel_local_file_sha($full) !== $sha) {
       return [
         "ok" => false,
-        "error" => "File changed on disk since load. Reload the page and try again.",
+        "error" => "Съдържанието е променено. Презаредете страницата и опитайте отново.",
       ];
     }
     if (file_put_contents($full, $contentUtf8) === false) {
