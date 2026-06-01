@@ -3,12 +3,13 @@
 declare(strict_types=1);
 
 require_once __DIR__ . "/rich-text.php";
+require_once __DIR__ . "/shop-hours.php";
 
-function panel_field_text(string $label, string $name, string $value = "", string $type = "text", string $hint = ""): void {
+function panel_field_text(string $label, string $name, string $value = "", string $type = "text", string $hint = "", string $extraAttrs = ""): void {
   ?>
   <div class="pk-field">
     <label class="pk-label" for="<?php echo html($name); ?>"><?php echo html($label); ?></label>
-    <input class="pk-input" id="<?php echo html($name); ?>" name="<?php echo html($name); ?>" type="<?php echo html($type); ?>" value="<?php echo html($value); ?>" />
+    <input class="pk-input" id="<?php echo html($name); ?>" name="<?php echo html($name); ?>" type="<?php echo html($type); ?>" value="<?php echo html($value); ?>" <?php echo $extraAttrs; ?> />
     <?php if ($hint): ?><p class="pk-hint"><?php echo html($hint); ?></p><?php endif; ?>
   </div>
   <?php
@@ -70,6 +71,8 @@ function panel_field_rich_text(string $label, string $name, string $value = "", 
 function panel_field_media(string $label, string $name, string $value, string $uploadPrefix, bool $portrait = true): void {
   $previewClass = $portrait ? "pk-media__preview" : "pk-media__preview pk-media__preview--wide";
   $hidden = $value === "";
+  $hasImage = $value !== "";
+  $btnLabel = $hasImage ? "Смени снимка" : "Качи снимка";
   ?>
   <div class="pk-field">
     <span class="pk-label"><?php echo html($label); ?></span>
@@ -78,24 +81,105 @@ function panel_field_media(string $label, string $name, string $value, string $u
       <input type="hidden" name="<?php echo html($name); ?>" data-pk-media-path value="<?php echo html($value); ?>" />
       <div class="pk-media__row">
         <label class="pk-btn pk-btn--ghost pk-btn--sm pk-file">
-          Качи снимка
+          <span data-pk-upload-btn-text><?php echo html($btnLabel); ?></span>
           <input type="file" accept="image/*" data-pk-upload="<?php echo html($uploadPrefix); ?>" hidden />
         </label>
-        <span class="pk-media__path" data-pk-upload-status><?php echo $value ? html($value) : "Няма избрана снимка"; ?></span>
+        <span class="pk-media__path" data-pk-upload-status <?php echo $hasImage ? "hidden" : ""; ?>><?php echo $hasImage ? "" : "Няма избрана снимка"; ?></span>
       </div>
     </div>
   </div>
   <?php
 }
 
-function panel_gallery_repeater_item(int $index, string $path = ""): void {
+/**
+ * @param array<string, array{closed: bool, open: string, close: string}> $schedule
+ */
+function panel_field_shop_hours(array $schedule): void {
+  $labels = panel_shop_day_labels();
   ?>
-  <div class="pk-repeater-item" data-pk-repeater-item>
-    <div class="pk-repeater-item__head">
-      <strong>Снимка <?php echo (int)$index + 1; ?></strong>
-      <button type="button" class="pk-btn pk-btn--ghost pk-btn--sm pk-btn--danger" data-pk-remove-repeater>Изтрий</button>
+  <div class="pk-hours" data-pk-hours>
+    <p class="pk-hint" style="margin:0 0 1rem;">Задайте начало и край за всеки ден или маркирайте „Затворено“.</p>
+    <?php foreach ($labels as $key => $label): ?>
+      <?php
+      $day = $schedule[$key] ?? ["closed" => false, "open" => "", "close" => ""];
+      $closed = !empty($day["closed"]);
+      $open = (string)($day["open"] ?? "");
+      $close = (string)($day["close"] ?? "");
+      ?>
+      <div class="pk-hours__row" data-pk-hours-row>
+        <span class="pk-hours__day"><?php echo html($label); ?></span>
+        <label class="pk-hours__closed">
+          <input type="checkbox" name="hours_closed[<?php echo html($key); ?>]" value="1" data-pk-hours-closed <?php echo $closed ? "checked" : ""; ?> />
+          Затворено
+        </label>
+        <div class="pk-hours__times" data-pk-hours-times>
+          <input
+            class="pk-hours__time"
+            type="time"
+            name="hours_open[<?php echo html($key); ?>]"
+            value="<?php echo html($open); ?>"
+            <?php echo $closed ? "disabled" : ""; ?>
+          />
+          <span class="pk-hours__sep" aria-hidden="true">–</span>
+          <input
+            class="pk-hours__time"
+            type="time"
+            name="hours_close[<?php echo html($key); ?>]"
+            value="<?php echo html($close); ?>"
+            <?php echo $closed ? "disabled" : ""; ?>
+          />
+        </div>
+      </div>
+    <?php endforeach; ?>
+  </div>
+  <?php
+}
+
+function panel_gallery_thumb_item(string $path = ""): void {
+  ?>
+  <div class="pk-gallery__item" data-pk-gallery-item>
+    <button type="button" class="pk-gallery__remove" data-pk-gallery-remove aria-label="Премахни снимка">&times;</button>
+    <img
+      class="pk-gallery__thumb"
+      src="<?php echo $path !== "" ? html($path) : ""; ?>"
+      alt=""
+      loading="lazy"
+      decoding="async"
+      <?php echo $path === "" ? "hidden" : ""; ?>
+    />
+    <input type="hidden" name="gallery_image[]" value="<?php echo html($path); ?>" />
+  </div>
+  <?php
+}
+
+/** @param list<string> $paths */
+function panel_field_shop_gallery(array $paths): void {
+  ?>
+  <div class="pk-section">
+    <div class="pk-gallery" data-pk-gallery>
+      <div class="pk-repeater-item__head">
+        <h2 class="pk-section__title" style="margin:0;">Галерия</h2>
+        <button type="button" class="pk-btn pk-btn--ghost pk-btn--sm" data-pk-gallery-add>+ Добави снимки</button>
+      </div>
+      <p class="pk-hint" style="margin:0 0 1rem;">Каруселът на страницата на обекта. Ако е празно, се ползват снимките от промоциите.</p>
+      <input
+        type="file"
+        accept="image/*"
+        multiple
+        hidden
+        data-pk-gallery-input
+        data-pk-upload-prefix="shop-gallery"
+      />
+      <div class="pk-gallery__grid" data-pk-gallery-grid>
+        <?php foreach ($paths as $path): ?>
+          <?php panel_gallery_thumb_item($path); ?>
+        <?php endforeach; ?>
+      </div>
+      <p class="pk-gallery__empty" data-pk-gallery-empty <?php echo $paths === [] ? "" : "hidden"; ?>>Все още няма снимки в галерията.</p>
+      <template data-pk-gallery-item-template>
+        <?php panel_gallery_thumb_item(""); ?>
+      </template>
     </div>
-    <?php panel_field_media("Галерия", "gallery_image[]", $path, "shop-gallery", true); ?>
   </div>
   <?php
 }

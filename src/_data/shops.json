@@ -9,13 +9,55 @@
             "logo": "/assets/images/partners/Lidl/logo.webp",
             "image": "/assets/images/partners/Lidl/lidl1.webp",
             "description": "Lidl е водещата дискаунт верига в Европа, предлагаща широка гама от хранителни и нехранителни стоки на изключително конкурентни цени. В нашия комплекс ще намерите пресни продукти, качествени деликатеси и всичко необходимо за вашия дом.",
-            "hours": "Пон–Съб: 07:30–22:00 | Нед: 08:00–21:00",
-            "phone": "",
+            "hours": {
+                "mon": {
+                    "open": "07:30",
+                    "close": "22:00"
+                },
+                "tue": {
+                    "closed": true
+                },
+                "wed": {
+                    "closed": true
+                },
+                "thu": {
+                    "closed": true
+                },
+                "fri": {
+                    "closed": true
+                },
+                "sat": {
+                    "closed": true
+                },
+                "sun": {
+                    "open": "08:00",
+                    "close": "21:00"
+                }
+            },
+            "phone": "wergergttrg",
             "promotions": [
                 {
-                    "image": "/assets/images/uploads/promo-20260520-142145-22fb4f9a.png",
+                    "image": "/assets/images/uploads/promo-20260601-082325-01607cad.jpg",
                     "alt": "Промоция Lidl — седмична брошура",
-                    "description": "a"
+                    "description": "tova e opisanie za promociq"
+                }
+            ],
+            "images": [
+                {
+                    "src": "/assets/images/uploads/shop-gallery-20260601-090254-25f663c5.jpg",
+                    "alt": "Lidl — Ритеил парк Раковски — ei1v"
+                },
+                {
+                    "src": "/assets/images/uploads/shop-gallery-20260601-090254-408c0a56.jpg",
+                    "alt": "Lidl — Ритеил парк Раковски — zwbm"
+                },
+                {
+                    "src": "/assets/images/uploads/shop-gallery-20260601-090633-d25ec432.png",
+                    "alt": "Lidl — Ритеил парк Раковски — 5le4"
+                },
+                {
+                    "src": "/assets/images/uploads/shop-gallery-20260601-090633-0a649313.png",
+                    "alt": "Lidl — Ритеил парк Раковски — he4d"
                 }
             ]
         },
@@ -28,8 +70,34 @@
             "logo": "/assets/images/partners/Zora/logo.jpg",
             "image": "/assets/images/partners/Zora/zora1.webp",
             "description": "ЗОРА е утвърдена верига за малка домакинска техника, електроника и потребителска електроника. Открийте широк асортимент от телевизори, смартфони, домакински уреди и аксесоари на изгодни цени.",
-            "hours": "Пон–Съб: 09:00–20:00 | Нед: 10:00–19:00",
-            "phone": "",
+            "hours": {
+                "mon": {
+                    "open": "09:00",
+                    "close": "20:00"
+                },
+                "tue": {
+                    "open": "09:00",
+                    "close": "09:00"
+                },
+                "wed": {
+                    "open": "09:30",
+                    "close": "23:00"
+                },
+                "thu": {
+                    "closed": true
+                },
+                "fri": {
+                    "closed": true
+                },
+                "sat": {
+                    "closed": true
+                },
+                "sun": {
+                    "open": "10:00",
+                    "close": "19:00"
+                }
+            },
+            "phone": "4235436546",
             "promotions": [
                 {
                     "image": "/assets/images/news/news2.webp",
@@ -41,7 +109,8 @@
                     "alt": "Промоция ЗОРА — TV и звук",
                     "description": "Избрани телевизори и аудио системи с отстъпка и опция за"
                 }
-            ]
+            ],
+            "images": []
         },
         {
             "slug": "lilly",

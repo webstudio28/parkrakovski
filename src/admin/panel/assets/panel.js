@@ -56,6 +56,12 @@
       form._pkSnapshot = serializeForm(form);
       updateDirtyState(form);
 
+      form.addEventListener("submit", function () {
+        qsa("input[type=time][disabled]", form).forEach(function (el) {
+          el.disabled = false;
+        });
+      });
+
       form.addEventListener("input", function (e) {
         if (e.target.matches("[data-pk-rich-source]")) return;
         updateDirtyState(form);
@@ -69,6 +75,170 @@
   function markDirtyFromEvent(e) {
     var form = e.target && e.target.closest ? e.target.closest("form[data-pk-dirty-form]") : null;
     if (form) updateDirtyState(form);
+  }
+
+  function updateGalleryEmpty(gallery) {
+    var grid = qs("[data-pk-gallery-grid]", gallery);
+    var empty = qs("[data-pk-gallery-empty]", gallery);
+    if (!empty) return;
+    var count = grid ? qsa("[data-pk-gallery-item]", grid).length : 0;
+    empty.hidden = count > 0;
+  }
+
+  function galleryTemplate(gallery) {
+    return (
+      qs("[data-pk-gallery-item-template]", gallery) ||
+      (gallery.parentElement ? qs("[data-pk-gallery-item-template]", gallery.parentElement) : null)
+    );
+  }
+
+  function createGalleryItem(gallery, path, previewUrl) {
+    var tpl = galleryTemplate(gallery);
+    var grid = qs("[data-pk-gallery-grid]", gallery);
+    if (!tpl || !grid) return null;
+
+    var wrap = document.createElement("div");
+    wrap.innerHTML = tpl.innerHTML.trim();
+    var item = wrap.firstElementChild;
+    if (!item) return null;
+
+    var img = qs(".pk-gallery__thumb", item);
+    var input = qs('input[name="gallery_image[]"]', item);
+    if (img) {
+      var src = previewUrl || path;
+      if (src) {
+        img.src = src;
+        img.hidden = false;
+      } else {
+        img.removeAttribute("src");
+        img.hidden = true;
+      }
+    }
+    if (input) input.value = path;
+    grid.appendChild(item);
+    updateGalleryEmpty(gallery);
+    return item;
+  }
+
+  function revokeGalleryPreview(item) {
+    if (!item || !item._pkPreviewUrl) return;
+    URL.revokeObjectURL(item._pkPreviewUrl);
+    item._pkPreviewUrl = null;
+  }
+
+  function applyGalleryUploadPath(item, path) {
+    if (!item) return;
+    var img = qs(".pk-gallery__thumb", item);
+    var input = qs('input[name="gallery_image[]"]', item);
+    if (input) input.value = path;
+    if (!img) {
+      item.classList.remove("pk-gallery__item--loading");
+      return;
+    }
+
+    var probe = new Image();
+    probe.onload = function () {
+      revokeGalleryPreview(item);
+      img.src = path;
+      img.hidden = false;
+      item.classList.remove("pk-gallery__item--loading");
+    };
+    probe.onerror = function () {
+      if (item._pkPreviewUrl) {
+        img.src = item._pkPreviewUrl;
+        img.hidden = false;
+      }
+      item.classList.remove("pk-gallery__item--loading");
+    };
+    probe.src = path;
+  }
+
+  function applyMediaUploadPath(wrap, path) {
+    var pathInput = qs("[data-pk-media-path]", wrap);
+    var preview = qs("[data-pk-media-preview]", wrap);
+    var btnText = qs("[data-pk-upload-btn-text]", wrap);
+    var status = qs("[data-pk-upload-status]", wrap);
+    if (pathInput) pathInput.value = path;
+    if (btnText) btnText.textContent = "Смени снимка";
+    if (status) status.hidden = true;
+    if (!preview) return;
+
+    var probe = new Image();
+    probe.onload = function () {
+      revokeGalleryPreview(wrap);
+      preview.src = path;
+      preview.hidden = false;
+    };
+    probe.onerror = function () {
+      if (wrap._pkPreviewUrl) {
+        preview.src = wrap._pkPreviewUrl;
+        preview.hidden = false;
+      }
+    };
+    probe.src = path;
+  }
+
+  function initShopGalleries() {
+    qsa("[data-pk-gallery]").forEach(function (gallery) {
+      var addBtn = qs("[data-pk-gallery-add]", gallery);
+      var fileInput = qs("[data-pk-gallery-input]", gallery);
+      if (!addBtn || !fileInput) return;
+
+      addBtn.addEventListener("click", function () {
+        fileInput.click();
+      });
+
+      fileInput.addEventListener("change", function () {
+        var files = fileInput.files ? Array.prototype.slice.call(fileInput.files) : [];
+        fileInput.value = "";
+        if (!files.length) return;
+
+        var prefix = fileInput.getAttribute("data-pk-upload-prefix") || "shop-gallery";
+
+        files.forEach(function (file) {
+          var previewUrl = URL.createObjectURL(file);
+          var item = createGalleryItem(gallery, "", previewUrl);
+          if (item) {
+            item._pkPreviewUrl = previewUrl;
+            item.classList.add("pk-gallery__item--loading");
+          } else {
+            URL.revokeObjectURL(previewUrl);
+          }
+
+          uploadFile(file, prefix, function (res) {
+            if (!res.ok) {
+              if (item) {
+                revokeGalleryPreview(item);
+                item.remove();
+              }
+              updateGalleryEmpty(gallery);
+              return;
+            }
+            if (!item) {
+              item = createGalleryItem(gallery, res.path);
+              if (item) item.classList.remove("pk-gallery__item--loading");
+            } else {
+              applyGalleryUploadPath(item, res.path);
+            }
+            markDirtyFromEvent({ target: item || gallery });
+          });
+        });
+      });
+
+      gallery.addEventListener("click", function (e) {
+        var removeBtn = e.target.closest("[data-pk-gallery-remove]");
+        if (!removeBtn) return;
+        var item = removeBtn.closest("[data-pk-gallery-item]");
+        if (item) {
+          revokeGalleryPreview(item);
+          item.remove();
+          updateGalleryEmpty(gallery);
+          markDirtyFromEvent(e);
+        }
+      });
+
+      updateGalleryEmpty(gallery);
+    });
   }
 
   function uploadFile(file, prefix, onDone) {
@@ -99,26 +269,34 @@
     var wrap = input.closest("[data-pk-media]");
     if (!wrap) return;
 
-    var pathInput = qs("[data-pk-media-path]", wrap);
-    var preview = qs("[data-pk-media-preview]", wrap);
     var prefix = input.getAttribute("data-pk-upload") || "upload";
     var status = qs("[data-pk-upload-status]", wrap);
+    var preview = qs("[data-pk-media-preview]", wrap);
+    var previewUrl = URL.createObjectURL(file);
+    wrap._pkPreviewUrl = previewUrl;
+    if (preview) {
+      preview.src = previewUrl;
+      preview.hidden = false;
+    }
 
-    if (status) status.textContent = "Качване…";
+    if (status) {
+      status.hidden = false;
+      status.textContent = "Качване…";
+    }
 
     uploadFile(file, prefix, function (res) {
+      input.value = "";
       if (!res.ok) {
-        if (status) status.textContent = res.error || "Грешка.";
+        revokeGalleryPreview(wrap);
+        if (status) {
+          status.hidden = false;
+          status.textContent = res.error || "Грешка.";
+        }
         return;
       }
-      if (pathInput) pathInput.value = res.path;
-      if (preview) {
-        preview.src = res.path;
-        preview.hidden = false;
-      }
-      if (status) status.textContent = res.path;
-      input.value = "";
-      markDirtyFromEvent({ target: pathInput || wrap });
+      if (status) status.hidden = true;
+      applyMediaUploadPath(wrap, res.path);
+      markDirtyFromEvent({ target: wrap });
     });
   });
 
@@ -166,9 +344,33 @@
     });
   }
 
+  function initHoursRows() {
+    qsa("[data-pk-hours-row]").forEach(function (row) {
+      var closed = qs("[data-pk-hours-closed]", row);
+      var times = qs("[data-pk-hours-times]", row);
+      if (!closed || !times) return;
+      function sync() {
+        var off = closed.checked;
+        qsa("input[type=time]", times).forEach(function (input) {
+          input.disabled = off;
+          if (off) input.value = "";
+        });
+        markDirtyFromEvent({ target: closed });
+      }
+      closed.addEventListener("change", sync);
+      sync();
+    });
+  }
+
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", initDirtyForms);
+    document.addEventListener("DOMContentLoaded", function () {
+      initDirtyForms();
+      initHoursRows();
+      initShopGalleries();
+    });
   } else {
     initDirtyForms();
+    initHoursRows();
+    initShopGalleries();
   }
 })();

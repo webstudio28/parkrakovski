@@ -20,6 +20,32 @@ function panel_uploads_abs_dir(): string {
   return panel_local_file_path(panel_uploads_repo_dir());
 }
 
+/** Eleventy output folder (PHP dev server document root). */
+function panel_site_output_dir(): string {
+  $cfg = panel_config();
+  $dir = (string)($cfg["site_output_dir"] ?? "_site");
+  return rtrim(str_replace("\\", "/", $dir), "/");
+}
+
+/** Copy upload into _site so previews work on the PHP dev server (127.0.0.1:8081). */
+function panel_mirror_upload_for_local_preview(string $repoPath, string $bytes): void {
+  if (!panel_is_local_dev()) {
+    return;
+  }
+  $name = basename(str_replace("\\", "/", $repoPath));
+  if ($name === "" || $name === "." || $name === "..") {
+    return;
+  }
+  $urlRel = ltrim(panel_uploads_url_prefix(), "/") . "/" . $name;
+  $siteRepoPath = panel_site_output_dir() . "/" . $urlRel;
+  $absPath = panel_local_file_path($siteRepoPath);
+  $dir = dirname($absPath);
+  if (!is_dir($dir) && !mkdir($dir, 0775, true) && !is_dir($dir)) {
+    return;
+  }
+  file_put_contents($absPath, $bytes);
+}
+
 function panel_allowed_upload_mimes(): array {
   return [
     "image/jpeg" => "jpg",
@@ -73,6 +99,7 @@ function panel_upload_image(array $file, string $prefix = "img"): array {
     if (file_put_contents($absPath, $bytes) === false) {
       return ["ok" => false, "error" => "Неуспешен запис на диска."];
     }
+    panel_mirror_upload_for_local_preview($repoPath, $bytes);
   } else {
     $put = gh_put_binary_file($repoPath, $bytes, "chore(cms): upload " . $name);
     if (!$put["ok"]) {

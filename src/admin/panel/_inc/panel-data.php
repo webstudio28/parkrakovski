@@ -70,6 +70,79 @@ function panel_post_bool(string $key): bool {
   return !empty($_POST[$key]);
 }
 
+function panel_site_brand_name(): string {
+  static $cached = null;
+  if ($cached !== null) {
+    return $cached;
+  }
+  $cached = "Ритеил парк Раковски";
+  $path = panel_file_key("site");
+  $loaded = panel_load_json_file($path);
+  if ($loaded["ok"]) {
+    $name = trim((string)($loaded["data"]["brand"]["name"] ?? ""));
+    if ($name !== "") {
+      $cached = $name;
+    }
+  }
+  return $cached;
+}
+
+/** @param string|array{src?: string, url?: string, alt?: string}|scalar|null $img */
+function panel_gallery_image_path($img): string {
+  if (is_string($img)) {
+    return trim($img);
+  }
+  if (is_array($img)) {
+    return trim((string)($img["src"] ?? $img["url"] ?? ""));
+  }
+  return "";
+}
+
+function panel_gallery_random_suffix(): string {
+  $chars = "abcdefghijklmnopqrstuvwxyz0123456789";
+  $out = "";
+  for ($i = 0; $i < 4; $i++) {
+    $out .= $chars[random_int(0, strlen($chars) - 1)];
+  }
+  return $out;
+}
+
+function panel_gallery_alt_text(string $partnerName, string $siteName): string {
+  return trim($partnerName) . " — " . trim($siteName) . " — " . panel_gallery_random_suffix();
+}
+
+/**
+ * @param list<string> $paths
+ * @param list<string|array{src?: string, alt?: string}> $existingImages
+ * @return list<array{src: string, alt: string}>
+ */
+function panel_gallery_normalize_for_storage(array $paths, array $existingImages, string $partnerTitle): array {
+  $siteName = panel_site_brand_name();
+  $altByPath = [];
+  foreach ($existingImages as $img) {
+    $path = panel_gallery_image_path($img);
+    if ($path === "") {
+      continue;
+    }
+    if (is_array($img) && trim((string)($img["alt"] ?? "")) !== "") {
+      $altByPath[$path] = trim((string)$img["alt"]);
+    }
+  }
+
+  $out = [];
+  foreach ($paths as $path) {
+    $path = trim($path);
+    if ($path === "") {
+      continue;
+    }
+    $out[] = [
+      "src" => $path,
+      "alt" => $altByPath[$path] ?? panel_gallery_alt_text($partnerTitle, $siteName),
+    ];
+  }
+  return $out;
+}
+
 /** Non-empty trimmed paths from a POST array field (e.g. gallery_image[]). */
 function panel_post_path_list(string $key): array {
   $raw = $_POST[$key] ?? [];

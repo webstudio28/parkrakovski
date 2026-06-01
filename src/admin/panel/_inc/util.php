@@ -112,7 +112,7 @@ function panel_base_path(): string {
 function panel_url(string $path, array $query = []): string {
   $base = panel_base_path();
   $path = str_replace("\\", "/", $path);
-  if (str_starts_with($path, "./")) {
+  if (strncmp($path, "./", 2) === 0) {
     $path = substr($path, 2);
   }
   $path = ltrim($path, "/");

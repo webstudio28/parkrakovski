@@ -15,6 +15,9 @@ module.exports = function (eleventyConfig) {
     String(value ?? "").replace(/<[^>]*>/g, "").replace(/\s+/g, " ").trim(),
   );
 
+  const { formatShopHours } = require("./src/_data/filters/shop-hours.js");
+  eleventyConfig.addFilter("formatShopHours", formatShopHours);
+
   // Dev server: smoother live reload + small typing debounce so
   // saving partial/malformed JSON doesn't immediately crash the build
   eleventyConfig.setServerOptions({

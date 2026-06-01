@@ -7,6 +7,7 @@ require_once __DIR__ . "/_inc/ui.php";
 require_once __DIR__ . "/_inc/panel-data.php";
 require_once __DIR__ . "/_inc/forms.php";
 require_once __DIR__ . "/_inc/rich-text.php";
+require_once __DIR__ . "/_inc/shop-hours.php";
 
 require_login();
 
@@ -25,7 +26,6 @@ $shop = [
   "slug" => "",
   "title" => "",
   "category" => "",
-  "color" => "#006484",
   "url" => "",
   "logo" => "",
   "image" => "",
@@ -51,7 +51,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   verify_csrf($_POST["csrf"] ?? null);
 
   $originalSlug = panel_post_string("original_slug");
-  $newSlug = panel_slugify(panel_post_string("slug") ?: panel_post_string("title"));
+  $newSlug = panel_slugify(panel_post_string("title"));
+  if ($newSlug === "item" && $originalSlug !== "") {
+    $newSlug = $originalSlug;
+  }
   $promotions = [];
   $images = $_POST["promo_image"] ?? [];
   $alts = $_POST["promo_alt"] ?? [];
@@ -71,19 +74,24 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
   }
 
-  $galleryImages = panel_post_path_list("gallery_image");
+  $galleryPaths = panel_post_path_list("gallery_image");
   $existing = $isNew ? [] : panel_find_item_by_slug($items, $originalSlug);
+  $existingImages = is_array($existing["images"] ?? null) ? $existing["images"] : [];
+  $galleryImages = panel_gallery_normalize_for_storage(
+    $galleryPaths,
+    $existingImages,
+    panel_post_string("title")
+  );
 
   $formEntry = [
     "slug" => $newSlug,
     "title" => panel_post_string("title"),
     "category" => panel_post_string("category"),
-    "color" => panel_post_string("color", "#006484"),
     "url" => panel_post_string("url"),
     "logo" => panel_post_string("logo"),
     "image" => panel_post_string("image"),
     "description" => panel_post_rich_html("description"),
-    "hours" => panel_post_string("hours"),
+    "hours" => panel_shop_hours_for_storage(panel_post_shop_hours()),
     "phone" => panel_post_string("phone"),
     "promotions" => $promotions,
     "images" => $galleryImages,
@@ -128,22 +136,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 }
 
 $promotions = is_array($shop["promotions"] ?? null) ? $shop["promotions"] : [];
-$galleryImages = [];
+$galleryPaths = [];
 if (is_array($shop["images"] ?? null)) {
   foreach ($shop["images"] as $img) {
-    if (is_string($img)) {
-      $path = trim($img);
-    } elseif (is_array($img)) {
-      $path = trim((string)($img["src"] ?? $img["url"] ?? ""));
-    } else {
-      $path = "";
-    }
-    if ($path !== "") {
-      $galleryImages[] = $path;
+    $imgPath = panel_gallery_image_path($img);
+    if ($imgPath !== "") {
+      $galleryPaths[] = $imgPath;
     }
   }
 }
 $pageTitle = $isNew ? "Нов обект" : "Редакция: " . (string)($shop["title"] ?? "");
+$hoursSchedule = panel_shop_hours_normalize($shop["hours"] ?? null);
 
 panel_page_open($pageTitle . " — админ панел");
 ?>
@@ -171,35 +174,26 @@ panel_page_open($pageTitle . " — админ панел");
           <div class="pk-grid-2">
             <?php panel_field_text("Име", "title", (string)($shop["title"] ?? "")); ?>
             <?php panel_field_text("Категория", "category", (string)($shop["category"] ?? "")); ?>
-            <?php panel_field_text("Slug (URL)", "slug", (string)($shop["slug"] ?? ""), "text", "Латиница и тирета, напр. t-market"); ?>
-            <?php panel_field_text("Цвят", "color", (string)($shop["color"] ?? "#006484"), "text", "#006484"); ?>
             <?php panel_field_text("Уебсайт", "url", (string)($shop["url"] ?? ""), "url"); ?>
-            <?php panel_field_text("Телефон", "phone", (string)($shop["phone"] ?? "")); ?>
+            <?php panel_field_text("Телефон", "phone", (string)($shop["phone"] ?? ""), "tel", "Показва се на страницата на обекта"); ?>
           </div>
-          <?php panel_field_textarea("Работно време", "hours", (string)($shop["hours"] ?? ""), 2); ?>
           <?php panel_field_rich_text("Описание", "description", (string)($shop["description"] ?? ""), 5); ?>
         </div>
 
         <div class="pk-section">
-          <h2 class="pk-section__title">Снимки</h2>
+          <h2 class="pk-section__title">Работно време</h2>
+          <?php panel_field_shop_hours($hoursSchedule); ?>
+        </div>
+
+        <div class="pk-section">
+          <h2 class="pk-section__title">Лого и основна снимка</h2>
           <div class="pk-grid-2">
             <?php panel_field_media("Лого", "logo", (string)($shop["logo"] ?? ""), "shop-logo", false); ?>
             <?php panel_field_media("Основна снимка (страница)", "image", (string)($shop["image"] ?? ""), "shop-hero", true); ?>
           </div>
         </div>
 
-        <div class="pk-section">
-          <div class="pk-repeater-item__head">
-            <h2 class="pk-section__title" style="margin:0;">Галерия (снимки на страницата)</h2>
-            <button type="button" class="pk-btn pk-btn--ghost pk-btn--sm" data-pk-add-repeater data-target-list="#gallery-list" data-target-template="#gallery-template">+ Добави снимка</button>
-          </div>
-          <p class="pk-hint" style="margin:0 0 1rem;">Каруселът на страницата на обекта. Ако е празно, се ползват снимките от промоциите.</p>
-          <div class="pk-repeater" id="gallery-list">
-            <?php foreach ($galleryImages as $i => $imgPath): ?>
-              <?php panel_gallery_repeater_item((int)$i, $imgPath); ?>
-            <?php endforeach; ?>
-          </div>
-        </div>
+        <?php panel_field_shop_gallery($galleryPaths); ?>
 
         <div class="pk-section">
           <div class="pk-repeater-item__head">
@@ -216,10 +210,6 @@ panel_page_open($pageTitle . " — админ панел");
         <?php panel_save_button(); ?>
       </form>
     </div>
-
-    <template id="gallery-template">
-      <?php panel_gallery_repeater_item(0, ""); ?>
-    </template>
 
     <template id="promo-template">
       <?php panel_promotion_repeater_item(0, []); ?>
