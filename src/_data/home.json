@@ -49,7 +49,7 @@
             },
             {
                 "label": "Отворено в седмицата",
-                "value": 8,
+                "value": 7,
                 "suffix": "дни",
                 "accent": "teal",
                 "icon": "clock"
