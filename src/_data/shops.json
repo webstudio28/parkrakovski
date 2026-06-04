@@ -11,26 +11,28 @@
             "description": "Lidl е водещата дискаунт верига в Европа, предлагаща широка гама от хранителни и нехранителни стоки на изключително конкурентни цени. В нашия комплекс ще намерите пресни продукти, качествени деликатеси и всичко необходимо за вашия дом.",
             "hours": {
                 "mon": {
-                    "open": "10:00",
-                    "close": "19:00"
+                    "open": "08:00",
+                    "close": "21:00"
                 },
                 "tue": {
-                    "open": "10:00",
-                    "close": "19:00"
+                    "open": "08:00",
+                    "close": "21:00"
                 },
                 "wed": {
-                    "open": "10:00",
-                    "close": "19:00"
+                    "open": "08:00",
+                    "close": "21:00"
                 },
                 "thu": {
-                    "open": "10:00",
-                    "close": "19:00"
+                    "open": "08:00",
+                    "close": "21:00"
                 },
                 "fri": {
-                    "closed": true
+                    "open": "08:00",
+                    "close": "21:00"
                 },
                 "sat": {
-                    "closed": true
+                    "open": "08:00",
+                    "close": "21:00"
                 },
                 "sun": {
                     "open": "08:00",
@@ -39,7 +41,20 @@
             },
             "phone": "",
             "promotions": [],
-            "images": []
+            "images": [
+                {
+                    "src": "/assets/images/uploads/shop-gallery-20260604-065610-7df8dd72.webp",
+                    "alt": "Lidl — Ритеил парк Раковски — 9qiw"
+                },
+                {
+                    "src": "/assets/images/uploads/shop-gallery-20260604-065612-7cb82fe9.webp",
+                    "alt": "Lidl — Ритеил парк Раковски — wqrp"
+                },
+                {
+                    "src": "/assets/images/uploads/shop-gallery-20260604-065614-7c502692.webp",
+                    "alt": "Lidl — Ритеил парк Раковски — 5nqc"
+                }
+            ]
         },
         {
             "slug": "zora",
