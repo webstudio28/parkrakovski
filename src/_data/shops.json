@@ -82,28 +82,7 @@
             },
             "phone": "",
             "promotions": [],
-            "images": [
-                {
-                    "src": "/assets/images/uploads/shop-gallery-20260604-064850-312b6a28.webp",
-                    "alt": "ЗОРА — Ритеил парк Раковски — 30qi"
-                },
-                {
-                    "src": "/assets/images/uploads/shop-gallery-20260604-064900-302affe4.webp",
-                    "alt": "ЗОРА — Ритеил парк Раковски — 1afk"
-                },
-                {
-                    "src": "/assets/images/uploads/shop-gallery-20260604-064856-6ca529f4.webp",
-                    "alt": "ЗОРА — Ритеил парк Раковски — k1ax"
-                },
-                {
-                    "src": "/assets/images/uploads/shop-gallery-20260604-064858-5b044872.webp",
-                    "alt": "ЗОРА — Ритеил парк Раковски — kthr"
-                },
-                {
-                    "src": "/assets/images/uploads/shop-gallery-20260604-064853-34c91717.webp",
-                    "alt": "ЗОРА — Ритеил парк Раковски — yhrv"
-                }
-            ]
+            "images": []
         },
         {
             "slug": "lilly",
