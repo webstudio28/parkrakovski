@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 declare(strict_types=1);
 
@@ -13,7 +13,7 @@ panel_page_open("Админ панел");
     <div class="pk-wrap">
       <div class="pk-top">
         <div>
-          <div class="pk-eyebrow">Ритеил парк Раковски</div>
+          <div class="pk-eyebrow">Ритейл парк Раковски</div>
           <h1 class="pk-title">Админ панел</h1>
           <p class="pk-sub">
             <?php if (panel_is_local_dev()): ?>

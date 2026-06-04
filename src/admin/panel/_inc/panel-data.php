@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 declare(strict_types=1);
 
@@ -75,7 +75,7 @@ function panel_site_brand_name(): string {
   if ($cached !== null) {
     return $cached;
   }
-  $cached = "Ритеил парк Раковски";
+  $cached = "Ритейл парк Раковски";
   $path = panel_file_key("site");
   $loaded = panel_load_json_file($path);
   if ($loaded["ok"]) {

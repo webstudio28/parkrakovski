@@ -1,4 +1,4 @@
-{
+﻿{
     "items": [
         {
             "slug": "lidl",
@@ -44,15 +44,15 @@
             "images": [
                 {
                     "src": "/assets/images/uploads/shop-gallery-20260604-065610-7df8dd72.webp",
-                    "alt": "Lidl — Ритеил парк Раковски — 9qiw"
+                    "alt": "Lidl — Ритейл парк Раковски — 9qiw"
                 },
                 {
                     "src": "/assets/images/uploads/shop-gallery-20260604-065612-7cb82fe9.webp",
-                    "alt": "Lidl — Ритеил парк Раковски — wqrp"
+                    "alt": "Lidl — Ритейл парк Раковски — wqrp"
                 },
                 {
                     "src": "/assets/images/uploads/shop-gallery-20260604-065614-7c502692.webp",
-                    "alt": "Lidl — Ритеил парк Раковски — 5nqc"
+                    "alt": "Lidl — Ритейл парк Раковски — 5nqc"
                 }
             ]
         },
@@ -100,39 +100,39 @@
             "images": [
                 {
                     "src": "/assets/images/uploads/shop-gallery-20260604-065014-b05b2faa.webp",
-                    "alt": "ЗОРА — Ритеил парк Раковски — xbky"
+                    "alt": "ЗОРА — Ритейл парк Раковски — xbky"
                 },
                 {
                     "src": "/assets/images/uploads/shop-gallery-20260604-065016-8d75bcc3.webp",
-                    "alt": "ЗОРА — Ритеил парк Раковски — 0ddl"
+                    "alt": "ЗОРА — Ритейл парк Раковски — 0ddl"
                 },
                 {
                     "src": "/assets/images/uploads/shop-gallery-20260604-065029-35385011.webp",
-                    "alt": "ЗОРА — Ритеил парк Раковски — 759p"
+                    "alt": "ЗОРА — Ритейл парк Раковски — 759p"
                 },
                 {
                     "src": "/assets/images/uploads/shop-gallery-20260604-065010-e4144340.webp",
-                    "alt": "ЗОРА — Ритеил парк Раковски — 5zgu"
+                    "alt": "ЗОРА — Ритейл парк Раковски — 5zgu"
                 },
                 {
                     "src": "/assets/images/uploads/shop-gallery-20260604-065018-033d2040.webp",
-                    "alt": "ЗОРА — Ритеил парк Раковски — 4n9z"
+                    "alt": "ЗОРА — Ритейл парк Раковски — 4n9z"
                 },
                 {
                     "src": "/assets/images/uploads/shop-gallery-20260604-065012-bb40d03e.webp",
-                    "alt": "ЗОРА — Ритеил парк Раковски — opxw"
+                    "alt": "ЗОРА — Ритейл парк Раковски — opxw"
                 },
                 {
                     "src": "/assets/images/uploads/shop-gallery-20260604-065022-5fda691c.webp",
-                    "alt": "ЗОРА — Ритеил парк Раковски — iokz"
+                    "alt": "ЗОРА — Ритейл парк Раковски — iokz"
                 },
                 {
                     "src": "/assets/images/uploads/shop-gallery-20260604-065027-0f82026e.webp",
-                    "alt": "ЗОРА — Ритеил парк Раковски — y0fk"
+                    "alt": "ЗОРА — Ритейл парк Раковски — y0fk"
                 },
                 {
                     "src": "/assets/images/uploads/shop-gallery-20260604-065020-80d5a7e6.webp",
-                    "alt": "ЗОРА — Ритеил парк Раковски — 935y"
+                    "alt": "ЗОРА — Ритейл парк Раковски — 935y"
                 }
             ]
         },
@@ -213,7 +213,7 @@
         },
         {
             "slug": "apteka-366",
-            "title": "аптека 36.6",
+            "title": "Аптека 36.6",
             "category": "Здраве",
             "color": "#00A651",
             "url": "https://366.bg/",
@@ -297,47 +297,47 @@
             "images": [
                 {
                     "src": "/assets/images/partners/Sinsay/sinsay1.webp",
-                    "alt": "Sinsay — Ритеил парк Раковски — 4146"
+                    "alt": "Sinsay — Ритейл парк Раковски — 4146"
                 },
                 {
                     "src": "/assets/images/partners/Sinsay/sinsay2.webp",
-                    "alt": "Sinsay — Ритеил парк Раковски — rk6n"
+                    "alt": "Sinsay — Ритейл парк Раковски — rk6n"
                 },
                 {
                     "src": "/assets/images/partners/Sinsay/sinsay3.webp",
-                    "alt": "Sinsay — Ритеил парк Раковски — 0p6k"
+                    "alt": "Sinsay — Ритейл парк Раковски — 0p6k"
                 },
                 {
                     "src": "/assets/images/partners/Sinsay/sinsay4.webp",
-                    "alt": "Sinsay — Ритеил парк Раковски — 84fj"
+                    "alt": "Sinsay — Ритейл парк Раковски — 84fj"
                 },
                 {
                     "src": "/assets/images/partners/Sinsay/sinsay5.webp",
-                    "alt": "Sinsay — Ритеил парк Раковски — t1go"
+                    "alt": "Sinsay — Ритейл парк Раковски — t1go"
                 },
                 {
                     "src": "/assets/images/partners/Sinsay/sinsay6.webp",
-                    "alt": "Sinsay — Ритеил парк Раковски — mi33"
+                    "alt": "Sinsay — Ритейл парк Раковски — mi33"
                 },
                 {
                     "src": "/assets/images/partners/Sinsay/sinsay7.webp",
-                    "alt": "Sinsay — Ритеил парк Раковски — 5ij9"
+                    "alt": "Sinsay — Ритейл парк Раковски — 5ij9"
                 },
                 {
                     "src": "/assets/images/partners/Sinsay/sinsay8.webp",
-                    "alt": "Sinsay — Ритеил парк Раковски — 1ggu"
+                    "alt": "Sinsay — Ритейл парк Раковски — 1ggu"
                 },
                 {
                     "src": "/assets/images/partners/Sinsay/sinsay9.webp",
-                    "alt": "Sinsay — Ритеил парк Раковски — 5y7p"
+                    "alt": "Sinsay — Ритейл парк Раковски — 5y7p"
                 },
                 {
                     "src": "/assets/images/partners/Sinsay/sinsay10.webp",
-                    "alt": "Sinsay — Ритеил парк Раковски — fbsf"
+                    "alt": "Sinsay — Ритейл парк Раковски — fbsf"
                 },
                 {
                     "src": "/assets/images/partners/Sinsay/sinsay11.webp",
-                    "alt": "Sinsay — Ритеил парк Раковски — 6b9z"
+                    "alt": "Sinsay — Ритейл парк Раковски — 6b9z"
                 }
             ]
         },
@@ -374,7 +374,7 @@
             "url": "",
             "logo": "/assets/images/partners/BG Skara/logo.webp",
             "image": "/assets/images/partners/BG Skara/bgskara1.webp",
-            "description": "BG Skara в Ритеил парк Раковски — място за вкусна скара и качествено месо.",
+            "description": "BG Skara в Ритейл парк Раковски — място за вкусна скара и качествено месо.",
             "hours": {
                 "mon": {
                     "open": "09:00",
@@ -410,15 +410,15 @@
             "images": [
                 {
                     "src": "/assets/images/partners/BG Skara/bgskara1.webp",
-                    "alt": "Българска скара — Ритеил парк Раковски — ngru"
+                    "alt": "Българска скара — Ритейл парк Раковски — ngru"
                 },
                 {
                     "src": "/assets/images/partners/BG Skara/bgskara2.webp",
-                    "alt": "Българска скара — Ритеил парк Раковски — zocd"
+                    "alt": "Българска скара — Ритейл парк Раковски — zocd"
                 },
                 {
                     "src": "/assets/images/partners/BG Skara/bgskara3.webp",
-                    "alt": "Българска скара — Ритеил парк Раковски — pcoa"
+                    "alt": "Българска скара — Ритейл парк Раковски — pcoa"
                 }
             ]
         },
@@ -430,7 +430,7 @@
             "url": "https://opticgreta.com/",
             "logo": "/assets/images/partners/Optica/logo.png",
             "image": "/assets/images/partners/Optica/optica1.webp",
-            "description": "Optica в Ритеил парк Раковски — очила, лещи и професионална грижа за зрението.",
+            "description": "Optica в Ритейл парк Раковски — очила, лещи и професионална грижа за зрението.",
             "hours": "Пон–Съб: 09:00–19:00 | Нед: 10:00–18:00",
             "phone": "",
             "promotions": [],
@@ -451,7 +451,7 @@
             "url": "",
             "logo": "/assets/images/partners/Skuteri/logo.png",
             "image": "/assets/images/partners/Skuteri/skuteri1.webp",
-            "description": "Скутери в Ритеил парк Раковски — продажба, сервиз и аксесоари за мотори.",
+            "description": "Скутери в Ритейл парк Раковски — продажба, сервиз и аксесоари за мотори.",
             "hours": "Пон–Съб: 09:00–19:00 | Нед: 10:00–16:00",
             "phone": "",
             "promotions": [],
@@ -476,7 +476,7 @@
             "url": "",
             "logo": "/assets/images/partners/Tean Toys/logo.webp",
             "image": "/assets/images/partners/Tean Toys/teantoys1.webp",
-            "description": "Tean Toys в Ритеил парк Раковски — играчки и подаръци за деца.",
+            "description": "Tean Toys в Ритейл парк Раковски — играчки и подаръци за деца.",
             "hours": "Пон–Съб: 09:00–20:00 | Нед: 10:00–18:00",
             "phone": "",
             "promotions": [],

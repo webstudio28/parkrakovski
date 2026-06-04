@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 declare(strict_types=1);
 
@@ -154,7 +154,7 @@ panel_page_open($pageTitle . " — админ панел");
     <div class="pk-wrap">
       <div class="pk-top">
         <div>
-          <div class="pk-eyebrow">Ритеил парк Раковски</div>
+          <div class="pk-eyebrow">Ритейл парк Раковски</div>
           <h1 class="pk-title"><?php echo html($pageTitle); ?></h1>
         </div>
         <div class="pk-top__actions">

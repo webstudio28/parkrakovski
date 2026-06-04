@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 declare(strict_types=1);
 
@@ -38,7 +38,7 @@ panel_page_open("Вход — админ панел");
 ?>
     <div class="pk-login-wrap">
       <form class="pk-card pk-form" method="post" action="">
-        <div class="pk-eyebrow">Ритеил парк Раковски</div>
+        <div class="pk-eyebrow">Ритейл парк Раковски</div>
         <h1 class="pk-title">Админ панел</h1>
 
         <div class="pk-field">

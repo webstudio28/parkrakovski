@@ -1,4 +1,4 @@
-{% set metaTitle = title | default(site.seo.defaultTitle) %}
+﻿{% set metaTitle = title | default(site.seo.defaultTitle) %}
 {% set metaDescription = description | default(site.seo.defaultDescription) | stripHtml | truncateChars(160) %}
 {% set ogDescription = site.brand.tagline | default(site.seo.defaultDescription) %}
 {% set origin = site.seo.siteUrl | stripTrailingSlash %}
@@ -7,7 +7,7 @@
 {% set robotsContent = robots | default("index, follow") %}
 {% set ogImagePath = home.about.image.src | default(site.seo.ogImage | default("/assets/images/home-about.png")) %}
 {% set ogImageUrl = ogImagePath | url | absoluteUrl(site.seo.siteUrl) %}
-{% set siteName = site.brand.name | default("Ритеил парк Раковски") %}
+{% set siteName = site.brand.name | default("Ритейл парк Раковски") %}
 {% set ogLocale = site.seo.locale | default("bg_BG") %}
 
 <title>{{ metaTitle }}</title>

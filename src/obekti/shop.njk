@@ -1,4 +1,4 @@
----
+﻿---
 pagination:
   data: shops.items
   size: 1
@@ -6,7 +6,7 @@ pagination:
 permalink: "/obekti/{{ shop.slug }}/"
 layout: inner.njk
 eleventyComputed:
-  title: "{{ shop.title }} — Ритеил парк Раковски"
+  title: "{{ shop.title }} — Ритейл парк Раковски"
   description: "{{ shop.description | stripHtml | truncateChars(160) }}"
 ---
 
@@ -46,7 +46,7 @@ eleventyComputed:
         {% endif %}
 
         <h1 class="mt-5 max-w-3xl text-lg font-medium leading-relaxed text-slate-800 sm:text-xl">
-          {{ shop.title }} в Ритеил парк Раковски
+          {{ shop.title }} в Ритейл парк Раковски
         </h1>
 
         <div class="rich-content mt-6 max-w-2xl text-base leading-relaxed text-slate-600 sm:text-lg">
@@ -83,7 +83,7 @@ eleventyComputed:
         <div class="shop-hero__caption">
           <div class="flex items-center gap-3">
             <span class="h-px w-10 shrink-0 bg-brand-yellow" aria-hidden="true"></span>
-            <span class="text-xs font-medium leading-snug text-white sm:text-sm">{{ site.brand.name | default('Ритеил парк Раковски') }}</span>
+            <span class="text-xs font-medium leading-snug text-white sm:text-sm">{{ site.brand.name | default('Ритейл парк Раковски') }}</span>
           </div>
         </div>
       </div>
@@ -101,7 +101,7 @@ eleventyComputed:
             <span class="text-[10px] uppercase tracking-[0.25em] font-semibold text-slate-500">Местоположение</span>
           </div>
           <p class="text-sm text-slate-700 leading-relaxed">
-            {{ site.brand.name | default('Ритеил парк Раковски') }}{% if site.footer.address | hasValue %}<br/>{{ site.footer.address }}{% endif %}
+            {{ site.brand.name | default('Ритейл парк Раковски') }}{% if site.footer.address | hasValue %}<br/>{{ site.footer.address }}{% endif %}
           </p>
           <span class="absolute left-7 bottom-3 h-px w-0 bg-brand-yellow/80 transition-all duration-500 group-hover:w-12"></span>
         </div>
