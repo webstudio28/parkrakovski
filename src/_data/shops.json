@@ -312,21 +312,59 @@
             ]
         },
         {
-            "slug": "bgskara",
-            "title": "BG Skara",
+            "slug": "balgarska-skara",
+            "title": "Българска скара",
             "category": "Храна",
             "color": "#C41E3A",
             "url": "",
             "logo": "/assets/images/partners/BG Skara/logo.webp",
             "image": "/assets/images/partners/BG Skara/bgskara1.webp",
             "description": "BG Skara в Ритеил парк Раковски — място за вкусна скара и качествено месо.",
-            "hours": "Пон–Нед: 10:00–22:00",
+            "hours": {
+                "mon": {
+                    "open": "09:00",
+                    "close": "21:00"
+                },
+                "tue": {
+                    "open": "09:00",
+                    "close": "21:00"
+                },
+                "wed": {
+                    "open": "09:00",
+                    "close": "21:00"
+                },
+                "thu": {
+                    "open": "09:00",
+                    "close": "21:00"
+                },
+                "fri": {
+                    "open": "09:00",
+                    "close": "21:00"
+                },
+                "sat": {
+                    "open": "09:00",
+                    "close": "21:00"
+                },
+                "sun": {
+                    "open": "09:00",
+                    "close": "21:00"
+                }
+            },
             "phone": "",
             "promotions": [],
             "images": [
-                "/assets/images/partners/BG Skara/bgskara1.webp",
-                "/assets/images/partners/BG Skara/bgskara2.webp",
-                "/assets/images/partners/BG Skara/bgskara3.webp"
+                {
+                    "src": "/assets/images/partners/BG Skara/bgskara1.webp",
+                    "alt": "Българска скара — Ритеил парк Раковски — ngru"
+                },
+                {
+                    "src": "/assets/images/partners/BG Skara/bgskara2.webp",
+                    "alt": "Българска скара — Ритеил парк Раковски — zocd"
+                },
+                {
+                    "src": "/assets/images/partners/BG Skara/bgskara3.webp",
+                    "alt": "Българска скара — Ритеил парк Раковски — pcoa"
+                }
             ]
         },
         {
