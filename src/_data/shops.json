@@ -82,7 +82,44 @@
             },
             "phone": "",
             "promotions": [],
-            "images": []
+            "images": [
+                {
+                    "src": "/assets/images/uploads/shop-gallery-20260604-065014-b05b2faa.webp",
+                    "alt": "ЗОРА — Ритеил парк Раковски — xbky"
+                },
+                {
+                    "src": "/assets/images/uploads/shop-gallery-20260604-065016-8d75bcc3.webp",
+                    "alt": "ЗОРА — Ритеил парк Раковски — 0ddl"
+                },
+                {
+                    "src": "/assets/images/uploads/shop-gallery-20260604-065029-35385011.webp",
+                    "alt": "ЗОРА — Ритеил парк Раковски — 759p"
+                },
+                {
+                    "src": "/assets/images/uploads/shop-gallery-20260604-065010-e4144340.webp",
+                    "alt": "ЗОРА — Ритеил парк Раковски — 5zgu"
+                },
+                {
+                    "src": "/assets/images/uploads/shop-gallery-20260604-065018-033d2040.webp",
+                    "alt": "ЗОРА — Ритеил парк Раковски — 4n9z"
+                },
+                {
+                    "src": "/assets/images/uploads/shop-gallery-20260604-065012-bb40d03e.webp",
+                    "alt": "ЗОРА — Ритеил парк Раковски — opxw"
+                },
+                {
+                    "src": "/assets/images/uploads/shop-gallery-20260604-065022-5fda691c.webp",
+                    "alt": "ЗОРА — Ритеил парк Раковски — iokz"
+                },
+                {
+                    "src": "/assets/images/uploads/shop-gallery-20260604-065027-0f82026e.webp",
+                    "alt": "ЗОРА — Ритеил парк Раковски — y0fk"
+                },
+                {
+                    "src": "/assets/images/uploads/shop-gallery-20260604-065020-80d5a7e6.webp",
+                    "alt": "ЗОРА — Ритеил парк Раковски — 935y"
+                }
+            ]
         },
         {
             "slug": "lilly",
