@@ -209,24 +209,81 @@
             "category": "Мода",
             "color": "#1A1A1A",
             "url": "https://sinsay.com/bg/bg/",
-            "logo": "/assets/images/partners/sinsay.svg",
+            "logo": "/assets/images/uploads/shop-logo-20260604-062528-2fb06df6.png",
             "promotions": [],
             "image": "/assets/images/partners/Sinsay/sinsay1.webp",
             "description": "Sinsay е модна верига за млади хора с актуални тенденции в облеклото и аксесоарите. Открийте стилни и достъпни колекции за ежедневието, спорта и специалните поводи.",
-            "hours": "Пон–Съб: 09:00–20:00 | Нед: 10:00–19:00",
+            "hours": {
+                "mon": {
+                    "open": "09:00",
+                    "close": "20:00"
+                },
+                "tue": {
+                    "closed": true
+                },
+                "wed": {
+                    "closed": true
+                },
+                "thu": {
+                    "closed": true
+                },
+                "fri": {
+                    "closed": true
+                },
+                "sat": {
+                    "closed": true
+                },
+                "sun": {
+                    "open": "10:00",
+                    "close": "19:00"
+                }
+            },
             "phone": "",
             "images": [
-                "/assets/images/partners/Sinsay/sinsay1.webp",
-                "/assets/images/partners/Sinsay/sinsay2.webp",
-                "/assets/images/partners/Sinsay/sinsay3.webp",
-                "/assets/images/partners/Sinsay/sinsay4.webp",
-                "/assets/images/partners/Sinsay/sinsay5.webp",
-                "/assets/images/partners/Sinsay/sinsay6.webp",
-                "/assets/images/partners/Sinsay/sinsay7.webp",
-                "/assets/images/partners/Sinsay/sinsay8.webp",
-                "/assets/images/partners/Sinsay/sinsay9.webp",
-                "/assets/images/partners/Sinsay/sinsay10.webp",
-                "/assets/images/partners/Sinsay/sinsay11.webp"
+                {
+                    "src": "/assets/images/partners/Sinsay/sinsay1.webp",
+                    "alt": "Sinsay — Ритеил парк Раковски — 4146"
+                },
+                {
+                    "src": "/assets/images/partners/Sinsay/sinsay2.webp",
+                    "alt": "Sinsay — Ритеил парк Раковски — rk6n"
+                },
+                {
+                    "src": "/assets/images/partners/Sinsay/sinsay3.webp",
+                    "alt": "Sinsay — Ритеил парк Раковски — 0p6k"
+                },
+                {
+                    "src": "/assets/images/partners/Sinsay/sinsay4.webp",
+                    "alt": "Sinsay — Ритеил парк Раковски — 84fj"
+                },
+                {
+                    "src": "/assets/images/partners/Sinsay/sinsay5.webp",
+                    "alt": "Sinsay — Ритеил парк Раковски — t1go"
+                },
+                {
+                    "src": "/assets/images/partners/Sinsay/sinsay6.webp",
+                    "alt": "Sinsay — Ритеил парк Раковски — mi33"
+                },
+                {
+                    "src": "/assets/images/partners/Sinsay/sinsay7.webp",
+                    "alt": "Sinsay — Ритеил парк Раковски — 5ij9"
+                },
+                {
+                    "src": "/assets/images/partners/Sinsay/sinsay8.webp",
+                    "alt": "Sinsay — Ритеил парк Раковски — 1ggu"
+                },
+                {
+                    "src": "/assets/images/partners/Sinsay/sinsay9.webp",
+                    "alt": "Sinsay — Ритеил парк Раковски — 5y7p"
+                },
+                {
+                    "src": "/assets/images/partners/Sinsay/sinsay10.webp",
+                    "alt": "Sinsay — Ритеил парк Раковски — fbsf"
+                },
+                {
+                    "src": "/assets/images/partners/Sinsay/sinsay11.webp",
+                    "alt": "Sinsay — Ритеил парк Раковски — 6b9z"
+                }
             ]
         },
         {
