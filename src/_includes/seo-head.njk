@@ -1,4 +1,4 @@
-﻿{% set metaTitle = title | default(site.seo.defaultTitle) %}
+{% set metaTitle = title | default(site.seo.defaultTitle) %}
 {% set metaDescription = description | default(site.seo.defaultDescription) | stripHtml | truncateChars(160) %}
 {% set ogDescription = site.brand.tagline | default(site.seo.defaultDescription) %}
 {% set origin = site.seo.siteUrl | stripTrailingSlash %}
