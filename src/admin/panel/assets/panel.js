@@ -337,10 +337,13 @@
     });
   }
 
-  var UPLOAD_MAX_BYTES = 800 * 1024;
-  var UPLOAD_MAX_KB = 800;
-  var UPLOAD_ALLOWED_EXTENSIONS = ["jpg", "jpeg", "png", "webp"];
-  var UPLOAD_ALLOWED_MIMES = ["image/jpeg", "image/png", "image/webp"];
+  var uploadRules = window.__pkUploadRules || {};
+  var UPLOAD_MAX_BYTES = uploadRules.maxBytes || 800 * 1024;
+  var UPLOAD_MAX_KB = uploadRules.maxKb || 800;
+  var UPLOAD_ALLOWED_EXTENSIONS = uploadRules.extensions || ["jpg", "jpeg", "png", "webp"];
+  var UPLOAD_ALLOWED_MIMES = uploadRules.mimes || ["image/jpeg", "image/png", "image/x-png", "image/webp"];
+  var UPLOAD_FORMAT_ERROR =
+    uploadRules.formatError || "Невалиден формат. Позволени са само JPG, JPEG, PNG и WebP снимки.";
 
   function uploadFileExtension(name) {
     var parts = (name || "").split(".");
@@ -355,7 +358,7 @@
   }
 
   function uploadFormatError() {
-    return "Невалиден формат. Позволени са само JPG, JPEG, PNG и WebP снимки.";
+    return UPLOAD_FORMAT_ERROR;
   }
 
   function validateUploadFile(file) {

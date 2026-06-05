@@ -3,6 +3,17 @@
 declare(strict_types=1);
 
 require_once __DIR__ . "/panel-data.php";
+require_once __DIR__ . "/media.php";
+
+function panel_asset_url(string $relative): string {
+  $relative = ltrim(str_replace("\\", "/", $relative), "/");
+  $path = __DIR__ . "/../" . $relative;
+  $url = "./" . $relative;
+  if (is_file($path)) {
+    $url .= "?v=" . (string)filemtime($path);
+  }
+  return $url;
+}
 
 function panel_styles(): void {
   ?>
@@ -832,8 +843,10 @@ function panel_page_open(string $title): void {
 
 function panel_page_close(bool $withScripts = true): void {
   if ($withScripts) {
-    echo '<script src="./assets/rich-editor.js"></script>';
-    echo '<script src="./assets/panel.js"></script>';
+    $uploadRules = json_encode(panel_upload_client_config(), JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT);
+    echo '<script>window.__pkUploadRules=' . $uploadRules . ';</script>';
+    echo '<script src="' . html(panel_asset_url("assets/rich-editor.js")) . '"></script>';
+    echo '<script src="' . html(panel_asset_url("assets/panel.js")) . '"></script>';
   }
   ?>
   </body>

@@ -75,7 +75,19 @@ function panel_allowed_upload_mimes(): array {
   return [
     "image/jpeg" => "jpg",
     "image/png" => "png",
+    "image/x-png" => "png",
     "image/webp" => "webp",
+  ];
+}
+
+/** Rules injected into panel.js so client validation matches the server. */
+function panel_upload_client_config(): array {
+  return [
+    "maxBytes" => panel_upload_max_bytes(),
+    "maxKb" => panel_upload_max_kb(),
+    "extensions" => panel_upload_allowed_extensions(),
+    "mimes" => array_keys(panel_allowed_upload_mimes()),
+    "formatError" => panel_upload_format_error(),
   ];
 }
 
