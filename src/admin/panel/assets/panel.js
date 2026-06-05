@@ -339,8 +339,8 @@
 
   var UPLOAD_MAX_BYTES = 800 * 1024;
   var UPLOAD_MAX_KB = 800;
-  var UPLOAD_ALLOWED_EXTENSIONS = ["jpg", "jpeg", "webp"];
-  var UPLOAD_ALLOWED_MIMES = ["image/jpeg", "image/webp"];
+  var UPLOAD_ALLOWED_EXTENSIONS = ["jpg", "jpeg", "png", "webp"];
+  var UPLOAD_ALLOWED_MIMES = ["image/jpeg", "image/png", "image/webp"];
 
   function uploadFileExtension(name) {
     var parts = (name || "").split(".");
@@ -355,7 +355,7 @@
   }
 
   function uploadFormatError() {
-    return "Невалиден формат. Позволени са само JPG, JPEG и WebP снимки.";
+    return "Невалиден формат. Позволени са само JPG, JPEG, PNG и WebP снимки.";
   }
 
   function validateUploadFile(file) {

@@ -56,11 +56,11 @@ function panel_upload_max_kb(): int {
 
 /** @return list<string> */
 function panel_upload_allowed_extensions(): array {
-  return ["jpg", "jpeg", "webp"];
+  return ["jpg", "jpeg", "png", "webp"];
 }
 
 function panel_upload_formats_label(): string {
-  return "JPG, JPEG и WebP";
+  return "JPG, JPEG, PNG и WebP";
 }
 
 function panel_upload_rules_hint(): string {
@@ -68,12 +68,13 @@ function panel_upload_rules_hint(): string {
 }
 
 function panel_upload_accept_attr(): string {
-  return ".jpg,.jpeg,.webp,image/jpeg,image/webp";
+  return ".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp";
 }
 
 function panel_allowed_upload_mimes(): array {
   return [
     "image/jpeg" => "jpg",
+    "image/png" => "png",
     "image/webp" => "webp",
   ];
 }
