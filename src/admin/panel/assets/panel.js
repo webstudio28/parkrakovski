@@ -281,6 +281,14 @@
         var prefix = fileInput.getAttribute("data-pk-upload-prefix") || "shop-gallery";
 
         files.forEach(function (file) {
+          var validationError = validateUploadFile(file);
+          if (validationError) {
+            showGalleryUploadError(gallery, validationError);
+            return;
+          }
+
+          clearGalleryUploadError(gallery);
+
           var previewUrl = URL.createObjectURL(file);
           var item = createGalleryItem(gallery, "", previewUrl);
           if (item) {
@@ -297,8 +305,10 @@
                 item.remove();
               }
               updateGalleryEmpty(gallery);
+              showGalleryUploadError(gallery, res.error || "Грешка при качване. Опитайте отново.");
               return;
             }
+            clearGalleryUploadError(gallery);
             if (!item) {
               item = createGalleryItem(gallery, res.path);
               if (item) item.classList.remove("pk-gallery__item--loading");
@@ -327,7 +337,77 @@
     });
   }
 
+  var UPLOAD_MAX_BYTES = 800 * 1024;
+  var UPLOAD_MAX_KB = 800;
+  var UPLOAD_ALLOWED_EXTENSIONS = ["jpg", "jpeg", "webp"];
+  var UPLOAD_ALLOWED_MIMES = ["image/jpeg", "image/webp"];
+
+  function uploadFileExtension(name) {
+    var parts = (name || "").split(".");
+    if (parts.length < 2) return "";
+    var ext = parts.pop().toLowerCase();
+    return ext === "jpeg" ? "jpg" : ext;
+  }
+
+  function uploadSizeError(bytes) {
+    var kb = Math.max(1, Math.ceil(bytes / 1024));
+    return "Снимката е твърде голяма (" + kb + " KB). Максималният размер е " + UPLOAD_MAX_KB + " KB.";
+  }
+
+  function uploadFormatError() {
+    return "Невалиден формат. Позволени са само JPG, JPEG и WebP снимки.";
+  }
+
+  function validateUploadFile(file) {
+    if (!file) return "Липсва файл.";
+    if (!file.size) return "Файлът е празен. Изберете валидна снимка.";
+
+    var ext = uploadFileExtension(file.name);
+    if (!ext || UPLOAD_ALLOWED_EXTENSIONS.indexOf(ext) === -1) {
+      return uploadFormatError();
+    }
+    if (file.type && UPLOAD_ALLOWED_MIMES.indexOf(file.type) === -1) {
+      return uploadFormatError();
+    }
+    if (file.size > UPLOAD_MAX_BYTES) {
+      return uploadSizeError(file.size);
+    }
+    return null;
+  }
+
+  function showUploadStatus(el, message, isError) {
+    if (!el) return;
+    el.hidden = false;
+    el.textContent = message;
+    el.classList.toggle("pk-upload-err", !!isError);
+  }
+
+  function clearUploadStatus(el) {
+    if (!el) return;
+    el.classList.remove("pk-upload-err");
+  }
+
+  function showGalleryUploadError(gallery, message) {
+    var error = qs("[data-pk-gallery-error]", gallery);
+    if (!error) return;
+    error.hidden = false;
+    error.textContent = message;
+  }
+
+  function clearGalleryUploadError(gallery) {
+    var error = qs("[data-pk-gallery-error]", gallery);
+    if (!error) return;
+    error.hidden = true;
+    error.textContent = "";
+  }
+
   function uploadFile(file, prefix, onDone) {
+    var validationError = validateUploadFile(file);
+    if (validationError) {
+      onDone({ ok: false, error: validationError });
+      return;
+    }
+
     var fd = new FormData();
     fd.append("file", file);
     fd.append("csrf", getCsrf());
@@ -341,7 +421,7 @@
         onDone(data);
       })
       .catch(function () {
-        onDone({ ok: false, error: "Грешка при качване." });
+        onDone({ ok: false, error: "Грешка при качване. Опитайте отново." });
       });
   }
 
@@ -358,6 +438,16 @@
     var prefix = input.getAttribute("data-pk-upload") || "upload";
     var status = qs("[data-pk-upload-status]", wrap);
     var preview = qs("[data-pk-media-preview]", wrap);
+    var validationError = validateUploadFile(file);
+    input.value = "";
+
+    if (validationError) {
+      revokeGalleryPreview(wrap);
+      if (preview) preview.hidden = true;
+      showUploadStatus(status, validationError, true);
+      return;
+    }
+
     var previewUrl = URL.createObjectURL(file);
     wrap._pkPreviewUrl = previewUrl;
     if (preview) {
@@ -365,21 +455,17 @@
       preview.hidden = false;
     }
 
-    if (status) {
-      status.hidden = false;
-      status.textContent = "Качване…";
-    }
+    clearUploadStatus(status);
+    showUploadStatus(status, "Качване…", false);
 
     uploadFile(file, prefix, function (res) {
-      input.value = "";
       if (!res.ok) {
         revokeGalleryPreview(wrap);
-        if (status) {
-          status.hidden = false;
-          status.textContent = res.error || "Грешка.";
-        }
+        if (preview) preview.hidden = true;
+        showUploadStatus(status, res.error || "Грешка при качване. Опитайте отново.", true);
         return;
       }
+      clearUploadStatus(status);
       if (status) status.hidden = true;
       applyMediaUploadPath(wrap, res.path);
       markDirtyFromEvent({ target: wrap });

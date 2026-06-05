@@ -5,6 +5,7 @@ declare(strict_types=1);
 require_once __DIR__ . "/rich-text.php";
 require_once __DIR__ . "/panel-data.php";
 require_once __DIR__ . "/shop-hours.php";
+require_once __DIR__ . "/media.php";
 
 function panel_field_text(string $label, string $name, string $value = "", string $type = "text", string $hint = "", string $extraAttrs = ""): void {
   ?>
@@ -95,10 +96,11 @@ function panel_field_media(string $label, string $name, string $value, string $u
       <div class="pk-media__row">
         <label class="pk-btn pk-btn--ghost pk-btn--sm pk-file">
           <span data-pk-upload-btn-text><?php echo html($btnLabel); ?></span>
-          <input type="file" accept="image/*" data-pk-upload="<?php echo html($uploadPrefix); ?>" hidden />
+          <input type="file" accept="<?php echo html(panel_upload_accept_attr()); ?>" data-pk-upload="<?php echo html($uploadPrefix); ?>" hidden />
         </label>
         <span class="pk-media__path" data-pk-upload-status <?php echo $hasImage ? "hidden" : ""; ?>><?php echo $hasImage ? "" : "Няма избрана снимка"; ?></span>
       </div>
+      <p class="pk-hint" style="margin:0.35rem 0 0;"><?php echo html(panel_upload_rules_hint()); ?></p>
     </div>
   </div>
   <?php
@@ -184,7 +186,7 @@ function panel_field_shop_gallery(
       <?php endif; ?>
       <input
         type="file"
-        accept="image/*"
+        accept="<?php echo html(panel_upload_accept_attr()); ?>"
         multiple
         hidden
         data-pk-gallery-input
@@ -196,6 +198,8 @@ function panel_field_shop_gallery(
         <?php endforeach; ?>
       </div>
       <p class="pk-gallery__empty" data-pk-gallery-empty <?php echo $paths === [] ? "" : "hidden"; ?>>Все още няма снимки в галерията.</p>
+      <p class="pk-err" data-pk-gallery-error hidden role="alert"></p>
+      <p class="pk-hint" style="margin:0.75rem 0 0;"><?php echo html(panel_upload_rules_hint()); ?></p>
       <template data-pk-gallery-item-template>
         <?php panel_gallery_thumb_item(""); ?>
       </template>
@@ -222,9 +226,10 @@ function panel_field_promo_media(string $name, string $value, string $uploadPref
     <input type="hidden" name="<?php echo html($name); ?>" data-pk-media-path value="<?php echo html($value); ?>" />
     <label class="pk-btn pk-btn--ghost pk-btn--sm pk-file">
       <span data-pk-upload-btn-text><?php echo html($btnLabel); ?></span>
-      <input type="file" accept="image/*" data-pk-upload="<?php echo html($uploadPrefix); ?>" hidden />
+      <input type="file" accept="<?php echo html(panel_upload_accept_attr()); ?>" data-pk-upload="<?php echo html($uploadPrefix); ?>" hidden />
     </label>
     <span class="pk-media__path" data-pk-upload-status <?php echo $hasImage ? "hidden" : ""; ?>><?php echo $hasImage ? "" : "Няма снимка"; ?></span>
+    <p class="pk-hint" style="margin:0.35rem 0 0;"><?php echo html(panel_upload_rules_hint()); ?></p>
   </div>
   <?php
 }

@@ -498,6 +498,11 @@ function panel_styles(): void {
       align-items: center;
     }
 
+    .pk-media__path.pk-upload-err,
+    .pk-upload-err {
+      color: #fecaca;
+    }
+
     .pk-media__path {
       flex: 1;
       min-width: 12rem;
