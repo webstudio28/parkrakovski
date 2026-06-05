@@ -428,19 +428,61 @@
             "category": "Услуги",
             "color": "#006484",
             "url": "https://opticgreta.com/",
-            "logo": "/assets/images/partners/Optica/logo.png",
+            "logo": "/assets/images/uploads/shop-logo-20260605-141642-4863bf9a.png",
             "image": "/assets/images/partners/Optica/optica1.webp",
             "description": "Optica в Ритейл парк Раковски — очила, лещи и професионална грижа за зрението.",
-            "hours": "Пон–Съб: 09:00–19:00 | Нед: 10:00–18:00",
+            "hours": {
+                "mon": {
+                    "open": "09:00",
+                    "close": "19:00"
+                },
+                "tue": {
+                    "closed": true
+                },
+                "wed": {
+                    "closed": true
+                },
+                "thu": {
+                    "closed": true
+                },
+                "fri": {
+                    "closed": true
+                },
+                "sat": {
+                    "closed": true
+                },
+                "sun": {
+                    "open": "10:00",
+                    "close": "18:00"
+                }
+            },
             "phone": "",
             "promotions": [],
             "images": [
-                "/assets/images/partners/Optica/optica1.webp",
-                "/assets/images/partners/Optica/optica2.webp",
-                "/assets/images/partners/Optica/optica3.webp",
-                "/assets/images/partners/Optica/optica4.webp",
-                "/assets/images/partners/Optica/optica5.webp",
-                "/assets/images/partners/Optica/optica6.webp"
+                {
+                    "src": "/assets/images/partners/Optica/optica1.webp",
+                    "alt": "Optica — Ритейл парк Раковски — cerm"
+                },
+                {
+                    "src": "/assets/images/partners/Optica/optica2.webp",
+                    "alt": "Optica — Ритейл парк Раковски — hcp7"
+                },
+                {
+                    "src": "/assets/images/partners/Optica/optica3.webp",
+                    "alt": "Optica — Ритейл парк Раковски — ep94"
+                },
+                {
+                    "src": "/assets/images/partners/Optica/optica4.webp",
+                    "alt": "Optica — Ритейл парк Раковски — m49d"
+                },
+                {
+                    "src": "/assets/images/partners/Optica/optica5.webp",
+                    "alt": "Optica — Ритейл парк Раковски — fc4j"
+                },
+                {
+                    "src": "/assets/images/partners/Optica/optica6.webp",
+                    "alt": "Optica — Ритейл парк Раковски — k9c3"
+                }
             ]
         },
         {
