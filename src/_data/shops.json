@@ -146,27 +146,106 @@
             "promotions": [],
             "image": "/assets/images/partners/lilly/lilly1.webp",
             "description": "Lilly Drogerie е водещата верига дрогерии в България с богат избор от козметика, парфюми, продукти за красота, хигиена и здраве. Намерете всичко за грижата за вас и вашето семейство на едно място.",
-            "hours": "Пон–Съб: 09:00–20:00 | Нед: 10:00–19:00",
+            "hours": {
+                "mon": {
+                    "open": "09:00",
+                    "close": "20:00"
+                },
+                "tue": {
+                    "open": "09:00",
+                    "close": "20:00"
+                },
+                "wed": {
+                    "closed": true
+                },
+                "thu": {
+                    "closed": true
+                },
+                "fri": {
+                    "closed": true
+                },
+                "sat": {
+                    "closed": true
+                },
+                "sun": {
+                    "open": "10:00",
+                    "close": "19:00"
+                }
+            },
             "phone": "",
             "images": [
-                "/assets/images/partners/lilly/lilly1.webp",
-                "/assets/images/partners/lilly/lilly2.webp",
-                "/assets/images/partners/lilly/lilly3.webp",
-                "/assets/images/partners/lilly/lilly4.webp",
-                "/assets/images/partners/lilly/lilly5.webp",
-                "/assets/images/partners/lilly/lilly6.webp",
-                "/assets/images/partners/lilly/lilly7.webp",
-                "/assets/images/partners/lilly/lilly8.webp",
-                "/assets/images/partners/lilly/lilly9.webp",
-                "/assets/images/partners/lilly/lilly10.webp",
-                "/assets/images/partners/lilly/lilly11.webp",
-                "/assets/images/partners/lilly/lilly12.webp",
-                "/assets/images/partners/lilly/lilly13.webp",
-                "/assets/images/partners/lilly/lilly14.webp",
-                "/assets/images/partners/lilly/lilly15.webp",
-                "/assets/images/partners/lilly/lilly16.webp",
-                "/assets/images/partners/lilly/lilly17.webp",
-                "/assets/images/partners/lilly/lilly18.webp"
+                {
+                    "src": "/assets/images/partners/lilly/lilly1.webp",
+                    "alt": "Lilly — Ритейл парк Раковски — mvn2"
+                },
+                {
+                    "src": "/assets/images/partners/lilly/lilly2.webp",
+                    "alt": "Lilly — Ритейл парк Раковски — eoby"
+                },
+                {
+                    "src": "/assets/images/partners/lilly/lilly3.webp",
+                    "alt": "Lilly — Ритейл парк Раковски — xgtk"
+                },
+                {
+                    "src": "/assets/images/partners/lilly/lilly4.webp",
+                    "alt": "Lilly — Ритейл парк Раковски — hqgt"
+                },
+                {
+                    "src": "/assets/images/partners/lilly/lilly5.webp",
+                    "alt": "Lilly — Ритейл парк Раковски — smet"
+                },
+                {
+                    "src": "/assets/images/partners/lilly/lilly6.webp",
+                    "alt": "Lilly — Ритейл парк Раковски — kwsv"
+                },
+                {
+                    "src": "/assets/images/partners/lilly/lilly7.webp",
+                    "alt": "Lilly — Ритейл парк Раковски — hwdh"
+                },
+                {
+                    "src": "/assets/images/partners/lilly/lilly8.webp",
+                    "alt": "Lilly — Ритейл парк Раковски — 4sxc"
+                },
+                {
+                    "src": "/assets/images/partners/lilly/lilly9.webp",
+                    "alt": "Lilly — Ритейл парк Раковски — bg89"
+                },
+                {
+                    "src": "/assets/images/partners/lilly/lilly10.webp",
+                    "alt": "Lilly — Ритейл парк Раковски — f167"
+                },
+                {
+                    "src": "/assets/images/partners/lilly/lilly11.webp",
+                    "alt": "Lilly — Ритейл парк Раковски — f6cb"
+                },
+                {
+                    "src": "/assets/images/partners/lilly/lilly12.webp",
+                    "alt": "Lilly — Ритейл парк Раковски — 3xat"
+                },
+                {
+                    "src": "/assets/images/partners/lilly/lilly13.webp",
+                    "alt": "Lilly — Ритейл парк Раковски — vxi7"
+                },
+                {
+                    "src": "/assets/images/partners/lilly/lilly14.webp",
+                    "alt": "Lilly — Ритейл парк Раковски — 5ilu"
+                },
+                {
+                    "src": "/assets/images/partners/lilly/lilly15.webp",
+                    "alt": "Lilly — Ритейл парк Раковски — rss3"
+                },
+                {
+                    "src": "/assets/images/partners/lilly/lilly16.webp",
+                    "alt": "Lilly — Ритейл парк Раковски — o9rn"
+                },
+                {
+                    "src": "/assets/images/partners/lilly/lilly17.webp",
+                    "alt": "Lilly — Ритейл парк Раковски — k2b3"
+                },
+                {
+                    "src": "/assets/images/partners/lilly/lilly18.webp",
+                    "alt": "Lilly — Ритейл парк Раковски — 5dug"
+                }
             ]
         },
         {
