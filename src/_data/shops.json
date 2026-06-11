@@ -156,16 +156,20 @@
                     "close": "20:00"
                 },
                 "wed": {
-                    "closed": true
+                    "open": "09:00",
+                    "close": "20:00"
                 },
                 "thu": {
-                    "closed": true
+                    "open": "09:00",
+                    "close": "20:00"
                 },
                 "fri": {
-                    "closed": true
+                    "open": "09:00",
+                    "close": "20:00"
                 },
                 "sat": {
-                    "closed": true
+                    "open": "09:00",
+                    "close": "20:00"
                 },
                 "sun": {
                     "open": "10:00",
