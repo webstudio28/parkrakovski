@@ -39,7 +39,7 @@ description: "Всичко от което се нуждаете, на едно 
     tabindex="-1"
   ></video>
 
-  <script src="{{ '/assets/js/hero.js' | url }}" defer></script>
+  <script src="{{ '/assets/js/hero.js' | url }}?v={{ buildDate }}" defer></script>
 
   <!-- Dark overlay (neutral black, not slate/teal) -->
   <div class="hero-overlay" aria-hidden="true"></div>
@@ -231,8 +231,14 @@ description: "Всичко от което се нуждаете, на едно 
       <div class="partners-strip-set pb-4">
         {% for shop in shops.items %}
           <article
-            class=" group relative w-[250px] sm:w-[300px] flex-shrink-0 rounded-3xl bg-white p-7 sm:p-8 shadow-lg shadow-black/10 ring-1 ring-slate-200/60 hover:shadow-xl hover:shadow-black/15 hover:-translate-y-1 transition-all duration-300"
+            class="group relative w-[250px] sm:w-[300px] flex-shrink-0 rounded-3xl bg-white p-7 sm:p-8 shadow-lg shadow-black/10 ring-1 ring-slate-200/60 hover:shadow-xl hover:shadow-black/15 hover:-translate-y-1 transition-all duration-300"
           >
+            <a
+              href="{{ ('/obekti/' + shop.slug + '/') | url }}"
+              class="absolute inset-0 z-10 rounded-3xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-teal"
+              aria-label="Виж повече за {{ shop.title }}"
+            ></a>
+
             <span
               class="absolute left-8 top-0 h-px w-10 -translate-y-px bg-brand-yellow transition-all duration-300 group-hover:w-24"
               aria-hidden="true"
@@ -261,13 +267,12 @@ description: "Всичко от което се нуждаете, на едно 
             <h3 class="mt-7 text-xl sm:text-2xl font-bold text-slate-900 leading-tight">{{ shop.title }}</h3>
             <p class="mt-2 text-[11px] sm:text-xs uppercase tracking-[0.2em] font-semibold text-slate-500">{{ shop.category }}</p>
 
-            <a
-              href="{{ ('/obekti/' + shop.slug + '/') | url }}"
-              class="absolute right-7 bottom-7 inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 text-slate-400 transition hover:border-slate-300 hover:bg-slate-100 hover:text-slate-900"
-              aria-label="Виж повече за {{ shop.title }}"
+            <span
+              class="pointer-events-none absolute right-7 bottom-7 inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 text-slate-400 transition group-hover:border-slate-300 group-hover:bg-slate-100 group-hover:text-slate-900"
+              aria-hidden="true"
             >
               <svg viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4"><path d="M7.293 4.293a1 1 0 011.414 0l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414-1.414L11.586 10 7.293 5.707a1 1 0 010-1.414z"/></svg>
-            </a>
+            </span>
           </article>
         {% endfor %}
       </div>
@@ -276,6 +281,13 @@ description: "Всичко от което се нуждаете, на едно 
           <article
             class="group relative w-[250px] sm:w-[300px] flex-shrink-0 rounded-3xl bg-white p-7 sm:p-8 shadow-lg shadow-black/10 ring-1 ring-slate-200/60 hover:shadow-xl hover:shadow-black/15 hover:-translate-y-1 transition-all duration-300"
           >
+            <a
+              href="{{ ('/obekti/' + shop.slug + '/') | url }}"
+              class="absolute inset-0 z-10 rounded-3xl"
+              tabindex="-1"
+              aria-hidden="true"
+            ></a>
+
             <span
               class="absolute left-8 top-0 h-px w-10 -translate-y-px bg-brand-yellow transition-all duration-300 group-hover:w-24"
               aria-hidden="true"
@@ -304,13 +316,12 @@ description: "Всичко от което се нуждаете, на едно 
             <h3 class="mt-7 text-xl sm:text-2xl font-bold text-slate-900 leading-tight">{{ shop.title }}</h3>
             <p class="mt-2 text-[11px] sm:text-xs uppercase tracking-[0.2em] font-semibold text-slate-500">{{ shop.category }}</p>
 
-            <a
-              href="{{ ('/obekti/' + shop.slug + '/') | url }}"
-              class="absolute right-7 bottom-7 inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 text-slate-400 transition hover:border-slate-300 hover:bg-slate-100 hover:text-slate-900"
-              aria-label="Виж повече за {{ shop.title }}"
+            <span
+              class="pointer-events-none absolute right-7 bottom-7 inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 text-slate-400 transition group-hover:border-slate-300 group-hover:bg-slate-100 group-hover:text-slate-900"
+              aria-hidden="true"
             >
               <svg viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4"><path d="M7.293 4.293a1 1 0 011.414 0l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414-1.414L11.586 10 7.293 5.707a1 1 0 010-1.414z"/></svg>
-            </a>
+            </span>
           </article>
         {% endfor %}
       </div>

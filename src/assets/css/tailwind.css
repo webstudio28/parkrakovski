@@ -155,6 +155,9 @@
     padding-left: 1rem;
     padding-right: 0.25rem;
   }
+  .partners-strip article > a {
+    cursor: pointer;
+  }
 
   /* News: scrollbar hidden · gutter-aligned row · no coarse-pointer hover */
   .news-cards-scroller {

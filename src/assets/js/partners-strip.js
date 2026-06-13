@@ -29,6 +29,7 @@
   }
 
   function onDown(e) {
+    if (e.type === 'mousedown' && e.button !== 0) return;
     dragging = true;
     moved = false;
     startX = getClientX(e);
