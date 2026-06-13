@@ -4,6 +4,10 @@
   var loader = document.getElementById("hero-loader");
   if (!section || !v) return;
 
+  var isMobile = window.matchMedia("(max-width: 1023px)").matches;
+  var heroSrc = isMobile ? v.dataset.srcMobile : v.dataset.srcDesktop;
+  if (heroSrc) v.src = heroSrc;
+
   var MIN_MS = 1000;
   var MAX_MS = 12000;
   var startedAt = Date.now();

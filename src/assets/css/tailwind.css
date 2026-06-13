@@ -853,7 +853,7 @@
     position: absolute;
     inset: 0;
     z-index: 1;
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(0, 0, 0, 0.4);
   }
 
   .hero-video {
