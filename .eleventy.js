@@ -16,9 +16,7 @@ module.exports = function (eleventyConfig) {
   });
 
   // Handy for sitemap/footers if needed
-  eleventyConfig.addGlobalData("buildDate", () =>
-    new Date().toISOString().slice(0, 10),
-  );
+  eleventyConfig.addGlobalData("buildDate", () => Date.now());
 
   eleventyConfig.addFilter("stripHtml", (value) =>
     String(value ?? "").replace(/<[^>]*>/g, "").replace(/\s+/g, " ").trim(),
