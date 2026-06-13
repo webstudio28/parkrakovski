@@ -135,10 +135,20 @@
     overflow: hidden;
   }
 
+  html.pk-partners-x-lock {
+    overflow-x: hidden;
+    overscroll-behavior-x: none;
+  }
+
+  html.pk-partners-x-lock body {
+    overflow-x: hidden;
+  }
+
   /* Partners: infinite moving strip with drag support */
   .partners-strip-wrapper {
     overflow: hidden;
     width: 100%;
+    touch-action: pan-x pinch-zoom;
     mask-image: linear-gradient(to right, transparent, black 7%, black 93%, transparent);
     -webkit-mask-image: linear-gradient(to right, transparent, black 7%, black 93%, transparent);
   }
@@ -1020,6 +1030,11 @@
 
   .rich-content u {
     text-underline-offset: 0.15em;
+  }
+
+  /* Footer — matches admin panel background */
+  .pk-footer-surface {
+    background: linear-gradient(160deg, #0f172a 0%, #0c1929 45%, #0a3d4a 100%);
   }
 
   /* Social brand links (footer + contacts) */

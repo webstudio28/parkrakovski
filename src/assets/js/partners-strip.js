@@ -13,6 +13,19 @@
   var startX = 0;
   var startPos = 0;
   var speed = 0.3;
+  var pageLocked = false;
+
+  function lockPageHorizontal() {
+    if (pageLocked) return;
+    pageLocked = true;
+    document.documentElement.classList.add('pk-partners-x-lock');
+  }
+
+  function unlockPageHorizontal() {
+    if (!pageLocked) return;
+    pageLocked = false;
+    document.documentElement.classList.remove('pk-partners-x-lock');
+  }
 
   function getClientX(e) {
     return e.touches ? e.touches[0].clientX : e.clientX;
@@ -40,7 +53,11 @@
   function onMove(e) {
     if (!dragging) return;
     var x = getClientX(e);
-    if (Math.abs(x - startX) > 6) moved = true;
+    if (Math.abs(x - startX) > 6) {
+      if (!moved) lockPageHorizontal();
+      moved = true;
+      if (e.cancelable) e.preventDefault();
+    }
     position = startPos + (x - startX);
   }
 
@@ -54,6 +71,7 @@
     }
     dragging = false;
     strip.style.cursor = 'grab';
+    unlockPageHorizontal();
     while (position < -setWidth) position += setWidth;
     while (position > 0) position -= setWidth;
   }
@@ -77,7 +95,7 @@
     e.stopPropagation();
   }, true);
   window.addEventListener('mousemove', onMove);
-  window.addEventListener('touchmove', onMove, { passive: true });
+  window.addEventListener('touchmove', onMove, { passive: false });
   window.addEventListener('mouseup', onUp);
   window.addEventListener('touchend', onUp);
   window.addEventListener('resize', onResize);
