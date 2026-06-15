@@ -803,6 +803,33 @@ function panel_styles(): void {
       outline-offset: 2px;
     }
 
+    .pk-sticky-bar {
+      position: sticky;
+      bottom: 0;
+      z-index: 50;
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      padding: 0.85rem 1rem;
+      margin: 1.25rem -1.25rem -1.25rem;
+      background: rgba(12, 25, 41, 0.92);
+      backdrop-filter: blur(10px);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .pk-sticky-bar .pk-btn[data-pk-save] {
+      flex: 1;
+      margin-top: 0;
+    }
+
+    .pk-btn--preview {
+      flex-shrink: 0;
+      margin-top: 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4em;
+    }
+
     /* ─────────────────────────────────────────────────────────
        Body editor — Quill dark-theme overrides + shell styles
        ───────────────────────────────────────────────────────── */
@@ -1054,10 +1081,14 @@ function panel_styles(): void {
       text-decoration: underline;
     }
     .pk-body-wrap .ql-editor img {
-      max-width: 100%;
+      max-width: 260px;
+      max-height: 200px;
+      width: auto;
+      height: auto;
+      object-fit: cover;
       border-radius: 0.65rem;
       display: block;
-      margin: 1em auto;
+      margin: 0.75em 0;
       border: 1px solid rgba(255, 255, 255, 0.1);
     }
     .pk-body-wrap .ql-editor strong,
@@ -1200,21 +1231,13 @@ function panel_styles(): void {
       background: rgba(15, 23, 42, 0.55);
     }
 
-    /* Portrait images in Quill editor — half width, left-aligned */
-    .pk-body-wrap .ql-editor img[data-orientation="portrait"] {
-      max-width: 50%;
+    /* Portrait/landscape don't change the capped editor thumbnail size */
+    .pk-body-wrap .ql-editor img[data-orientation="portrait"],
+    .pk-body-wrap .ql-editor img[data-orientation="landscape"] {
+      max-width: 260px;
+      max-height: 200px;
       margin-left: 0;
       margin-right: auto;
-    }
-
-    .pk-body-wrap .ql-editor img[data-orientation="landscape"] {
-      max-width: 100%;
-    }
-
-    @media (max-width: 640px) {
-      .pk-body-wrap .ql-editor img[data-orientation="portrait"] {
-        max-width: 100%;
-      }
     }
 
   </style>

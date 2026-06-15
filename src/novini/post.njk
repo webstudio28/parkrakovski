@@ -29,7 +29,7 @@ eleventyComputed:
       <div>
 
         {# Title + date — above hero image #}
-        <header class="max-w-2xl mb-5 sm:mb-6">
+        <header class="mb-5 sm:mb-6">
           <div class="flex items-center gap-3 mb-3 sm:mb-4">
             <span class="h-px w-8 bg-brand-yellow"></span>
             <time class="text-[10px] sm:text-xs font-semibold tracking-[0.32em] uppercase text-brand-yellow" datetime="{{ post.date }}">{{ post.date }}</time>
@@ -38,7 +38,7 @@ eleventyComputed:
         </header>
 
         {# Hero image #}
-        <div class="relative overflow-hidden rounded-[2rem] sm:rounded-[2.5rem] shadow-2xl shadow-slate-900/15 ring-1 ring-white/40 aspect-[16/9] max-w-2xl">
+        <div class="relative overflow-hidden rounded-[2rem] sm:rounded-[2.5rem] shadow-2xl shadow-slate-900/15 ring-1 ring-white/40 aspect-[16/9] w-full lg:w-[70%]">
           <img
             src="{{ post.image | url }}"
             alt="{{ post.title }}"

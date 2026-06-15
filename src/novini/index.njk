@@ -30,6 +30,11 @@ description: "Последни новини и обяви от Ритейл па
     <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
       {% for post in news.items %}
       <article class="news-card relative overflow-hidden rounded-3xl bg-white shadow-lg shadow-black/10 ring-1 ring-slate-200/60">
+        <a
+          href="{{ ('/novini/' ~ post.slug ~ '/') | url }}"
+          class="absolute inset-0 z-10 rounded-3xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-teal"
+          aria-label="Прочети повече: {{ post.title }}"
+        ></a>
         <div class="news-card__media relative aspect-[16/10] overflow-hidden">
           <img
             src="{{ post.image | url }}"
@@ -54,13 +59,12 @@ description: "Последни новини и обяви от Ритейл па
           <p class="rich-content mt-3 line-clamp-3 text-sm leading-relaxed text-slate-600">
             {{ post.excerpt | safe }}
           </p>
-          <a
-            href="{{ ('/novini/' ~ post.slug ~ '/') | url }}"
-            class="news-card__link mt-6 inline-flex items-center gap-2 rounded-full bg-slate-100 px-4 py-2 text-sm font-semibold text-slate-800"
+          <span
+            class="news-card__link pointer-events-none mt-6 inline-flex items-center gap-2 rounded-full bg-slate-100 px-4 py-2 text-sm font-semibold text-slate-800"
           >
             Прочети повече
             <svg class="h-4 w-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M7.293 4.293a1 1 0 011.414 0l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414-1.414L11.586 10 7.293 5.707a1 1 0 010-1.414z"/></svg>
-          </a>
+          </span>
         </div>
       </article>
       {% endfor %}

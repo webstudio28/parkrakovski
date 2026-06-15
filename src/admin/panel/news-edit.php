@@ -132,8 +132,50 @@ panel_page_open($title . " — админ панел");
           <?php panel_field_body_editor("Пълен текст", "body", (string)($post["body"] ?? "")); ?>
         </div>
 
-        <?php panel_save_button(); ?>
+        <!-- Sticky bottom bar: Save + Preview -->
+        <div class="pk-sticky-bar">
+          <?php panel_save_button(); ?>
+          <button type="button" class="pk-btn pk-btn--ghost pk-btn--preview" id="pk-preview-btn">
+            <i class="fa-solid fa-eye" aria-hidden="true"></i> Преглед
+          </button>
+        </div>
       </form>
     </div>
+
+    <script>
+    (function () {
+      var btn = document.getElementById("pk-preview-btn");
+      if (!btn) return;
+      btn.addEventListener("click", function () {
+        // Sync rich editors (Quill body + simple rich fields)
+        if (typeof window.__pkSyncRichEditors === "function") window.__pkSyncRichEditors();
+
+        var editForm = document.querySelector("form[data-pk-dirty-form]");
+        if (!editForm) return;
+
+        // Build a hidden form targeting a new tab, posting to news-preview.php
+        var previewForm = document.createElement("form");
+        previewForm.method = "post";
+        previewForm.action = "./news-preview.php";
+        previewForm.target = "_blank";
+        previewForm.style.display = "none";
+
+        var fields = ["csrf", "title", "date", "image", "excerpt", "body"];
+        fields.forEach(function (name) {
+          var src = editForm.querySelector('[name="' + name + '"]');
+          var val = src ? src.value : "";
+          var input = document.createElement("input");
+          input.type = "hidden";
+          input.name = name;
+          input.value = val;
+          previewForm.appendChild(input);
+        });
+
+        document.body.appendChild(previewForm);
+        previewForm.submit();
+        document.body.removeChild(previewForm);
+      });
+    })();
+    </script>
 <?php
 panel_page_close();

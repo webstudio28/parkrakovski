@@ -1179,25 +1179,21 @@
 
 /* ── Inline body article images — portrait vs landscape sizing ── */
 
-.rich-content.prose img[data-orientation="portrait"] {
-  display: block;
-  max-width: 50%;
-  margin-left: 0;
-  margin-right: auto;
-  border-radius: 1rem;
-  box-shadow: 0 8px 24px rgb(0 0 0 / 0.14);
-}
-
-.rich-content.prose img[data-orientation="landscape"] {
+.rich-content.prose img {
   display: block;
   max-width: 100%;
+  max-height: 480px;
+  width: auto;
+  height: auto;
   border-radius: 1rem;
   box-shadow: 0 8px 24px rgb(0 0 0 / 0.14);
+  margin-left: 0;
+  margin-right: auto;
 }
 
 @media (max-width: 640px) {
-  .rich-content.prose img[data-orientation="portrait"] {
-    max-width: 100%;
+  .rich-content.prose img {
+    max-height: 320px;
   }
 }
 
