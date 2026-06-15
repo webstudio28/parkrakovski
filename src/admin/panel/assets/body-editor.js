@@ -359,38 +359,70 @@
           if (btnEl)    btnEl.disabled = true;
           if (btnLbl)   btnLbl.textContent = "Качване…";
 
+          /* Insert immediately with blob URL so editor never shows broken image */
+          var insertIdx = savedRange ? savedRange.index : quill.getLength();
+          quill.insertEmbed(insertIdx, "image", previewObjectUrl, window.Quill.sources.USER);
+          quill.setSelection(insertIdx + 1, 0, window.Quill.sources.SILENT);
+
+          /* Apply orientation right away from the preview */
+          var orientation = pendingOrientation || "landscape";
+          setTimeout(function () {
+            var imgs = wrap.querySelectorAll(".ql-editor img");
+            imgs.forEach(function (img) {
+              var src = img.getAttribute("src") || "";
+              if (!img.dataset.orientation && src === previewObjectUrl) {
+                img.dataset.orientation = orientation;
+              }
+            });
+          }, 50);
+
+          closeModal();
+
           doUpload(file, "news", function (res) {
             if (btnEl)  btnEl.disabled = false;
             if (btnLbl) btnLbl.textContent = "Избери и качи снимка";
 
             if (!res.ok) {
-              if (statusEl) {
-                statusEl.textContent = res.error || "Грешка при качване.";
-                statusEl.classList.add("pk-body-img-modal__status--err");
+              /* Remove the blob-url image from Quill on failure */
+              var edRoot = wrap.querySelector(".ql-editor");
+              if (edRoot) {
+                edRoot.querySelectorAll("img").forEach(function (img) {
+                  if (img.getAttribute("src") === previewObjectUrl) {
+                    var blot = window.Quill.find(img);
+                    if (blot) {
+                      var failIdx = quill.getIndex(blot);
+                      quill.deleteText(failIdx, 1, window.Quill.sources.USER);
+                    }
+                  }
+                });
               }
+              /* Show error in a small toast since modal is already closed */
+              var toast = document.createElement("div");
+              toast.textContent = res.error || "Грешка при качване. Опитайте отново.";
+              toast.style.cssText = "position:fixed;bottom:5rem;left:50%;transform:translateX(-50%);background:#7f1d1d;color:#fecaca;padding:.6rem 1.1rem;border-radius:.65rem;font-size:.82rem;z-index:9999;box-shadow:0 4px 16px rgba(0,0,0,.4);";
+              document.body.appendChild(toast);
+              setTimeout(function () { document.body.removeChild(toast); }, 4000);
               return;
             }
 
-            if (statusEl) statusEl.textContent = "";
-
-            var idx = savedRange ? savedRange.index : quill.getLength();
-            quill.insertEmbed(idx, "image", res.path, window.Quill.sources.USER);
-            quill.setSelection(idx + 1, 0, window.Quill.sources.SILENT);
-
-            /* Apply orientation to the freshly inserted image */
-            var orientation = pendingOrientation || "landscape";
-            setTimeout(function () {
-              var imgs = wrap.querySelectorAll(".ql-editor img");
-              imgs.forEach(function (img) {
-                var src = img.getAttribute("src") || "";
-                if (!img.dataset.orientation && (src === res.path || src.endsWith(res.path))) {
-                  img.dataset.orientation = orientation;
+            /* Swap blob URL → real server path in all matching images */
+            var edRoot2 = wrap.querySelector(".ql-editor");
+            if (edRoot2) {
+              edRoot2.querySelectorAll("img").forEach(function (img) {
+                if (img.getAttribute("src") === previewObjectUrl) {
+                  img.setAttribute("src", res.path);
+                  if (img.dataset.orientation) {
+                    /* keep existing orientation */
+                  } else {
+                    img.dataset.orientation = pendingOrientation || "landscape";
+                  }
                 }
               });
-              pendingOrientation = null;
-            }, 50);
-
-            closeModal();
+            }
+            URL.revokeObjectURL(previewObjectUrl);
+            previewObjectUrl = null;
+            pendingOrientation = null;
+            syncToSource();
           });
         });
       }
