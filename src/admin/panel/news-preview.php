@@ -19,7 +19,7 @@ $title   = trim(panel_post_string("title")) ?: "Без заглавие";
 $date    = trim(panel_post_string("date"))  ?: "";
 $image   = trim(panel_post_string("image")) ?: "";
 $excerpt = panel_post_rich_html("excerpt");
-$body    = panel_post_body_html("body");
+$body    = panel_sanitize_body_html(panel_post_string("body"), true);
 
 /* ── Brand colours from site config ── */
 $cfg = panel_config();

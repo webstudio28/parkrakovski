@@ -165,6 +165,9 @@ panel_page_open($title . " — админ панел");
         fields.forEach(function (name) {
           var src = editForm.querySelector('[name="' + name + '"]');
           var val = src ? src.value : "";
+          if (name === "body" && typeof window.__pkGetBodyPreviewHtml === "function") {
+            val = window.__pkGetBodyPreviewHtml();
+          }
           var input = document.createElement("input");
           input.type = "hidden";
           input.name = name;

@@ -221,7 +221,7 @@
                 var pr = modalEl.querySelector("[data-pk-body-img-preview]");
                 if (fi) fi.value = "";
                 if (st) { st.textContent = ""; st.classList.remove("pk-body-img-modal__status--err"); }
-                if (pr) { pr.hidden = true; pr.src = ""; }
+                if (pr) { pr.hidden = true; pr.removeAttribute("src"); }
                 pendingOrientation = null;
                 revokePreview();
               }
@@ -310,10 +310,7 @@
 
     /* ── Image modal ── */
     function revokePreview() {
-      if (previewObjectUrl) {
-        URL.revokeObjectURL(previewObjectUrl);
-        previewObjectUrl = null;
-      }
+      previewObjectUrl = null;
     }
 
     function closeModal() {
@@ -328,7 +325,7 @@
       if (st)  { st.textContent = ""; st.classList.remove("pk-body-img-modal__status--err"); }
       if (btn) btn.disabled = false;
       if (lbl) lbl.textContent = "Избери и качи снимка";
-      if (pr)  { pr.hidden = true; pr.src = ""; }
+      if (pr)  { pr.hidden = true; pr.removeAttribute("src"); }
       revokePreview();
     }
 
@@ -353,64 +350,84 @@
           var btnLbl   = modalEl.querySelector("[data-pk-body-img-btn-label]");
           var previewEl = modalEl.querySelector("[data-pk-body-img-preview]");
 
-          /* Show local preview in the modal while uploading */
-          revokePreview();
-          previewObjectUrl = URL.createObjectURL(file);
-          if (previewEl) {
-            previewEl.src = previewObjectUrl;
-            previewEl.hidden = false;
-            previewEl.onload = function () {
-              pendingOrientation = previewEl.naturalHeight > previewEl.naturalWidth
-                ? "portrait" : "landscape";
-            };
-          }
-
-          if (statusEl) { statusEl.textContent = "Качване…"; statusEl.classList.remove("pk-body-img-modal__status--err"); }
+          if (statusEl) { statusEl.textContent = "Подготовка…"; statusEl.classList.remove("pk-body-img-modal__status--err"); }
           if (btnEl)    btnEl.disabled = true;
           if (btnLbl)   btnLbl.textContent = "Качване…";
 
-          doUpload(file, "news", function (res) {
-            if (btnEl)  btnEl.disabled = false;
-            if (btnLbl) btnLbl.textContent = "Избери и качи снимка";
-
-            if (!res.ok) {
+          var reader = new FileReader();
+          reader.onload = function () {
+            previewObjectUrl = String(reader.result || "");
+            if (!previewObjectUrl) {
               if (statusEl) {
-                statusEl.textContent = res.error || "Грешка при качване.";
+                statusEl.textContent = "Неуспешен преглед на снимката.";
                 statusEl.classList.add("pk-body-img-modal__status--err");
               }
+              if (btnEl) btnEl.disabled = false;
+              if (btnLbl) btnLbl.textContent = "Избери и качи снимка";
               return;
             }
 
-            if (statusEl) statusEl.textContent = "";
-
-            /*
-             * Production uploads commit to GitHub first; the public /assets URL may
-             * not exist until deploy. Keep the editor visual on a blob URL, but
-             * serialize the real uploaded path when saving/previewing.
-             */
-            var insertIdx = savedRange ? savedRange.index : quill.getLength();
-            var editorSrc = previewObjectUrl || res.path;
-            if (previewObjectUrl) {
-              editorImagePaths[previewObjectUrl] = res.path;
+            if (previewEl) {
+              previewEl.src = previewObjectUrl;
+              previewEl.hidden = false;
+              previewEl.onload = function () {
+                pendingOrientation = previewEl.naturalHeight > previewEl.naturalWidth
+                  ? "portrait" : "landscape";
+              };
             }
-            quill.insertEmbed(insertIdx, "image", editorSrc, window.Quill.sources.USER);
-            quill.setSelection(insertIdx + 1, 0, window.Quill.sources.SILENT);
+            if (statusEl) statusEl.textContent = "Качване…";
 
-            /* Apply orientation to freshly inserted image */
-            var orientation = pendingOrientation || "landscape";
-            setTimeout(function () {
-              wrap.querySelectorAll(".ql-editor img").forEach(function (img) {
-                var src = img.getAttribute("src") || "";
-                if (!img.dataset.orientation && (src === editorSrc || src === res.path || src.endsWith(res.path))) {
-                  img.dataset.orientation = orientation;
+            doUpload(file, "news", function (res) {
+              if (btnEl)  btnEl.disabled = false;
+              if (btnLbl) btnLbl.textContent = "Избери и качи снимка";
+
+              if (!res.ok) {
+                if (statusEl) {
+                  statusEl.textContent = res.error || "Грешка при качване.";
+                  statusEl.classList.add("pk-body-img-modal__status--err");
                 }
-              });
-              pendingOrientation = null;
-            }, 50);
+                return;
+              }
 
-            previewObjectUrl = null;
-            closeModal();
-          });
+              if (statusEl) statusEl.textContent = "";
+
+              /*
+               * Quill accepts data:image URLs, so the editor can show the image
+               * immediately even on production before the uploaded file deploys.
+               * syncToSource() swaps this display src to the saved /assets path.
+               */
+              var insertIdx = savedRange ? savedRange.index : quill.getLength();
+              var editorSrc = previewObjectUrl || res.path;
+              if (previewObjectUrl) {
+                editorImagePaths[previewObjectUrl] = res.path;
+              }
+              quill.insertEmbed(insertIdx, "image", editorSrc, window.Quill.sources.USER);
+              quill.setSelection(insertIdx + 1, 0, window.Quill.sources.SILENT);
+
+              var orientation = pendingOrientation || "landscape";
+              setTimeout(function () {
+                wrap.querySelectorAll(".ql-editor img").forEach(function (img) {
+                  var src = img.getAttribute("src") || "";
+                  if (!img.dataset.orientation && (src === editorSrc || src === res.path || src.endsWith(res.path))) {
+                    img.dataset.orientation = orientation;
+                  }
+                });
+                pendingOrientation = null;
+              }, 50);
+
+              previewObjectUrl = null;
+              closeModal();
+            });
+          };
+          reader.onerror = function () {
+            if (statusEl) {
+              statusEl.textContent = "Неуспешен преглед на снимката.";
+              statusEl.classList.add("pk-body-img-modal__status--err");
+            }
+            if (btnEl) btnEl.disabled = false;
+            if (btnLbl) btnLbl.textContent = "Избери и качи снимка";
+          };
+          reader.readAsDataURL(file);
         });
       }
     }
@@ -450,6 +467,15 @@
     });
   }
   window.__pkSyncBodyEditors = syncAllBodyEditors;
+
+  function getBodyPreviewHtml() {
+    var wrap = document.querySelector("[data-pk-body-wrap][data-pk-body-ready='1']");
+    var q = wrap ? wrap._pkQuill : null;
+    if (!q) return "";
+    var html = q.root.innerHTML;
+    return (html === "<p><br></p>" || html === "<p></p>") ? "" : html;
+  }
+  window.__pkGetBodyPreviewHtml = getBodyPreviewHtml;
 
   /* ── Patch global sync so dirty-form tracking includes body editors ── */
   var _origSync = window.__pkSyncRichEditors;

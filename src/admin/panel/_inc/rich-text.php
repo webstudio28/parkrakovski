@@ -119,7 +119,7 @@ function panel_post_rich_html_list(string $key): array {
  * Full-featured body sanitizer — allows block structure, images, and links.
  * Used exclusively for the news article body field (Quill output).
  */
-function panel_sanitize_body_html(string $html): string {
+function panel_sanitize_body_html(string $html, bool $allowDataImages = false): string {
   $html = trim($html);
   if ($html === "") {
     return "";
@@ -157,14 +157,16 @@ function panel_sanitize_body_html(string $html): string {
     $html,
   ) ?? $html;
 
-  // <img> — src must start with /assets/images/; allow alt attribute.
+  // <img> — saved content uses /assets/images/. Preview may also allow data:image URLs.
   $html = preg_replace_callback(
     '#<img\b([^>]*)/?>#i',
-    static function (array $m): string {
+    static function (array $m) use ($allowDataImages): string {
       $attrs = $m[1];
       $src = "";
       $alt = "";
       if (preg_match('#\bsrc=["\']?(/assets/images/[^\s"\'<>]*)["\'"]?#i', $attrs, $sm)) {
+        $src = ' src="' . htmlspecialchars($sm[1], ENT_QUOTES | ENT_HTML5, "UTF-8") . '"';
+      } elseif ($allowDataImages && preg_match('#\bsrc=["\']?(data:image/(?:png|jpe?g|webp);base64,[A-Za-z0-9+/=]+)["\']?#i', $attrs, $sm)) {
         $src = ' src="' . htmlspecialchars($sm[1], ENT_QUOTES | ENT_HTML5, "UTF-8") . '"';
       }
       if (preg_match('#\balt=["\']([^"\'<>]*)["\'"]?#i', $attrs, $am)) {
