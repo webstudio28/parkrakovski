@@ -32,6 +32,10 @@ $colorYellow = (string)($colors["yellow"]     ?? "#B5961D");
 
 /* ── Asset base path (relative to this file's location in _site/admin/panel/) ── */
 $stylesUrl = "../../assets/css/styles.css";
+$stylesPath = __DIR__ . "/../../assets/css/styles.css";
+if (is_file($stylesPath)) {
+  $stylesUrl .= "?v=" . (string)filemtime($stylesPath);
+}
 $bgUrl     = "../../assets/images/main-bg.jpg";
 
 ?>

@@ -1231,6 +1231,10 @@ function panel_styles(): void {
       background: rgba(15, 23, 42, 0.55);
     }
 
+    .pk-body-img-modal__preview[hidden] {
+      display: none !important;
+    }
+
     /* Portrait/landscape don't change the capped editor thumbnail size */
     .pk-body-wrap .ql-editor img[data-orientation="portrait"],
     .pk-body-wrap .ql-editor img[data-orientation="landscape"] {

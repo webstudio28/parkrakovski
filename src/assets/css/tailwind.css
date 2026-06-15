@@ -1180,20 +1180,21 @@
 /* ── Inline body article images — portrait vs landscape sizing ── */
 
 .rich-content.prose img {
-  display: block;
-  max-width: 100%;
-  max-height: 480px;
-  width: auto;
-  height: auto;
+  display: block !important;
+  max-width: 100% !important;
+  max-height: 480px !important;
+  width: auto !important;
+  height: auto !important;
+  object-fit: contain !important;
   border-radius: 1rem;
   box-shadow: 0 8px 24px rgb(0 0 0 / 0.14);
-  margin-left: 0;
-  margin-right: auto;
+  margin-left: 0 !important;
+  margin-right: auto !important;
 }
 
 @media (max-width: 640px) {
   .rich-content.prose img {
-    max-height: 320px;
+    max-height: 320px !important;
   }
 }
 

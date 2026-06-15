@@ -196,6 +196,7 @@
     var savedRange       = null;
     var pendingOrientation = null;
     var previewObjectUrl = null;
+    var editorImagePaths = {};
 
     /* ── Quill init ── */
     var quill = new window.Quill(editorDiv, {
@@ -270,6 +271,17 @@
     function syncToSource() {
       var html = quill.root.innerHTML;
       if (html === "<p><br></p>" || html === "<p></p>") html = "";
+      if (html) {
+        var scratch = document.createElement("div");
+        scratch.innerHTML = html;
+        scratch.querySelectorAll("img").forEach(function (img) {
+          var src = img.getAttribute("src") || "";
+          if (editorImagePaths[src]) {
+            img.setAttribute("src", editorImagePaths[src]);
+          }
+        });
+        html = scratch.innerHTML;
+      }
       sourceEl.value = html;
     }
 
@@ -371,9 +383,17 @@
 
             if (statusEl) statusEl.textContent = "";
 
-            /* Insert real server path — no blob URLs in Quill */
+            /*
+             * Production uploads commit to GitHub first; the public /assets URL may
+             * not exist until deploy. Keep the editor visual on a blob URL, but
+             * serialize the real uploaded path when saving/previewing.
+             */
             var insertIdx = savedRange ? savedRange.index : quill.getLength();
-            quill.insertEmbed(insertIdx, "image", res.path, window.Quill.sources.USER);
+            var editorSrc = previewObjectUrl || res.path;
+            if (previewObjectUrl) {
+              editorImagePaths[previewObjectUrl] = res.path;
+            }
+            quill.insertEmbed(insertIdx, "image", editorSrc, window.Quill.sources.USER);
             quill.setSelection(insertIdx + 1, 0, window.Quill.sources.SILENT);
 
             /* Apply orientation to freshly inserted image */
@@ -381,13 +401,14 @@
             setTimeout(function () {
               wrap.querySelectorAll(".ql-editor img").forEach(function (img) {
                 var src = img.getAttribute("src") || "";
-                if (!img.dataset.orientation && (src === res.path || src.endsWith(res.path))) {
+                if (!img.dataset.orientation && (src === editorSrc || src === res.path || src.endsWith(res.path))) {
                   img.dataset.orientation = orientation;
                 }
               });
               pendingOrientation = null;
             }, 50);
 
+            previewObjectUrl = null;
             closeModal();
           });
         });
@@ -396,6 +417,7 @@
 
     /* Expose quill instance on the wrap element for external sync */
     wrap._pkQuill = quill;
+    wrap._pkEditorImagePaths = editorImagePaths;
     return quill;
   }
 
@@ -413,6 +435,17 @@
       if (!q || !sourceEl) return;
       var html = q.root.innerHTML;
       if (html === "<p><br></p>" || html === "<p></p>") html = "";
+      if (html && wrap._pkEditorImagePaths) {
+        var scratch = document.createElement("div");
+        scratch.innerHTML = html;
+        scratch.querySelectorAll("img").forEach(function (img) {
+          var src = img.getAttribute("src") || "";
+          if (wrap._pkEditorImagePaths[src]) {
+            img.setAttribute("src", wrap._pkEditorImagePaths[src]);
+          }
+        });
+        html = scratch.innerHTML;
+      }
       sourceEl.value = html;
     });
   }

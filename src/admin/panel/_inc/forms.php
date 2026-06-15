@@ -145,7 +145,6 @@ function panel_field_body_editor(string $label, string $name, string $value = ""
         <img
           data-pk-body-img-preview
           class="pk-body-img-modal__preview"
-          src=""
           alt="Преглед"
           hidden
         />
