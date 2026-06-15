@@ -1111,3 +1111,93 @@
   }
 }
 
+/* ── Rich body content fixes ── */
+
+/* Lists — force bullets / numbers (Tailwind base reset removes them) */
+.rich-content.prose ul {
+  list-style-type: disc;
+  padding-left: 1.625em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+.rich-content.prose ol {
+  list-style-type: decimal;
+  padding-left: 1.625em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+.rich-content.prose ul ul  { list-style-type: circle; }
+.rich-content.prose ul ul ul { list-style-type: square; }
+.rich-content.prose li {
+  display: list-item;
+  margin-top: 0.4em;
+  margin-bottom: 0.4em;
+}
+
+/* Empty paragraphs — preserve as visible line breaks */
+.rich-content.prose p:empty,
+.rich-content.prose p:has(> br:only-child) {
+  min-height: 1.25em;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+/* Blockquotes */
+.rich-content.prose blockquote {
+  border-left: 4px solid #b5961d !important;
+  border-top: none;
+  border-right: none;
+  border-bottom: none;
+  padding: 1em 1.25em 1em 1.5em;
+  font-style: italic;
+  font-size: 1.08em;
+  color: #475569;
+  margin: 1.75em 0;
+  background: #f8fafc;
+  border-radius: 0 0.5rem 0.5rem 0;
+  position: relative;
+}
+.rich-content.prose blockquote::before {
+  content: "\201C";
+  position: absolute;
+  top: -0.1em;
+  left: 0.35em;
+  font-size: 3.5em;
+  line-height: 1;
+  color: #b5961d;
+  font-style: normal;
+  font-family: Georgia, serif;
+  opacity: 0.35;
+}
+.rich-content.prose blockquote::after {
+  content: none;
+}
+.rich-content.prose blockquote p {
+  margin: 0;
+  line-height: 1.7;
+}
+
+/* ── Inline body article images — portrait vs landscape sizing ── */
+
+.rich-content.prose img[data-orientation="portrait"] {
+  display: block;
+  max-width: 50%;
+  margin-left: 0;
+  margin-right: auto;
+  border-radius: 1rem;
+  box-shadow: 0 8px 24px rgb(0 0 0 / 0.14);
+}
+
+.rich-content.prose img[data-orientation="landscape"] {
+  display: block;
+  max-width: 100%;
+  border-radius: 1rem;
+  box-shadow: 0 8px 24px rgb(0 0 0 / 0.14);
+}
+
+@media (max-width: 640px) {
+  .rich-content.prose img[data-orientation="portrait"] {
+    max-width: 100%;
+  }
+}
+

@@ -64,7 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     "title" => panel_post_string("title"),
     "date" => $date,
     "excerpt" => panel_post_rich_html("excerpt"),
-    "body" => panel_post_rich_html("body"),
+    "body" => panel_post_body_html("body"),
     "image" => panel_post_string("image"),
     "url" => panel_news_permalink($newSlug),
   ];
@@ -129,7 +129,7 @@ panel_page_open($title . " — админ панел");
           </div>
           <?php panel_field_media("Снимка", "image", (string)($post["image"] ?? ""), "news", true); ?>
           <?php panel_field_rich_text("Кратко описание", "excerpt", (string)($post["excerpt"] ?? ""), 3); ?>
-          <?php panel_field_rich_text("Пълен текст", "body", (string)($post["body"] ?? ""), 12); ?>
+          <?php panel_field_body_editor("Пълен текст", "body", (string)($post["body"] ?? "")); ?>
         </div>
 
         <?php panel_save_button(); ?>

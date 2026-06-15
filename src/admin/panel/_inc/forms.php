@@ -82,6 +82,81 @@ function panel_field_rich_text(string $label, string $name, string $value = "", 
   <?php
 }
 
+/**
+ * Full-featured body editor for news articles (powered by Quill.js).
+ * Supports headings, paragraphs, lists, blockquotes, links, and inline images.
+ */
+function panel_field_body_editor(string $label, string $name, string $value = ""): void {
+  $safe = panel_sanitize_body_html($value);
+  $fieldId = "pk-body-" . bin2hex(random_bytes(3));
+  $modalId = $fieldId . "-img-modal";
+  ?>
+  <div class="pk-field">
+    <div class="pk-rich__label-row" style="margin-bottom:.5rem;">
+      <span class="pk-label"><?php echo html($label); ?></span>
+      <span class="pk-body-wordcount" data-pk-body-count></span>
+    </div>
+
+    <div
+      class="pk-body-wrap"
+      data-pk-body-wrap
+      data-pk-body-source="<?php echo html($fieldId); ?>"
+      data-pk-body-modal="<?php echo html($modalId); ?>"
+    >
+      <div class="pk-body-editor-shell">
+        <div id="<?php echo html($fieldId . "-editor"); ?>" data-pk-body-editor-div></div>
+      </div>
+    </div>
+
+    <textarea
+      name="<?php echo html($name); ?>"
+      id="<?php echo html($fieldId); ?>"
+      hidden
+      data-pk-body-source-textarea
+    ><?php echo html($safe); ?></textarea>
+  </div>
+
+  <!-- Image insert modal -->
+  <div
+    class="pk-body-img-modal"
+    id="<?php echo html($modalId); ?>"
+    hidden
+    role="dialog"
+    aria-modal="true"
+    aria-label="Вмъкни снимка в текста"
+  >
+    <div class="pk-body-img-modal__backdrop" data-pk-body-modal-close></div>
+    <div class="pk-body-img-modal__box">
+      <div class="pk-body-img-modal__head">
+        <span class="pk-body-img-modal__title">Вмъкни снимка</span>
+        <button type="button" class="pk-body-img-modal__close" data-pk-body-modal-close aria-label="Затвори">&times;</button>
+      </div>
+      <div class="pk-body-img-modal__body">
+        <button type="button" class="pk-btn pk-btn--ghost pk-btn--sm pk-body-img-modal__pick-btn" data-pk-body-img-btn onclick="this.closest('.pk-body-img-modal').querySelector('[data-pk-body-img-file]').click()">
+          <i class="fa-solid fa-image" aria-hidden="true"></i>
+          <span data-pk-body-img-btn-label>Избери и качи снимка</span>
+        </button>
+        <input
+          type="file"
+          accept="<?php echo html(panel_upload_accept_attr()); ?>"
+          data-pk-body-img-file
+          hidden
+        />
+        <img
+          data-pk-body-img-preview
+          class="pk-body-img-modal__preview"
+          src=""
+          alt="Преглед"
+          hidden
+        />
+        <p class="pk-body-img-modal__status" data-pk-body-img-status></p>
+        <p class="pk-hint" style="margin:.5rem 0 0;"><?php echo html(panel_upload_rules_hint()); ?></p>
+      </div>
+    </div>
+  </div>
+  <?php
+}
+
 function panel_field_media(string $label, string $name, string $value, string $uploadPrefix, bool $portrait = true): void {
   $previewClass = $portrait ? "pk-media__preview" : "pk-media__preview pk-media__preview--wide";
   $hidden = $value === "";

@@ -22,30 +22,29 @@ eleventyComputed:
       <span class="font-medium text-slate-900 truncate max-w-[200px] sm:max-w-xs">{{ post.title }}</span>
     </nav>
 
-    {# ── Article layout (Za nas pattern) ── #}
-    <div class="relative grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-10 items-start">
+    {# ── Article layout ── #}
+    <div class="relative grid grid-cols-1 gap-6 sm:gap-8 lg:gap-10 items-start">
 
       {# Main content card #}
-      <div class="lg:col-span-8">
+      <div>
 
-        {# Hero image card #}
-        <div class="relative overflow-hidden rounded-[2rem] sm:rounded-[2.5rem] shadow-2xl shadow-slate-900/15 ring-1 ring-white/40 aspect-[16/9]">
+        {# Title + date — above hero image #}
+        <header class="max-w-2xl mb-5 sm:mb-6">
+          <div class="flex items-center gap-3 mb-3 sm:mb-4">
+            <span class="h-px w-8 bg-brand-yellow"></span>
+            <time class="text-[10px] sm:text-xs font-semibold tracking-[0.32em] uppercase text-brand-yellow" datetime="{{ post.date }}">{{ post.date }}</time>
+          </div>
+          <h1 class="text-2xl sm:text-4xl lg:text-[2.75rem] font-extrabold tracking-tight text-slate-900 leading-tight">{{ post.title }}</h1>
+        </header>
+
+        {# Hero image #}
+        <div class="relative overflow-hidden rounded-[2rem] sm:rounded-[2.5rem] shadow-2xl shadow-slate-900/15 ring-1 ring-white/40 aspect-[16/9] max-w-2xl">
           <img
             src="{{ post.image | url }}"
             alt="{{ post.title }}"
             class="absolute inset-0 h-full w-full object-cover"
             loading="eager"
           />
-          <div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-slate-950/20 to-transparent" aria-hidden="true"></div>
-
-          <div class="absolute left-6 top-6 sm:left-8 sm:top-8 flex items-center gap-3">
-            <span class="h-px w-8 bg-brand-yellow"></span>
-            <span class="text-[10px] sm:text-xs font-semibold tracking-[0.32em] uppercase text-white/85">{{ post.date }}</span>
-          </div>
-
-          <div class="absolute left-6 bottom-6 sm:left-10 sm:bottom-10 max-w-[85%]">
-            <h1 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-tight [text-shadow:0_4px_18px_rgba(0,0,0,0.55)]">{{ post.title }}</h1>
-          </div>
         </div>
 
         {# Excerpt / lead ── #}
@@ -56,9 +55,28 @@ eleventyComputed:
 
         {# Body text card #}
         <div class="mt-5 rounded-[1.75rem] sm:rounded-[2rem] bg-white shadow-xl shadow-slate-900/10 p-7 sm:p-10">
-          <div class="rich-content prose prose-slate max-w-none prose-p:leading-relaxed prose-p:text-slate-700 prose-headings:font-extrabold">
+          <div class="rich-content prose prose-slate max-w-none prose-p:leading-relaxed prose-p:text-slate-700 prose-headings:font-extrabold prose-a:text-brand-teal prose-a:no-underline hover:prose-a:underline prose-blockquote:border-brand-yellow prose-blockquote:text-slate-500 prose-strong:text-slate-900" data-rich-body>
             {{ post.body | safe }}
           </div>
+
+          <script>
+          (function () {
+            function classify(img) {
+              function apply() {
+                if (img.naturalWidth > 0 && img.naturalHeight > 0) {
+                  img.dataset.orientation = img.naturalHeight > img.naturalWidth ? "portrait" : "landscape";
+                }
+              }
+              if (img.complete && img.naturalWidth > 0) { apply(); }
+              else { img.addEventListener("load", apply, { once: true }); }
+            }
+            function run() {
+              document.querySelectorAll("[data-rich-body] img").forEach(classify);
+            }
+            if (document.readyState === "loading") { document.addEventListener("DOMContentLoaded", run); }
+            else { run(); }
+          })();
+          </script>
         </div>
 
         {# Back link #}
@@ -74,12 +92,13 @@ eleventyComputed:
         </div>
       </div>
 
-      {# Sidebar — other news ── #}
-      <aside class="lg:col-span-4 space-y-5">
+      {# Other news — full width below article ── #}
+      <aside class="mt-4">
         <div class="flex items-center gap-3 mb-6">
           <span class="h-px w-10 bg-brand-yellow"></span>
           <span class="text-[10px] sm:text-xs font-semibold tracking-[0.32em] uppercase text-brand-yellow">Още новини</span>
         </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {% for other in news.items %}
           {% if other.slug != post.slug %}
           <a
@@ -101,6 +120,7 @@ eleventyComputed:
           </a>
           {% endif %}
         {% endfor %}
+        </div>
       </aside>
 
     </div>

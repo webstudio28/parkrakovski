@@ -803,6 +803,420 @@ function panel_styles(): void {
       outline-offset: 2px;
     }
 
+    /* ─────────────────────────────────────────────────────────
+       Body editor — Quill dark-theme overrides + shell styles
+       ───────────────────────────────────────────────────────── */
+
+    .pk-body-wrap {
+      border-radius: 0.75rem;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(15, 23, 42, 0.55);
+    }
+
+    .pk-body-wrap:focus-within {
+      outline: 2px solid rgba(181, 150, 29, 0.55);
+      outline-offset: 1px;
+    }
+
+    .pk-body-editor-shell {
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Quill container resets */
+    .pk-body-wrap .ql-toolbar.ql-snow,
+    .pk-body-wrap .ql-container.ql-snow {
+      border: none;
+    }
+
+    /* Toolbar */
+    .pk-body-wrap .ql-toolbar.ql-snow {
+      background: rgba(255, 255, 255, 0.06);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important;
+      padding: 0.5rem 0.65rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.15rem;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    /* Toolbar button icons */
+    .pk-body-wrap .ql-snow .ql-stroke {
+      stroke: #94a3b8;
+    }
+    .pk-body-wrap .ql-snow .ql-fill,
+    .pk-body-wrap .ql-snow .ql-stroke.ql-fill {
+      fill: #94a3b8;
+    }
+    .pk-body-wrap .ql-snow.ql-toolbar button:hover .ql-stroke,
+    .pk-body-wrap .ql-snow .ql-toolbar button:hover .ql-stroke,
+    .pk-body-wrap .ql-snow.ql-toolbar button.ql-active .ql-stroke,
+    .pk-body-wrap .ql-snow .ql-toolbar button.ql-active .ql-stroke {
+      stroke: #f8fafc;
+    }
+    .pk-body-wrap .ql-snow.ql-toolbar button:hover .ql-fill,
+    .pk-body-wrap .ql-snow .ql-toolbar button:hover .ql-fill,
+    .pk-body-wrap .ql-snow.ql-toolbar button.ql-active .ql-fill,
+    .pk-body-wrap .ql-snow .ql-toolbar button.ql-active .ql-fill {
+      fill: #f8fafc;
+    }
+
+    /* Toolbar buttons */
+    .pk-body-wrap .ql-snow.ql-toolbar button,
+    .pk-body-wrap .ql-snow .ql-toolbar button {
+      border-radius: 0.4rem;
+      color: #94a3b8;
+      width: 2rem;
+      height: 2rem;
+      padding: 0.2rem;
+      transition: background 0.1s ease, color 0.1s ease;
+    }
+    .pk-body-wrap .ql-snow.ql-toolbar button:hover,
+    .pk-body-wrap .ql-snow .ql-toolbar button:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: #f8fafc;
+    }
+    .pk-body-wrap .ql-snow.ql-toolbar button.ql-active,
+    .pk-body-wrap .ql-snow .ql-toolbar button.ql-active {
+      background: rgba(181, 150, 29, 0.22);
+      color: #f8fafc;
+    }
+
+    /* Header dropdown picker */
+    .pk-body-wrap .ql-snow .ql-picker {
+      color: #94a3b8;
+      height: 2rem;
+    }
+    .pk-body-wrap .ql-snow .ql-picker .ql-picker-label {
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 0.4rem;
+      background: rgba(15, 23, 42, 0.45);
+      color: #94a3b8;
+      padding: 0 0.6rem;
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+    .pk-body-wrap .ql-snow .ql-picker .ql-picker-label:hover,
+    .pk-body-wrap .ql-snow .ql-picker.ql-expanded .ql-picker-label {
+      background: rgba(255, 255, 255, 0.1);
+      color: #f8fafc;
+    }
+    .pk-body-wrap .ql-snow .ql-picker-options {
+      background: #0f172a;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 0.6rem;
+      padding: 0.35rem;
+      box-shadow: 0 8px 24px rgba(2, 6, 23, 0.55);
+    }
+    .pk-body-wrap .ql-snow .ql-picker-item {
+      color: #cbd5e1;
+      border-radius: 0.35rem;
+      padding: 0.3rem 0.6rem;
+    }
+    .pk-body-wrap .ql-snow .ql-picker-item:hover {
+      background: rgba(255, 255, 255, 0.08);
+      color: #f8fafc;
+    }
+    .pk-body-wrap .ql-snow .ql-picker-item.ql-selected,
+    .pk-body-wrap .ql-snow .ql-picker-item.ql-selected:hover {
+      background: rgba(181, 150, 29, 0.22);
+      color: #f8fafc;
+    }
+
+    /* Header dropdown labels — Bulgarian */
+    .pk-body-wrap .ql-snow .ql-picker.ql-header .ql-picker-label::before,
+    .pk-body-wrap .ql-snow .ql-picker.ql-header .ql-picker-item::before {
+      content: "Параграф";
+    }
+    .pk-body-wrap .ql-snow .ql-picker.ql-header .ql-picker-label[data-value="2"]::before,
+    .pk-body-wrap .ql-snow .ql-picker.ql-header .ql-picker-item[data-value="2"]::before {
+      content: "Заглавие 2";
+    }
+    .pk-body-wrap .ql-snow .ql-picker.ql-header .ql-picker-label[data-value="3"]::before,
+    .pk-body-wrap .ql-snow .ql-picker.ql-header .ql-picker-item[data-value="3"]::before {
+      content: "Заглавие 3";
+    }
+    .pk-body-wrap .ql-snow .ql-picker.ql-header .ql-picker-label[data-value="4"]::before,
+    .pk-body-wrap .ql-snow .ql-picker.ql-header .ql-picker-item[data-value="4"]::before {
+      content: "Заглавие 4";
+    }
+
+    /* Header picker item visual sizes */
+    .pk-body-wrap .ql-snow .ql-picker.ql-header .ql-picker-item[data-value="2"]::before {
+      font-size: 1.1em;
+      font-weight: 700;
+    }
+    .pk-body-wrap .ql-snow .ql-picker.ql-header .ql-picker-item[data-value="3"]::before {
+      font-size: 1em;
+      font-weight: 700;
+    }
+    .pk-body-wrap .ql-snow .ql-picker.ql-header .ql-picker-item[data-value="4"]::before {
+      font-size: 0.9em;
+      font-weight: 700;
+    }
+
+    /* Toolbar separator */
+    .pk-body-wrap .ql-snow.ql-toolbar .ql-formats,
+    .pk-body-wrap .ql-snow .ql-toolbar .ql-formats {
+      margin-right: 0.35rem;
+      padding-right: 0.35rem;
+      border-right: 1px solid rgba(255, 255, 255, 0.14);
+    }
+    .pk-body-wrap .ql-snow.ql-toolbar .ql-formats:last-child,
+    .pk-body-wrap .ql-snow .ql-toolbar .ql-formats:last-child {
+      border-right: none;
+      margin-right: 0;
+    }
+
+    /* Tooltip (link prompt) */
+    .pk-body-wrap .ql-snow .ql-tooltip {
+      background: #0f172a;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 0.6rem;
+      color: #e2e8f0;
+      box-shadow: 0 8px 24px rgba(2, 6, 23, 0.55);
+      z-index: 100;
+    }
+    .pk-body-wrap .ql-snow .ql-tooltip input[type=text] {
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 0.4rem;
+      color: #f8fafc;
+      padding: 0.3rem 0.5rem;
+    }
+    .pk-body-wrap .ql-snow .ql-tooltip a.ql-action::after,
+    .pk-body-wrap .ql-snow .ql-tooltip a.ql-remove::before {
+      color: #7dd3fc;
+    }
+    .pk-body-wrap .ql-snow .ql-tooltip::before {
+      color: #94a3b8;
+    }
+
+    /* Editor area */
+    .pk-body-wrap .ql-container {
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+      font-size: 0.96rem;
+    }
+    .pk-body-wrap .ql-editor {
+      min-height: 22rem;
+      max-height: none;
+      color: #e2e8f0;
+      line-height: 1.7;
+      padding: 1rem 1.15rem;
+      overflow-y: visible;
+    }
+    .pk-body-wrap .ql-editor p {
+      margin: 0 0 0.75em;
+      color: #e2e8f0;
+    }
+    .pk-body-wrap .ql-editor h2 {
+      font-size: 1.45rem;
+      font-weight: 800;
+      margin: 1.5em 0 0.5em;
+      color: #f8fafc;
+      letter-spacing: -0.02em;
+    }
+    .pk-body-wrap .ql-editor h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin: 1.25em 0 0.4em;
+      color: #f8fafc;
+    }
+    .pk-body-wrap .ql-editor h4 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin: 1em 0 0.35em;
+      color: #f8fafc;
+    }
+    .pk-body-wrap .ql-editor ul,
+    .pk-body-wrap .ql-editor ol {
+      padding-left: 1.6em;
+      margin: 0 0 0.75em;
+      color: #e2e8f0;
+    }
+    .pk-body-wrap .ql-editor li {
+      margin-bottom: 0.3em;
+    }
+    .pk-body-wrap .ql-editor blockquote {
+      border-left: 3px solid #b5961d;
+      padding: 0.5em 0 0.5em 1em;
+      margin: 1em 0;
+      color: #94a3b8;
+      font-style: italic;
+    }
+    .pk-body-wrap .ql-editor a {
+      color: #7dd3fc;
+      text-decoration: underline;
+    }
+    .pk-body-wrap .ql-editor img {
+      max-width: 100%;
+      border-radius: 0.65rem;
+      display: block;
+      margin: 1em auto;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .pk-body-wrap .ql-editor strong,
+    .pk-body-wrap .ql-editor b {
+      color: #f8fafc;
+      font-weight: 700;
+    }
+    .pk-body-wrap .ql-editor em {
+      font-style: italic;
+    }
+    .pk-body-wrap .ql-editor u {
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+    .pk-body-wrap .ql-editor s {
+      opacity: 0.6;
+    }
+    .pk-body-wrap .ql-editor.ql-blank::before {
+      color: #475569;
+      font-style: normal;
+      left: 1.15rem;
+      right: 1.15rem;
+    }
+
+    /* Word count badge */
+    .pk-body-wordcount {
+      font-size: 0.72rem;
+      color: #475569;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    /* ─────────────────────────────────────────────────────────
+       Image insert modal
+       ───────────────────────────────────────────────────────── */
+
+    .pk-body-img-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 900;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+
+    .pk-body-img-modal[hidden] {
+      display: none;
+    }
+
+    .pk-body-img-modal__backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(2, 6, 23, 0.72);
+      backdrop-filter: blur(4px);
+      cursor: pointer;
+    }
+
+    .pk-body-img-modal__box {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 28rem;
+      background: linear-gradient(160deg, #0f172a 0%, #0c2233 100%);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 1.25rem;
+      box-shadow: 0 24px 64px rgba(2, 6, 23, 0.6);
+      overflow: hidden;
+    }
+
+    .pk-body-img-modal__head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 1.25rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .pk-body-img-modal__title {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: #f1f5f9;
+    }
+
+    .pk-body-img-modal__close {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 1.85rem;
+      height: 1.85rem;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.06);
+      color: #94a3b8;
+      font-size: 1.05rem;
+      cursor: pointer;
+      line-height: 1;
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+
+    .pk-body-img-modal__close:hover {
+      background: rgba(255, 255, 255, 0.12);
+      color: #f8fafc;
+    }
+
+    .pk-body-img-modal__body {
+      padding: 1.35rem 1.25rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+
+    .pk-body-img-modal__pick-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.88rem;
+      width: auto;
+    }
+
+    .pk-body-img-modal__status {
+      font-size: 0.82rem;
+      color: #94a3b8;
+      min-height: 1.1em;
+    }
+
+    .pk-body-img-modal__status--err {
+      color: #fca5a5;
+    }
+
+    .pk-body-img-modal__preview {
+      display: block;
+      max-width: 100%;
+      max-height: 160px;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      border-radius: 0.6rem;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(15, 23, 42, 0.55);
+    }
+
+    /* Portrait images in Quill editor — half width, left-aligned */
+    .pk-body-wrap .ql-editor img[data-orientation="portrait"] {
+      max-width: 50%;
+      margin-left: 0;
+      margin-right: auto;
+    }
+
+    .pk-body-wrap .ql-editor img[data-orientation="landscape"] {
+      max-width: 100%;
+    }
+
+    @media (max-width: 640px) {
+      .pk-body-wrap .ql-editor img[data-orientation="portrait"] {
+        max-width: 100%;
+      }
+    }
+
   </style>
   <?php
 }
@@ -835,6 +1249,7 @@ function panel_page_open(string $title): void {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title><?php echo html($title); ?></title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="<?php echo html(panel_asset_url("assets/quill.snow.css")); ?>" />
     <?php panel_styles(); ?>
   </head>
   <body>
@@ -845,7 +1260,9 @@ function panel_page_close(bool $withScripts = true): void {
   if ($withScripts) {
     $uploadRules = json_encode(panel_upload_client_config(), JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT);
     echo '<script>window.__pkUploadRules=' . $uploadRules . ';</script>';
+    echo '<script src="' . html(panel_asset_url("assets/quill.min.js")) . '"></script>';
     echo '<script src="' . html(panel_asset_url("assets/rich-editor.js")) . '"></script>';
+    echo '<script src="' . html(panel_asset_url("assets/body-editor.js")) . '"></script>';
     echo '<script src="' . html(panel_asset_url("assets/panel.js")) . '"></script>';
   }
   ?>

@@ -114,3 +114,70 @@ function panel_post_rich_html_list(string $key): array {
   }
   return $out;
 }
+
+/**
+ * Full-featured body sanitizer — allows block structure, images, and links.
+ * Used exclusively for the news article body field (Quill output).
+ */
+function panel_sanitize_body_html(string $html): string {
+  $html = trim($html);
+  if ($html === "") {
+    return "";
+  }
+
+  $html = preg_replace('/[\x00-\x08\x0B\x0C\x0E-\x1F]/u', "", $html) ?? "";
+  $html = str_replace(["\r\n", "\r"], "\n", $html);
+
+  // Strip everything except the allowed structural + inline tags.
+  $allowed = "<p><h2><h3><h4><ul><ol><li><blockquote><br><strong><b><em><i><u><s><a><img><hr>";
+  $html = strip_tags($html, $allowed);
+
+  // Strip all attributes from simple block/inline tags.
+  $html = preg_replace(
+    '#<(/?)(p|h2|h3|h4|ul|ol|li|blockquote|hr|b|strong|em|i|u|s|br)\b[^>]*>#i',
+    '<$1$2>',
+    $html,
+  ) ?? $html;
+
+  // <a> — keep only a safe href; add target/rel for external URLs.
+  $html = preg_replace_callback(
+    '#<a\b([^>]*)>#i',
+    static function (array $m): string {
+      $attrs = $m[1];
+      $href = "";
+      if (preg_match('#\bhref=["\']?(https?://[^\s"\'<>]+|/[^\s"\'<>]*)["\'"]?#i', $attrs, $hm)) {
+        $url = $hm[1];
+        $href = ' href="' . htmlspecialchars($url, ENT_QUOTES | ENT_HTML5, "UTF-8") . '"';
+        if (preg_match('#^https?://#i', $url)) {
+          $href .= ' target="_blank" rel="noopener noreferrer"';
+        }
+      }
+      return $href ? "<a{$href}>" : "";
+    },
+    $html,
+  ) ?? $html;
+
+  // <img> — src must start with /assets/images/; allow alt attribute.
+  $html = preg_replace_callback(
+    '#<img\b([^>]*)/?>#i',
+    static function (array $m): string {
+      $attrs = $m[1];
+      $src = "";
+      $alt = "";
+      if (preg_match('#\bsrc=["\']?(/assets/images/[^\s"\'<>]*)["\'"]?#i', $attrs, $sm)) {
+        $src = ' src="' . htmlspecialchars($sm[1], ENT_QUOTES | ENT_HTML5, "UTF-8") . '"';
+      }
+      if (preg_match('#\balt=["\']([^"\'<>]*)["\'"]?#i', $attrs, $am)) {
+        $alt = ' alt="' . htmlspecialchars($am[1], ENT_QUOTES | ENT_HTML5, "UTF-8") . '"';
+      }
+      return $src ? '<img' . $src . $alt . ' loading="lazy">' : "";
+    },
+    $html,
+  ) ?? $html;
+
+  return trim($html);
+}
+
+function panel_post_body_html(string $key, string $default = ""): string {
+  return panel_sanitize_body_html(panel_post_string($key, $default));
+}
