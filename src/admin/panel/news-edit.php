@@ -147,7 +147,8 @@ panel_page_open($title . " — админ панел");
       var btn = document.getElementById("pk-preview-btn");
       if (!btn) return;
       btn.addEventListener("click", function () {
-        // Sync rich editors (Quill body + simple rich fields)
+        // Sync all editors to their hidden textareas
+        if (typeof window.__pkSyncBodyEditors === "function") window.__pkSyncBodyEditors();
         if (typeof window.__pkSyncRichEditors === "function") window.__pkSyncRichEditors();
 
         var editForm = document.querySelector("form[data-pk-dirty-form]");

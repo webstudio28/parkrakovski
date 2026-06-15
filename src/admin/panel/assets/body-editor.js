@@ -341,17 +341,15 @@
           var btnLbl   = modalEl.querySelector("[data-pk-body-img-btn-label]");
           var previewEl = modalEl.querySelector("[data-pk-body-img-preview]");
 
-          /* Show local preview immediately */
+          /* Show local preview in the modal while uploading */
           revokePreview();
           previewObjectUrl = URL.createObjectURL(file);
           if (previewEl) {
             previewEl.src = previewObjectUrl;
             previewEl.hidden = false;
             previewEl.onload = function () {
-              /* Detect orientation from preview dimensions */
               pendingOrientation = previewEl.naturalHeight > previewEl.naturalWidth
-                ? "portrait"
-                : "landscape";
+                ? "portrait" : "landscape";
             };
           }
 
@@ -359,75 +357,45 @@
           if (btnEl)    btnEl.disabled = true;
           if (btnLbl)   btnLbl.textContent = "Качване…";
 
-          /* Insert immediately with blob URL so editor never shows broken image */
-          var insertIdx = savedRange ? savedRange.index : quill.getLength();
-          quill.insertEmbed(insertIdx, "image", previewObjectUrl, window.Quill.sources.USER);
-          quill.setSelection(insertIdx + 1, 0, window.Quill.sources.SILENT);
-
-          /* Apply orientation right away from the preview */
-          var orientation = pendingOrientation || "landscape";
-          setTimeout(function () {
-            var imgs = wrap.querySelectorAll(".ql-editor img");
-            imgs.forEach(function (img) {
-              var src = img.getAttribute("src") || "";
-              if (!img.dataset.orientation && src === previewObjectUrl) {
-                img.dataset.orientation = orientation;
-              }
-            });
-          }, 50);
-
-          closeModal();
-
           doUpload(file, "news", function (res) {
             if (btnEl)  btnEl.disabled = false;
             if (btnLbl) btnLbl.textContent = "Избери и качи снимка";
 
             if (!res.ok) {
-              /* Remove the blob-url image from Quill on failure */
-              var edRoot = wrap.querySelector(".ql-editor");
-              if (edRoot) {
-                edRoot.querySelectorAll("img").forEach(function (img) {
-                  if (img.getAttribute("src") === previewObjectUrl) {
-                    var blot = window.Quill.find(img);
-                    if (blot) {
-                      var failIdx = quill.getIndex(blot);
-                      quill.deleteText(failIdx, 1, window.Quill.sources.USER);
-                    }
-                  }
-                });
+              if (statusEl) {
+                statusEl.textContent = res.error || "Грешка при качване.";
+                statusEl.classList.add("pk-body-img-modal__status--err");
               }
-              /* Show error in a small toast since modal is already closed */
-              var toast = document.createElement("div");
-              toast.textContent = res.error || "Грешка при качване. Опитайте отново.";
-              toast.style.cssText = "position:fixed;bottom:5rem;left:50%;transform:translateX(-50%);background:#7f1d1d;color:#fecaca;padding:.6rem 1.1rem;border-radius:.65rem;font-size:.82rem;z-index:9999;box-shadow:0 4px 16px rgba(0,0,0,.4);";
-              document.body.appendChild(toast);
-              setTimeout(function () { document.body.removeChild(toast); }, 4000);
               return;
             }
 
-            /* Swap blob URL → real server path in all matching images */
-            var edRoot2 = wrap.querySelector(".ql-editor");
-            if (edRoot2) {
-              edRoot2.querySelectorAll("img").forEach(function (img) {
-                if (img.getAttribute("src") === previewObjectUrl) {
-                  img.setAttribute("src", res.path);
-                  if (img.dataset.orientation) {
-                    /* keep existing orientation */
-                  } else {
-                    img.dataset.orientation = pendingOrientation || "landscape";
-                  }
+            if (statusEl) statusEl.textContent = "";
+
+            /* Insert real server path — no blob URLs in Quill */
+            var insertIdx = savedRange ? savedRange.index : quill.getLength();
+            quill.insertEmbed(insertIdx, "image", res.path, window.Quill.sources.USER);
+            quill.setSelection(insertIdx + 1, 0, window.Quill.sources.SILENT);
+
+            /* Apply orientation to freshly inserted image */
+            var orientation = pendingOrientation || "landscape";
+            setTimeout(function () {
+              wrap.querySelectorAll(".ql-editor img").forEach(function (img) {
+                var src = img.getAttribute("src") || "";
+                if (!img.dataset.orientation && (src === res.path || src.endsWith(res.path))) {
+                  img.dataset.orientation = orientation;
                 }
               });
-            }
-            URL.revokeObjectURL(previewObjectUrl);
-            previewObjectUrl = null;
-            pendingOrientation = null;
-            syncToSource();
+              pendingOrientation = null;
+            }, 50);
+
+            closeModal();
           });
         });
       }
     }
 
+    /* Expose quill instance on the wrap element for external sync */
+    wrap._pkQuill = quill;
     return quill;
   }
 
@@ -436,15 +404,25 @@
     document.querySelectorAll("[data-pk-body-wrap]").forEach(initBodyEditor);
   }
 
+  /* ── Sync all body editor textareas (called by preview button + dirty tracking) ── */
+  function syncAllBodyEditors() {
+    document.querySelectorAll("[data-pk-body-wrap][data-pk-body-ready='1']").forEach(function (wrap) {
+      var q = wrap._pkQuill;
+      var sourceId = wrap.getAttribute("data-pk-body-source");
+      var sourceEl = sourceId ? document.getElementById(sourceId) : null;
+      if (!q || !sourceEl) return;
+      var html = q.root.innerHTML;
+      if (html === "<p><br></p>" || html === "<p></p>") html = "";
+      sourceEl.value = html;
+    });
+  }
+  window.__pkSyncBodyEditors = syncAllBodyEditors;
+
   /* ── Patch global sync so dirty-form tracking includes body editors ── */
   var _origSync = window.__pkSyncRichEditors;
   window.__pkSyncRichEditors = function () {
     if (typeof _origSync === "function") _origSync();
-    document.querySelectorAll("[data-pk-body-wrap][data-pk-body-ready='1']").forEach(function (wrap) {
-      var sourceId = wrap.getAttribute("data-pk-body-source");
-      var sourceEl = sourceId ? document.getElementById(sourceId) : null;
-      if (sourceEl) return;
-    });
+    syncAllBodyEditors();
   };
 
   if (document.readyState === "loading") {
