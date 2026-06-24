@@ -262,36 +262,146 @@
             "promotions": [],
             "image": "/assets/images/partners/Pepco/pepco1.webp",
             "description": "Pepco предлага достъпна мода за цялото семейство — облекло, домашни текстили и сезонни декорации. Открийте последните тенденции в модата на изключително изгодни цени за деца, жени и мъже.",
-            "hours": "Пон–Съб: 09:00–20:00 | Нед: 10:00–19:00",
+            "hours": {
+                "mon": {
+                    "open": "10:00",
+                    "close": "20:00"
+                },
+                "tue": {
+                    "open": "10:00",
+                    "close": "20:00"
+                },
+                "wed": {
+                    "open": "10:00",
+                    "close": "20:00"
+                },
+                "thu": {
+                    "open": "10:00",
+                    "close": "20:00"
+                },
+                "fri": {
+                    "open": "10:00",
+                    "close": "20:00"
+                },
+                "sat": {
+                    "open": "10:00",
+                    "close": "20:00"
+                },
+                "sun": {
+                    "open": "10:00",
+                    "close": "20:00"
+                }
+            },
             "phone": "",
             "images": [
-                "/assets/images/partners/Pepco/pepco1.webp",
-                "/assets/images/partners/Pepco/pepco2.webp",
-                "/assets/images/partners/Pepco/pepco3.webp",
-                "/assets/images/partners/Pepco/pepco4.webp",
-                "/assets/images/partners/Pepco/pepco5.webp",
-                "/assets/images/partners/Pepco/pepco6.webp",
-                "/assets/images/partners/Pepco/pepco7.webp",
-                "/assets/images/partners/Pepco/pepco8.webp",
-                "/assets/images/partners/Pepco/pepco9.webp",
-                "/assets/images/partners/Pepco/pepco10.webp",
-                "/assets/images/partners/Pepco/pepco11.webp",
-                "/assets/images/partners/Pepco/pepco12.webp",
-                "/assets/images/partners/Pepco/pepco13.webp",
-                "/assets/images/partners/Pepco/pepco14.webp",
-                "/assets/images/partners/Pepco/pepco15.webp",
-                "/assets/images/partners/Pepco/pepco16.webp",
-                "/assets/images/partners/Pepco/pepco17.webp",
-                "/assets/images/partners/Pepco/pepco18.webp",
-                "/assets/images/partners/Pepco/pepco19.webp",
-                "/assets/images/partners/Pepco/pepco20.webp",
-                "/assets/images/partners/Pepco/pepco21.webp",
-                "/assets/images/partners/Pepco/pepco22.webp",
-                "/assets/images/partners/Pepco/pepco23.webp",
-                "/assets/images/partners/Pepco/pepco24.webp",
-                "/assets/images/partners/Pepco/pepco25.webp",
-                "/assets/images/partners/Pepco/pepco26.webp",
-                "/assets/images/partners/Pepco/pepco27.webp"
+                {
+                    "src": "/assets/images/partners/Pepco/pepco1.webp",
+                    "alt": "Pepco — Ритейл парк Раковски — 2h6h"
+                },
+                {
+                    "src": "/assets/images/partners/Pepco/pepco2.webp",
+                    "alt": "Pepco — Ритейл парк Раковски — 28pi"
+                },
+                {
+                    "src": "/assets/images/partners/Pepco/pepco3.webp",
+                    "alt": "Pepco — Ритейл парк Раковски — tbw8"
+                },
+                {
+                    "src": "/assets/images/partners/Pepco/pepco4.webp",
+                    "alt": "Pepco — Ритейл парк Раковски — 7lrj"
+                },
+                {
+                    "src": "/assets/images/partners/Pepco/pepco5.webp",
+                    "alt": "Pepco — Ритейл парк Раковски — pdt6"
+                },
+                {
+                    "src": "/assets/images/partners/Pepco/pepco6.webp",
+                    "alt": "Pepco — Ритейл парк Раковски — s3po"
+                },
+                {
+                    "src": "/assets/images/partners/Pepco/pepco7.webp",
+                    "alt": "Pepco — Ритейл парк Раковски — n9ee"
+                },
+                {
+                    "src": "/assets/images/partners/Pepco/pepco8.webp",
+                    "alt": "Pepco — Ритейл парк Раковски — 1xph"
+                },
+                {
+                    "src": "/assets/images/partners/Pepco/pepco9.webp",
+                    "alt": "Pepco — Ритейл парк Раковски — 4ug0"
+                },
+                {
+                    "src": "/assets/images/partners/Pepco/pepco10.webp",
+                    "alt": "Pepco — Ритейл парк Раковски — vblh"
+                },
+                {
+                    "src": "/assets/images/partners/Pepco/pepco11.webp",
+                    "alt": "Pepco — Ритейл парк Раковски — 0c2r"
+                },
+                {
+                    "src": "/assets/images/partners/Pepco/pepco12.webp",
+                    "alt": "Pepco — Ритейл парк Раковски — npo7"
+                },
+                {
+                    "src": "/assets/images/partners/Pepco/pepco13.webp",
+                    "alt": "Pepco — Ритейл парк Раковски — yujx"
+                },
+                {
+                    "src": "/assets/images/partners/Pepco/pepco14.webp",
+                    "alt": "Pepco — Ритейл парк Раковски — jj6r"
+                },
+                {
+                    "src": "/assets/images/partners/Pepco/pepco15.webp",
+                    "alt": "Pepco — Ритейл парк Раковски — idfz"
+                },
+                {
+                    "src": "/assets/images/partners/Pepco/pepco16.webp",
+                    "alt": "Pepco — Ритейл парк Раковски — 1ack"
+                },
+                {
+                    "src": "/assets/images/partners/Pepco/pepco17.webp",
+                    "alt": "Pepco — Ритейл парк Раковски — avb9"
+                },
+                {
+                    "src": "/assets/images/partners/Pepco/pepco18.webp",
+                    "alt": "Pepco — Ритейл парк Раковски — baq2"
+                },
+                {
+                    "src": "/assets/images/partners/Pepco/pepco19.webp",
+                    "alt": "Pepco — Ритейл парк Раковски — d1so"
+                },
+                {
+                    "src": "/assets/images/partners/Pepco/pepco20.webp",
+                    "alt": "Pepco — Ритейл парк Раковски — ord4"
+                },
+                {
+                    "src": "/assets/images/partners/Pepco/pepco21.webp",
+                    "alt": "Pepco — Ритейл парк Раковски — rnkz"
+                },
+                {
+                    "src": "/assets/images/partners/Pepco/pepco22.webp",
+                    "alt": "Pepco — Ритейл парк Раковски — pd00"
+                },
+                {
+                    "src": "/assets/images/partners/Pepco/pepco23.webp",
+                    "alt": "Pepco — Ритейл парк Раковски — 6z6p"
+                },
+                {
+                    "src": "/assets/images/partners/Pepco/pepco24.webp",
+                    "alt": "Pepco — Ритейл парк Раковски — cakp"
+                },
+                {
+                    "src": "/assets/images/partners/Pepco/pepco25.webp",
+                    "alt": "Pepco — Ритейл парк Раковски — nbgh"
+                },
+                {
+                    "src": "/assets/images/partners/Pepco/pepco26.webp",
+                    "alt": "Pepco — Ритейл парк Раковски — lhsw"
+                },
+                {
+                    "src": "/assets/images/partners/Pepco/pepco27.webp",
+                    "alt": "Pepco — Ритейл парк Раковски — bb0w"
+                }
             ]
         },
         {
