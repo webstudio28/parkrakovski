@@ -941,7 +941,7 @@
             ]
         },
         {
-            "slug": "teantoys",
+            "slug": "tean-toys",
             "title": "Tean Toys",
             "category": "Играчки",
             "color": "#FFB81C",
@@ -949,17 +949,67 @@
             "logo": "/assets/images/partners/Tean Toys/logo.webp",
             "image": "/assets/images/partners/Tean Toys/teantoys1.webp",
             "description": "Tean Toys в Ритейл парк Раковски — играчки и подаръци за деца.",
-            "hours": "Пон–Съб: 09:00–20:00 | Нед: 10:00–18:00",
+            "hours": {
+                "mon": {
+                    "open": "10:00",
+                    "close": "19:00"
+                },
+                "tue": {
+                    "open": "10:00",
+                    "close": "19:00"
+                },
+                "wed": {
+                    "open": "10:00",
+                    "close": "19:00"
+                },
+                "thu": {
+                    "open": "10:00",
+                    "close": "19:00"
+                },
+                "fri": {
+                    "open": "10:00",
+                    "close": "19:00"
+                },
+                "sat": {
+                    "open": "10:00",
+                    "close": "19:00"
+                },
+                "sun": {
+                    "open": "10:00",
+                    "close": "19:00"
+                }
+            },
             "phone": "",
             "promotions": [],
             "images": [
-                "/assets/images/partners/Tean Toys/teantoys1.webp",
-                "/assets/images/partners/Tean Toys/teantoys2.webp",
-                "/assets/images/partners/Tean Toys/teantoys3.webp",
-                "/assets/images/partners/Tean Toys/teantoys4.webp",
-                "/assets/images/partners/Tean Toys/teantoys5.webp",
-                "/assets/images/partners/Tean Toys/teantoys6.webp",
-                "/assets/images/partners/Tean Toys/teantoys7.webp"
+                {
+                    "src": "/assets/images/partners/Tean Toys/teantoys1.webp",
+                    "alt": "Tean Toys — Ритейл парк Раковски — iimz"
+                },
+                {
+                    "src": "/assets/images/partners/Tean Toys/teantoys2.webp",
+                    "alt": "Tean Toys — Ритейл парк Раковски — bymo"
+                },
+                {
+                    "src": "/assets/images/partners/Tean Toys/teantoys3.webp",
+                    "alt": "Tean Toys — Ритейл парк Раковски — bsr1"
+                },
+                {
+                    "src": "/assets/images/partners/Tean Toys/teantoys4.webp",
+                    "alt": "Tean Toys — Ритейл парк Раковски — wc0d"
+                },
+                {
+                    "src": "/assets/images/partners/Tean Toys/teantoys5.webp",
+                    "alt": "Tean Toys — Ритейл парк Раковски — 9nk7"
+                },
+                {
+                    "src": "/assets/images/partners/Tean Toys/teantoys6.webp",
+                    "alt": "Tean Toys — Ритейл парк Раковски — p3nn"
+                },
+                {
+                    "src": "/assets/images/partners/Tean Toys/teantoys7.webp",
+                    "alt": "Tean Toys — Ритейл парк Раковски — kih7"
+                }
             ]
         }
     ]
