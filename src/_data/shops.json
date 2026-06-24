@@ -502,15 +502,62 @@
             "promotions": [],
             "image": "/assets/images/partners/KiK/kik1.webp",
             "description": "KiK предлага широка гама от текстилни изделия, облекло и домашни артикули на привлекателни цени. От ежедневни дрехи до домашен текстил — всичко на едно удобно за вас място.",
-            "hours": "Пон–Съб: 09:00–20:00 | Нед: 10:00–19:00",
+            "hours": {
+                "mon": {
+                    "open": "10:00",
+                    "close": "19:00"
+                },
+                "tue": {
+                    "open": "10:00",
+                    "close": "19:00"
+                },
+                "wed": {
+                    "open": "10:00",
+                    "close": "19:00"
+                },
+                "thu": {
+                    "open": "10:00",
+                    "close": "19:00"
+                },
+                "fri": {
+                    "open": "10:00",
+                    "close": "19:00"
+                },
+                "sat": {
+                    "open": "10:00",
+                    "close": "19:00"
+                },
+                "sun": {
+                    "open": "10:00",
+                    "close": "19:00"
+                }
+            },
             "phone": "",
             "images": [
-                "/assets/images/partners/KiK/kik1.webp",
-                "/assets/images/partners/KiK/kik2.webp",
-                "/assets/images/partners/KiK/kik3.webp",
-                "/assets/images/partners/KiK/kik4.webp",
-                "/assets/images/partners/KiK/kik5.webp",
-                "/assets/images/partners/KiK/kik6.webp"
+                {
+                    "src": "/assets/images/partners/KiK/kik1.webp",
+                    "alt": "KiK — Ритейл парк Раковски — zm7q"
+                },
+                {
+                    "src": "/assets/images/partners/KiK/kik2.webp",
+                    "alt": "KiK — Ритейл парк Раковски — 0c3l"
+                },
+                {
+                    "src": "/assets/images/partners/KiK/kik3.webp",
+                    "alt": "KiK — Ритейл парк Раковски — srie"
+                },
+                {
+                    "src": "/assets/images/partners/KiK/kik4.webp",
+                    "alt": "KiK — Ритейл парк Раковски — 75kn"
+                },
+                {
+                    "src": "/assets/images/partners/KiK/kik5.webp",
+                    "alt": "KiK — Ритейл парк Раковски — v5o4"
+                },
+                {
+                    "src": "/assets/images/partners/KiK/kik6.webp",
+                    "alt": "KiK — Ритейл парк Раковски — d5zq"
+                }
             ]
         },
         {
