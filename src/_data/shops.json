@@ -405,7 +405,7 @@
             ]
         },
         {
-            "slug": "apteka-366",
+            "slug": "apteka-36-6",
             "title": "Аптека 36.6",
             "category": "Здраве",
             "color": "#00A651",
@@ -414,20 +414,82 @@
             "promotions": [],
             "image": "/assets/images/partners/Apteka 36.6/apteka-3661.webp",
             "description": "Аптека 36.6 е сред водещите аптечни вериги в страната с богат избор от лекарствени продукти, хранителни добавки и козметика. Квалифицирани фармацевти са готови да ви помогнат с всяко ваше запитване.",
-            "hours": "Пон–Съб: 08:00–20:00 | Нед: 09:00–18:00",
+            "hours": {
+                "mon": {
+                    "open": "10:00",
+                    "close": "19:00"
+                },
+                "tue": {
+                    "open": "10:00",
+                    "close": "19:00"
+                },
+                "wed": {
+                    "open": "10:00",
+                    "close": "19:00"
+                },
+                "thu": {
+                    "open": "10:00",
+                    "close": "19:00"
+                },
+                "fri": {
+                    "open": "10:00",
+                    "close": "19:00"
+                },
+                "sat": {
+                    "open": "10:00",
+                    "close": "19:00"
+                },
+                "sun": {
+                    "open": "10:00",
+                    "close": "19:00"
+                }
+            },
             "phone": "",
             "images": [
-                "/assets/images/partners/Apteka 36.6/apteka-3661.webp",
-                "/assets/images/partners/Apteka 36.6/apteka-3662.webp",
-                "/assets/images/partners/Apteka 36.6/apteka-3663.webp",
-                "/assets/images/partners/Apteka 36.6/apteka-3664.webp",
-                "/assets/images/partners/Apteka 36.6/apteka-3665.webp",
-                "/assets/images/partners/Apteka 36.6/apteka-3666.webp",
-                "/assets/images/partners/Apteka 36.6/apteka-3667.webp",
-                "/assets/images/partners/Apteka 36.6/apteka-3668.webp",
-                "/assets/images/partners/Apteka 36.6/apteka-3669.webp",
-                "/assets/images/partners/Apteka 36.6/apteka-36610.webp",
-                "/assets/images/partners/Apteka 36.6/apteka-36611.webp"
+                {
+                    "src": "/assets/images/partners/Apteka 36.6/apteka-3661.webp",
+                    "alt": "Аптека 36.6 — Ритейл парк Раковски — leoa"
+                },
+                {
+                    "src": "/assets/images/partners/Apteka 36.6/apteka-3662.webp",
+                    "alt": "Аптека 36.6 — Ритейл парк Раковски — l428"
+                },
+                {
+                    "src": "/assets/images/partners/Apteka 36.6/apteka-3663.webp",
+                    "alt": "Аптека 36.6 — Ритейл парк Раковски — m7tp"
+                },
+                {
+                    "src": "/assets/images/partners/Apteka 36.6/apteka-3664.webp",
+                    "alt": "Аптека 36.6 — Ритейл парк Раковски — puoq"
+                },
+                {
+                    "src": "/assets/images/partners/Apteka 36.6/apteka-3665.webp",
+                    "alt": "Аптека 36.6 — Ритейл парк Раковски — y5w6"
+                },
+                {
+                    "src": "/assets/images/partners/Apteka 36.6/apteka-3666.webp",
+                    "alt": "Аптека 36.6 — Ритейл парк Раковски — ko1v"
+                },
+                {
+                    "src": "/assets/images/partners/Apteka 36.6/apteka-3667.webp",
+                    "alt": "Аптека 36.6 — Ритейл парк Раковски — urx8"
+                },
+                {
+                    "src": "/assets/images/partners/Apteka 36.6/apteka-3668.webp",
+                    "alt": "Аптека 36.6 — Ритейл парк Раковски — 4alr"
+                },
+                {
+                    "src": "/assets/images/partners/Apteka 36.6/apteka-3669.webp",
+                    "alt": "Аптека 36.6 — Ритейл парк Раковски — aemc"
+                },
+                {
+                    "src": "/assets/images/partners/Apteka 36.6/apteka-36610.webp",
+                    "alt": "Аптека 36.6 — Ритейл парк Раковски — 5eut"
+                },
+                {
+                    "src": "/assets/images/partners/Apteka 36.6/apteka-36611.webp",
+                    "alt": "Аптека 36.6 — Ритейл парк Раковски — ebd9"
+                }
             ]
         },
         {
