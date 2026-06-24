@@ -658,19 +658,78 @@
             "promotions": [],
             "image": "/assets/images/partners/Via Deco - Mebeli/via-deco1.webp",
             "description": "Via Deco предлага стилни и функционални мебели, декоративни елементи и решения за дома. Намерете вдъхновение за обзавеждане и украса на всяко помещение с изделия в различни стилове и ценови категории.",
-            "hours": "Пон–Съб: 09:00–19:00 | Нед: 10:00–18:00",
+            "hours": {
+                "mon": {
+                    "open": "10:00",
+                    "close": "19:00"
+                },
+                "tue": {
+                    "open": "10:00",
+                    "close": "19:00"
+                },
+                "wed": {
+                    "open": "10:00",
+                    "close": "19:00"
+                },
+                "thu": {
+                    "open": "10:00",
+                    "close": "19:00"
+                },
+                "fri": {
+                    "open": "10:00",
+                    "close": "19:00"
+                },
+                "sat": {
+                    "open": "10:00",
+                    "close": "19:00"
+                },
+                "sun": {
+                    "open": "10:00",
+                    "close": "15:00"
+                }
+            },
             "phone": "",
             "images": [
-                "/assets/images/partners/Via Deco - Mebeli/via-deco1.webp",
-                "/assets/images/partners/Via Deco - Mebeli/via-deco2.webp",
-                "/assets/images/partners/Via Deco - Mebeli/via-deco3.webp",
-                "/assets/images/partners/Via Deco - Mebeli/via-deco4.webp",
-                "/assets/images/partners/Via Deco - Mebeli/via-deco5.webp",
-                "/assets/images/partners/Via Deco - Mebeli/via-deco6.webp",
-                "/assets/images/partners/Via Deco - Mebeli/via-deco7.webp",
-                "/assets/images/partners/Via Deco - Mebeli/via-deco8.webp",
-                "/assets/images/partners/Via Deco - Mebeli/via-deco9.webp",
-                "/assets/images/partners/Via Deco - Mebeli/via-deco10.webp"
+                {
+                    "src": "/assets/images/partners/Via Deco - Mebeli/via-deco1.webp",
+                    "alt": "Via Deco — Ритейл парк Раковски — z3v6"
+                },
+                {
+                    "src": "/assets/images/partners/Via Deco - Mebeli/via-deco2.webp",
+                    "alt": "Via Deco — Ритейл парк Раковски — qro4"
+                },
+                {
+                    "src": "/assets/images/partners/Via Deco - Mebeli/via-deco3.webp",
+                    "alt": "Via Deco — Ритейл парк Раковски — 1vb1"
+                },
+                {
+                    "src": "/assets/images/partners/Via Deco - Mebeli/via-deco4.webp",
+                    "alt": "Via Deco — Ритейл парк Раковски — hva4"
+                },
+                {
+                    "src": "/assets/images/partners/Via Deco - Mebeli/via-deco5.webp",
+                    "alt": "Via Deco — Ритейл парк Раковски — 1kc1"
+                },
+                {
+                    "src": "/assets/images/partners/Via Deco - Mebeli/via-deco6.webp",
+                    "alt": "Via Deco — Ритейл парк Раковски — lvpx"
+                },
+                {
+                    "src": "/assets/images/partners/Via Deco - Mebeli/via-deco7.webp",
+                    "alt": "Via Deco — Ритейл парк Раковски — d9qb"
+                },
+                {
+                    "src": "/assets/images/partners/Via Deco - Mebeli/via-deco8.webp",
+                    "alt": "Via Deco — Ритейл парк Раковски — 3j0b"
+                },
+                {
+                    "src": "/assets/images/partners/Via Deco - Mebeli/via-deco9.webp",
+                    "alt": "Via Deco — Ритейл парк Раковски — 8olh"
+                },
+                {
+                    "src": "/assets/images/partners/Via Deco - Mebeli/via-deco10.webp",
+                    "alt": "Via Deco — Ритейл парк Раковски — 0tjd"
+                }
             ]
         },
         {
