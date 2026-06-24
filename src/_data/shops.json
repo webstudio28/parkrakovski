@@ -865,20 +865,79 @@
             "logo": "/assets/images/partners/Skuteri/logo.png",
             "image": "/assets/images/partners/Skuteri/skuteri1.webp",
             "description": "Скутери в Ритейл парк Раковски — продажба, сервиз и аксесоари за мотори.",
-            "hours": "Пон–Съб: 09:00–19:00 | Нед: 10:00–16:00",
+            "hours": {
+                "mon": {
+                    "open": "10:00",
+                    "close": "19:00"
+                },
+                "tue": {
+                    "open": "10:00",
+                    "close": "19:00"
+                },
+                "wed": {
+                    "open": "10:00",
+                    "close": "19:00"
+                },
+                "thu": {
+                    "open": "10:00",
+                    "close": "19:00"
+                },
+                "fri": {
+                    "open": "10:00",
+                    "close": "19:00"
+                },
+                "sat": {
+                    "open": "10:00",
+                    "close": "19:00"
+                },
+                "sun": {
+                    "open": "10:00",
+                    "close": "19:00"
+                }
+            },
             "phone": "",
             "promotions": [],
             "images": [
-                "/assets/images/partners/Skuteri/skuteri1.webp",
-                "/assets/images/partners/Skuteri/skuteri2.webp",
-                "/assets/images/partners/Skuteri/skuteri3.webp",
-                "/assets/images/partners/Skuteri/skuteri4.webp",
-                "/assets/images/partners/Skuteri/skuteri5.webp",
-                "/assets/images/partners/Skuteri/skuteri6.webp",
-                "/assets/images/partners/Skuteri/skuteri7.webp",
-                "/assets/images/partners/Skuteri/skuteri8.webp",
-                "/assets/images/partners/Skuteri/skuteri9.webp",
-                "/assets/images/partners/Skuteri/skuteri10.webp"
+                {
+                    "src": "/assets/images/partners/Skuteri/skuteri1.webp",
+                    "alt": "Скутери — Ритейл парк Раковски — irxh"
+                },
+                {
+                    "src": "/assets/images/partners/Skuteri/skuteri2.webp",
+                    "alt": "Скутери — Ритейл парк Раковски — t7pb"
+                },
+                {
+                    "src": "/assets/images/partners/Skuteri/skuteri3.webp",
+                    "alt": "Скутери — Ритейл парк Раковски — zcz1"
+                },
+                {
+                    "src": "/assets/images/partners/Skuteri/skuteri4.webp",
+                    "alt": "Скутери — Ритейл парк Раковски — mtmr"
+                },
+                {
+                    "src": "/assets/images/partners/Skuteri/skuteri5.webp",
+                    "alt": "Скутери — Ритейл парк Раковски — xaef"
+                },
+                {
+                    "src": "/assets/images/partners/Skuteri/skuteri6.webp",
+                    "alt": "Скутери — Ритейл парк Раковски — p4bw"
+                },
+                {
+                    "src": "/assets/images/partners/Skuteri/skuteri7.webp",
+                    "alt": "Скутери — Ритейл парк Раковски — jc89"
+                },
+                {
+                    "src": "/assets/images/partners/Skuteri/skuteri8.webp",
+                    "alt": "Скутери — Ритейл парк Раковски — 4d2o"
+                },
+                {
+                    "src": "/assets/images/partners/Skuteri/skuteri9.webp",
+                    "alt": "Скутери — Ритейл парк Раковски — rw3h"
+                },
+                {
+                    "src": "/assets/images/partners/Skuteri/skuteri10.webp",
+                    "alt": "Скутери — Ритейл парк Раковски — 5eim"
+                }
             ]
         },
         {
